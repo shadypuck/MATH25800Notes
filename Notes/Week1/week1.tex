@@ -9,9 +9,203 @@
 
 
 \chapter{???}
-\section{???}
+\section{Rings, Subrings, and Ring Homomorphisms}
 \begin{itemize}
-    \item \marginnote{1/4:}
+    \item \marginnote{1/4:}Intro to the course.
+    \item What will be covered: Most of Chapters 7-12 in \textcite{bib:DummitFoote}.
+    \begin{itemize}
+        \item Mostly rings, a bit of modules.
+        \begin{itemize}
+            \item Modules tend to get more complicated.
+        \end{itemize}
+        \item The topics covered in class will all be in the book, but not necessarily in the same order.
+        \item Some of Nori's definitions will be different from those used in the book.
+        \begin{itemize}
+            \item Different enough, in fact, to get us the wrong answers in PSet and Exam questions.
+            \item We should use his, though.
+            \item He diverges from the book because his is the mathematical literature standard.
+            \item Three main differences: Definition of a ring, subring, and ring homomorphism.
+        \end{itemize}
+    \end{itemize}
+    \item Homework will be due every Wednesday.
+    \begin{itemize}
+        \item The first will be due next week (on Wednesday, 1/11).
+        \item Rings, subrings, and ring homomorphisms, only, are needed for the first HW.
+    \end{itemize}
+    \item Grading breakdown.
+    \begin{itemize}
+        \item HW (30\%).
+        \item Midterm (30\%) --- third or fourth week.
+        \item Final (40\%).
+    \end{itemize}
+    \item Office hours for Nori in Eckhart 310.
+    \begin{itemize}
+        \item M (3:00-4:30).
+        \item Tu (3:30-5:00).
+        \item Th (3:00-4:30).
+    \end{itemize}
+    \item Callum is our TA; Ray is for the other section. Their OH are TBA.
+    \item All important course info will be in Files on Canvas.
+    \item There will be course notes provided for the course.
+    \item If we think something Nori writes down looks suspicious, feel free to ask!
+    \item We now start the course content.
+    \item \textbf{Ring}\footnote{Definition from \textcite{bib:DummitFoote}.}: A triple $(R,+,\times)$ comprising a set $R$ equipped with binary operations $+$ and $\times$ that satisfies the following three properties.
+    \begin{enumerate}[label={(\roman*)}]
+        \item $(R,+)$ is an abelian group.
+        \item $(R,\times)$ is associative, i.e.,
+        \begin{equation*}
+            a\times(b\times c) = (a\times b)\times c
+        \end{equation*}
+        for all $a,b,c\in R$.
+        \item The left and right distributive laws hold, i.e.,
+        \begin{align*}
+            a\times(b+c) &= (a\times b)+(a\times c)&
+            (b+c)\times a &= (b\times a)+(c\times a)
+        \end{align*}
+        for all $a,b,c\in R$.
+    \end{enumerate}
+    \item Misc comments.
+    \begin{itemize}
+        \item The parentheses on the RHSs in (iii) indicate the "standard" order of operations.
+        \item We still often drop the $\times$ in favor of $a\cdot b$ or simply $ab$.
+        \item We haven't postulated multiplicative inverses. That makes things more tricky :)
+    \end{itemize}
+    \item We define left- and right-multiplication functions for every element $a\in R$.
+    \begin{itemize}
+        \item These are denoted $l_a:R\to R$ and $r_a:R\to R$. In particular,
+        \begin{align*}
+            l_a(b) &= a\times b&
+            r_a(b) &= b\times a
+        \end{align*}
+        for all $b\in R$.
+        \item The statement "$l_a,r_a$ are group homomorphisms\footnote{Since we will soon introduce other types of homomorphisms (e.g., ring homomorphisms) beyond the one type with which we are familiar, we now have to specify that a homomorphism of the type dealt with in MATH 25700 is a \emph{group} homomorphism.} from $(R,+)$ to itself, i.e.,
+        \begin{equation*}
+            l_a(b+c) = l_a(b)+l_a(c)
+        \end{equation*}
+        for all $b,c\in R$" is equivalent to (iii).
+    \end{itemize}
+    \item \textbf{Additive identity} (of $R$): The unique element of $R$ that satisfies the following constraint. \emph{Denoted by} $\bm{0_R}$.
+    \begin{equation*}
+        0_R+a = a+0_R = a
+    \end{equation*}
+    for all $a\in R$.
+    \begin{itemize}
+        \item The existence and uniqueness of $0_R$ follows from property (i) of rings (groups must have an identity element, which in this case is the \emph{additive} identity since it corresponds to the addition operation).
+    \end{itemize}
+    \item Similarly, we know that unique additive inverses exist for all $a\in R$. We denote these by $\bm{-a}$.
+    \item Since $l_a$ is a group homomorphism, this must mean that
+    \begin{align*}
+        l_a(0_R) &= 0_R&
+            l_a(-b) &= -l_a(b)\\
+        a\times 0_R &= 0_R&
+            a\times(-b) &= -(a\times b)
+    \end{align*}
+    for all $a,b\in R$.
+    \begin{itemize}
+        \item The same holds for $r_a$/positions interchanged.
+        \item These are consequences of the distributive law.
+    \end{itemize}
+    \item In Part 1, \textcite{bib:DummitFoote} defines rings as above.
+    \begin{itemize}
+        \item In Part 2, \textcite{bib:DummitFoote} takes $R$ to be \textbf{commutative}.
+        \item In Part 3, \textcite{bib:DummitFoote} takes $R$ to be a \textbf{ring with identity}.
+    \end{itemize}
+    \item \textbf{Commutative ring}: A ring $R$ such that
+    \begin{equation*}
+        a\times b = b\times a
+    \end{equation*}
+    for all $a,b\in R$.
+    \item \textbf{Ring with identity}: A ring $R$ containing a 2-sided identity, i.e., an element $e\in R$ such that
+    \begin{equation*}
+        e\times a = a\times e = a
+    \end{equation*}
+    for all $a\in R$.
+    \item We now justify that it's ok to denote the 2-sided identity with a single letter.
+    \item Exercise: The identity is unique.
+    \begin{proof}
+        If $e'$ is also a 2-sided identity, then
+        \begin{equation*}
+            e = e\times e' = e'
+        \end{equation*}
+    \end{proof}
+    \item In this course, we will always take "ring" to mean "ring with identity." That is, we will always assume that our rings contain a 2-sided identity $e=1_R$.
+    \item Examples of rings.
+    \begin{enumerate}
+        \item $\N\subset\Z\subset\Q\subset\R\subset\C$ all have two binary operations, but are they all rings?
+        \begin{itemize}
+            \item $\N$ is not a ring since $(\N,+)$ is not an abelian group (or even a group --- no additive inverses).
+            \item The rest are rings. In fact, they are commutative rings.
+            \item $\Q,\R,\C$ are also \textbf{fields}.
+        \end{itemize}
+        \item Let $X$ be a set, and $f,g:X\to\R$. We can define $f+g:X\to\R$ by $(f+g)(x)=f(x)+g(x)$ and $f\times g:X\to\R$ by $(f\times g)(x)=f(x)g(x)$.
+        \begin{itemize}
+            \item Thus, the set of all functions from $X\to\R$ --- denoted $\Fun(X;\R)$ or $\R^X$ --- has two binary operations and is a ring.
+            \item This follows from the fact that the real numbers form a ring.
+        \end{itemize}
+        \item More generally, let $X$ be a set and let $R$ be a ring. Then $\Fun(X;R)=R^X$ is a ring.
+        \begin{itemize}
+            \item The constant function taking the value $1_R\in R$ is the identity of $R^X$.
+        \end{itemize}
+        \item Let $X=\{1,2\}$. Then $R^X\cong R\times R$.
+        \begin{itemize}
+            \item Correct topology:
+            \begin{align*}
+                (a_1,a_2)+(b_1,b_2) &= (a_1+b_1,a_2+b_2)&
+                (a_1,a_2)\times(b_1,b_2) &= (a_1\times b_1,a_2\times b_2)
+            \end{align*}
+            \item Implication: The same "formula" shows that if $R_1,R_2$ are rings, then $R_1\times R_2$ is a ring.
+        \end{itemize}
+        \item If $R_i$ is a ring for all $i\in I$, where $I$ could be any indexing set (e.g., $\N$, but need not be countable), then $\prod_{i\in I}R_i$ is also a ring.
+        \begin{itemize}
+            \item The identity is $(e_i,e_j,\dots)$.
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Field}: A commutative ring $R$ with multiplicative inverses for every element except $0_R$.
+    \item In the context of groups, we've discussed subgroups, group homomorphisms, the fact that the inclusion of a subgroup into a bigger group is a group homomorphism, and the fact that the image of a group homomorphism is a subgroup.
+    \item Today, let's define subrings and ring homomorphisms and make sure that the corresponding properties remain true.
+    \item Intuitively, a \textbf{subring} should be a subset of a ring that is itself a ring under the restricted operations.
+    \item \textbf{Subring}: A subset $S$ of a ring $R$ such that\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item For all $a,b\in S$, both $a+b,ab\in S$. For all $a\in S$, $-a\in S$.
+        \item $1_R\in S$.
+    \end{enumerate}
+    \item Check that these conditions are sufficient!
+    \item \textbf{Ring homomorphism}: A function $f:A\to B$, where $A,B$ are rings, such that
+    \begin{align*}
+        f(a_1+a_2) &= f(a_1)+f(a_2)\\
+        f(a_1\times a_2) &= f(a_1)\times f(a_2)\\
+        f(1_A) &= f(1_B)
+    \end{align*}
+    for all $a_1,a_2\in A$.
+    \item Note that we need the third constraint because we are not postulating the existence of multiplicative inverses.
+    \item Examples:
+    \begin{enumerate}
+        \item If $S$ is a subring of a ring $R$ and $i:S\to R$ is the inclusion map, then it is a ring homomorphism.
+        \item $R_1,R_2$ are rings. Then $\pi:R_1\times R_2\to R_1$ defined by $\pi(a_1,a_2)=a_1$ for all $(a_1,a_2)\in R_1\times R_2$ is a ring homomorphism.
+        \item $i:R_1\to R_1\times R_2$ defined by $i(a)=(a,0)$ is not a ring homomorphism unless $R_2$ is trivial since $i(1_{R_1})=(1_{R_1},0)\neq (1_{R_1},1_{R_2})=1_{R_1\times R_2}$.
+        \item $f:M_2(\R)\to M_3(\R)$ defined by inclusion in the upper lefthand corner is not a ring homomorphism for the same reason as the above. To be clear, the functional relation considered here is
+        \begin{equation*}
+            \begin{pmatrix}
+                a & b\\
+                c & d\\
+            \end{pmatrix}
+            \mapsto
+            \begin{pNiceArray}{cc|c}
+                a & b & 0\\
+                c & d & 0\\ \hline
+                0 & 0 & 0\\
+            \end{pNiceArray}
+        \end{equation*}
+    \end{enumerate}
+    \item The integers have no subrings except for itself.
+    \begin{itemize}
+        \item Consider $\Z/10\Z$, for instance. Doesn't work because we postulate the existence of an identity, but $1\notin\Z/10\Z$.
+    \end{itemize}
+    \item Subrings of $\Q$:
+    \begin{itemize}
+        \item $\Z,\Q$, the $p$-adic rationals $\{a/p^n\mid a\in\Z,n=0,1,\dots\}$, $\{a/(p_1p_2\cdots p_r)^n\mid a\in\Z,n=0,1,\dots\}$, arbitrary subsets of primes in the denominator.
+        \item Exercise: There's a bijective correspondence between the subrings of $\Q$ and the power set of the prime numbers.
+    \end{itemize}
 \end{itemize}
 
 

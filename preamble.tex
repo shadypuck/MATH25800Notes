@@ -2,6 +2,12 @@
 \usepackage{csquotes}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
+\usepackage{enumitem}
+\usepackage{scrextend}
+\usepackage[bottom]{footmisc}
+\usepackage[style=apa]{biblatex}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm,nicematrix}
 \usepackage[hidelinks]{hyperref}
 
 \MakeOuterQuote{"}
@@ -18,5 +24,23 @@
 }
 
 \reversemarginpar
+
+\setitemize[3]{label={\scriptsize$\blacksquare$}}
+
+\deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
+\deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnote}}
+
+\addbibresource{../main.bib}
+\DefineBibliographyStrings{english}{bibliography={References}}
+
+\DeclareMathOperator{\Fun}{Fun}
+
+\NiceMatrixOptions{cell-space-limits=1pt}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
 
 \usepackage{subfiles}
