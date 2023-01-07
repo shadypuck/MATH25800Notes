@@ -2,6 +2,9 @@
 
 \input{../preamble.tex}
 
+\setenumerate[1]{label={\textbf{\thesection.\arabic*.}},leftmargin=3.5em}
+\setenumerate[2]{label={(\roman*)}}
+
 \title{MATH 25800 (Honors Basic Algebra II) Problem Sets}
 \author{Steven Labalme}
 
@@ -22,7 +25,7 @@
 
 \pagenumbering{arabic}
 \pagestyle{main}
-\renewcommand{\leftmark}{Problem Set \thesection}{}
+\renewcommand{\leftmark}{Problem Set \thesection}
 \subfile{PSet1/pset1.tex}
 
 

@@ -8,9 +8,84 @@
 
 
 
-\section{???}
+\section{Rings, Subrings, and Ring Homomorphisms}
 \begin{enumerate}
-    \item \marginnote{1/??:}
+    \item \marginnote{1/11:}Let $R$ be a ring with identity. Show that $R$ is a singleton if and only if $0_R=1_R$.
+\end{enumerate}
+
+
+\subsection*{Products}
+\begin{enumerate}[resume]
+    \item Let $X,Y$ be sets and let $R$ be a ring. Recall that pointwise addition and multiplication turns $R^X$ and $R^Y$ into rings. Let $f:X\to Y$ be a function. Define $f^*:R^Y\to R^X$ by $f^*(g)=g\circ f$ for all $g:Y\to R$. Prove that $f^*$ is a ring homomorphism.
+    \item Let $Y\subset X$. Define $\phi:R^Y\to R^X$ by the following rule: For any function $g:Y\to R\in R^Y$, let $\phi(g):X\to R$ send
+    \begin{equation*}
+        x \mapsto
+        \begin{cases}
+            g(x) & x\in Y\\
+            0 & x\notin Y
+        \end{cases}
+    \end{equation*}
+    State whether the assertions (i) and (ii) below are \emph{true} or \emph{false}. No proof required.\par
+    \emph{Warning}: Make sure to use the definitions of "ring homomorphism" and "subring" from class!
+    \begin{enumerate}
+        \item $\phi$ is a ring homomorphism.
+        \item The image of $\phi$ is a subring of $R^X$.
+    \end{enumerate}
+    \item For any ring $R$, define the set $\Delta(R)$ by
+    \begin{equation*}
+        \Delta(R) = \{(a,a):a\in R\}
+    \end{equation*}
+    Note that $\Delta(R)$ is a subring of $R\times R$. Prove that if $B$ is a subring of $\Q\times\Q$ that contains $\Delta(\Q)$, then $B$ is either $\Delta(\Q)$ or $\Q\times\Q$.
+\end{enumerate}
+
+
+\subsection*{Basic Properties}
+\begin{enumerate}[start=7]
+    \item Let $f:R_1\to R_2$ be a ring homomorphism, and let $R_3$ be a subring of $R_2$. Prove that $f^{-1}(R_3)$ is a subring of $R_1$.
+    \stepcounter{enumi}
+    \item Show that $A\cap B$ is a subring of $R$ if both $A,B$ are subrings of $R$.
+\end{enumerate}
+Recall the following lemma from MATH 25700: Let $(A,+)$ be an abelian group, and let $a\in A$. Then there is a unique group homomorphism $f:\Z\to A$ such that $f(1)=a$. Additionally, $f(n)=na$ for all $n\in\Z$.
+\begin{enumerate}[resume]
+    \item Let $1_R$ denote the multiplicative identity of a ring $R$. The above lemma then defines $na\in R$ for every $a\in A$ and $n\in\Z$. In particular, we define $n_R=n(1_R)$ for every integer $n\in\Z$. Prove that $n_R\cdot a=na$ for every $a\in R$ and $n\in\Z$.
+    \item With notation as above, show that $f:\Z\to R$ given by $f(n)=n_R$ is a ring homomorphism.
+\end{enumerate}
+The commutativity of a ring is required for all the identities of high school algebra. The next two problems (1.12 and 1.13) are instances.
+\begin{enumerate}[resume]
+    \item Prove that the following are equivalent.
+    \begin{enumerate}
+        \item $R$ is a commutative ring.
+        \item $(a+b)(a-b)=a^2-b^2$ for all $a,b\in R$.
+        \item $(a+b)^2=a^2+2ab+b^2$ for all $a,b\in R$.
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item For this problem, you only have to state whether each of the nine assertions $\text{(i)},\dots,\text{(ix)}$ is \emph{true} or \emph{false}. No proofs are required.\par
+    Given sets $X,Y$, the set of all functions $f:Y\to X$ is denoted by $X^Y$. Let $(A,+)$ be an abelian group. Given functions $f,g:Y\to A$, define $f+g:Y\to A$ by pointwise addition, i.e., let
+    \begin{equation*}
+        (f+g)(y) = f(y)+g(y)
+    \end{equation*}
+    for all $y\in Y$.
+    \begin{enumerate}
+        \item The above binary operation $+$ on $A^Y$ gives $A^Y$ the structure of an abelian group.
+    \end{enumerate}
+    For (ii) and (iii) below, we continue with $Y=A$ where $(A,+)$ is an abelian group. In an attempt to give $A^A$ the structure of a ring --- for functions $f,g:A\to A$ --- we take $\circ$ as the second binary operation. Here, $(f\circ g)(a)=f(g(a))$ for all $a\in A$.
+    \begin{enumerate}[resume]
+        \item The right distributive law, i.e., $(f+g)\circ h=f\circ h+g\circ h$ holds for all functions $f,g,h:A\to A$.
+        \item The left distributive law, i.e., $f\circ(g+h)=f\circ g+f\circ h$ holds for all functions $f,g,h:A\to A$.
+        \item The identity function $\id_A:A\to A$ given by $\id_A(a)=a$ for all $a\in A$ satisfies
+        \begin{equation*}
+            \id_A\circ f = f = f\circ\id_A
+        \end{equation*}
+        for all $f:A\to A$.
+    \end{enumerate}
+    If you have solved the above problems correctly, you would have seen that $(A^A,+,\circ)$ is \emph{not} a ring. In an endeavor to produce a ring employing the same binary operations $+$ and $\circ$, we replace $A^A$ by its subset $\End(A)=\{f:A\to A:f\text{ is a group homomorphism}\}$.
+    \begin{enumerate}[resume]
+        \item For $f,g\in\End(A)$, both $f+g$ and $f\circ g$ belong to $\End(A)$.
+        \item The left and right distributive laws hold for $(\End(A),+,\circ)$.
+        \item $(\End(A),+,\circ)$ is a ring (with two-sided multiplicative identity).
+        \item $(\End(A),+,\circ)$ is a commutative ring for all abelian groups $(A,+)$.
+        \item If $A=\Z\times\Z$, then $\End(A)$ is isomorphic to the ring of $2\times 2$ matrices with integer coefficients.
+    \end{enumerate}
 \end{enumerate}
 
 
