@@ -8,7 +8,7 @@
 
 
 
-\chapter{???}
+\chapter{Rings Intro}
 \section{Rings, Subrings, and Ring Homomorphisms}
 \begin{itemize}
     \item \marginnote{1/4:}Intro to the course.
@@ -225,6 +225,193 @@
         \item Clearly $\Delta$ is a ring homomorphism.
         \item Then consider the image $\Delta(R)\subset R\times R$.
         \item We are asked to show that if $\Delta(\Q)\subset B\subset\Q\times\Q$ for $B$ a subring of $\Q\times\Q$, then either $B=\Delta(\Q)$ or $B=\Q\times\Q$.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Polynomial Rings and Power Series Rings}
+\begin{itemize}
+    \item \marginnote{1/6:}End of last time: The subrings of $\Q$.
+    \item Today: The subrings an arbitrary ring $R$.
+    \item Question 1: Let $R$ a ring, $x\in R$ arbitrary. What is the "smallest" subring $M\subset R$ such that $x\in M$?
+    \begin{itemize}
+        \item We know that $1_R\in M$. Thus, $1_R+1_R=2_R\in M$. It follows by induction that
+        \begin{equation*}
+            n_R \in M
+        \end{equation*}
+        for all $n\in\Z$.
+        \item Moving on, $x\in M$ implies that $n_Rx,xn_R\in M$. Is it true that $n_Rx=xn_R$? Yes it is. Here's why.
+        \begin{itemize}
+            \item Let $C=\{c\in R\mid cx=xc\}$, where $x$ is the element we've been talking about.
+            \item We can prove that $C$ is a subring of $R$; this is Exercise 7.1.9 of \textcite{bib:DummitFoote}.
+            \item If $C$ is a subring, then $1_R\in C$ implies $1_R+1_R=2_R\in C$, implies $n_R\in C$. Therefore,
+            \begin{equation*}
+                n_Rx=xn_R \in M
+            \end{equation*}
+            for all $n\in\Z$.
+        \end{itemize}
+        \item The above and additive closure:
+        \begin{equation*}
+            \{a_R+b_Rx\mid a,b\in\Z\} \subset M
+        \end{equation*}
+        \item Multiplicative closure: $x\cdot x=x^2\in M$. Moreover, defining $x^n$ in the usual way (i.e., inductively),
+        \begin{equation*}
+            x^n \in M
+        \end{equation*}
+        for all $n\in\Zg$.
+        \begin{itemize}
+            \item To be explicit, the inductive definition of $x^n$ is $x^0=1_R$ and $x^{n+1}=x\cdot x^n$.
+        \end{itemize}
+        \item Multiplicative closure and $n_Ry=yn_R$ for $y\in R$ arbitrary (see above argument):
+        \begin{equation*}
+            a_Rx^n=xa_Rx^{n-1}=\cdots=x^na_R \in M
+        \end{equation*}
+        for all $a\in\Z$, $n\in\Zg$.
+        \item Additive closure:
+        \begin{equation*}
+            (a_0)_R+(a_1)_Rx+\cdots+(a_n)_Rx^n \in M
+        \end{equation*}
+        for all $a_0,a_1,\dots,a_n\in\Z$ and $n\in\Zg$.
+        \begin{itemize}
+            \item Naturally, terms of this form are called \textbf{polynomials}.
+            \item As the set of polynomials is at last closed under $+,\times$, $M$ must be a \textbf{polynomial ring}.
+        \end{itemize}
+    \end{itemize}
+    \pagebreak
+    \item \textbf{Polynomial ring} (over $\Z$): The ring defined as follows. \emph{Denoted by} $\bm{\pmb{\Z}[X]}$. \emph{Given by}
+    \begin{equation*}
+        \Z[X] = \bigcup_{m=0}^\infty\{a_0+a_1X+\cdots+a_mX^m\mid a_0,a_1,\dots,a_m\in\Z\}
+    \end{equation*}
+    \begin{itemize}
+        \item Note that we \emph{insist} on using uppercase for the indeterminate. The motivation for doing so is illustrated by the next example.
+    \end{itemize}
+    \item $\Z[X]$ induces\footnote{Recall that the terminology "induce" means that to every $R'[X]$, we can assign a set of ring homomorphisms of the given form. In other words, the set of polynomial rings over rings $R'$ is in bijective correspondence with the set of collections of functions $\phi_x$.} a collection of ring homomorphisms $\phi_x:\Z[X]\to R$, one for every $R$ and $x\in R$. These are defined by
+    \begin{equation*}
+        \phi_x(f) = f(x)
+    \end{equation*}
+    where $f=a_0+a_1X+\cdots+a_mX^m$, $f(x)=(a_0)_R+(a_1)_Rx+\cdots+(a_m)_Rx^m$, and all $a_i\in\Z$.
+    \item Implication.
+    \begin{itemize}
+        \item For any $R$ and any $x\in R$, $\phi_x(\Z[X])\subset R$.
+        \item In layman's terms, the set of all polynomials of a single element of any ring is necessarily a subset of the ring overall.
+    \end{itemize}
+    \item Question 2: Let $R\subset B$ be rings, and let $x\in B$. Find the smallest subring $M\subset B$ such that $R\subset M$ and $x\in M$.
+    \begin{itemize}
+        \item Last time, we only knew that $1_R$ had to be in $M$. This time, we have a whole set of elements $R$ to choose from!
+        \item Let $a\in R$ be arbitrary. We see that $a,x\in M$; this means that $ax,xa\in M$. But we may not have $ax=xa$ as we did so nicely for the integers $n_R$, so we have to postulate commutativity if we want to avoid a messy answer.
+        \item Henceforth, we assume
+        \begin{equation*}
+            ax=xa \in M
+        \end{equation*}
+        for all $a\in R$.
+        \item As in Question 1, $ax=xa$ implies
+        \begin{equation*}
+            ax^m=x^ma \in M
+        \end{equation*}
+        for all $a\in R$, $m\in\Zg$.
+        \item Thus,
+        \begin{equation*}
+            a_0+\cdots+a_mx^m \in M
+        \end{equation*}
+        for $a_0,\dots,a_m\in R$, $m\in\Zg$.
+        \item This set of polynomials is already a subring. Thus, it is not only contained in $M$, but must also equal $M$.
+        \item Difference between this set of polynomials and the ones from Question 1: These are the polynomials with coefficients in $R\supset\Z$.
+        \begin{itemize}
+            \item Therefore, we need to define a broader type of polynomial ring.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Polynomial ring} (over $R$): The ring defined as follows. \emph{Denoted by} $\bm{R[X]}$. \emph{Given by}
+    \begin{equation*}
+        R[X] = \bigcup_{m=0}^\infty\{a_0+a_1X+\cdots+a_mX^m\mid a_0,a_1,\dots,a_m\in R\}
+    \end{equation*}
+    \begin{itemize}
+        \item We do not require that $R$ is commutative.
+        \item Note that $R[X]$ will be commutative, however, owing to the way it's defined.
+    \end{itemize}
+    \item We now seek to generalize polynomial rings to \textbf{power series rings}.
+    \item To do so, we'll need to get more precise than the infinite unions we've been using.
+    \begin{itemize}
+        \item Consider the set of nonnegative integers $\Zg=\{0,1,2,\dots\}$.
+        \begin{itemize}
+            \item This is a \textbf{monoid} under both addition and multiplication.
+        \end{itemize}
+        \item Let $(R,+)$ be an abelian group.
+        \item Then $(R^\Zg,+)$ is also an abelian group.
+        \begin{itemize}
+            \item As per last class, all elements $a\in(R^\Zg,+)$ are functions $a:\Zg\to R$.
+            \item We write that $a:n\mapsto a_n$, i.e., the value of $a$ at $n$ will be denoted $a_n$, not $a(n)$.
+        \end{itemize}
+        \item Every element $a\in R^\Zg$ will be represented by $\sum_{n=0}^\infty a_nX^n$.
+        \begin{itemize}
+            \item This is allowable because there is a natural bijective correspondence between each $a$ and each power series $\sum_{n=0}^\infty a_nX^n$.
+            \item Essentially, what we are doing here is using the rigorously defined set of functions $R^\Zg$ to theoretically stand in for the intuitive concept of a power series. This is acceptable since both objects have very similar properties, especially as pertains to adding and multiplying them.
+            \item This is like defining the real numbers (intuitive) in terms of Dedekind cuts (rigorous).
+            \item Note that alternatively, we could introduce the entire sequences/series analytical framework from Honors Calculus IBL to logically underpin power series, but this technique will be much less bulky and suit our purposes just fine.
+        \end{itemize}
+        \item We define addition and multiplication on $R^\Zg$ as follows.
+        \begin{gather*}
+            \left( \sum_{n=0}^\infty a_nX^n \right)+\left( \sum_{n=0}^\infty b_nX^n \right) = \sum_{n=0}^\infty(a_n+b_n)X^n\\
+            \left( \sum_{p=0}^\infty a_pX^p \right)\left( \sum_{q=0}^\infty b_qX^q \right) = \sum_{\substack{p\geq 0,\\ q\geq 0}}a_pb_qX^{p+q}
+                = \sum_{r=0}^\infty\left( \sum_{p=0}^ra_pb_{r-p} \right)X^r
+        \end{gather*}
+        \item This is the \textbf{power series ring}.
+    \end{itemize}
+    \item \textbf{Monoid}: A set equipped with an associative binary operation and an identity element.
+    \item \textbf{Power series ring} (over $R$): The ring defined as follows, with $+,\times$ defined as above. \emph{Denoted by} $\bm{(R[[X]],+,\times)}$. \emph{Given by}
+    \begin{equation*}
+        R[[X]] = R^\Zg
+    \end{equation*}
+    \item Note that the definitions of addition and multiplication for $R[[X]]$ are precisely the ones needed for $R[X]$, too, (just the finite version) even though we didn't state them earlier.
+    \item Two observations about power series rings which will also hold for polynomial rings.
+    \begin{enumerate}
+        \item $R$ is a subring of $R[[X]]$ with the inclusion ring homomorphism $a\mapsto a1+0X^1+0X^2+\cdots$.
+        \item Additionally, we can map $X\in R$ to $0X^0+1X^1+0X^2+\cdots\in R[[X]]$.
+    \end{enumerate}
+    \item $aX=Xa$ for all $a\in R$.
+    \begin{itemize}
+        \item Why?? Ask in OH.
+    \end{itemize}
+    \item Alternate definition of $R[X]$: The subring of $R[[X]]$ given by
+    \begin{equation*}
+        R[X] = \left\{ \sum_{m=0}^\infty a_mX^m\in R[[X]] \middle| |\{m\in\Zg\mid a_m\neq 0\}|<\infty \right\}
+    \end{equation*}
+    \item Theorem (Universal Property of a Polynomial Ring): Let $R$ be a ring, $\alpha:R\to B$ a ring homomorphism, and $x\in B$. Assume that $x\cdot\alpha(a)=\alpha(a)\cdot x$ for all $a\in R$. Then there is a unique ring homomorphism $\beta:R[X]\to B$ such that $\beta(a)=\alpha(a)$ for all $a\in R$ and $\beta(X)=x$.
+    \begin{proof}
+        % Scratch: $\beta(X)=x$ implies $\beta(X^m)=x^m$ for all $m=0,1,\dots$. Taking $a_m\in R$, then $\beta(a_m)=\alpha(a_m)$ given $\beta(a_mX^m)=\beta(a_m)\beta(X^m)=\alpha(a_m)x^m$.\par
+        % $\beta(a_0+\cdots+a_mX^m)=\sum_{i=0}^m\beta(a_iX^i)=\sum_{i=0}^m\alpha(a_i)x^i$.
+
+        We first prove that such a ring homomorphism exists. Then we address uniqueness.\par
+        Let $\beta(X)=x$. Then if $\beta$ is to be a ring homomorphism, we must have
+        \begin{equation*}
+            \beta(X^m) = x^m
+        \end{equation*}
+        for all $m\in\Zg$. We also require that $\beta(a_m)=\alpha(a_m)$ for all $a_m\in R$ (at this point, $a_m$ is just suggestive notation). Again, if $\beta$ is to be a ring homomorphism, it must follow that
+        \begin{equation*}
+            \beta(a_mX^m) = \beta(a_m)\beta(X^m)
+            = \alpha(a_m)x^m
+        \end{equation*}
+        for all $a_m\in R$, $m\in\Z$. Lastly, if $\beta$ is to be a ring homomorphism, it must follow that
+        \begin{equation*}
+            \beta\left( \sum_{i=0}^ma_iX^i \right) = \sum_{i=0}^m\beta(a_iX^i)
+            = \sum_{i=0}^m\alpha(a_i)x^i
+        \end{equation*}
+        But then by its construction, $\beta$ is defined on every element in $R[X]$ and is a ring homomorphism satisfying the desired properties.\par
+        Suppose $\beta,\beta':R[X]\to B$ are ring homomorphisms satisfing $\beta(a)=\beta'(a)=\alpha(a)$ for all $a\in R$ and $\beta(X)=\beta'(X)=x$. Let $\sum_{i=0}^ma_iX^i\in R[X]$ be arbitrary. Then
+        \begin{equation*}
+            \beta\left( \sum_{i=0}^ma_iX^i \right) = \sum_{i=0}^m\alpha(a_i)x^i
+            = \beta'\left( \sum_{i=0}^ma_iX^i \right)
+        \end{equation*}
+        as desired.
+    \end{proof}
+    \item The idea of the theorem.
+    \begin{itemize}
+        \item Evaluation of a function ($f\in R[X]$) at a point ($x\in B$): If $R\subset B$ and $\alpha(a)=a$ for all $a\in R$, then $\beta(f)=f(x)$.
+        \item $\alpha$ is like a coordinate change function, allowing us to evaluate variants of each $f$.
+        \item In fact, this idea is highly related to the linear algebra concept that specifying the action of a map on a basis specifies its action on all elements.
+        \begin{itemize}
+            \item However, here we are dealing with a \textbf{module homomorphism}, not a linear transformation.
+        \end{itemize}
     \end{itemize}
 \end{itemize}
 
