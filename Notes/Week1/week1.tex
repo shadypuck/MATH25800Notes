@@ -244,7 +244,7 @@
         \item Moving on, $x\in M$ implies that $n_Rx,xn_R\in M$. Is it true that $n_Rx=xn_R$? Yes it is. Here's why.
         \begin{itemize}
             \item Let $C=\{c\in R\mid cx=xc\}$, where $x$ is the element we've been talking about.
-            \item We can prove that $C$ is a subring of $R$; this is Exercise 7.1.9 of \textcite{bib:DummitFoote}.
+            \item We can prove that $C$ is a subring of $R$; this is Exercise \ref{exr:7.1.9} of \textcite{bib:DummitFoote}.
             \item If $C$ is a subring, then $1_R\in C$ implies $1_R+1_R=2_R\in C$, implies $n_R\in C$. Therefore,
             \begin{equation*}
                 n_Rx=xn_R \in M
@@ -414,6 +414,285 @@
         \end{itemize}
     \end{itemize}
 \end{itemize}
+
+
+
+\section{Chapter 7: Introduction to Rings}
+\emph{From \textcite{bib:DummitFoote}.}
+\subsection*{A Word on Ring Theory}
+\begin{itemize}
+    \item \marginnote{1/7:}Plan for Part II: Ring theory.
+    \begin{itemize}
+        \item Study analogues of group-related objects, such as "subrings, quotient rings, ideals (which are the analogues of normal subgroups), and ring homomorphisms" \parencite[222]{bib:DummitFoote}.
+        \item Answer questions about general rings, leading to fields and finite fields.
+        \item Arithmetic over general rings, and applications of these results to polynomial rings.
+    \end{itemize}
+    \item Part II grounds the remaining four parts of the book.
+    \begin{itemize}
+        \item Part III is modules (ring actions).
+        \item Part IV is fields and polynomial equations over them (applications of ring structure theory).
+        \item Part V is ring applications.
+        \item Part VI is specific kinds of rings and the objects on which they act.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 7.1: Basic Definitions and Examples}
+\begin{itemize}
+    \item Definition of a \textbf{ring} \parencite[223]{bib:DummitFoote}.
+    \item Motivation for requiring $(R,+)$ to be abelian.
+    \begin{itemize}
+        \item If $R$ is a ring with identity, then the distributive laws imply commutativity of addition anyway, as follows.\footnote{Thus, our definition of a ring in class is somewhat redundant. Indeed, if we're defining a ring to be a ring with identity, then we can omit the abelian condition and know that the distributive laws will still imply it.}
+        \item Let $a,b\in R$ be arbitrary. We have from the ring axioms that
+        \begin{alignat*}{6}
+            (1+1)(a+b) &= 1(a+b)+1(a+b)&
+                &= 1a+1b+1a+1b&
+                &= a+b+a+b\\
+            (1+1)(a+b) &= (1+1)a+(1+1)b&
+                &= 1a+1a+1b+1b&
+                &= a+a+b+b
+        \end{alignat*}
+        \item Thus, by transitivity and the cancellation law,
+        \begin{equation*}
+            b+a = a+b
+        \end{equation*}
+    \end{itemize}
+    \item One of the most important examples of a ring is a \textbf{field}.
+    \item \textbf{Division ring}: A ring $R$ with identity $1\neq 0$ such that every nonzero element $a\in R$ has a multiplicative inverse, i.e., there exists $b\in R$ such that $ab=ba=1$. \emph{Also known as} \textbf{skew field}.
+    \item \textbf{Field}: A commutative division ring.
+    \item \textbf{Trivial ring}: A ring $R$ for which $a\times b=0$ for all $a,b\in R$.
+    \begin{itemize}
+        \item So named because "although trivial rings have two binary operations, multiplication adds no new structure to the additive group, and the theory of rings goves no information which could not already be obtained from (abelian) group theory" \parencite[224]{bib:DummitFoote}.
+    \end{itemize}
+    \item \textbf{Zero ring}: The trivial ring where $R=\{0\}$. \emph{Denoted by} $\bm{R=0}$.
+    \item Excluding the zero ring, trivial rings do not contain a multiplicative identity.
+    \begin{itemize}
+        \item Suppose for the sake of contradiction that there exists $1\in R$ trivial and nonzero. Let $a$ be a nonzero element of $R$. Then
+        \begin{equation*}
+            a = 1\times a = 0
+        \end{equation*}
+        a contradiction.
+    \end{itemize}
+    \item $\Z/n\Z$ is a commutative ring with identity under modular arithmetic.
+    \item \textbf{Hamilton Quaternions}: The set of elements of the form
+    \begin{equation*}
+        a+bi+cj+dk
+    \end{equation*}
+    where $a,b,c,d\in\R$, under componentwise addition
+    \begin{equation*}
+        (a+bi+cj+dk)+(a'+b'i+c'j+d'k) = (a+a')+(b+b')i+(c+c')j+(d+d')k
+    \end{equation*}
+    and distributive noncommutative multiplication subject to the relations
+    \begin{align*}
+        i^2 &= j^2 = k^2 = -1&
+        ij &= -ji = k&
+        jk &= -kj = i&
+        ki &= -ik = j
+    \end{align*}
+    \emph{Also known as} \textbf{real Hamilton Quaternions}. \emph{Denoted by} $\pmb{\mathbb{H}}$.
+    \begin{itemize}
+        \item \textcite{bib:DummitFoote} provides an example multiplication.
+        \item $\mathbb{H}$ is a ring, specifically a \emph{noncommutative} ring with identity ($1=1+0i+0j+0k$).
+        \item Historically, it was one of the first noncommutative rings discovered.
+        \begin{itemize}
+            \item Sir William Rowan Hamilton discovered it in 1843.
+            \item Quaternions have been very influential in the development of mathematics and continue to be important in certain areas of mathematics and physics.
+        \end{itemize}
+        \item The Quaternions form a division ring with
+        \begin{equation*}
+            (a+bi+cj+dk)^{-1} = \frac{a-bi-cj-dk}{a^2+b^2+c^2+d^2}
+        \end{equation*}
+        \item We can also define the rational Hamilton Quaternions by only taking $a,b,c,d\in\Q$.
+    \end{itemize}
+    \item $R=A^X$ is commutative iff $A$ is commutative.
+    \begin{itemize}
+        \item $R$ has 1 iff $A$ has 1 (in which case $1_R:X\to A$ sends $x\mapsto 1_A$ for all $x\in X$).
+    \end{itemize}
+    \item $C([a,b],\R)$ is a ring with identity, though we need limit theorems to prove this.
+    \item Basic properties of arbitrary rings.
+    \begin{proposition}\label{prp:7.1}
+        Let $R$ be a ring. Then
+        \begin{enumerate}
+            \item $0a=a0=a$ for all $a\in R$;
+            \item $(-a)b=a(-b)=-(ab)$ for all $a,b\in R$;
+            \item $(-a)(-b)=ab$ for all $a,b\in R$;
+            \item If $R$ has an identity 1, then the identity is unique and $-a=(-1)a$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item \textbf{Zero divisor}: A nonzero element $a\in R$ to which there corresponds a nonzero element $b\in R$ such that either $ab=0$ or $ba=0$.
+    \item \textbf{Unit} (in $R$ a nonzero ring with identity): An element $u\in R$ to which there corresponds some $v\in R$ such that $uv=vu=1$.
+    \begin{itemize}
+        \item As the phrasing of the term implies, the property of being a unit depends on the ring in which an element is viewed. For example, 2 is not a unit in $\Z$, but 2 is a unit in $\Q$.
+    \end{itemize}
+    \item \textbf{Group of units} (of $R$): The set of all units in $R$. \emph{Denoted by} $\bm{R^\times}$.
+    \begin{itemize}
+        \item As the name implies, $R^\times$ is a group under multiplication.
+    \end{itemize}
+    \item Alternate definition of field: A commutative ring $F$ with identity $1\neq 0$ in which every nonzero element is a unit, i.e., $F^\times=F\setminus\{0\}$.
+    \item A zero divisor can never be a unit.
+    \begin{itemize}
+        \item Suppose for the sake of contradiction that $a$ is a unit in $R$ and $ab=0$ for some nonzero $b\in R$. Then $va=1$ for some $v\in R$. It follows that
+        \begin{equation*}
+            b = 1b = (va)b = v(ab) = v0 = 0
+        \end{equation*}
+        a contradiction. The argument is symmetric if we assume $ba=0$.
+        \item It follows that fields contain no zero divisors.
+    \end{itemize}
+    \item Examples of zero divisors and units.
+    \begin{enumerate}
+        \item $\Z$.
+        \begin{itemize}
+            \item No zero divisors and $\Z^\times=\{\pm 1\}$.
+        \end{itemize}
+        \item $\Z/n\Z$.
+        \begin{itemize}
+            \item The elements $\bar{u}$ for which $u,n$ are relatively prime are units (see proof in Chapter 8).
+            \item If $a,n$ are not relatively prime, then $\bar{a}$ is a zero divisor in $\Z/n\Z$ ($a\cdot n/a=0$).
+            \item Thus, every nonzero element of $\Z/n\Z$ is either a unit or a zero divisor.
+            \item $\Z/n\Z$ is a field iff $n$ is prime (every nonzero element is a unit iff they are all relatively prime to $n$).
+        \end{itemize}
+        \item $\R^{[0,1]}$.
+        \begin{itemize}
+            \item The units are all functions that are nonzero on the entire domain.
+            \item $f$ not a unit and nonzero implies $f$ is a zero divisor: Choose
+            \begin{equation*}
+                g(x) =
+                \begin{cases}
+                    0 & f(x)\neq 0\\
+                    1 & f(x)=1
+                \end{cases}
+            \end{equation*}
+        \end{itemize}
+        \item $C([0,1],\R)$.
+        \begin{itemize}
+            \item There exist units (same as above), zero divisors (consider a function that is nonzero on $[0,0.5)$ and zero on $[0.5,1]$), and functions that are neither (consider a function that is only zero at $x=0.5$; then its complement would necessarily be discontinuous at $x=0.5$).
+        \end{itemize}
+        \item \textbf{Quadratic fields} (see Section 13.2).
+    \end{enumerate}
+    \item \textbf{Integral domain}: A commutative ring with identity $1\neq 0$ that has no zero divisors.
+    \begin{itemize}
+        \item $\Z$ is the prototypical integral domain.
+    \end{itemize}
+    \item Properties of integral domains.
+    \begin{proposition}[Cancellation law]\label{prp:7.2}
+        Assume $a,b,c$ are elements of any ring with $a$ not a zero divisor. If $ab=ac$, then either $a=0$ or $b=c$ (i.e., if $a\neq 0$, then we can cancel the $a$'s).\par
+        In particular, if $a,b,c$ are any elements of an integral domain and $ab=ac$, then either $a=0$ or $b=c$.
+        \begin{proof}
+            $ab=ac$ implies $a(b-c)=0$. Thus, since $a$ is not a zero divisor, either $a=0$ or $b-c=0$ (equivalently, $b=c$).
+        \end{proof}
+    \end{proposition}
+    \begin{corollary}\label{cly:7.3}
+        Any finite integral domain is a field.
+        \begin{proof}
+            Let $R$ be a finite integral domain, and $a$ be an arbitrary, nonzero element of $R$. We seek to find $b$ such that $ab=1$, which will imply that $a$ (i.e., every element) is a unit in $R$.\par
+            Define the map $x\mapsto ax$. By the cancellation law, this map is injective. Injectivity plus the fact that $R$ is finite proves that this map is surjective. Thus, there exists $b\in R$ such that $ab=1$, as desired.
+        \end{proof}
+    \end{corollary}
+    \item Wedderburn: A finite division ring is necessarily commutative, i.e., is a field.
+    \begin{itemize}
+        \item See Exercise 13.6.13 for a proof.
+    \end{itemize}
+    \item "Every nonzero element of a commutative ring that is not a zero divisor has a multiplicative inverse in some larger ring" \parencite[228]{bib:DummitFoote}.
+    \begin{itemize}
+        \item See Section 7.5.
+    \end{itemize}
+    \item \textbf{Subring} (of $R$): A subgroup of $R$ that is closed under multiplication.
+    \item To confirm that $S\subset R$ is a subring, check that is is nonempty, closed under subtraction, and closed under multiplication.
+    \item The property "is a subring of" is transitive.
+    \item "If $R$ is a subring of a field $F$ that contains the identity of $F$, then $R$ is an integral domain. The converse of this is also true, namely any integral domain is contained in a field" \parencite[229]{bib:DummitFoote}.
+    \begin{itemize}
+        \item See Section 7.5.
+    \end{itemize}
+    \item \textcite{bib:DummitFoote} does a deep dive on quadratic integer rings.
+\end{itemize}
+
+\subsubsection*{Exercises}
+\begin{enumerate}[label={\textbf{\arabic*.}},ref={7.1.\arabic*}]
+    \setcounter{enumi}{8}
+    \item \label{exr:7.1.9}For a fixed element $a\in R$, define $C(a)=\{r\in R\mid ra=ar\}$. Prove that $C(a)$ is a subring of $R$ containing $a$. Prove that the center of $R$ is the intersection of the subrings $C(a)$ over all $a\in R$.
+\end{enumerate}
+
+
+\subsection*{Section 7.2: Examples -- Polynomial Rings, Matrix Rings, and Group Rings}
+\begin{itemize}
+    \item \textbf{Polynomial rings}, \textbf{matrix rings}, and \textbf{group rings} are often related.
+    \begin{itemize}
+        \item Example: The group ring of a group $G$ over the complex numbers $\C$ is a direct product of matrix rings over $\C$.
+    \end{itemize}
+    \item Example applications of these three classes of rings.
+    \begin{itemize}
+        \item Study them in their own right.
+        \item Polynomial rings help prove classification theorems for matrices which, in particular, determine when a matrix is similar to a diagonal matrix.
+        \item Group rings help study group actions and prove additional classification theorems.
+    \end{itemize}
+    \item We begin with polynomial rings.
+    \item Fix a commutative ring $R$ with identity.
+    \item \textbf{Indeterminate}: The "variable" $x$.
+    \item \textbf{Polynomial} (in $x$ with coefficients $a_i$ in $R$): The formal sum
+    \begin{equation*}
+        a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
+    \end{equation*}
+    with $n\geq 0$ and each $a_i\in R$.
+    \item \textbf{Degree $\bm{n}$} (polynomial): A polynomial for which $a_n\neq 0$.
+    \item \textbf{Leading term}: The $a_nx^n$ term.
+    \item \textbf{Leading coefficient}: The $a_n$ coefficient.
+    \item \textbf{Monic} (polynomial): A polynomial for which $a_n=1$.
+    \item Definition of $R[x]$ \parencite[234]{bib:DummitFoote}.
+    \item \textbf{Constant polynomials}: The set of polynomials $R\subset R[x]$.
+    \item It follows from its construction that $R[x]$ is a commutative ring with identity (specifically $1_R$).
+    \item Definition of $\Z[x],\Q[x]$.
+    \item We can also define polynomial rings like $\Z/3\Z[x]$.
+    \begin{itemize}
+        \item This ring consists of the set of polynomials with coefficients $0,1,2$ and calculations on the coefficients performed modulo 3.
+        \item Example: If $p(x)=x^2+2x+1$ and $q(x)=x^3+x+2$, then $p(x)+q(x)=x^3+x^2$.
+    \end{itemize}
+    \item The ring in which the coefficients are taken makes a substantial difference in the polynomials' behavior.
+    \begin{itemize}
+        \item Example: $x^2+1$ is not a perfect square in $\Z[x]$, but is in $\Z/2\Z[x]$ since here,
+        \begin{equation*}
+            (x+1)^2 = x^2+2x+1 = x^2+1
+        \end{equation*}
+    \end{itemize}
+    \item Properties of polynomials over integral domains.
+    \begin{proposition}\label{prp:7.4}
+        Let $R$ be an integral domain and let $p(x),q(x)$ be nonzero elements of $R[x]$. Then
+        \begin{enumerate}
+            \item $\deg p(x)q(x)=\deg p(x)+\deg q(x)$;
+            \begin{proof}
+                If $p(x),q(x)$ are polynomials with leading terms $a_nx^n,b_mx^m$, respectively, then the leading term of $p(x)q(x)$ is $a_nb_mx^{n+m}$, provided $a_nb_m\neq 0$. But since $a_n,b_m\neq 0$ (as leading coefficients) and $R$ has no zero divisors (as an integral domain), we have that $a_nb_m\neq 0$. Applying the definition of degree completes the proof.
+            \end{proof}
+            \item The units of $R[x]$ are just the units of $R$;
+            \begin{proof}
+                Suppose $p(x)\in R[x]$ is a unit. Then $p(x)q(x)=1$ for some $q(x)\in R[x]$. It follows by part (1) that
+                \begin{equation*}
+                    \deg p(x)+\deg q(x) = \deg p(x)q(x) = 0
+                    \quad\Longleftrightarrow\quad
+                    \deg p(x)=\deg q(x) = 0
+                \end{equation*}
+                Therefore, $p(x),q(x)\in R$ and hence are units of $R$, as desired.
+            \end{proof}
+            \item $R[x]$ is an integral domain.
+            \begin{proof}
+                We have already established that the commutativity and identity of $R[x]$ follow from $R$. As to no zero divisors, this constraint follows from part (1).
+            \end{proof}
+        \end{enumerate}
+    \end{proposition}
+    \item If $R$ has zero divisors, then so does $R[x]$.
+    \begin{itemize}
+        \item If $f\in R[x]$ is a zero divisor, then $cf=0$ for some nonzero $c\in R$ (see Exercise \ref{exr:7.2.2}).
+    \end{itemize}
+    \item If $S$ is a subring of $R$, then $S[x]$ is a subring of $R[x]$.
+    \item More on polynomial rings in Chapter 9.
+\end{itemize}
+
+\subsubsection*{Exercises}
+\begin{enumerate}[label={\textbf{\arabic*.}},ref={7.2.\arabic*}]
+    \stepcounter{enumi}
+    \item \label{exr:7.2.2}Let $p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ be an element of the polynomial ring $R[x]$. Prove that $p(x)$ is a zero divisor in $R[x]$ iff there is a nonzero $b\in R$ such that $bp(x)=0$. \emph{Hint}: Let $g(x)=b_mx^m+b_{m-1}x^{m-1}+\cdots+b_1x+b_0$ be a nonzero polynomial of minimal degree such that $g(x)p(x)=0$. Show that $b_ma_n=0$ and so $a_ng(x)$ is a polynomial of degree less than $m$ that also gives 0 when multiplied by $p(x)$. Conclude that $a_ng(x)=0$. Apply a similar argument to show by induction on $i$ that $a_{n-i}g(x)=0$ for $i=0,1,\dots,n$ and show that this implies $b_mp(x)=0$.
+\end{enumerate}
 
 
 
