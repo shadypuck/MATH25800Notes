@@ -9,6 +9,7 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{bm,nicematrix}
 \usepackage[hidelinks]{hyperref}
+\usepackage{subfiles}
 
 \MakeOuterQuote{"}
 
@@ -30,7 +31,7 @@
 \deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
 \deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnote}}
 
-\addbibresource{../main.bib}
+\addbibresource{\subfix{../main.bib}}
 \DefineBibliographyStrings{english}{bibliography={References}}
 
 \DeclareMathOperator{\Fun}{Fun}
@@ -42,5 +43,3 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-
-\usepackage{subfiles}
