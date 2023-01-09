@@ -166,7 +166,7 @@
         (a_1+I)\cdot(a_2+I) := a_1\cdot a_2+I
     \end{equation*}
     is well-defined.
-    \item A consequence: $a_1-a_2'\in I$ and $a_2-a_2'\in I$ implies that $a_1a_2-a_1'a_2'\in I$.
+    \item A consequence: $a_1-a_1'\in I$ and $a_2-a_2'\in I$ implies that $a_1a_2-a_1'a_2'\in I$.
     \begin{itemize}
         \item How do we know this??
     \end{itemize}
@@ -190,6 +190,97 @@
             \alpha_1\cdot\pi(a_2+a_3) &= (\alpha_1\cdot\alpha_2)+(\alpha_1\cdot\alpha_3)\\
             \alpha_1\cdot(\alpha_2+\alpha_3) &= (\alpha_1\cdot\alpha_2)+(\alpha_1\cdot\alpha_3)
         \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Office Hours (Nori)}
+\begin{itemize}
+    \item Can you confirm that in every subring $M$ of a ring $R$, $n_Rx=xn_R$ for all $n\in\Z$?
+    \begin{itemize}
+        \item Yes.
+    \end{itemize}
+    \item $aX=Xa$ statement?
+    \begin{itemize}
+        \item We must have this in order to be able to factor the coefficients out in the definition of multiplication. Otherwise, we would not have $a_pX^pb_qX^q=a_pb_qX^pX^q$ in general.
+        \item We postulate this as an additional condition.
+    \end{itemize}
+    \item What did you mean when you wrote "scratch" at the beginning of your proof of the Universal Property of a Polynomial Ring?
+    \begin{itemize}
+        \item Means he isn't writing down a proof nicely, but just giving enough of an idea of the arguments used so that we can write out the rest on our own.
+    \end{itemize}
+    \item Step (v) in constructing new rings from old ones?
+    \begin{itemize}
+        \item Step (0) is you need to already have something in mind (e.g., $\C$ or power series).
+        \item Step (iv) is informal and not necessarily justified by the laws of algebra. It can and will be justified in a later course on algebra (namely, a first-year graduate course on algebra) using \textbf{completions} of rings.
+        \item Step (v) is a formal way of introducing new notation. It only works explicitly for the complex numbers; for power series, we would need completions. Here's an outline, though, of what can be done for $\C$:
+        \begin{itemize}
+            \item Define $j:\R\to\C$ by $a\mapsto(a,0)$ and check that it is a ring homomorphism.
+            \item Define $i=(0,1)\in\C$.
+            \item Define a map from $\R\times\R\to\C$ by $(a,b)\mapsto j(a)+ij(b)$. The laws of multiplication on $\C$ will confirm that $j(a)+ij(b)$ is precisely the element $(a,b)$ in the rigorous version of $\C$ we've previously defined.
+            \item This formally justifies the switch of notation.
+        \end{itemize}
+    \end{itemize}
+    \item What was the point of switching the context of the evaluation function to a subring?
+    \begin{itemize}
+        \item The point is that evaluation at a point outside of the ring is still a ring homomorphism, provided that $b$ commutes with all $a\in R$ and the functions under consideration are polynomials.
+        \begin{itemize}
+            \item We need polynomials and commutativity of the elements to guarantee that $(fg)(b)=f(b)g(b)$ --- same reason as the earlier $a_pX^pb_qX^q=a_pb_qX^pX^q$ example.
+        \end{itemize}
+        \item Example of where this matters.
+        \begin{itemize}
+            \item Consider the ring of functions $f:\R\to\R$, on which the evaluation function is a ring homomorphism.
+            \item Letting $i\in\C$ be the unit imaginary number, it is not true that $\ev_i:\R^\R\to\R$ is a ring homomorphism since only certain functions on the reals can naturally be extended to the complex numbers.
+            \item However, consider the subring $\R[X]$ of $\R^\R$. Since $i$ does commute with every real number and polynomials are made of products of real numbers and $i$, $\ev_i:\R[X]\to\R$ \emph{is} a ring homomorphism.
+        \end{itemize}
+        \item All of this should be kept in mind, but it's not too important at this point. 
+        \item Misc. note: Think more about why it's so "obvious" that evaluating at a point defines a ring homomorphism.
+        \begin{itemize}
+            \item Perhaps it's not so much that it's "obvious" as that it follows directly from the axioms and not much creativity is needed in the proof.
+        \end{itemize}
+    \end{itemize}
+    \item Was there a problem if $R$ is not commutative with the evaluation function?
+    \begin{itemize}
+        \item See above.
+    \end{itemize}
+    \item Does the fact that $\ev$ is a ring homomorphism follow from the universal property of a polynomial ring?
+    \begin{itemize}
+        \item Maybe? Didn't want to belabor the point.
+    \end{itemize}
+    \item Is the in-class statement of the SIT correct?
+    \begin{itemize}
+        \item That the product of two normal subgroups is normal is true, but it is not part of the SIT. In fact, it is part of one of the other isomorphism theorems. Nori just included these SIT and other statements to show what can be transferred. We will not talk about these results further, though, because they can all be deduced from the FIT.
+    \end{itemize}
+    \item How do we know the subtraction/multiplication statement?
+    \begin{itemize}
+        \item Two ways of looking at this.
+        \begin{enumerate}
+            \item Proof in terms of coset properties.
+            \begin{itemize}
+                \item $a_i'\in a_i+I$ iff $a_i'+I=a_i+I$.
+                \item Thus,
+                \begin{align*}
+                    (a_1+I)\cdot(a_2+I) &= (a_1'+I)\cdot(a_2'+I)\\
+                    a_1a_2+I &= a_1'a_2'+I
+                \end{align*}
+                so
+                \begin{equation*}
+                    a_1a_2-a_1'a_2' \in I
+                \end{equation*}
+            \end{itemize}
+            \item Proof in terms of a clever trick and properties of ideals.
+            \begin{itemize}
+                \item We are given $a_1-a_1'\in I$ and $a_2-a_2'\in I$.
+                \item We can write that
+                \begin{equation*}
+                    a_1a_2-a_1'a_2' = (a_1-a_1')a_2+a_1'(a_2-a_2')
+                \end{equation*}
+                \item The two terms in parentheses on the RHS above are in $I$ by hypothesis.
+                \item Since $I$ is a two-sided ideal, $(a_1-a_1'),(a_2-a_2')\in I$, and $a_2,a_1'\in R$, we have that $(a_1-a_1')a_2,a_1'(a_2-a_2')\in I$.
+                \item Since $I$ is a subgroup (and hence closed), $(a_1-a_1')a_2+a_1'(a_2-a_2')\in I$, as desired.
+            \end{itemize}
+        \end{enumerate}
     \end{itemize}
 \end{itemize}
 
