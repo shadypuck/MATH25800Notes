@@ -1,0 +1,199 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\stepcounter{chapter}
+
+\begin{document}
+
+
+
+
+\chapter{???}
+\section{Kernels, Ideals, and Quotient Rings}
+\begin{itemize}
+    \item \marginnote{1/9:}Some kid in the Discord takes photos of all of the boards every day. (\href{https://uchicagoedu-my.sharepoint.com/:o:/g/personal/billion_uchicago_edu/EgDZ297OD3FFvttHn7lDZZ4BSlzTJFdABON3AdyzvqNyZA?e=D4C5Gs}{link})
+    \item Some announcements to start.
+    \item Definitions of power series and polynomial rings posted in Canvas $>$ Files.
+    \item Next week: More lectures on rings of fractions.
+    \item A note on defining $\C$ from $\R$ both intuitively and rigorously.
+    \begin{itemize}
+        \item Intuitive definition: Let $i^2=-1$, work out the relevant additive and multiplicative identities.
+        \item Rigorous definition: Proceeds in four steps.
+        \begin{enumerate}[label={(\roman*)}]
+            \item Define a set: Let the ordered pair $(a,b)$, where $a,b\in\R$, denote an entity called a "complex number," and denote the set of all complex numbers by $\C$.
+            \item Define operations: Define $+,\times$ on $\C$ using the definitions suggested by the intuitive model.
+            \item Confirm operations: Check that $+,\times$, as defined, satisfy the requirements of a ring.
+            \item Introduce alternate notation: Henceforth, we shall denote the entity $(a,b)$ by $a+ib$.
+        \end{enumerate}
+        \item What is Step (v)?? Is there one?? Ask in OH.
+    \end{itemize}
+    \item In fact, the four steps above are the template for the construction of all new rings from old rings.
+    \begin{itemize}
+        \item Notice that we did the same thing with $R[[X]]$ last class, i.e., defined $R^\Zg$, defined and confirmed operations, and introduced alternate notation ($\sum_{n=0}^\infty a_nX^n$ instead of $a:\Zg\to R$).
+        \item According to Nori, \textcite{bib:DummitFoote} explains this pretty well.
+    \end{itemize}
+    \item A question from both classes: What is $X$ in the polynomial ring?
+    \begin{itemize}
+        \item First ask: What does $a^7+6a^5-8=0$ mean?
+        \begin{itemize}
+            \item It is a constraint that $a$ must satisfy, given that $a$ lies in some world (be it $\R$, $\C$, or elsewhere).
+        \end{itemize}
+        \item Then ask: What does $a^7+6a^5-8$ mean?
+        \begin{itemize}
+            \item It is like a function $f(a)$.
+            \item It means that if $a\in R$, then $f(a)$ is defined in $R$, where $R$ is a ring.
+        \end{itemize}
+        \item At this point, switch the arbitrary notation to $f(X)=X^7+6X^5-8$.
+        \begin{itemize}
+            \item Then $f$ is a function in $\Z[X]$.
+            \item But it is more than that, too: We know that if $x\in R$, $R$ a ring, then $f(x)\in R$. Thus, the evaluation function $\ev_x:\Z[X]\to R$ is a ring homomorphism sending $f\mapsto f(x)$.
+            \item If $R\subset B$ is a subring, and $b\in B$, then $f\mapsto f(b)$ sending $R[X]\to B$ is a ring homomorphism. Additional implication in this case??
+            \item There is a problem if $R$ is not commutative, though??
+            \item Also, does the fact that $\ev$ is a ring homomorphism follow from the universal property of a polynomial ring??
+        \end{itemize}
+        \item "Evaluation at a point is always a ring homomorphism."
+        \begin{itemize}
+            \item Why does $\ev_x:\Z[X]\to R$ send identities to identities? In this case, elements of $\Z[X]$ are of the form $1+2X$ and get mapped to elements of $R$ of the form $1+2x$. The identity in $\Z[X]$ is 1, and thus it gets mapped to $1\in R$, as desired.
+        \end{itemize}
+    \end{itemize}
+    \item We now start the lecture officially.
+    \item Today: Continuing doing what we did with groups but with rings.
+    \item Last time: Extended the notions of subgroups and homomorphisms.
+    \item Other concepts up for grabs:
+    \begin{itemize}
+        \item Normal subgroups (recall that these arose as the kernels of group homomorphisms).
+        \item Quotient groups.
+        \item The FIT (aka the Noether isomorphism theorem),.
+        \item The second isomorphism theorem ($H_1,H_2\triangleleft G$ implies $H_1\cap H_2$ and $H_1H_2$ are normal; is this correct??).
+    \end{itemize}
+    \item In the context of rings\dots
+    \begin{itemize}
+        \item Normal subgroups become ideals.
+        \begin{itemize}
+            \item These are not subrings in general.
+        \end{itemize}
+        \item Quotient groups become quotient rings.
+        \item The FIT does translate.
+        \item The SIT does translate: If $I_1,I_2$ are two-sided ideals, then $I_1\cap I_2$, $I_1+I_2$, and $I_1I_2$ are also two-sided ideals.
+    \end{itemize}
+    \item Constructing ideals.
+    \item \textbf{Kernel} (of a ring homomorphism): The set defined as follows, where $f:A\to B$ is a ring homomorphism. \emph{Denoted by} $\bm{\ker(f)}$. \emph{Given by}
+    \begin{equation*}
+        \ker(f) = \{a\in A\mid f(a)=0\}
+    \end{equation*}
+    \item Immediate consequences.
+    \begin{enumerate}[label={(\roman*)}]
+        \item $\ker(f)$ is a subgroup of $(A,+)$.
+        \begin{proof}
+            We will not check associativity, identity, and inverses (but these can all be checked). Do remember that we are working with \emph{addition} as our group operation here, though, so the identity of interest is 0, not 1. We will check closure.\par
+            Let $h\in\ker(f)$ and let $a\in A$. We WTS that $f(ah)=0$ and $f(ha)=0$. For the first statement, we have
+            \begin{equation*}
+                f(ah) = f(a)f(h)
+                = f(a)0
+                = 0
+            \end{equation*}
+            Note that the left distributive law implies the last equality. A symmetric argument holds for $f(ha)=0$. Therefore, both $ah,ha\in\ker(f)$, as desired.
+        \end{proof}
+    \end{enumerate}
+    \item As certain properties of $\ker(f)$ motivated our definition of normal subgroups, some of the properties in the above proof will be used to motivate our definition of \textbf{ideals}.
+    \item \textbf{Left ideal}: A subset $I$ of a ring $R$ for which $(I,+)\leq(R,+)$ and $aI\subset I$ for all $a\in R$.
+    \item \textbf{Right ideal}: A subset $I$ of a ring $R$ for which $(I,+)\leq(R,+)$ and $Ia\subset I$ for all $a\in R$.
+    \item \textbf{Two-sided ideal}: A subset $I$ of a ring $R$ for which $(I,+)\leq(R,+)$, and $aI\subset I$ and $Ia\subset I$ for all $a\in R$.
+    \begin{itemize}
+        \item A two-sided ideal is both a left and right ideal.
+    \end{itemize}
+    \item Having defined an analogy to normal subgroups, we can now construct quotient rings.
+    \begin{itemize}
+        \item Much in the same way we can construct a quotient set (set of cosets) for any subset $H$ but $G/H$ is only a sub\emph{group} if $H$ is a normal subgroup, a quotient ring $R/I$ is only a subring if $I$ is an ideal.
+    \end{itemize}
+    \item Review of quotient groups.
+    \begin{itemize}
+        \item Given $H\leq G$, $G/H$ is the set of left cosets of $G$ (which is a subset of the \textbf{power set} of $G$).
+    \end{itemize}
+    \item \textbf{Power set} (of $A$): The set of all subsets of $A$, where $A$ is a set. \emph{Denoted by} $\bm{\mathcal{P}(A)}$.
+    \item \textbf{Quotient ring}: The following set, where $I\subset R$ is a two-sided ideal of a ring $R$. \emph{Denoted by} $\bm{R/I}$. \emph{Given by}
+    \begin{equation*}
+        R/I = \{a+I\mid a\in R\}
+    \end{equation*}
+    \begin{itemize}
+        \item A subset of $\mathcal{P}(R)$.
+        \item We define an associated projection function $\pi:R\to R/I$ by $\pi(a)=a+I$ for all $a\in R$.
+    \end{itemize}
+    \item Don't we need $I$ to be normal for $R/I$ to be a subgroup under $+$?
+    \begin{itemize}
+        \item No, because $(R,+)$ is already abelian, so that takes care of the normality condition for all subgroups.
+    \end{itemize}
+    \item We now define the other binary operation $\cdot$ on $R/I$.
+    \begin{itemize}
+        \item In terms of $\pi$, we want $\cdot$ to satisfy $\pi(a\cdot b)=\pi(a)\cdot\pi(b)$ for all $a,b\in R$.
+    \end{itemize}
+    \item To build intuition for how to do this, consider the following instructive example.
+    \begin{itemize}
+        \item Suppose $X$ has a binary operation $\cdot$ and $\pi:X\to Y$ is onto.
+        \item Question: Does there exist a binary operation $\cdot$ on $Y$ such that $\pi$ respects it, i.e., $\pi(x_1\cdot x_2)=\pi(x_1)\cdot\pi(x_2)$.
+        \item Let $y_1,y_2\in Y$. Consider $\pi^{-1}(y_1),\pi^{-1}(y_2)$. They are both nonempty since $\pi$ is onto by hypothesis. Thus, we can multiply the sets.
+        \begin{equation*}
+            \pi^{-1}(y_1)\cdot\pi^{-1}(y_2) = \{x_1\cdot x_2\mid x_1\in\pi^{-1}(y_1),x_2\in\pi^{-1}(y_2)\}
+        \end{equation*}
+        \item If $\cdot:Y\times Y\to Y$ exists, then $\pi(\pi^{-1}(y_1)\cdot\pi^{-1}(y_2))$ must be a singleton set, i.e.,
+        \begin{equation*}
+            \pi(\pi^{-1}(y_1)\cdot\pi^{-1}(y_2)) = \{y_1\cdot y_2\}
+        \end{equation*}
+        \item Conversely, if $\pi(\pi^{-1}(y_1)\cdot\pi^{-1}(y_2))$ is a singleton for all $y_1,y_2\in Y$, then $\cdot$ exists. Then $\{y_1\cdot y_2\}$ defines $y_1\cdot y_2$.
+        \item It is also useful to note the similarities in this approach to the one used to define $*$ on $G/H$ in MATH 25700.
+    \end{itemize}
+    \item Therefore, for all $\alpha_1,\alpha_2\in R/I$, it suffices to check that $\pi(\pi^{-1}(\alpha_1)\cdot\pi^{-1}(\alpha_2))$ is a singleton.
+    \begin{itemize}
+        \item More explicitly, we know that there exists $a_1,a_2\in R$ such that $\alpha_i=a_i+I$ ($i=1,2$).
+        \item In particular, we know from group theory that $\pi^{-1}(\alpha_i)=a_i+I\subset R$ ($i=1,2,\dots$).
+        \item Thus,
+        \begin{align*}
+            \pi^{-1}(\alpha_1)\cdot\pi^{-1}(\alpha_2) &= (a_1+I)\cdot(a_2+I)\\
+            &= \{(a_1+c_1)(a_2+c_2)\mid c_1,c_2\in I\}\\
+            &= \{a_1\cdot a_2+a_1\cdot c_2+c_1\cdot(a_2+c_2)\mid c_1,c_2\in I\}
+            \intertext{Since $c_2,c_1$ are part of an ideal, $a_1c_2$ and $c_1(a_2+c_2)$ are elements of $I$. Since $I\leq(R,+)$, the sum of the terms is also an element of $I$.}
+            &\subset a_1a_2+I
+        \end{align*}
+        \item Therefore,
+        \begin{equation*}
+            \pi(\pi^{-1}(\alpha_1)\cdot\pi^{-1}(\alpha_2)) = \{a_1a_2+I\}
+        \end{equation*}
+        which is a singleton.
+    \end{itemize}
+    \item Implication: Multiplication on $R/I$ is defined as expected, i.e.,
+    \begin{equation*}
+        (a_1+I)\cdot(a_2+I) := a_1\cdot a_2+I
+    \end{equation*}
+    is well-defined.
+    \item A consequence: $a_1-a_2'\in I$ and $a_2-a_2'\in I$ implies that $a_1a_2-a_1'a_2'\in I$.
+    \begin{itemize}
+        \item How do we know this??
+    \end{itemize}
+    \item We know that (i) $\pi(a+b)=\pi(a)+\pi(b)$, (ii) $\pi(a\cdot b)=\pi(a)\cdot\pi(b)$, and (iii) $\pi$ is onto.
+    \begin{itemize}
+        \item Thus, all laws are trivial to prove.
+    \end{itemize}
+    \item Example: Check that
+    \begin{equation*}
+        \alpha_1\cdot(\alpha_2+\alpha_3) = (\alpha_1\cdot\alpha_2)+(\alpha_1\cdot\alpha_3)
+    \end{equation*}
+    for all $\alpha_1,\alpha_2,\alpha_3\in R/I$.
+    \begin{itemize}
+        \item Choose $a_i\in R$ such that $\pi(a_i)=\alpha_i$ ($i=1,2,3$).
+        \item We know since $R$ is a ring that
+        \begin{equation*}
+            a_1\cdot(a_2+a_3) = (a_1\cdot a_2)+(a_1\cdot a_3)
+        \end{equation*}
+        \item Apply $\pi$. Then
+        \begin{align*}
+            \alpha_1\cdot\pi(a_2+a_3) &= (\alpha_1\cdot\alpha_2)+(\alpha_1\cdot\alpha_3)\\
+            \alpha_1\cdot(\alpha_2+\alpha_3) &= (\alpha_1\cdot\alpha_2)+(\alpha_1\cdot\alpha_3)
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
