@@ -3,6 +3,7 @@
 \pagestyle{main}
 \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
 \stepcounter{chapter}
+\setcounter{proposition}{4}
 
 \begin{document}
 
@@ -99,7 +100,7 @@
     \item As certain properties of $\ker(f)$ motivated our definition of normal subgroups, some of the properties in the above proof will be used to motivate our definition of \textbf{ideals}.
     \item \textbf{Left ideal}: A subset $I$ of a ring $R$ for which $(I,+)\leq(R,+)$ and $aI\subset I$ for all $a\in R$.
     \item \textbf{Right ideal}: A subset $I$ of a ring $R$ for which $(I,+)\leq(R,+)$ and $Ia\subset I$ for all $a\in R$.
-    \item \textbf{Two-sided ideal}: A subset $I$ of a ring $R$ for which $(I,+)\leq(R,+)$, and $aI\subset I$ and $Ia\subset I$ for all $a\in R$.
+    \item \textbf{Two-sided ideal}: A subset $I$ of a ring $R$ for which $(I,+)\leq(R,+)$, and $aI\subset I$ and $Ia\subset I$ for all $a\in R$. \emph{Also known as} \textbf{ideal}.
     \begin{itemize}
         \item A two-sided ideal is both a left and right ideal.
     \end{itemize}
@@ -282,6 +283,155 @@
             \end{itemize}
         \end{enumerate}
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 7: Introduction to Rings}
+\emph{From \textcite{bib:DummitFoote}.}
+\subsection*{Section 7.3: Ring Homomorphisms and Quotient Rings}
+\begin{itemize}
+    \item Definition of a \textbf{ring homomorphism} and a \textbf{kernel} (of a ring homomorphism).
+    \item \textbf{Isomorphism}: A bijective ring homomorphism. \emph{Denoted by} $\bm{\cong}$.
+    \item Examples of ring homomorphisms.
+    \begin{enumerate}
+        \item The map $\varphi:\Z\to\Z/2\Z$ which sends even integers to 0 and odd integers to 1.
+        \begin{itemize}
+            \item \textcite{bib:DummitFoote} proves that this map satisfies the requisite stipulations.
+            \item Note that $\varphi$ can be viewed as a projection function from the fiber bundle $\Z$ to be base space $\Z/2\Z$, where the even and odd integers are the two fibers.
+        \end{itemize}
+        \item $\phi_n:\Z\to\Z$ defined by $\phi_n(x)=nx$ is \emph{not} a ring homomorphism in general.
+        \begin{itemize}
+            \item Reason: We only have
+            \begin{equation*}
+                \phi_n(xy) = nxy = n^2xy = nxny = \phi_n(x)\phi_n(y)
+            \end{equation*}
+            when $n=n^2$, i.e., when $n=0,1$.
+            \item $\phi_0$ is the \textbf{zero homomorphism} (on $\Z$) and $\phi_1$ is the \textbf{identity homomorphism} (on $\Z$).
+            \item Note that $\phi_n$ is a \emph{group homomorphism} from $(\Z,+)$ to itself for all $n$.
+        \end{itemize}
+        \item $\varphi:\Q[X]\to\Q$ defined by $\varphi(p)=p(0)$.
+        \begin{itemize}
+            \item Just like the evaluation function discussed in class.
+            \item $\ker\varphi$ is the set of all polynomials with constant term 0.
+        \end{itemize}
+    \end{enumerate}
+    \item Images and kernels of ring homomorphisms are subrings.
+    \begin{proposition}\label{prp:7.5}
+        Let $R,S$ be rings and let $\varphi:R\to S$ be a homomorphism.
+        \begin{enumerate}
+            \item The image of $\varphi$ is a subring of $S$.
+            \item The kernel of $\varphi$ is a subring of $R$. Furthermore, if $\alpha\in\ker\varphi$, then $r\alpha,\alpha r\in\ker\varphi$ for every $r\in R$, i.e., $\ker\varphi$ is closed under multiplication by elements from $R$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Motivating the definition of a quotient ring.
+    \begin{itemize}
+        \item Let $\varphi:R\to S$ have kernel $I$.
+        \item The fibers of $\varphi$ are the additive cosets $r+I$ of the kernel $I$.
+        \item Recall that in the FIT, we saw that the fibers of $\varphi$ have the structure of a group naturally isomorphic to the image of $\varphi$, which led to the notion of a quotient group by a normal subgroup.
+        \item An analogous result holds for rings, i.e., the fibers of a ring homomorphism have the structure of a ring naturally isomorphic to the image of $\varphi$, and this motivates the definition of a quotient ring.
+        \item The whole passage about this on \textcite[240-41]{bib:DummitFoote} is very well written and worth rereading!
+    \end{itemize}
+    \item \textcite{bib:DummitFoote} motivates ideals from the perspective of, "what properties must $I$ have such that $R/I$ is a subring?"
+    \item "The ideals of $R$ are exactly the kernels of the ring homomorphisms of $R$ (the analogue for rings of the characterization of normal subgroups as the kernels of group homomorphisms)" \parencite[241]{bib:DummitFoote}.
+    \item \textcite{bib:DummitFoote} motivates and defines the definition of \textbf{ideals}.
+    \begin{itemize}
+        \item There are differences from the in-class definition, though: In particular, according to \textcite{bib:DummitFoote}'s definition of subrings, an ideal is a subring, but according to the in-class definition (which additionally requires that $1_R\in I$), ideals are not subrings in general.
+        \item All definitions of an ideal coincide for commutative rings.
+    \end{itemize}
+    \item $R/I$ is a ring iff $I$ is an ideal.
+    \begin{proposition}\label{prp:7.6}
+        Let $R$ be a ring and let $I$ be an ideal of $R$. Then the (additive) quotient group $R/I$ is a ring under the binary operations
+        \begin{align*}
+            (r+I)+(s+I) &= (r+s)+I&
+            (r+I)\times(s+I) &= (rs)+I
+        \end{align*}
+        for all $r,s\in R$. Conversely, if $I$ is any subgroup such that the above operations are well-defined, then $I$ is an ideal of $R$.
+    \end{proposition}
+    \item Definition of a \textbf{quotient ring}.
+    \item Isomorphism theorem analogies.
+    \begin{theorem}\label{trm:7.7}\leavevmode
+        \begin{enumerate}
+            \item (The First Isomorphism Theorem for Rings) If $\varphi:R\to S$ is a homomorphism of rings, then the kernel of $\varphi$ is an ideal of $R$, the image of $\varphi$ is a subring of $S$, and $R/\ker\varphi$ is isomorphic as a ring to $\varphi(R)$.
+            \item If $I$ is any ideal of $R$, then the \textbf{natural projection} of $R$ onto $R/I$ is a surjective ring homomorphism with kernel $I$. Thus, every ideal is the kernel of a ring homomorphism and vice versa.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item \textbf{Natural projection} (of $R$ onto $R/I$): The map from $R\to R/I$ defined as follows. \emph{Denoted by} $\bm{\pi}$. \emph{Given by}
+    \begin{equation*}
+        \pi(r) = r+I
+    \end{equation*}
+    \item As with groups, we shall often use the bar notation for reduction mod $I$: $\bar{r}=r+I$.
+    \begin{itemize}
+        \item With this notation, addition and multiplication in the quotient ring become
+        \begin{align*}
+            \bar{r}+\bar{s} &= \overline{r+s}&
+            \bar{r}\bar{s} &= \overline{rs}
+        \end{align*}
+    \end{itemize}
+    \item Examples.
+    \begin{enumerate}
+        \item $R$ and $\{0\}$ are ideals. \textbf{Trivial} and \textbf{proper} ideals.
+        \item $n\Z$ for any $n\in\Z$.
+        \begin{itemize}
+            \item These are also the only ideals of $\Z$ since they are the only subgroups of $\Z$.
+            \item The associated quotient rings are $\Z/n\Z$.
+            \item Addition and multiplication on $\Z/n\Z$ is re-explained as normal addition and multiplication followed by \textbf{reducing mod $\bm{n}$}.
+        \end{itemize}
+        \item $I\subset\Z[X]$ consisting of all polynomials whose terms are of degree at least 2.
+        \begin{itemize}
+            \item Operations: Normal and then reduction, similar to Example 2.
+            \item Note that $\Z[X]/I$ has zero divisors (e.g., $\bar{x}$ since $\bar{x}\bar{x}=\overline{x^2}=\bar{0}$) even though $\Z[X]$ does not.
+        \end{itemize}
+        \item The kernel of the \textbf{evaluation} function.
+        \begin{itemize}
+            \item This is the set of all functions $f:X\to A$, where $X$ is a set and $A$ is a ring, such that $f(c)=0$.
+            \item Since $E_c$ is surjective (consider all constant functions), $A^X/\ker E_c\cong A$.
+            \item \textcite{bib:DummitFoote} also considers the special case $C([0,1],\R)$, and notes that more generally, the fiber of $E_c$ above the real number $y_0$ is the set of all continuous functions that pass through the point $(c,y_0)$.
+        \end{itemize}
+        \item $\ker E_0:R[X]\to R$.
+        \begin{itemize}
+            \item We can compose $E_0$ with any other homomorphism from $R\to S$ to obtain a ring homomorphism from $R[X]\to S$. For instance, if the latter homomorphism is reduction mod 2, then the fibers of the overall homomorphism are the polynomials with even constant terms and those with odd constant terms.
+        \end{itemize}
+        \item $M_n(J)$ is a two-sided ideal of $M_n(R)$, provided $J$ is any ideal of $R$.
+        \begin{itemize}
+            \item This ideal is the kernel of the surjective homomorphism from $M_n(R)\to M_n(R/J)$. Example: $M_3(\Z)/M_3(2\Z)\cong M_3(\Z/2\Z)$.
+            \item If $R$ is a ring with identity, then every two-sided ideal of $M_n(R)$ is of the form $M_n(J)$ for some two-sided ideal $J$ of $R$.
+        \end{itemize}
+        \item The \textbf{augmentation ideal}.
+        \begin{itemize}
+            \item The augmentation map is surjective, so the augmentation ideal is isomorphic to $R$.
+            \item Another ideal in $RG$ is the formal sums whose coefficients are all equal, i.e., the $R$-multiples of $g_1+\cdots+g_n$.
+        \end{itemize}
+        \item $L_j\subset M_n(R)$ consisting of all $n\times n$ matrices with arbitrary entries in the $j^\text{th}$ column and zeroes in all other columns is a left ideal of $M_n(R)$.
+        \begin{itemize}
+            \item If $A\in L_j$ and $T\in M_n(R)$, the matrix multiplication implies that $TA\in L_j$.
+            \item Showing that $L_j$ is not a right ideal: $E_{1j}\in L_j$ but $E_{1j}E_{ji}=E_{1i}\notin L_j$ if $i\neq j$.
+            \item We can develop an analogous selection of right ideals in $M_n(R)$.
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Trivial ideal}: The ideal $\{0\}$. \emph{Denoted by} $\bm{0}$.
+    \item \textbf{Proper} (ideal): An ideal $I$ such that $I\neq R$.
+    \item \textbf{Reduction mod $\bm{n}$}: The natural projection $\pi:\Z\to\Z/n\Z$.
+    \item \textbf{Evaluation} (at $c$): The map from $A^X\to A$, where $A$ is a ring and $X$ is a nonempty set, defined as follows, where $c\in X$. \emph{Denoted by} $\bm{E_c}$. \emph{Given by}
+    \begin{equation*}
+        E_c(f) = f(c)
+    \end{equation*}
+    \item \textbf{Augmentation map}: The map from $RG\to R$ defined as follows. \emph{Given by}
+    \begin{equation*}
+        \sum_{i=1}^na_ig_i \mapsto \sum_{i=1}^na_i
+    \end{equation*}
+    \item \textbf{Augmentation ideal}: The set of elements of $RG$ whose coefficients sum to 0.
+    \begin{itemize}
+        \item The kernel of the augmentation map.
+        \item Example: $g_i-g_j$ is an element of the augmentation ideal for all $1\leq i,j\leq n$.
+    \end{itemize}
+    \item $\bm{E_{pq}}$: The matrix with 1 in the $p^\text{th}$ row and $q^\text{th}$ column and zeroes elsewhere.
 \end{itemize}
 
 

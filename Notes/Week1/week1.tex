@@ -640,33 +640,33 @@
     \item \textbf{Leading term}: The $a_nx^n$ term.
     \item \textbf{Leading coefficient}: The $a_n$ coefficient.
     \item \textbf{Monic} (polynomial): A polynomial for which $a_n=1$.
-    \item Definition of $R[x]$ \parencite[234]{bib:DummitFoote}.
-    \item \textbf{Constant polynomials}: The set of polynomials $R\subset R[x]$.
-    \item It follows from its construction that $R[x]$ is a commutative ring with identity (specifically $1_R$).
-    \item Definition of $\Z[x],\Q[x]$.
-    \item We can also define polynomial rings like $\Z/3\Z[x]$.
+    \item Definition of $R[X]$ \parencite[234]{bib:DummitFoote}.
+    \item \textbf{Constant polynomials}: The set of polynomials $R\subset R[X]$.
+    \item It follows from its construction that $R[X]$ is a commutative ring with identity (specifically $1_R$).
+    \item Definition of $\Z[X],\Q[X]$.
+    \item We can also define polynomial rings like $\Z/3\Z[X]$.
     \begin{itemize}
         \item This ring consists of the set of polynomials with coefficients $0,1,2$ and calculations on the coefficients performed modulo 3.
         \item Example: If $p(x)=x^2+2x+1$ and $q(x)=x^3+x+2$, then $p(x)+q(x)=x^3+x^2$.
     \end{itemize}
     \item The ring in which the coefficients are taken makes a substantial difference in the polynomials' behavior.
     \begin{itemize}
-        \item Example: $x^2+1$ is not a perfect square in $\Z[x]$, but is in $\Z/2\Z[x]$ since here,
+        \item Example: $x^2+1$ is not a perfect square in $\Z[X]$, but is in $\Z/2\Z[X]$ since here,
         \begin{equation*}
             (x+1)^2 = x^2+2x+1 = x^2+1
         \end{equation*}
     \end{itemize}
     \item Properties of polynomials over integral domains.
     \begin{proposition}\label{prp:7.4}
-        Let $R$ be an integral domain and let $p(x),q(x)$ be nonzero elements of $R[x]$. Then
+        Let $R$ be an integral domain and let $p(x),q(x)$ be nonzero elements of $R[X]$. Then
         \begin{enumerate}
             \item $\deg p(x)q(x)=\deg p(x)+\deg q(x)$;
             \begin{proof}
                 If $p(x),q(x)$ are polynomials with leading terms $a_nx^n,b_mx^m$, respectively, then the leading term of $p(x)q(x)$ is $a_nb_mx^{n+m}$, provided $a_nb_m\neq 0$. But since $a_n,b_m\neq 0$ (as leading coefficients) and $R$ has no zero divisors (as an integral domain), we have that $a_nb_m\neq 0$. Applying the definition of degree completes the proof.
             \end{proof}
-            \item The units of $R[x]$ are just the units of $R$;
+            \item The units of $R[X]$ are just the units of $R$;
             \begin{proof}
-                Suppose $p(x)\in R[x]$ is a unit. Then $p(x)q(x)=1$ for some $q(x)\in R[x]$. It follows by part (1) that
+                Suppose $p(x)\in R[X]$ is a unit. Then $p(x)q(x)=1$ for some $q(x)\in R[X]$. It follows by part (1) that
                 \begin{equation*}
                     \deg p(x)+\deg q(x) = \deg p(x)q(x) = 0
                     \quad\Longleftrightarrow\quad
@@ -674,24 +674,118 @@
                 \end{equation*}
                 Therefore, $p(x),q(x)\in R$ and hence are units of $R$, as desired.
             \end{proof}
-            \item $R[x]$ is an integral domain.
+            \item $R[X]$ is an integral domain.
             \begin{proof}
-                We have already established that the commutativity and identity of $R[x]$ follow from $R$. As to no zero divisors, this constraint follows from part (1).
+                We have already established that the commutativity and identity of $R[X]$ follow from $R$. As to no zero divisors, this constraint follows from part (1).
             \end{proof}
         \end{enumerate}
     \end{proposition}
-    \item If $R$ has zero divisors, then so does $R[x]$.
+    \item If $R$ has zero divisors, then so does $R[X]$.
     \begin{itemize}
-        \item If $f\in R[x]$ is a zero divisor, then $cf=0$ for some nonzero $c\in R$ (see Exercise \ref{exr:7.2.2}).
+        \item If $f\in R[X]$ is a zero divisor, then $cf=0$ for some nonzero $c\in R$ (see Exercise \ref{exr:7.2.2}).
     \end{itemize}
-    \item If $S$ is a subring of $R$, then $S[x]$ is a subring of $R[x]$.
+    \item If $S$ is a subring of $R$, then $S[X]$ is a subring of $R[X]$.
     \item More on polynomial rings in Chapter 9.
+    \item \marginnote{1/9:}We now move onto matrix rings.
+    \item \textbf{Matrix ring} (over $R$): The set of all $n\times n$ matrices $(a_{ij})$ with entries from $R$ under componentwise addition and matrix multiplication, where $R$ is an arbitrary ring and $n\in\N$. \emph{Denoted by} $\bm{M_n(R)}$.
+    \item $M_n(R)$ is \emph{not} commutative for all nontrivial $R$ and $n\geq 2$.
+    \begin{proof}
+        Since $R$ is nontrivial, we may pick $a,b\in R$ such that $ab\neq 0$. Let $A$ be the matrix with $a_{1,1}=a$ and zeroes elsewhere, and let $B$ be the matrix with $b_{1,2}=b$ and zeroes elsewhere. Then $ab$ is the nonzero entry in position $1,2$ of $AB$ whereas $BA=0$.
+    \end{proof}
+    \item The matrices defined in the above proof are also zero divisors.
+    \begin{itemize}
+        \item Thus, $M_n(R)$ ahs zero divisors for all nonzero rings $R$ where $n\geq 2$.
+    \end{itemize}
+    \item \textbf{Scalar matrix}: An element $(a_{ij})\in M_n(R)$ such that
+    \begin{equation*}
+        a_{ij} = a\cdot\delta_{ij}
+    \end{equation*}
+    for some $a\in R$ and all $i,j\in\{1,\dots,n\}$.
+    \begin{itemize}
+        \item The scalar matrices form a subring of $M_n(R)$, specifically one that is isomorphic to $R$.
+        \item We have that
+        \begin{align*}
+            \diag(a)+\diag(b) &= \diag(a+b)&
+            \diag(a)\cdot\diag(b) &= \diag(a\cdot b)
+        \end{align*}
+        \item If $R$ is commutative, the scalar matrices commute with all elements of $M_n(R)$.
+    \end{itemize}
+    \item \textbf{Identity matrix}: The scalar matrix for which $a=1$, where 1 is the identity of $R$.
+    \begin{itemize}
+        \item Only exists if $R$ is a ring with identity.
+        \item If it exists, this matrix is the 1 of $M_n(R)$.
+        \item The existence of a 1 in $M_n(R)$ allows us to define the units in $M_n(R)$, as follows.
+    \end{itemize}
+    \item \textbf{General linear group} (of degree $n$): The group of units of $M_n(R)$. \emph{Denoted by} $\bm{GL_n(R)}$.
+    \begin{itemize}
+        \item Alternative definition: The set of $n\times n$ invertible matrices with entries in $R$.
+    \end{itemize}
+    \item If $S$ is a subring of $R$, then $M_n(S)$ is a subring of $M_n(R)$.
+    \item \textbf{Upper triangular matrix}: The set of all matrices $(a_{ij})$ for which $a_{pq}=0$ whenever $p>q$.
+    \begin{itemize}
+        \item The set of upper triangular matrices is a subring of $M_n(R)$.
+    \end{itemize}
+    \item Lastly, we address group rings.
+    \item \textbf{Group ring} (of $G$ with coefficients in $R$): The set of all formal sums
+    \begin{equation*}
+        a_1g_1+\cdots+a_ng_n
+    \end{equation*}
+    under componentwise addition
+    \begin{equation*}
+        (a_1g_1+\cdots+a_ng_n)+(b_1g_1+\cdots+b_ng_n) = (a_1+b_1)g_1+\cdots+(a_n+b_n)g_n
+    \end{equation*}
+    and multiplication defined by the distributive law as well as $(ag_i)(bg_j)=(ab)g_k$ (where $g_k=g_ig_j$) such that the coefficient of $g_k$ in the product $(a_1g_1+\cdots+a_ng_n)\times(b_1g_1+\cdots+b_ng_n)$ is
+    \begin{equation*}
+        \sum_{g_ig_j=g_k}a_ib_j
+    \end{equation*}
+    where $a_i\in R$, a commutative ring with identity $1\neq 0$, and $g_i\in G$, a finite group with group operation written multiplicatively, for all $1\leq i\leq n$. \emph{Denoted by} $\bm{RG}$.
+    \begin{itemize}
+        \item Note that the commutativity of $R$ is not technically needed.
+        \item The associativity of multiplication follows from the associativity of the group operation in $G$.
+        \item $RG$ is commutative iff $G$ is abelian.
+        \item If $g_1\in G$ is the identity of $G$, then we denote $a_1g_1$ by $a_1$.
+        \item Similarly, if $1\in R$ is the multiplicative identity of $R$, then we denote $1g_i$ by $g_i$.
+    \end{itemize}
+    \item \textcite{bib:DummitFoote} gives an example sum and product evaluation in $\Z D_8$.
+    \item $R$ appears in $RG$ as the "constant" formal sums, that is, the $R$-multiples of the identity of $G$.
+    \begin{itemize}
+        \item You can check that addition and multiplication on $RG$ when restricted to these elements is just addition and multiplication on $R$.
+        \item These "elements of $R$" commute with all elements of $RG$.
+        \item The identity of $R$ is the identity of $RG$.
+    \end{itemize}
+    \item $G$ appears in $RG$ as the elements $1g_i$.
+    \begin{itemize}
+        \item Multiplication in $RG$ when restricted to these elements is just the group operation of $G$.
+    \end{itemize}
+    \item Consequence: Each "element of $G$" has a multiplicative in $RG$ (namely, its inverse in $G$).
+    \begin{itemize}
+        \item Thus, $G$ is a subgroup of the group of units of $RG$.
+    \end{itemize}
+    \item If $|G|>1$, then $RG$ always has zero divisors.
+    \begin{proof}
+        Pick $g\in G$ of order $m>1$. Then
+        \begin{equation*}
+            (1-g)(1+g+\cdots+g^{m-1}) = 1-g^m
+            = 1-1
+            = 0
+        \end{equation*}
+        so $1-g$, for example, is a zero divisor.
+    \end{proof}
+    \item If $S$ is a subring of $R$, then $SG$ is a subring of $RG$.
+    \item \textbf{Integral group ring} (of $G$): The group ring of $G$ with coefficients in $\Z$. \emph{Denoted by} $\bm{\pmb{\Z}G}$.
+    \item \textbf{Rational group ring} (of $G$): The group ring of $G$ with coefficients in $\Q$. \emph{Denoted by} $\bm{\pmb{\Q}G}$.
+    \item If $H\leq G$, then $RH$ is a subring of $RG$.
+    \item Note that $\R Q_8\neq\mathbb{H}$.
+    \begin{itemize}
+        \item One difference is that $\R Q_8$ necessarily contains zero divisors, while $\mathbb{H}$ is a division ring and hence cannot contain zero divisors.
+    \end{itemize}
+    \item Group rings over fields will be studied extensively in Chapter 18.
 \end{itemize}
 
 \subsubsection*{Exercises}
 \begin{enumerate}[label={\textbf{\arabic*.}},ref={7.2.\arabic*}]
     \stepcounter{enumi}
-    \item \label{exr:7.2.2}Let $p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ be an element of the polynomial ring $R[x]$. Prove that $p(x)$ is a zero divisor in $R[x]$ iff there is a nonzero $b\in R$ such that $bp(x)=0$. \emph{Hint}: Let $g(x)=b_mx^m+b_{m-1}x^{m-1}+\cdots+b_1x+b_0$ be a nonzero polynomial of minimal degree such that $g(x)p(x)=0$. Show that $b_ma_n=0$ and so $a_ng(x)$ is a polynomial of degree less than $m$ that also gives 0 when multiplied by $p(x)$. Conclude that $a_ng(x)=0$. Apply a similar argument to show by induction on $i$ that $a_{n-i}g(x)=0$ for $i=0,1,\dots,n$ and show that this implies $b_mp(x)=0$.
+    \item \label{exr:7.2.2}Let $p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ be an element of the polynomial ring $R[X]$. Prove that $p(x)$ is a zero divisor in $R[X]$ iff there is a nonzero $b\in R$ such that $bp(x)=0$. \emph{Hint}: Let $g(x)=b_mx^m+b_{m-1}x^{m-1}+\cdots+b_1x+b_0$ be a nonzero polynomial of minimal degree such that $g(x)p(x)=0$. Show that $b_ma_n=0$ and so $a_ng(x)$ is a polynomial of degree less than $m$ that also gives 0 when multiplied by $p(x)$. Conclude that $a_ng(x)=0$. Apply a similar argument to show by induction on $i$ that $a_{n-i}g(x)=0$ for $i=0,1,\dots,n$ and show that this implies $b_mp(x)=0$.
 \end{enumerate}
 
 
