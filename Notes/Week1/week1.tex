@@ -174,7 +174,7 @@
     \begin{align*}
         f(a_1+a_2) &= f(a_1)+f(a_2)\\
         f(a_1\times a_2) &= f(a_1)\times f(a_2)\\
-        f(1_A) &= f(1_B)
+        f(1_A) &= 1_B
     \end{align*}
     for all $a_1,a_2\in A$.
     \item Note that we need the third constraint because we are not postulating the existence of multiplicative inverses.
@@ -244,7 +244,7 @@
         \item Moving on, $x\in M$ implies that $n_Rx,xn_R\in M$. Is it true that $n_Rx=xn_R$? Yes it is. Here's why.
         \begin{itemize}
             \item Let $C=\{c\in R\mid cx=xc\}$, where $x$ is the element we've been talking about.
-            \item We can prove that $C$ is a subring of $R$; this is Exercise \ref{exr:7.1.9} of \textcite{bib:DummitFoote}.
+            \item We can prove that $C$ is a subring of $R$; this is Exercise 7.1.9 of \textcite{bib:DummitFoote}; see HW2.
             \item If $C$ is a subring, then $1_R\in C$ implies $1_R+1_R=2_R\in C$, implies $n_R\in C$. Therefore,
             \begin{equation*}
                 n_Rx=xn_R \in M
@@ -609,12 +609,6 @@
     \item \textcite{bib:DummitFoote} does a deep dive on quadratic integer rings.
 \end{itemize}
 
-\subsubsection*{Exercises}
-\begin{enumerate}[label={\textbf{\arabic*.}},ref={7.1.\arabic*}]
-    \setcounter{enumi}{8}
-    \item \label{exr:7.1.9}For a fixed element $a\in R$, define $C(a)=\{r\in R\mid ra=ar\}$. Prove that $C(a)$ is a subring of $R$ containing $a$. Prove that the center of $R$ is the intersection of the subrings $C(a)$ over all $a\in R$.
-\end{enumerate}
-
 
 \subsection*{Section 7.2: Examples -- Polynomial Rings, Matrix Rings, and Group Rings}
 \begin{itemize}
@@ -785,7 +779,7 @@
 \subsubsection*{Exercises}
 \begin{enumerate}[label={\textbf{\arabic*.}},ref={7.2.\arabic*}]
     \stepcounter{enumi}
-    \item \label{exr:7.2.2}Let $p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ be an element of the polynomial ring $R[X]$. Prove that $p(x)$ is a zero divisor in $R[X]$ iff there is a nonzero $b\in R$ such that $bp(x)=0$. \emph{Hint}: Let $g(x)=b_mx^m+b_{m-1}x^{m-1}+\cdots+b_1x+b_0$ be a nonzero polynomial of minimal degree such that $g(x)p(x)=0$. Show that $b_ma_n=0$ and so $a_ng(x)$ is a polynomial of degree less than $m$ that also gives 0 when multiplied by $p(x)$. Conclude that $a_ng(x)=0$. Apply a similar argument to show by induction on $i$ that $a_{n-i}g(x)=0$ for $i=0,1,\dots,n$ and show that this implies $b_mp(x)=0$.
+    \item \label{exr:7.2.2}\marginnote{1/7:}Let $p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ be an element of the polynomial ring $R[X]$. Prove that $p(x)$ is a zero divisor in $R[X]$ iff there is a nonzero $b\in R$ such that $bp(x)=0$. \emph{Hint}: Let $g(x)=b_mx^m+b_{m-1}x^{m-1}+\cdots+b_1x+b_0$ be a nonzero polynomial of minimal degree such that $g(x)p(x)=0$. Show that $b_ma_n=0$ and so $a_ng(x)$ is a polynomial of degree less than $m$ that also gives 0 when multiplied by $p(x)$. Conclude that $a_ng(x)=0$. Apply a similar argument to show by induction on $i$ that $a_{n-i}g(x)=0$ for $i=0,1,\dots,n$ and show that this implies $b_mp(x)=0$.
 \end{enumerate}
 
 
