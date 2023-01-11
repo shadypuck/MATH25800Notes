@@ -287,11 +287,207 @@
 
 
 
+\section{Noether Isomorphism Theorem, Ideal Types, and Intro to Rings of Interest}
+\begin{itemize}
+    \item \marginnote{1/11:}When mathematicians write papers, they often choose conventions that may not be standard. Nori will presently define a few of these for our class.
+    \item \textbf{Canonical surjection}: The function from $R\to R/I$, where $R$ is a ring and $I$ is a two-sided ideal of $R$, defined as follows. \emph{Denoted by} $\bm{\pi}$. \emph{Given by}
+    \begin{equation*}
+        \pi(a) = a+I
+    \end{equation*}
+    \item \textbf{Canonical injection}: The natural inclusion map from $A\to B$, where $A$ is a subring of $B$, defined as follows. \emph{Denoted by} $\bm{i}$. \emph{Given by}
+    \begin{equation*}
+        i(a) = a
+    \end{equation*}
+    \item Both maps are ring homomorphisms and are onto.
+    \item Theorem (Noether Isomorphism Theorem): Let $f:A\to B$ be a ring homomorphism, and let $I=\ker(f)$. Then $f$ has a (unique) factorization
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.6]
+            \small
+            \node (A)  at (0,1) {$A$};
+            \node (AI) at (0,0) {$A/I$};
+            \node (fA) at (1,0) {$f(A)$};
+            \node (B)  at (1,1) {$B$};
+
+            \footnotesize
+            \draw [->] (A)  -- node[left] {$\pi$}     (AI);
+            \draw [->] (AI) -- node[below]{$\bar{f}$} (fA);
+            \draw [->] (fA) -- node[right]{$i$}       (B);
+            \draw [->] (A)  -- node[above]{$f$}       (B);
+        \end{tikzpicture}
+        \caption{Noether isomorphism theorem.}
+        \label{fig:NoetherIsoTrm}
+    \end{figure}
+    where $\bar{f}$ is an isomorphism of rings.
+    \begin{proof}
+        % Ignoring the second binary operation and regarding all objects as additive abelian groups, we get the above factorization where $\bar{f}$ is a bijection (additive isomorphism). This is addition to addition.
+        % We also need to check multiplication to multiplication and 1 to 1.
+        % $f$ is a ring homomorphism and $i$ is a one-to-one ring homomorphism. Thus, $\bar{f}\circ\pi$ is a ring homomorphism. This combined with the fact that $\pi$ is an onto ring homomorphism implies that $\bar{f}$ is a ring homomorphism (we can write this out in grueling detail for ourselves; Nori accidentally did this last class. The language here is not intended to confuse; this is intuitive -- we can add rigor ourselves).
+        % We technically need the definition of an isomorphism of rings to complete our theorem.
+
+
+        If we ignore $\times$ and regard $A,B$ as additive abelian groups, the FIT applies and yields the above (unique) factorization. In it, $\bar{f}$ is a bijective additive isomorphism (group homomorphism). Thus, this takes care of proving that $\bar{f}$ respects addition.\par
+        We now just need to prove that $\bar{f}$ respects multiplication and sends 1 to 1 to complete our verification that it is a ring homomorphism. We will do this indirectly. First, observe that $f$ is a ring homomorphism and $i$ is a one-to-one ring homomorphism (really; do you mean that $i$ is one-to-one with the subset $f(A)\subset B$ so that defining $i^{-1}\circ f$ makes sense??). Thus, $\bar{f}\circ\pi=i^{-1}\circ f$ is a ring homomorphism (as we can confirm). This combined with the fact that $\pi$ is onto implies that $\bar{f}$ is a ring homomorphism (as we can confirm).\par
+        This essentially completes our proof; we just need the formal definition of an isomorphism of rings to take it to the finish line.
+    \end{proof}
+    \item Notes on the Noether Isomorphism Theorem.
+    \begin{itemize}
+        \item Nori leaves out some of the grueling detail in this proof in favor of a simple statement of the idea (the "as we can confirm" statements) because we can work out that detail for ourselves.
+        \begin{itemize}
+            \item Nori accidentally presented all of the detail last class, and people got very confused.
+            \item The language used in the proof we have now is not intended to confuse but to provide intuition; we can investigate rigor to whatever depth we choose.
+        \end{itemize}
+        \item More on the structure of the decomposition: $\pi$ is the canonical surjection and $i$ is the canonical injection; $\bar{f}$ is in the middle.
+    \end{itemize}
+    \item \textbf{Isomorphism} (of rings): A ring homomorphism $f:A\to B$ for which\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item There exists a corresponding ring homomorphism $g:B\to A$ such that\dots
+        \item $f\circ g=\id_A$ and $g\circ f=\id_B$.
+    \end{enumerate}
+    \item Notes on the definition of an isomorphism of rings.
+    \begin{itemize}
+        \item If $f$ is a ring homomorphism, then (ii) implies that $f$ is a bijection of sets.
+        \begin{itemize}
+            \item Implication: If $f$ is a ring homomorphism and if $f$ is a bijection, then there exists a function $g:B\to A$ such that (ii) holds.
+            \item It is fairly clear that this $g$ is also a ring homomorphism.
+        \end{itemize}
+        \item "Iso" means bijective homomorphism.
+        \item We need bijective because continuous functions don't have continuous inverses??
+    \end{itemize}
+    \item Let's go back to talking about ideals.
+    \item \textbf{Principle left ideal}: An ideal of the following form, where $R$ is a ring and $b\in R$. \emph{Denoted by} $\bm{Rb}$. \emph{Given by}
+    \begin{equation*}
+        Rb = \{ab\mid a\in R\}
+    \end{equation*}
+    \begin{itemize}
+        \item $(Rb,+)$ is an additive subgroup of $R$.
+        \begin{itemize}
+            \item This follows from the fact that $r_b:(R,+)\to(R,+)$ is a group homomorphism and $Rb$ is equal to the image $r_b(R)$ of $R$ under this group homomorphism.
+        \end{itemize}
+        \item This motivates the linear algebra exercises in HW2??
+        \item There also exist principal right ideals and principle two-sided ideals.
+        \item It is correct that $Rb$ is a principal "left" ideal (closed under \emph{left} multiplication), even though $Hg$ is a "right" coset (multiplying the coset by an element of $G$ on the right).
+    \end{itemize}
+    \item Let $c\in R$, let $h\in Rb$. Is $ch\in Rb$?
+    \begin{itemize}
+        \item Yes, because $h=ab$ implies that there exists $a\in R$ such that $ch=(ca)b\in Rb$. Check??
+    \end{itemize}
+    \item We now look at three constructions originating from ideals: Sums, intersections, and products.
+    \item \textbf{Sum} (of ideals): The ideal defined as follows, where $I,J\subset R$ are ideals. \emph{Denoted by} $\bm{I+J}$. \emph{Given by}
+    \begin{equation*}
+        I+J = \{a+b\mid a\in I,b\in J\}
+    \end{equation*}
+    \begin{itemize}
+        \item Definitions for left, right, and two-sided ideals.
+        \item We can check all of the properties to confirm that this is an ideal.
+        \item Let $\alpha\in R$, $\alpha I\subset I$.  Well $\alpha I\subset J$ implies $\alpha(I+J)\subset I+J$.
+    \end{itemize}
+    \item Let $\{I_\lambda\}_{\lambda\in\Lambda}$ be a (finite??) family of ideals (left, right, or two-sided). Then
+    \begin{equation*}
+        \sum_{\lambda\in\Lambda}I_\lambda = \{a_1+a_2+\cdots+a_n\mid n\in\N,a_i\in I_{\lambda_i}\text{ for some }\lambda_i\in\Lambda\}
+    \end{equation*}
+    is a (left, right, or two-sided) ideal.
+    \item Example: Given $a_1,a_2\in R$, $Ra_1+Ra_2$ is a left ideal.
+    \begin{itemize}
+        \item Note that it is not a principal ideal, however.
+    \end{itemize}
+    \item $R$ a ring implies that $R[X]$ is a ring, which in turn implies that $R[X][Y]=R[X,Y]$ is also a ring.
+    \begin{itemize}
+        \item Let $R[X,Y]=A$ and $R=\R$. Then, for instance,
+        \begin{equation*}
+            AX+AY = \{f(X,Y)X+g(X,Y)Y\mid f,g\in A\}
+        \end{equation*}
+        \item All of these functions vanish at $(0,0)$. Thus, this ideal is not principal??
+        \begin{itemize}
+            \item It'll be a while before we treat such rings formally.
+            \item We can take this claim as an exercise for now, though (see below).
+        \end{itemize}
+        \item Note that similarly, $AX$ is the set of all functions vanishing on the $y$-axis.
+    \end{itemize}
+    \item Exercise: Prove that $AX+AY$ is not a principal ideal.
+    \item \textbf{Intersection} (of ideals): The ideal defined as follows, where $\{I_\lambda\}_{\lambda\in\Lambda}$ is a family of ideals. \emph{Given by}
+    \begin{equation*}
+        \bigcap_{\lambda\in\Lambda}I_\lambda
+    \end{equation*}
+    \begin{itemize}
+        \item Definitions for left, right, and two-sided ideals.
+        \item Easy said aloud, not written down??
+    \end{itemize}
+    \item \textbf{Product} (of ideals): The ideal defined as follows, where $I,J$ are ideals. \emph{Denoted by} $\bm{IJ}$. \emph{Given by}
+    \begin{equation*}
+        IJ = \{a_1b_1+a_2b_2+a_nb_n\mid n\in\N,\ a_1,\dots,a_n\in I,\ b_1,\dots,b_n\in J\}
+    \end{equation*}
+    \begin{itemize}
+        \item Note that $IJ\neq\{ab\mid a\in I,b\in I\}$. This is not even a subgroup under addition.
+        \item $IJ$ as defined, however, is a subgroup with respect to $+$.
+        \item The fact that $IJ$ is an ideal is justified by the distributive law:
+        \begin{equation*}
+            \alpha(a_1b_1)+\cdots+\alpha(a_nb_n) = (\alpha a_1)b_1+\cdots+(\alpha a_n)b_n
+        \end{equation*}
+        \begin{itemize}
+            \item Note that the term on the far right is an element of $IJ$ since $\alpha a_i\in I_{\lambda_i}$ by the definition of $I_{\lambda_i}$ as an ideal.
+        \end{itemize}
+        \item Alternate form:
+        \begin{equation*}
+            IJ = \sum_{b\in J}Ib
+        \end{equation*}
+    \end{itemize}
+    \item Let $R$ be a commutative ring, and let $I,J$ be ideals. Do we know that $IJ\subset I$?
+    \begin{itemize}
+        \item Yes, since the set is closed under multiplication as an ideal.
+        \begin{itemize}
+            \item In particular, $a\in I$ and $b\in R$ imply $ab\in I$.
+        \end{itemize}
+        \item Same logic: $IJ\cap J$.
+        \item Combining these results: $IJ\subset I\cap J$.
+        \item $IJ=I\cap J$ iff $I,J$ are both two-sided ideals??
+        \item In fact, if $I$ is a left ideal and $J$ is a right ideal, then $IJ$ is a 2-sided ideal.
+    \end{itemize}
+    \item Example: Let $R=\Z$.
+    \begin{itemize}
+        \item Then ideals $I,J$ are necessarily of the form $I=\Z d$, $J=\Z e$ for $d,e\in R$.
+        \item It follows that $IJ=\Z de$ and $I\cap J=\Z f$ where $f=\lcm(d,e)$.
+    \end{itemize}
+    \item We now start talking about the rings we'll focus on for the rest of the course.
+    \item Zero rings.
+    \begin{itemize}
+        \item Nothing much to be said here.
+    \end{itemize}
+    \item \textbf{Field}: A commutative ring $F$ such that\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item $0_F\neq 1_F$.
+        \item $a\in F$ and $a\neq 0$ implies that there exists $b\in F$ such that $ab=1$.
+    \end{enumerate}
+    \item Observation: If $I\subset F$ is an ideal in a field $F$, then either $I=\{0\}$ or $I=F$.
+    \begin{proof}
+        If $I\neq\{0\}$, then there exists $a\in I$ which is nonzero. It follows since $F$ is a field that $1=a^{-1}a\in I$. Therefore, $b=b\cdot 1\in I$ for all $b\in F$, i.e., $I=F$.
+    \end{proof}
+    \item The converse of this observation is also true (for commutative rings).
+    \begin{itemize}
+        \item Namely, if the only ideals of a commutative ring $R$ are $\{0\}$ and $R$, then $R$ is a field.
+    \end{itemize}
+    \item Examples of fields: $\Q$, $\R$, $\C$, $\Z/p\Z$ where $p$ is prime.
+    \begin{itemize}
+        \item $\Z\subset\Q$ is not a field.
+    \end{itemize}
+    \item \textbf{Integral domain}: A commutative ring $A$ for which
+    \begin{enumerate}
+        \item $0_A\neq 1_A$;
+        \item $a,b\in A$, $a\neq 0$, and $ab=0$ imply $b=0$.
+    \end{enumerate}
+    \item The cancellation lemma holds in integral domains.
+    \begin{itemize}
+        \item Namely, if $A$ is an integral domain and $a,b,c\in A$, then $ab=ac$ and $a\neq 0$ imply that $b=c$.
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{Chapter 7: Introduction to Rings}
 \emph{From \textcite{bib:DummitFoote}.}
 \subsection*{Section 7.3: Ring Homomorphisms and Quotient Rings}
 \begin{itemize}
-    \item Definition of a \textbf{ring homomorphism} and a \textbf{kernel} (of a ring homomorphism).
+    \item \marginnote{1/9:}Definition of a \textbf{ring homomorphism} and a \textbf{kernel} (of a ring homomorphism).
     \item \textbf{Isomorphism}: A bijective ring homomorphism. \emph{Denoted by} $\bm{\cong}$.
     \item Examples of ring homomorphisms.
     \begin{enumerate}
