@@ -650,6 +650,44 @@
         \item Example: $g_i-g_j$ is an element of the augmentation ideal for all $1\leq i,j\leq n$.
     \end{itemize}
     \item $\bm{E_{pq}}$: The matrix with 1 in the $p^\text{th}$ row and $q^\text{th}$ column and zeroes elsewhere.
+    \item \marginnote{1/11:}\textcite{bib:DummitFoote} does a deep dive on reduction mod $n$ and how it relates to the foundations of \textbf{Diophantine equations} (interesting but irrelevant).
+    \item The remaining isomorphism theorems.
+    \begin{theorem}\label{trm:7.8}\leavevmode
+        \begin{enumerate}
+            \item (The Second Isomorphism Theorem for Rings) Let $A$ be a subring and let $B$ be an ideal of $R$. Then $A+B=\{a+b\mid a\in A,b\in B\}$ is a subring of $R$, $A\cap B$ is an ideal of $A$, and $(A+B)/B\cong A/(A\cap B)$.
+            \item (The Third Isomorphism Theorem for Rings) Let $I,J$ be ideals of $R$ with $I\subset J$. Then $J/I$ is an ideal of $R/I$ and $(R/I)/(J/I)\cong R/J$.
+            \item (The Fourth Isomorphism Theorem for Rings) Let $I$ be an ideal of $R$. The correspondence $A\leftrightarrow A/I$ is an inclusion-preserving bijection between the set of subrings $A$ of $R$ that contain $I$ and the set of subrings of $R/I$. Furthermore, $A$ (a subring containing $I$) is an ideal of $R$ if and only if $A/I$ is an ideal of $R/I$.
+        \end{enumerate}
+        \begin{proof}
+            All proofs follow the same structure: "First use the corresponding theorem from group theory to obtain an isomorphism of \emph{additive groups} (or correspondence of groups, in the case of the Fourth Isomorphism Theorem) and then check that this group isomorphism (or correspondence, respectively) is a multiplicative map, and so defines a \emph{ring} isomorphism. In each case the verification is immediate from the definition of multiplication in quotient rings" \parencite[246]{bib:DummitFoote}.
+        \end{proof}
+    \end{theorem}
+    \item Definition of \textbf{sum}, \textbf{product} of ideals.
+    \begin{itemize}
+        \item Note that $n$ is not fixed in the product definition, so that all \emph{finite} sums (not just all sums of length $n$ for $n$ fixed) are included in the set.
+    \end{itemize}
+    \item \textbf{$\bm{n}^\textbf{th}$ power} (of $I$): The set consisting of all finite sums of elements of the form $a_1a_2\cdots a_n$ with $a_i\in I$ for all $i$. \emph{Denoted by} $\bm{I^n}$.
+    \begin{itemize}
+        \item Alternate definition: Define $I^1=I$ and $I^n=II^{n-1}$.
+    \end{itemize}
+    \item $I+J$ is the smallest ideal of $R$ containing both $I$ and $J$.
+    \item $IJ$ is an ideal contained in $I\cap J$ (but may be strictly smaller).
+    \item Examples.
+    \begin{enumerate}
+        \item Let $I=6\Z$ and $J=10\Z$.
+        \begin{itemize}
+            \item $I+J$ consists of all integers of the form $6x+10y$.
+            \begin{itemize}
+                \item In particular, all of these integers are divisible by 2, so $I+J\subset 2\Z$. On the other hand, $2=6(2)+10(-1)\in I+J$ implies that $2\Z\subset I+J$. Therefore, $I+J=2\Z$.
+                \item In general, $m\Z+n\Z=\gcd(m,n)\Z$
+            \end{itemize}
+            \item $IJ$ consists of all integers of the form $(6x)(10y)$ (note that this does account for all finite sums due to the distributive law), i.e., in $60\Z$.
+        \end{itemize}
+        \item Let $I$ be the ideal in $\Z[X]$ consisting of the polynomials with integer coefficients whose constant term is even.
+        \begin{itemize}
+            \item We know, for example, that $2,x\in I$. Thus, $4=2\cdot 2$ and $x^2=x\cdot x$ are elements of $I^2=II$, as is their sum $x^2+4$; however, $x^2+4$ cannot be written as a single product $p(x)q(x)$ of two elements of $I$.
+        \end{itemize}
+    \end{enumerate}
 \end{itemize}
 
 
