@@ -10,7 +10,7 @@
 
 
 
-\chapter{???}
+\chapter{Ideals}
 \section{Kernels, Ideals, and Quotient Rings}
 \begin{itemize}
     \item \marginnote{1/9:}Some kid in the Discord takes photos of all of the boards every day. (\href{https://uchicagoedu-my.sharepoint.com/:o:/g/personal/billion_uchicago_edu/EgDZ297OD3FFvttHn7lDZZ4BSlzTJFdABON3AdyzvqNyZA?e=D4C5Gs}{link})
@@ -501,6 +501,103 @@
         \item We know that $\Delta$ is a ring homomorphism (see HW1 Q4) and that $A\times B\subset R\times R$ is a subring.
         \item It follows from the set theoretic definition that $A\cap B=\Delta^{-1}(A\times B)$; apply HW 1 Q7.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Properties of Ideals}
+\begin{itemize}
+    \item \marginnote{1/13:}\textbf{Integral domain}: A commutative ring $R$ satisfying the following two conditions.
+    \begin{enumerate}[label={(\alph*)}]
+        \item $0_R\neq 1_R$.
+        \item $a,b\in R$ with $a,b\neq 0$ implies $ab\neq 0$.
+    \end{enumerate}
+    \item All subrings of fields are integral domains (proved later).
+    \item \textbf{Degree} (of $f\in R[X]$ nonzero): The number $\max S$, where
+    \begin{equation*}
+        S = \{n\in\Zg\mid a_n\neq 0\}
+    \end{equation*}
+    \emph{Denoted by} $\bm{\deg(f)}$.
+    \begin{itemize}
+        \item Some people call the degree of the zero polynomial "$-1$."
+        \item $f$ a polynomial implies that $S$ is finite.
+        \item $f\neq 0$ implies $S\neq\emptyset$.
+    \end{itemize}
+    \item \textbf{Leading coefficient} (of $f\in R[X]$ nonzero): The number $a_d$, where $d=\deg(f)$.
+    \item Proposition: If $R$ is an integral domain, then $R[X]$ is an integral domain.
+    \begin{proof}
+        Let $f,g\in R[X]$ both be nonzero polynomials of degrees $d,e$ with leading coefficients $a_d,a_e$. In particular, let
+        \begin{align*}
+            f &= a_0+\cdots+a_dX^d&
+            g &= b_0+\cdots+b_eX^e
+        \end{align*}
+        Thus, by the definition of multiplication on $R[X]$,
+        \begin{equation*}
+            fg = a_0b_0+\cdots+a_db_eX^{d+e}
+        \end{equation*}
+        Since $a_d,b_e\neq 0$ by the hypothesis that they are the leading coefficients of nonzero polynomials and since $R$ is an integral domain, we know that $a_db_e\neq 0$. Thus, $\deg(fg)=d+e$ and the leading coefficient is $a_db_e$, so $fg$ is nonzero, as desired.
+    \end{proof}
+    \item Corollary: $R[X][Y]=R[X,Y]$ is an integral domain.
+    \item Corollary: $R[X_1,\dots,X_n]$ is an integral domain for all $n\in\N$.
+    \item \textbf{Monic} (polynomial): A polynomial with leading coefficient 1.
+    \begin{itemize}
+        \item Examples: $1,X+a,X^2+aX+b$.
+    \end{itemize}
+    \item Multiplying any polynomial by a monic polynomial yields a nonzero polynomial.
+    \item Exercise: If $f\in R[X]$ is monic, then $l_f:R[X]\to R[X]$ is injective.
+    \begin{proof}
+        Let $d=\deg(f)$ and let $e=\deg(g)$ for some nonzero $g\in R[X]$. $g\neq 0$ implies that the leading coefficient of $g$ is some $b\neq 0$. Hence, the leading coefficient of $fg$ has no term of degree greater than $d+e$, and the coefficient of the $X^{d+e}$ term is $1b$.\par
+        This shows nonzero; technically also need to show distinctness under left multiplication.
+    \end{proof}
+    \item \textbf{Characteristic} (of a ring): The unique $d\in\Zg$ such that $\ker(j)=\Z d$, where $j:\Z\to R$ is the homomorphism defined by $m\mapsto m_R$. \emph{Denoted by} $\bm{\chr(R)}$.
+    \item If $\chr(R)=1$, then $R$ is the zero ring.
+    \item We have $\Z\xrightarrow{\pi}\Z/\ker(j)\hookrightarrow R$.
+    \item All polynomials (the fields we have considered thus far) have characteristic 0.
+    \item The subrings of an integral domain are integral domains.
+    \begin{proof}
+        $\chr(\text{integral domain})$ is either 0 or a prime number.
+    \end{proof}
+    \item Question: Given an ideal $I$ in a ring $R$, when is $R/I$ a field? An integral domain?
+    \item Recall that if $R$ is a commutative ring, then TFAE.
+        \begin{enumerate}
+            \item $1_R\neq 0_R$ and $a\in R$, $a\neq 0$ implies that there exists $b\in R$ such that $ab=1$.
+            \item There are exactly two ideals of $R$ (specifically, $\{0\}$ and $R$).
+        \end{enumerate}
+        \begin{proof}
+            \underline{$(2)\Rightarrow(1)$} is easy. Implies $1\neq 0$ check. If $a\in R$, $a\neq 0$, then $\{0\}\subsetneq Ra$. The hypothesis implies that $Ra=R$ and $1\in R$. Thus, there exists $b\in R$ such that $ba=1$.\par
+            \underline{$(1)\Rightarrow(2)$}: Not covered in class.
+        \end{proof}
+    \item $R$ is a field if it satisfies $1\sim 2$.
+    \item Question: $I$ is an ideal of $R$. How is $\{\text{ideals in }R\}$ related to $\{\text{ideals in }R/I\}$?
+    \begin{itemize}
+        \item Consider the canonical surjection $\pi:R\to R/I$, often denoted by $\pi(a)=\bar{a}$ for all $a\in R$.
+        \begin{enumerate}[label={(\alph*)}]
+            \item If $J\subset R$ is an ideal, is $\pi(J)$ an ideal in $R/I$?
+            \begin{itemize}
+                \item $(J,+)$ is a subgroup of $(R,+)$. This implies that $\pi(J)$ is a subgroup of $(R/I,+)$. Let $a\in R$. Then $J$ an ideal implies that $aJ\subset J$, which implies that $\pi(a)\pi(J)=\pi(aJ)\subset\pi(J)$. If $\alpha\in R/I$, then there exists $a\in R$ such that $\pi(a)=\alpha$, so this holds, as desired.
+            \end{itemize}
+            \item $H\subset R/I$ is an ideal. Is $\pi^{-1}(H)$ an ideal?
+            \begin{itemize}
+                \item Yes.
+                \item No luck required (we didn't use any assumptions). This is pretty close to a homework problem.
+                \item We're assuming $I$ is a nonzero ideal here.
+                \item Consider a map from the set of ideals in $R/I$ to the set of ideals of $R$ that contain $I$. $H$ is in the first set; $\pi^{-1}(H)$ is in the second set. But $\pi(\pi^{-1}(H))=H$ because $\pi$ is onto.
+                \item If $H_1,H_2$ are ideals of $R/I$ and $\pi^{-1}(H_1)=\pi^{-1}(H_2)$, then $\pi\pi^{-1}H_1=\pi\pi^{-1}H_2$, i.e., $H_1=H_2$.
+                \item ...
+            \end{itemize}
+        \end{enumerate}
+    \end{itemize}
+    \item Every ideal of $R/I$ equals $J/I$ for a unique ideal $J$ of $R$ such that $J\supset I$.
+    \item Exercise: $R/J\cong (R/I)/(J/I)$ using nothing but the FIT.
+    \item Why did we get into this discussion? Trying to figure out when a ring is a field??
+    \item Let $I\subset R$ be an ideal such that $R/I$ is a field. This is true iff $R/I$ has exactly two ideals, and iff there are exactly two ideals $R\supset J\supset I$.
+    \begin{itemize}
+        \item This is true if $I\neq R$ and $J$ an ideal of $R$ and $I\subset J$ implies $J=R$ is called a \textbf{maximal ideal}.
+        \item Ideals $I$ with this property are \textbf{maximal ideals}.
+        \item Proposition: $R/I$ is a field implies $I$ is a maximal ideal.
+    \end{itemize}
+    \item HW3: Basic problems and some easy linear algebra problems.
+    \item There will be Nori office hours on 1 day. He will come in-person unless it's very cold, and in that case, they will be virtually.
 \end{itemize}
 
 
