@@ -13,41 +13,326 @@
 When solving a particular problem $Y$, you may appeal to the result of any problem $X$ that has occurred before $Y$ (earlier problem sheets included) whether or not you submitted a solution of problem $X$.
 \begin{enumerate}
     \item \marginnote{1/25:}How many maximal ideals does the ring $\Z/a\Z$ possess under the following conditions?
+    \begin{proof}[General treatment]
+        % We now divide into two cases (the factorization of $|M|$ contains only one distinct prime, and the factorization of $|M|$ contains more than one distinct prime). Suppose first that $|M|=p^n$ for some prime $p$ and $n\geq 1$. Since the ideals of $\Z/a\Z$ 
+
+        % In a ring that is not simple, all maximal ideals are nonempty.
+
+        % $|M|$ factors into the form $p^n$ for some prime $p$ and $n\geq 1$
+
+        % For example, $a=15$ and $m=6$ correspond to the ideal
+        % \begin{equation*}
+        %     \{6,12,18,24,30\} \equiv \{6,12,3,9,0\}\bmod 15
+        % \end{equation*}
+        % of $\Z/15\Z$, where $n=3$.
+        
+        % As an ideal of $\Z/a\Z$, $M$ consists of the multiples of some integer $n$ modulo $a$, where $n<a$. For example, $a=45$ and $n=18$ correspond to the ideal
+        % \begin{equation*}
+        %     \{18,36,54,72,90\} \equiv \{18,36,9,27,0\}\bmod 45
+        % \end{equation*}
+        % of $\Z/45\Z$.\par
+        % We now seek to determine which $n<a$ correspond to a maximal ideal. To do so, we divide into two cases ($(n,a)=1$ and $(n,a)>1$). Suppose first that $(n,a)=1$, that is, $n$ and $a$ are coprime. Let $I=(n)$. Then $\lcm(n,a)=na$, so $|M|=a=|\Z/a\Z|$. But this implies that $M=\Z/a\Z$, contradicting our assumption that $M$ is a maximal ideal and hence a proper subset of $\Z/a\Z$.
+
+        % The ideals in $\Z/a\Z$ are the multiples of $n\bmod a$ where $n<a$. If $n$ and $a$ are coprime and $I\ni n$ is an ideal, then $I=\Z/a\Z$. Thus, since maximal ideals are proper subsets of their parent rings by definition, we can remove all $n$ coprime with $a$ from consideration. Now suppose $n$ is a prime factor of $a$. 
+
+        % Let $M$ be a maximal ideal of $\Z/a\Z$, and let $n=|M|$. Suppose the prime factorization of $a$ is $p_1^{e_1}\cdots p_m^{e_m}$ for some distinct prime numbers $p_1,\dots,p_m$ and natural numbers $e_1,\dots,e_m$. Since $n\mid a$ by the lemma, $n=p_1^{d_1}\cdots p_m^{d_m}$ where $0\leq d_i\leq e_i$ ($i=1,\dots,m$).
+        
+        % Thus, there is a bijective correspondence between the allowable ordered pairs $(d_1,\dots,d_m)$ and the divisors of $a$.
+
+        % We first demonstrate that the (nonzero) ideals of $\Z/a\Z$ consist of the multiples of some integer $n$ modulo $a$; this integer satisfies $n<a$ and $n\mid a$. Although it may feel unmotivated right now, this result will be used later. Let $I$ be a nonzero ideal of $\Z/a\Z$. Then there exists some $m\in I$, where $0<m<a$. Since $I$ is closed under multiplication, it follows that $0m,1m,2m,\dots,(a-1)m\in I$ (all of these numbers taken modulo $a$). However, some of these numbers may well be the same. Indeed, if $\lcm(a,m)=bm$, then only $\{0m,1m,2m,\dots,(b-1)m\}$ are distinct modulo $a$: As a multiple of $a$, $bm\equiv 0m\bmod a$, $(b+1)m\equiv 1m\bmod a$, and so on. Moreover, since $I\setminus\{0\}=\{m,\dots,(b-1)m\}\subset\Zg$, it is well-ordered and has a smallest nonzero element $n$. Additionally, since $I=\{0m,\dots,(b-1)m\}$, $|I|=b$. It follows by Lagrange's theorem that $b\mid a$, and in fact that $n=a/b$. It follows that every element of $I$ is a multiple of $n$. For example, $a=15$ and $m=6$ correspond to the ideal
+        % \begin{equation*}
+        %     \{6,12,18,24,30\} \equiv \{6,12,3,9,0\}\bmod 15
+        % \end{equation*}
+        % of $\Z/15\Z$, where $n=3$.\par
+        % We now move onto the main question. Let $M$ be a maximal ideal of $\Z/a\Z$. Since $(M,+)\leq(\Z/a\Z,+)$, we know by Lagrange's theorem that $|M|$ divides $a$. We also know since $M\subsetneq\Z/a\Z$ (as a maximal ideal) that $|M|<a$. Then since $M$ consists of the first $|M|$ multiples of $a/|M|$ modulo $a$
+
+        
+        {\color{white}hi}\\
+        \underline{Lemma 1}: Let $I$ be a nonzero ideal of $\Z/a\Z$, and let $n=|I|$. Then $n\mid a$ and
+        \begin{equation*}
+            I = \left\{ 0,\frac{a}{n},\frac{2a}{n},\dots,\frac{(n-1)a}{n} \right\}
+        \end{equation*}
+        \emph{Proof}: Since $I$ is an ideal of $\Z/a\Z$, $(I,+)\leq(\Z/a\Z,+)$. Thus, by Lagrange's theorem, $n=|I|$ divides $a=|\Z/a\Z|$. As to the other part of the lemma, since $I$ is nonzero, there exists $m\in I$ such that $0<m<a$. Since $I$ is closed under multiplication, it follows that $0m,1m,2m,\dots,(a-1)m\in I$ (all of these numbers must be taken modulo $a$). However, some of these numbers may well be the same: If we define $n$ by $\lcm(a,m)=nm$, then we can see that $nm\equiv 0m\bmod a$, $(n+1)m\equiv 1m\bmod a$, and so on. Thus,
+        \begin{equation*}
+            I = \{0m\bmod a,1m\bmod a,2m\bmod a,\dots,(n-1)m\bmod a\}
+        \end{equation*}
+        It follows since $(n-1)m<a$ and $nm\equiv 0\mod a$ that $nm=a$ and hence $m=a/n$. Substituting this definition of $m$ into the above yields the desired result.\par\smallskip
+        \underline{Definition}: Suppose that the prime factorization of $a$ is $p_1^{e_1}\cdots p_m^{e_m}$ for some distinct prime numbers $p_1,\dots,p_m$ and natural numbers $e_1,\dots,e_m$. Since $n\mid a$ by Lemma 1, $n=p_1^{d_1}\cdots p_m^{d_m}$ where $0\leq d_i\leq e_i$ ($i=1,\dots,m$). Let $\bm{I(d_1,\ldots,d_m)}$ denote the ideal of the form given by Lemma 1, where $n=p_1^{d_1}\cdots p_m^{d_m}$.\par\smallskip
+        \underline{Lemma 2}: If $c_i\leq d_i$ ($i=1,\dots,m$), then $I(c_1,\dots,c_m)\subset I(d_1,\dots,d_m)$. If any one of the inequalities is strict, the set inclusion is proper.\par
+        \emph{Proof}: We have that
+        \begin{align*}
+            I(c_1,\dots,c_m) &= \left\{ \frac{ja}{p_1^{c_1}\cdots p_m^{c_m}} \right\}_{j=0}^{p_1^{c_1}\cdots p_m^{c_m}-1}&
+            I(d_1,\dots,d_m) &= \left\{ \frac{ja}{p_1^{d_1}\cdots p_m^{d_m}} \right\}_{j=0}^{p_1^{d_1}\cdots p_m^{d_m}-1}
+        \end{align*}
+        Let $r=\frac{p_1^{d_1}\cdots p_m^{d_m}}{p_1^{c_1}\cdots p_m^{c_m}}$. Then
+        \begin{equation*}
+            I(c_1,\dots,c_m) = \left\{ \frac{jra}{p_1^{d_1}\cdots p_m^{d_m}} \right\}_{j=0}^{p_1^{c_1}\cdots p_m^{c_m}-1}
+            \subset \left\{ \frac{ja}{p_1^{d_1}\cdots p_m^{d_m}} \right\}_{j=0}^{p_1^{d_1}\cdots p_m^{d_m}-1}
+            = I(d_1,\dots,d_m)
+        \end{equation*}
+        as desired. Any inequality being strict is equivalent to $r>1$ and hence $I(d_1,\dots,d_m)$ contains an element (specifically, $ja/p_1^{d_1}\cdots p_m^{d_m}$) that $I(c_1,\dots,c_m)$ does not, for example.\par\smallskip
+        \underline{Theorem}: $\Z/a\Z$ has $m$ maximal ideals.\par
+        \emph{Proof}: Consider the $m$ ideals $M_i=I(e_1,\dots,e_i-1,\dots,e_m)$. It follows by Lemma 2 that $M_i\subsetneq I(e_1,\dots,e_m)=\Z/a\Z$ and that there are no "intermediate" ideals. In particular, suppose that $I(d_1,\dots,d_m)$ is an ideal that contains $M_i$ properly. Then $e_j\leq d_j\leq e_j$ for all $j\neq i$ and $e_i-1\leq d_i\leq e_i$. Moreover, since at least one inequality must be strict and none of the $j\neq i$ ones can be, we must have $d_i=e_i$. Therefore, $I(d_1,\dots,d_m)=I(e_1,\dots,e_m)=\Z/a\Z$. Therefore, the $M_i$ are maximal.\par
+        Furthermore, any other ideal either has $d_i<e_i-1$ or some additional $d_j<e_j$, leading to an additional intermediate ideal and negating the possibility of it being maximal.
+    \end{proof}
     \begin{enumerate}[label={(\roman*)}]
         \item $a=81$.
+        \begin{proof}[Answer]
+            $81=3^4$, so \fbox{one}.
+        \end{proof}
         \item $a=44$.
+        \begin{proof}
+            $44=2^2\cdot 11$, so \fbox{two}.
+        \end{proof}
         \item $a=42$.
+        \begin{proof}
+            $42=2\cdot 3\cdot 7$, so \fbox{three}.
+        \end{proof}
     \end{enumerate}
     \item Given ring homomorphisms $f:R\to A$ and $g:R\to B$, check that $h(v)=(f(v),g(v))$ for all $v\in R$ gives a ring homomorphism $h:R\to A\times B$.
+    \begin{proof}
+        To prove that $h$ is a ring homomorphism, it will suffice to show that $h$ respects addition and multiplication, and that $h(1_R)=1_{A\times B}$.\par
+        Let $a_1,a_2\in R$ be arbitrary. Then
+        \begin{align*}
+            h(a_1+a_2) &= (f(a_1+a_2),g(a_1+a_2))\\
+            &= (f(a_1)+f(a_2),g(a_1)+g(a_2))\\
+            &= (f(a_1),g(a_1))+(f(a_2),g(a_2))\\
+            &= h(a_1)+h(a_2)
+        \end{align*}
+        and
+        \begin{align*}
+            h(a_1\times a_2) &= (f(a_1\times a_2),g(a_1\times a_2))\\
+            &= (f(a_1)\times f(a_2),g(a_1)\times g(a_2))\\
+            &= (f(a_1),g(a_1))\times (f(a_2),g(a_2))\\
+            &= h(a_1)\times h(a_2)
+        \end{align*}
+        Additionally,
+        \begin{align*}
+            h(1_R) &= (f(1_R),g(1_R))\\
+            &= (1_A,1_B)\\
+            &= 1_{A\times B}
+        \end{align*}
+        These three sets of equations give all of the desired results.
+    \end{proof}
     \item In particular, let $I_1,I_2$ be ideals of a commutative ring $R$, and let $\pi_i:R\to R/I_i$ ($i=1,2$) be canonical surjections. Consider the ring homomorphism $h:R\to(R/I_1)\times(R/I_2)$ given by $h(a)=(\pi_1(a),\pi_2(a))$ for all $a\in R$.
     \begin{enumerate}[label={(\roman*)}]
         \item Describe $\ker(h)$ in terms of $I_1,I_2$.
+        \begin{proof}
+            The kernel of $h$ is the set of all $a\in R$ such that
+            \begin{equation*}
+                (0,0) = 0 = h(a) = (\pi_1(a),\pi_2(a))
+            \end{equation*}
+            i.e., such that $\pi_i(a)=0$ ($i=1,2$). We know that $0+I_i=0=\pi_i(a)=a+I_i$ when $a\in I_i$. Thus, putting everything back together, $a\in\ker(h)$ implies that $a\in I_i$ ($i=1,2$), i.e., $a\in I_1\cap I_2$. Additionally, if $a\in I_1\cap I_2$, then $\pi_1(a)=\pi_2(a)=0$. Therefore,
+            \begin{equation*}
+                \boxed{\ker(h) = I_1\cap I_2}
+            \end{equation*}
+        \end{proof}
         \item Prove that $A\Longrightarrow B\Longrightarrow C\Longrightarrow A$.
         \begin{enumerate}[label={(\Alph*)}]
             \item $h$ is a surjection.
             \item $(0,1)$ is in the image of $h$.
             \item $I_1+I_2=R$.
         \end{enumerate}
+        \begin{proof}
+            We tackle the implications one at a time.\par\smallskip
+            \underline{$\text{(A)}\Longrightarrow\text{(B)}$}: Suppose $h$ is a surjection. Then $\im h=(R/I_1)\times(R/I_2)$. Therefore, since $(0,1)\in(R/I_1)\times(R/I_2)$, $(0,1)\in\im h$.\par
+            \underline{$\text{(B)}\Longrightarrow\text{(C)}$}: Suppose $(0,1)\in\im h$. Then there exists $a\in R$ such that $h(a)=(0,1)$. Thus, by the definition of $h$, $a\in 0+I_1=I_1$ and $a\in 1+I_2$. It follows from this latter statement that there exists $x\in I_2$ such that $a=1+x$, or $a+(-x)=1$. Ideals are closed under multiplication by elements of $R$, so since $-1\in R$, $-x\in I_2$. This combined with the fact that $a\in I_1$ demonstrates that that $1=a+(-x)\in I_1+I_2$. Therefore, since ideals are closed under multiplication, $I_1+I_2=R$.\par
+            \underline{$\text{(C)}\Longrightarrow\text{(A)}$}: Suppose $I_1+I_2=R$. Let $(x+I_1,y+I_2)\in(R/I_1)\times(R/I_2)$ be arbitrary. To prove that $h$ is a surjection, it will suffice to find an $a\in R$ such that $h(a)=(x+I_1,y+I_2)$. Since $x,y\in R$, we know that $x,y\in I_1+I_2$ by hypothesis. Thus, we may write $x=a_1+a_2$ and $y=b_1+b_2$, where $a_1,b_1\in I_1$ and $a_2,b_2\in I_2$. It follows that
+            \begin{equation*}
+                (x+I_1,y+I_2) = ((a_1+a_2)+I_1,(b_1+b_2)+I_2)
+                = (a_2+I_1,b_1+I_2)
+                = ((a_2+b_1)+I_1,(a_2+b_1)+I_2)
+            \end{equation*}
+            Therefore, choosing $a=a_2+b_1$, we have
+            \begin{equation*}
+                h(a) = (x+I_1,y+I_2)
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Assume that $I_1+I_2=R$. Prove that $I_1I_2=I_1\cap I_2$. Deduce that $\phi:R/(I_1I_2)\to(R/I_1)\times(R/I_2)$ is an isomorphism.
+        \begin{proof}
+            % By analogy to $h$, define $\phi$ with
+            % \begin{equation*}
+            %     a+I_1I_2 \mapsto (\pi_1(a),\pi_2(a))
+            % \end{equation*}
+            % In other words, if $\pi_{12}:R\to R/(I_1I_2)$ is a canonical surjection, then $h=\phi\circ\pi_{12}$. We know $h$ is surjective and $\pi$ is surjective; thus, $\phi$ is surjective?? Use the NIT?? Is $I_1\cap I_2=\ker h$
+            % \begin{align*}
+            %     (a_1+I_1,a_2+I_2) &= (b_1+I_1,b_2+I_2)\\
+            % \end{align*}
+
+            To prove that $I_1I_2=I_1\cap I_2$, we will use a bidirectional inclusion proof. Since ideals are closed under multiplication by external elements and addition of internal elements, $I_1I_2\subset I_1$ and $I_1I_2\subset I_2$. Therefore, $I_1I_2\subset I_1\cap I_2$, as desired. Now let $x\in I_1\cap I_2$ be arbitrary. Then $x\in I_1$ and $x\in I_2$. Now since $I_1+I_2=R$, we may pick $a_1\in I_1$ and $a_2\in I_2$ such that $a_1+a_2=1$. Multiplying through this equation by $x$ yields $xa_1+xa_2=x$. Moreover, since $x\in I_2$ and $a_1\in I_1$, $xa_1\in I_1I_2$. Similarly, $xa_2\in I_1I_2$. It follows since $I_1I_2$ is closed under addition that $x=xa_1+xa_2\in I_1I_2$, as desired.\par
+            Since $h:R\to(R/I_1)\times(R/I_2)$ is a ring homomorphism and, by part (i), $\ker(h)=I_1\cap I_2$, the NIT implies that $h$ has a unique factorization $h=i\circ\phi\circ\pi$ where $\phi:R/(I_1\cap I_2)\to(R/I_1)\times(R/I_2)$ is an isomorphism of rings. But since $I_1\cap I_2=I_1I_2$ by the above, we have that $\phi:R/(I_1I_2)\to(R/I_1)\times(R/I_2)$ is an isomorphism of rings, as desired.
+        \end{proof}
     \end{enumerate}
     \item Prove that a nonzero ideal $I\subset F[[X]]$, where $F$ is a field, is the principal ideal generated by $X^n$ for some $n\geq 0$. (This is a continuation of Exercise 7.2.3c of \textcite{bib:DummitFoote}, addressed in HW2 Q2.2.)
+    \begin{proof}
+        % Every $a_0\neq 0$ is a unit in $F$, so every $\sum_{n=0}^\infty a_nx^n$ with $a_0\neq 0$ is a unit in $F[[X]]$.
+
+        % Let $I$ be a nonzero ideal of $F[[X]]$. If there is a polynomial with a nonzero constant term present, then it is a unit and $1\in I$, so $I=R=(X^0)$. If there no polynomial has nonzero constant term, let $n$ be the lowest power present in any polynomial. Let $f$ be a polynomial with an $X^n$ term. Then $f/X^n$ has a nonzero constant term and is a unit. Thus, there exists $u\in R$ such that $uf=X^n$, so $X^n\in I$. Multiplying any polynomial by $X^n$ will not let you get any polynomials of degree less than $n$, but it will allow you to generate every polynomial of greater degree. Thus, $I=(X^n)$.
+
+
+        Let $I$ be an arbitrary nonzero ideal in $F[[X]]$, let $n$ be the lowest power present in any polynomial in $I$, and let $f\in I$ be a polynomial with a nonzero $X^n$ term. Since $a_n\neq 0$, $f/X^n$ is a polynomial with nonzero constant term $a_n$. Additionally, since $a_n$ is a nonzero element of a field, $a_n$ is a unit. It follows by Exercise 7.2.3c that $f/X^n$ is a unit. Thus, there exists $u\in R$ such that $u\times(f/X^n)=1$. Multiplying through this equation by $X^n$ yields
+        \begin{equation*}
+            uf = X^n
+        \end{equation*}
+        Since $f\in I$ and $u\in F[[X]]$, $uf\in I$, so $X^n=uf\in I$. Multiplying any polynomial in $F[[X]]$ by the monic polynomial $X^n$ can only increase the exponent of every term, so, to reiterate, there are no polynomials in $I$ having terms with exponents less than $n$. Moreover, it follows by the Euclidean algorithm that every polynomial $h$ with all terms having powers greater than or equal to $n$ can be expressed as the product of some $q\in F[[X]]$ and $X^n$. Therefore, $I=(X^n)$.
+    \end{proof}
     \item Recall that $R[X,Y]:=R[X][Y]$. Regard $R$ as a subring of $R[X,Y]$. Let $R$ be a commutative ring.\par
     The \textbf{universal property of $\bm{R[X,Y]}$} states: Let $A$ be commutative. Given a ring homomorphism $\alpha:R\to A$ and $x,y\in A$, prove that there is a unique ring homomorphism $\beta:R[X,Y]\to A$ that satisfies $\beta(c)=\alpha(c)$ for all $c\in R$, $\beta(X)=x$, and $\beta(Y)=y$.\par
     Deduce this statement from the universal property of $R[X]$.
+    \begin{proof}
+        % {\color{white}hi}
+        % \begin{itemize}
+        %     \item UPPR: Given a ring homomorphism $\alpha:R\to A$ and $x\in A$, there is a unique ring homomorphism $\tilde{\alpha}:R[X]\to A$ such that $\tilde{\alpha}(a)=\alpha(a)$ for all $a\in R$ and $\tilde{\alpha}(X)=x$.
+        %     \item UPPR: Given a ring homomorphism $\tilde{\alpha}:R[X]\to A$ and $y\in A$, there is a unique ring homomorphism $\beta:R[X][Y]\to A$ such that $\beta(a)=\tilde{\alpha}(a)$ for all $a\in R[X]$ and $\beta(Y)=y$.
+        %     \item For all $a\in R\subset R[X]$, $\beta(a)=\tilde{\alpha}(a)=\alpha(a)$.
+        %     \item $X\in R[X]$: $\beta(X)=\tilde{\alpha}(X)=x$.
+        % \end{itemize}
+
+        Consider the ring homomorphism $\alpha:R\to A$ and the element $x\in A$ provided by the assumptions of the universal property of $R[X,Y]$. By the universal property of $R[X]$, we may link these to a unique ring homomorphism $\tilde{\alpha}:R[X]\to A$ such that $\tilde{\alpha}(a)=\alpha(a)$ for all $a\in R$ and $\tilde{\alpha}(X)=x$. If we now switch perspectives and view $R[X]$ as our ring, $\tilde{\alpha}$ as our coordinate change function on that ring, and $y$ (from the original givens) as our element of interest in $A$, we can apply the universal property of "$R[X]$"\footnote{Perhaps it would be more accurate to say "the universal property of $R[X][Y]$" at this point!} again. This time, it links $\tilde{\alpha}$ and $y$ to a unique ring homomorphism $\beta:R[X][Y]\to A$ such that $\beta(a)=\tilde{\alpha}(a)$ for all $a\in R[X]$ and $\beta(Y)=y$.\par
+        Now we show that this $\beta$ is the $\beta$ we've been looking for. First off, note that $R[X,Y]=R[X][Y]$, so $\beta$ has the correct domain and range. Additionally, we already have $\beta(Y)=y$. To show that $\beta(c)=\alpha(c)$ for all $c\in R$, let $c\in R$ be arbitrary. Since $R\subset R[X]$, $c\in R[X]$. Thus, $\beta(c)=\tilde{\alpha}(c)$. Additionally, since $c\in R$, we have from our original definition of $\tilde{\alpha}$ that $\tilde{\alpha}(c)=\alpha(c)$. Therefore, by transitivity, $\beta(c)=\alpha(c)$, as desired. Lastly, we wish to show that $\beta(X)=x$. Since $X\in R[X]$, we know that $\beta(X)=\tilde{\alpha}(X)$. Recall from the original definition of $\tilde{\alpha}$ that $\tilde{\alpha}(X)=x$. Therefore, by transitivity, $\beta(X)=x$, as desired.
+    \end{proof}
     \item 
     \begin{enumerate}[label={(\roman*)}]
         \item For any $a\in R$, we may define the ring homomorphism $\phi:R[X]\to R$ by $\phi(f(X))=f(a)$. Prove that $\ker\phi$ is a principal ideal, and find a generator of this ideal.
+        \begin{proof}
+            % This is evaluation, no??
+            % $\ker\phi$ is the set of all polynomials that evaluate to zero at $a$. Generator = $X-a$??
+            % Invoke the Euclidean algorithm to get $X-a$ out of any polynomial that evaluates to zero?? See corollary from Lecture 3.1.
+
+            To prove that $\ker\phi$ is a principal ideal and identify its generator in the process, it will suffice to show that $\ker\phi=(X-a)$.\par
+            Suppose first that $f\in\ker\phi$. It follows by the definition of the kernel that $f(a)=\phi(f)=0$. Additionally, recall from class that there exists $q\in R[X]$ such that
+            \begin{equation*}
+                f(X)-f(a) = q(X)(X-a)
+            \end{equation*}
+            But since $f(a)=0$, we have that
+            \begin{equation*}
+                f = f-0 = q\cdot(X-a) \in R[X](X-a) = (X-a)
+            \end{equation*}
+            as desired.\par
+            Now suppose that $f\in(X-a)$. Then $f=q\cdot(X-a)$ for some $q\in R[X]$. It follows that
+            \begin{equation*}
+                \phi(f) = f(a)
+                = q(a)\cdot(a-a)
+                = q(a)\cdot 0
+                = 0
+            \end{equation*}
+            so $f\in\ker\phi$, as desired.
+        \end{proof}
         \item Let $g\in R[X]$. Define $\phi:R[X,Y]\to R[X]$ by $\phi(f(X,Y))=f(X,g(X))$. Prove that $\ker\phi$ is a principal ideal, and find a generator of this ideal.
+        \begin{proof}
+            % When does $f(X,g(X))=0$? Hint?? A you either see it or don't type problem.
+
+            % Let $f\in\ker\phi$. Then $f(X,g(X))=0$. When $(X,Y)=(X,g(X))$, $f$ should snap to zero; when we move away from $(X,g(X))$, we can resume the nonzero values. Analogous to how $X-a$ snaps to zero at $a$ but diverges away from it.
+            % How about $Y-g(X)$?
+
+
+            To prove that $\ker\phi$ is a principal ideal and identify its generator in the process, it will suffice to show that $\ker\phi=(Y-g(X))$.\par
+            Suppose first that $f\in\ker\phi$. It follows by the definition of the kernel that $f(X,g(X))=\phi(f)=0$. Additionally, if we regard $f$ as a polynomial in $Y$, the Euclidean algorithm asserts that there exist $q,r\in R[X,Y]$ such that
+            \begin{equation*}
+                f(X,Y) = q(X,Y)(Y-g(X))+r(X,Y)
+            \end{equation*}
+            where $\deg(r)<1=\deg(Y-g(X))$. It follows from this last statement that $\deg(r)\in\{0,-\infty\}$, i.e., $r$ is a constant. We may determine its value by evaluating the above at $(X,g(X))$, as follows.
+            \begin{align*}
+                f(X,g(X)) &= q(X,g(X))(g(X)-g(X))+r\\
+                r &= f(X,g(X))
+            \end{align*}
+            Therefore,
+            \begin{align*}
+                f(X,Y) &= f(X,Y)-0\\
+                &= f(X,Y)-f(X,g(X))\\
+                &= q(X,Y)(Y-g(X))\\
+                &\in R[X,Y](Y-g(X))\\
+                &= (Y-g(X))
+            \end{align*}
+            as desired.\par
+            Now suppose that $f\in(Y-g(X))$. Then $f=q\cdot(Y-g(X))$ for some $q\in R[X,Y]$. It follows that
+            \begin{equation*}
+                \phi(f) = f(X,g(X))
+                = q(X,g(X))\cdot(g(X)-g(X))
+                = q(X,g(X))\cdot 0
+                = 0
+            \end{equation*}
+            so $f\in\ker\phi$, as desired.
+        \end{proof}
     \end{enumerate}
     \item Let $a,b$ be elements of $R$ a commutative ring, and let $a$ be a unit of $R$. Consider the ring homomorphism $\phi:R[X]\to R[X]$ given by $\phi(f)=f(aX+b)$. Prove that $\phi$ is an isomorphism. \emph{Hint}: It's inverse can be written down explicitly.
+    \begin{proof}
+        % What kind of stuff from the recent lectures do we need to use in this HW?? It seems kinda like old content.
+
+        % $\psi(f)=f(\frac{X-b}{a})$. Then just check $\phi\circ\psi=\psi\circ\phi=\id$?? More isomorphism checks necessary, such as bijective, ring homomorphism ones, etc.?? Cite 3.5 for proving that the inverse is a ring homomorphism. We'll say it follows from the universal property.
+
+
+        Let $\alpha:R\to R[X]$ be defined by $\alpha(c)=c$ for all $c\in R$. Given this ring homomorphism $\alpha:R\to R[X]$ as well as $(X-b)/a\in R[X]$, Q3.5 asserts that there is a unique ring homomorphism $\psi:R[X]\to R[X]$ that satisfies $\psi(c)=\alpha(c)=c$ for all $c\in R$ and $\psi(X)=(X-b)/a$. Since $\psi:R[X]\to R[X]$ defined by
+        \begin{equation*}
+            \psi(f) = f\left( \frac{X-b}{a} \right)
+        \end{equation*}
+        satisfies both of these properties, it is the unique ring homomorphism that Q3.5 proved existed.\par
+        We now prove that $\phi\circ\psi=\psi\circ\phi=\id$. Let $f\in R[X]$ be arbitrary. Then
+        \begin{align*}
+            (\phi\circ\psi)(f) &= \phi(\psi(f))&
+                (\psi\circ\phi)(f) &= \psi(\phi(f))\\
+            &= \phi\left( f\left( \frac{X-b}{a} \right) \right)&
+                &= \psi(f(aX+b))\\
+            &= f\left( \frac{(aX+b)-b}{a} \right)&
+                &= f\left( a\cdot\frac{X-b}{a}+b \right)\\
+            &= f(X)&
+                &= f(X)\\
+            &= \id(f)&
+                &= \id(f)
+        \end{align*}
+        Therefore, $\phi$ is an isomorphism, as desired.
+    \end{proof}
     \item Let $R$ be an integral domain. Prove that every isomorphism $\phi:R[X]\to R[X]$ that satisfies $\phi(c)=c$ for all $c\in R$ is of the type given in Q3.7.
+    \begin{proof}
+        % What is meant by "type??" Just a monomial argument, or are higher order polynomials allowed, too?? Do you more broadly mean evaluation-based functions?? And by isomorphism, we mean ring homomorphism, too??
+        % Is the proof related to the universal property of polynomial rings??
+
+        % Exactly the same monomial evaluation; only degrees of freedom are $a,b$.
+
+
+        See the answer to Q3.7. What I did there (and, I guess, what I would need to repeat here) is invoke the universal property of $R[X]$ under an appropriate auxiliary function ($\alpha=\id$). This would then guarantee me existence and uniqueness for a $\phi$ satisfying $\phi(c)=c$. Additionally, we must have a monomial argument because anything with degree other than 1 would alter the possible degrees we can access in the image, thereby making $\phi$ \emph{not} an isomorphism. By making the monomial as general as possible, i.e., with the two degrees of freedom $a,b$ in $ax+b$, we can be sure to capture \emph{all} relevant isomorphisms.
+    \end{proof}
     \item 
     \begin{enumerate}[label={(\roman*)}]
         \item Exercise 7.1.11 of \textcite{bib:DummitFoote}: Prove that if $R$ is an integral domain and $x^2=1$ for some $x\in R$, then $x=\pm 1$.
+        \begin{proof}
+            We have that
+            \begin{align*}
+                1 &= x^2\\
+                0 &= x^2-1\\
+                &= (x+1)(x-1)
+            \end{align*}
+            Since $R$ is an integral domain, it contains no zero divisors, so either $x+1=0$ (and $x=-1$) or $x-1=0$ (and $x=1$); either way, $x=\pm 1$, as desired.
+        \end{proof}
         \item Deduce that $\{a^2\mid 0\neq a\in\F_p\}$ has cardinality $(p-1)/2$. Here, $p$ is an odd prime, and $\F_p$ is the field of cardinality $p$.
+        \begin{proof}
+            % Is $\F_p=\Z/p\Z$?? Yes. Don't use $q$ as a dummy variable, though, because $\F_q$ is something else.
+            % Each number excluding zero (there's your minus 1) maps to a square along with one other number, i.e., every square in $\F_p=\Z/p\Z$ has two roots (there's your /2).
+
+            % How do I prove that there are always two $a$ that go to $a^2$?? Can I just show that $a^2=(-a)^2$? $a^2=1^2a^2$, $\pm a$.
+
+            % Don't need to use (i); just similar reasoning.
+
+            % If $a\equiv b\bmod p$, then $a^2\equiv b^2\bmod p$.
+
+
+            There are $p-1$ nonzero elements in $\F_p$. Although we usually think of these elements as $1,\dots,p-1$, we can divide this list in two and consider instead the congruent elements
+            \begin{equation*}
+                -\frac{p-1}{2},\dots,-1,1,\dots,\frac{p-1}{2}
+            \end{equation*}
+            Note that it is the fact that $p\geq 3$ is an odd prime that allows us to divide $p-1$ (necessarily an even number) by 2 and still obtain a (nonzero) integer. Continuing, we can rearrange the list in this way because $a\equiv b\bmod p$ implies $a^2\equiv b^2\bmod p$, so it will not affect our operation of choice. Additionally, the boon is that choosing negative elements makes it very easy to see that $a^2=(-a)^2$ for each $a\in\{1,\dots,(p-1)/2\}$. Therefore, for the $p-1$ elements in the above list, there are only $(p-1)/2$ squares: One for each distinct absolute value of an entry in the above list, as desired.
+        \end{proof}
     \end{enumerate}
     \item Prove that there are exactly four rings of cardinality $p^2$, where $p$ is a prime ($p=2$ is included). Identify which of them is a field, which is a product of two fields, and find a nonzero nilpotent in both of the remaining cases.\par
     \emph{Hint}: First show that there are only two possibilities for the characteristic of such a ring. If the characteristic is an odd prime $p$, show that there is some $\theta$ in the ring with the two properties: (i) $\theta^2\in\F_p$ and (ii) $1,\theta$ form a basis for the given ring viewed as an $\F_p$ vector space. Now apply the previous problem.
+    \begin{proof}
+        Tricky??
+
+        Yes -- by far the hardest question. Show that $X^2-\theta^2$ is a maximal ideal in the polynomial ring. If $f$ is irreducible, then $(f)$ is maximal. Check that $X^2-\theta^2$ is irreducible.
+
+        Like 5 problems in 1 problem. Takes a bunch of techniques. The case where the square is zero is not hard. Write down four distinct rings and then use this to prove that you can't get any other ones. Keep them all in the quotient form?? One is a product of two cyclic groups; that's a product of fields. You're allowed to multiply differently when they're rings, not groups. 2 groups, but 4 rings.
+    \end{proof}
 \end{enumerate}
 
 
