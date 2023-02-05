@@ -104,5 +104,93 @@
 
 
 
+\section{Office Hours (Nori)}
+\begin{itemize}
+    \item Problem 4.1?
+    \begin{itemize}
+        \item See picture.
+    \end{itemize}
+    \item Lecture 2.2: "We need bijectivity because continuous functions don't necessarily have continuous inverses?"
+    \begin{itemize}
+        \item We can use "$f:R_1\to R_2$ is a ring homomorphism plus bijection" as the definition of isomorphism.
+        \item An equivalent definition is, "there exists a ring homomorphism $g:R_2\to R_1$ such that $g\circ f=\id_{R_1}$ and $f\circ g=\id_{R_2}$."
+        \item Even though the first is simpler, the reason people use the second is because in some contexts, there \emph{is} a difference between the definitions (such as with homeomorphisms, whose inverses need to be continuous [think proper]).
+    \end{itemize}
+    \item Lecture 2.2: We have only defined the finite sum of ideals, not an infinite sum, right?
+    \begin{itemize}
+        \item We defined an infinite sum, too.
+        \item In particular, $\sum_{i\in I}M_i=\bigcup_{\substack{F\subset I}\\F\text{ is finite}}$.
+        \item Note that in a more general sense, you can have infinitely generated ideals. For example, infinite polynomials.
+    \end{itemize}
+    \item Lecture 2.2: $IJ=I\cap J$ conditions.
+    \begin{itemize}
+        % \item The product is equal to the intersection in commutative rings, but not just for two-sided ideals.
+        \item $IJ\subset I\cap J$ in commutative rings.
+        \item Counterexample: $R=\Z$ and $I=(d)$ and $J=(d)$. Then $IJ=(d^2)\neq(d)=I\cap J$.
+        \item Equality is meaningful.
+    \end{itemize}
+    \item To what extent are we covering Chapter 9, and to what extent will reading it help my understanding of the course content?
+    \begin{itemize}
+        \item Just the result that $F[X]$ is a PID (implies UFD).
+        \item All we need from Chapter 8 for the midterm is ED implies PID, all we need from Chapter 9 for the midterm is PID implies UFD.
+        \item Main examples of PIDs are $\Z$, $F[X]$, and $F[[X]]$.
+    \end{itemize}
+    \item Have we done anything outside Chapters 7-9, or if I understand them, am I good to go?
+    \begin{itemize}
+        \item The Euclidean algorithm for monic polynomials may not be in Chapter 8.
+    \end{itemize}
+    \item Lecture 3.1: Everything from creating $\C$ from $\R$, down.
+    \begin{itemize}
+        \item We use monic polynomials just so that we can apply the Euclidean algorithm (EA).
+        \item We want to find ring homomorphisms $\varphi:R[X]\to A$ such that $\varphi(X^2+1)=0$. How do I get hold of a $\varphi$ and an $A$? There's exactly one way to do it. We use the universal property of a polynomial ring.
+        \item We want $X^2+1\in\ker\psi$, so we define $R[X]/(X^2+1)$.
+        \item $R[X]/(X^2+1)$ generalizes the construction of the complex numbers. Creating a new ring in which $X^2+1=0$ has a solution.
+        \item Suppose $R$ is a ring such that $f(X)\in R[X]$ doesn't have a solution. Then it does have a solution in $R[X]/(f(X))$.
+        \item We recover $\C$ as a special case of this more general construction, specifically the case where $f(X)=X^2+1$.
+    \end{itemize}
+    \item Lecture 3.2: Do I have it right that the only nontrivial ideals of $\Q$ are the diadic numbers, $\Z_{(2)}$, and $(2^n)$? Why is this? What about the triadics, for instance?
+    \begin{itemize}
+        \item In $\Z_{(2)}$, the only ideals are of the form $(2^n)$ for some $n$.
+    \end{itemize}
+    \item Lecture 3.2: What is the significance of the final theorem?
+    \begin{itemize}
+        \item That all rings with the $D$-to-units property bear a certain similarity to the ring of fractions.
+    \end{itemize}
+    \item Section 7.5: Difference between the rational functions and the field of rational functions?
+    \item Lecture 4.1: What all is going on with $F[[X^{1/2^n}]]$?
+    \begin{itemize}
+        \item The idea is the irreducible elements of one ring can become reducible in the context of other rings. This is just a specific example; note how $X$ is the only irreducible element in the first ring, but it reduces to $X=(X^{1/2})^2$ in the next ring, and so on.
+    \end{itemize}
+    \item Lecture 4.3: Speech for PIDs over UFDs?
+    \item Lecture 4.3: $R\setminus\{0\}$ or $R$ is an integral domain.
+    \begin{itemize}
+        \item Takeaway: You don't need to factor $a,b$ to get their gcd; indeed, you can just find a single generator of $(a,b)$.
+    \end{itemize}
+    \item Lecture 4.3: Products of commutative diagrams?
+    \item Lecture 5.1: What is the weakest definition for an ED?
+    \begin{itemize}
+        \item The \emph{book} teaches the weakest one.
+        \item \emph{We're} only interested in Euclidean domains with positive norms.
+    \end{itemize}
+    \item Lecture 5.1: Uniqueness condition in the Euclidean algorithm.
+    \item Lecture 5.1: The thing about $\Z$ and $F[[X]]$.
+    \begin{itemize}
+        \item These are the only rings we've talked about that are PIDs. Gaussian integers are, too, but we haven't proved that yet.
+    \end{itemize}
+    \item Lecture 5.1: Argument for something --- is this part of the proof of the converse statement?
+    \item Lecture 5.1: Correct notation?
+    \item What is the set $\Z[X,Y,Z,W]_{XW-YZ}$ in Q4.6b?
+    \begin{itemize}
+        \item Like $R_f$.
+    \end{itemize}
+    \item What is the purpose of the commutative diagram in Q4.7?
+    \item Where does $d$ come into play in Q4.10?
+    \begin{itemize}
+        \item We're gonna prove that the cardinality of the set is less than or equal to $d$. About the number of roots of a polynomial of a certain degree, like how $X^3+\cdots$ can't have more then 3 roots. The most relevant property is that $\R$ is an integral domain.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
