@@ -192,5 +192,153 @@
 
 
 
+\section{Factorization Techniques}
+\begin{itemize}
+    \item \marginnote{2/1:}Notes on HW4 Q4.1.
+    \begin{itemize}
+        \item A lot of people have asked questions about this.
+        \item The point is to get used to universal properties.
+        \item Universal properties are important because\dots
+        \begin{itemize}
+            \item They will come up time and time again;
+            \item They will be especially important if/when we get to tensor products;
+            \item Two objects that satisfy the same universal property are isomorphic.
+        \end{itemize}
+    \end{itemize}
+    \item We've introduced a lot of theory at this point, but everything is getting used more and more.
+    \item Today: Factoring polynomials. We will look at two methods to do so.
+    \item Assumption for this lecture: Let $f=a_0X^n+a_1X^{n-1}+\cdots+a_n\in\Z[X]$ have $c(f)=1$.
+    \item Factorization prep.
+    \begin{itemize}
+        \item Today's ring of interest: $\Z[X]$.
+        \item We want to test reducibility. Recall from Lecture 5.1 that\dots
+        \begin{itemize}
+            \item If $\deg(f)>0$, then $f$ is irreducible in $\Z[X]$ iff $c(f)=1$ and $f$ is irreducible in $\Q[X]$.
+            \item Why we need the latter condition even though I don't think it was mentioned last lecture (motivation via examples).
+            \begin{itemize}
+                \item Consider $X^2-1/4\in\Q[X]$. This polynomial reduces to $(X-1/2)(X+1/2)$. Thus, taking $n=4$, $4X^2-1$ is still reducible in $\Z[X]$ as it equals $(2X-1)(2X+1)$.
+                \item Consider $X^2-1/3\in\Q[X]$. This polynomial reduces to $(X-1/\sqrt{3})(1+1/\sqrt{3})$ in $\R[X]$, but is irreducible in $\Q[X]$. Thus, taking $n=3$, $3X^2-1$ is still irreducible in $\Z[X]$.
+            \end{itemize}
+            \item If $\deg(f)=0$, then $f$ is irreducible in $\Z[X]$ iff $f$ is a prime integer.
+        \end{itemize}
+        \item Recall that $\ell(f)$ denotes the leading coefficient.
+        \item If $f$ is irreducible in $\Q[X]$, then so is $f/\ell(f)$, but now $f/\ell(f)$ is monic.
+        \item Consider $f\mapsto f/\ell(f)$. It sends
+        \begin{equation*}
+            \{f\in\Z[X]\mid f\text{ is irreducible and }\deg(f)>0\} \to \{\text{monic irreducible polynomials in }\Q[X]\}
+        \end{equation*}
+        \item The above is not a bijection as is, but if we treat $\pm f$ as the same, then it is. In other words,
+        \begin{equation*}
+            \pm\backslash\{f\in\Z[X]\mid f\text{ is irreducible and }\deg(f)>0\} \cong \{\text{monic irreducible polynomials in }\Q[X]\}
+        \end{equation*}
+        where the isomorphism is defined as above.
+    \end{itemize}
+    \item Factorization by monomials.
+    \begin{itemize}
+        \item How many $g(X)=aX+b$ are there in $\Z[X]$ that divide $f$?
+        \item If $aX+b\mid f$, then $a\mid a_0$ and $b\mid a_n$.
+        \item We know that $a_0>0$ by the definition of the $X^n$ term as the leading term. It may be either way with $a_n$.
+        \begin{itemize}
+            \item For the sake of continuing, we will assume that $a_n\neq 0$. Why??
+            \item We also assume that $\gcd(a,b)=1$.
+        \end{itemize}
+        \item Because of the above constraint, we know that
+        \begin{equation*}
+            \{g\in\Z[X]\mid \deg g=1,\ g\mid f\} \subset \text{known finite set}
+        \end{equation*}
+        where the latter set consists of all monomials $g$ with $a\mid a_0$ and $b\mid a_n$.
+        \item $aX+b\mid f$ in $\Z[X]$ iff $aX+b\mid f$ in $\Q[X]$ iff $f(-b/a)=0$.
+        \item Note: If $\deg(f)\leq 3$ and $f$ is reducible, then there exists $g\in\Z[X]$ such that $\deg(g)=1$ and $g\mid f$.
+        \begin{itemize}
+            \item Let $f=gh$. We know that $3\geq\deg(f)=\deg(g)+\deg(h)$. Since $c(f)=1$ by hypothesis, $\deg(g)\neq 0\neq\deg(h)$. Thus, $1\leq\deg(g)\leq 3-\deg(h)\leq 2$ and a similar statement holds for $\deg(h)$. If $\deg(g)=1$, then we are done. If $\deg(g)=2$, then $\deg(h)=1$, and we are done.
+            \item When we get to $\deg(f)=4$, the above argument obviously won't work (it would be perfectly acceptable to have $\deg(g)=\deg(h)=2$ here, for instance).
+        \end{itemize}
+    \end{itemize}
+    \item We now move on to actual factorization techniques.
+    \item Method 1: \textbf{Kronecker's method}.
+    \begin{itemize}
+        \item This method should be covered in the book somewhere.
+    \end{itemize}
+    \item Let $f$ have the same $n$-degree form as above.
+    \item Let $1\leq d\leq n$. Does there exist $g\in\Z[X]$ with $c(g)=1$ and $\deg(g)=d$ such that $g\mid f$?
+    \item Select $d+1$ distinct integers $c_0,\dots,c_d$.
+    \item Easy lemma: Let $c_0,\dots,c_d\in F$ be distinct, and let
+    \begin{equation*}
+        P_d = \{g\in F[X]\mid\deg(g)\leq d\}
+    \end{equation*}
+    be a a $(d+1)$-dimensional vector space. Then $T:P_d\to F^{d+1}$ given by
+    \begin{equation*}
+        T(g) = (g(c_0),\dots,g(c_d))
+    \end{equation*}
+    is an isomorphism of $F$-vector spaces.
+    \begin{proof}
+        $P_d$ and $F^{d+1}$ both have the same dimension. Thus, to prove bijectivity of this linear transformation, it will suffice to prove injectivity. To do so, we will show that $\ker(T)=\{0\}$. Let $g\in\ker(T)$ be arbitrary. Then
+        \begin{align*}
+            T(g) &= 0\\
+            (g(c_0),\dots,g(c_d)) &= (0,\dots,0)
+        \end{align*}
+        Thus, $g$ has $d+1$ distinct roots $c_0,\dots,c_d$. It follows that $g\in((X-c_0)\dots(X-c_d))$, meaning that $g=0$ or $\deg(g)\geq d+1$. However, $g\in P_d$ by hypothesis as well, meaning $\deg(g)\leq d$. Therefore, $g=0$, as desired.
+    \end{proof}
+    \item There is an alternative proof of this result that doesn't deal with any existence business but just gives you a formula for computing $T$.
+    \item Corollary: Given $e_0,\dots,e_d\in F$ arbitrary, there exists a unique $g\in P_d$ such that $g(c_i)=e_i$ ($i=0,\dots,d$).
+    \begin{itemize}
+        \item Note that this is less a corollary and more a restatement of the lemma: A "unique" element of the domain speaks to bijectivity.
+    \end{itemize}
+    \item If such a $g$ exists, then $f=gh$ for some $h\in\Z[X]$. It follows that it is uniquely determined by its the values $g(c_0),\dots,g(c_d)$. But $g(c_i)\mid f(c_i)$ for all $i=0,\dots,d$. Note that if $f(c_i)=0$, then $X-c_i\mid f$ in $\Z[X]$.
+    \item Now consider $S_i=\{u_i\in\Z:u_i\mid f(c_i)\}$. Then $S_0\times\cdots\times S_d\subset\Q^{d+1}$.
+    \item Take $F=\Q$. Then $T:P_d\to\Q^{d+1}\supset S_0\times\cdots\times S_d$ where $T$ is an isomorphism.
+    \item It follows that $g\in T^{-1}(S_0\times\cdots\times S_d)\cap\Z[X]\cap\{g:c(g)=1\}$. Thus, $g$ is an element of a finite set that is somewhat "known."
+    \item Check whether or not $g\mid f$ (use the Euclidean Algorithm for monic polynomials).
+    \item Then $f(X)=(X-c_0)\cdots(X-c_n)+b$
+    \item Method 2.
+    \begin{itemize}
+        \item Basic philosophy: Given a monic polynomial over $\C$ and for which you know all of the coefficients, said coefficients yield an upper bound on the value of every root.
+    \end{itemize}
+    \item Lemma: Let $f(X)=a_0X^n+a_1X^{n-1}+\cdots+a_n\in\C[X]$ have $a_0\neq 0$. Define the number
+    \begin{equation*}
+        C = \max\left\{ \left| \frac{a_1}{a_0} \right|,\left| \frac{a_2}{a_0} \right|^{1/2},\dots,\left| \frac{a_n}{a_0} \right|^{1/n} \right\}
+    \end{equation*}
+    The elements in the max set are the coefficients of $1/\ell(f)$. If $z\in\C$ and $f(z)=0$, then $|z|\leq 2C$. Moreover,
+    \begin{equation*}
+        \frac{1}{2}+\frac{1}{4}+\cdots+\frac{1}{2^n} = 1
+    \end{equation*}
+    \begin{proof}
+        If $C=0$, you're done. Thus, we assume that $C\neq 0$.\par
+        WLOG, take $a_0=1$ so that $f$ is monic (if $a_0\neq 1$, divide through by $a_0$). It follows that
+        \begin{align*}
+            0 &= 1z^n+a_1z^{n-1}+\cdots+a_n\\
+            -z^n &= a_1z^{n-1}+\cdots+a_n\\
+            -1 &= a_1\frac{1}{z}+a_2\frac{1}{z^2}+\cdots+a_n\frac{1}{z^n}\\
+            &= \left( \frac{a_1}{C} \right)\left( \frac{C}{z} \right)+\left( \frac{a_2}{C^2} \right)\left( \frac{C}{z} \right)^2+\cdots+\left( \frac{a_n}{C^n} \right)\left( \frac{C}{z} \right)^n
+        \end{align*}
+        By the definition of $C$, we have that
+        \begin{equation*}
+            |a_r|^{1/r} \leq C
+        \end{equation*}
+        Thus, $|a_r|\leq C^r$ and hence $|a_r/C^r|\leq 1$. We now can relate back to the above.\par
+        If $|C/z|\leq 1/2$, this contradicts the triangle inequality (why??), so we must have $|C/z|>1/2$ or $|z/C|<2$ so $|z|<2C$.\par
+        We now want $g\in\Z[X]$ with $c(g)=1$, $\deg(g)=d$, and $g\mid f$ in $\Z[X],\Q[X],\C[X]$.
+        We have $g=b_0X^d+b_1X^{d-1}+\cdots+b_d$ ($b_i\in\Z$). Thus, $g/b_0=(X-z_1)\cdots(X-z_d)$ with $f(z_1)=\cdots=f(z_d)=0$. Then we have the following by expanding.
+        \begin{equation*}
+            = X^d-\left( \sum_{i=1}^dz_i \right)X^{d-1}+\left( \sum_{1\leq i\leq j\leq d}z_iz_j \right)X^{d-2}+\cdots
+        \end{equation*}
+        The second term is equal to $b_1/b_0$; the third is $b_2/b_0$; etc.
+        We thus have an upper bound
+        \begin{equation*}
+            |b_r/b_0| \leq (2C)^r\binom{d}{r}
+        \end{equation*}
+        Note that $\ell(g)\mid\ell(f)$. The search for the coefficients is now limited to a finite space, and we are done. $a_0b_r/b_0\in\Z$ and we have an upper bound on its absolute value, specifically the following which, at this point, we can turn over the problem to someone with a computer to solve.
+        \begin{equation*}
+            |a_0b_r/b_0| \leq (2C)^r\binom{d}{r}(a_0)
+        \end{equation*}
+    \end{proof}
+    \item A great technique for reducing polynomials modulo a prime number.
+    \begin{itemize}
+        \item Consider $0^2,1^2,2^2,3^2,4^2\pmod 5$. This is $\{0,\pm 1\}$. It follows that $m\equiv\pm 2\pmod 5$. $X^2-m\in\Z[X]$ is irreducible, but $(X^2-m)=(X-h)(X+h)$ implies that $X^2-h^2\equiv m\pmod 5$.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
