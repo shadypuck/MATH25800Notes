@@ -32,7 +32,7 @@
     \item In fact, the four steps above are the template for the construction of all new rings from old rings.
     \begin{itemize}
         \item Notice that we did the same thing with $R[[X]]$ last class, i.e., defined $R^\Zg$, defined and confirmed operations, and introduced alternate notation ($\sum_{n=0}^\infty a_nX^n$ instead of $a:\Zg\to R$).
-        \item According to Nori, \textcite{bib:DummitFoote} explains this pretty well.
+        \item \textcite{bib:DummitFoote} explains this pretty well according to Nori.
     \end{itemize}
     \item A question from both classes: What is $X$ in the polynomial ring?
     \begin{itemize}
@@ -76,7 +76,7 @@
         \end{itemize}
         \item Quotient groups become quotient rings.
         \item The FIT does translate.
-        \item The SIT does translate: If $I_1,I_2$ are two-sided ideals, then $I_1\cap I_2$, $I_1+I_2$, and $I_1I_2$ are also two-sided ideals.
+        \item The other ITs also translate: If $I_1,I_2$ are two-sided ideals, then $I_1\cap I_2$, $I_1+I_2$, and $I_1I_2$ are also two-sided ideals.
     \end{itemize}
     \item Constructing ideals.
     \item \textbf{Kernel} (of a ring homomorphism): The set defined as follows, where $f:A\to B$ is a ring homomorphism. \emph{Denoted by} $\bm{\ker(f)}$. \emph{Given by}
@@ -327,7 +327,7 @@
 
 
         If we ignore $\times$ and regard $A,B$ as additive abelian groups, the FIT applies and yields the above (unique) factorization. In it, $\bar{f}$ is a bijective additive isomorphism (group homomorphism). Thus, this takes care of proving that $\bar{f}$ respects addition.\par
-        We now just need to prove that $\bar{f}$ respects multiplication and sends 1 to 1 to complete our verification that it is a ring homomorphism. We will do this indirectly. First, observe that $f$ is a ring homomorphism and $i$ is a one-to-one ring homomorphism (really; do you mean that $i$ is one-to-one with the subset $f(A)\subset B$ so that defining $i^{-1}\circ f$ makes sense??). Thus, $\bar{f}\circ\pi=i^{-1}\circ f$ is a ring homomorphism (as we can confirm). This combined with the fact that $\pi$ is onto implies that $\bar{f}$ is a ring homomorphism (as we can confirm).\par
+        We now just need to prove that $\bar{f}$ respects multiplication and sends 1 to 1 to complete our verification that it is a ring homomorphism. We will do this indirectly. First, observe that $f$ is a ring homomorphism and $i$ is an injective ring homomorphism. Thus, $\bar{f}\circ\pi=i^{-1}\circ f$ is a ring homomorphism (as we can confirm). This combined with the fact that $\pi$ is onto implies that $\bar{f}$ is a ring homomorphism (as we can confirm).\par
         This essentially completes our proof; we just need the formal definition of an isomorphism of rings to take it to the finish line.
     \end{proof}
     \item Notes on the Noether Isomorphism Theorem.
@@ -352,10 +352,10 @@
             \item It is fairly clear that this $g$ is also a ring homomorphism.
         \end{itemize}
         \item "Iso" means bijective homomorphism.
-        \item We need bijective because continuous functions don't have continuous inverses??
+        \item We need bijectivity because continuous functions don't necessarily have continuous inverses??
     \end{itemize}
     \item Let's go back to talking about ideals.
-    \item \textbf{Principle left ideal}: An ideal of the following form, where $R$ is a ring and $b\in R$. \emph{Denoted by} $\bm{Rb}$. \emph{Given by}
+    \item \textbf{Principal left ideal}: An ideal of the following form, where $R$ is a ring and $b\in R$. \emph{Denoted by} $\bm{Rb}$. \emph{Given by}
     \begin{equation*}
         Rb = \{ab\mid a\in R\}
     \end{equation*}
@@ -364,13 +364,16 @@
         \begin{itemize}
             \item This follows from the fact that $r_b:(R,+)\to(R,+)$ is a group homomorphism and $Rb$ is equal to the image $r_b(R)$ of $R$ under this group homomorphism.
         \end{itemize}
-        \item This motivates the linear algebra exercises in HW2??
-        \item There also exist principal right ideals and principle two-sided ideals.
-        \item It is correct that $Rb$ is a principal "left" ideal (closed under \emph{left} multiplication), even though $Hg$ is a "right" coset (multiplying the coset by an element of $G$ on the right).
+        \item This motivates some of the linear algebra exercises in HW2.
+        \begin{itemize}
+            \item In particular, it underlies HW2 Q9.
+        \end{itemize}
+        \item There also exist principal right ideals and principal two-sided ideals.
+        \item It is correct that $Rb$ is a principal "left" ideal (closed under \emph{left} multiplication by elements of $R$), even though $Hg$ is a "right" coset (multiplying the coset by an element of $G$ on the right).
     \end{itemize}
     \item Let $c\in R$, let $h\in Rb$. Is $ch\in Rb$?
     \begin{itemize}
-        \item Yes, because $h=ab$ implies that there exists $a\in R$ such that $ch=(ca)b\in Rb$. Check??
+        \item Yes, because $h=ab$ implies that there exists $a\in R$ such that $ch=(ca)b\in Rb$.
     \end{itemize}
     \item We now look at three constructions originating from ideals: Sums, intersections, and products.
     \item \textbf{Sum} (of ideals): The ideal defined as follows, where $I,J\subset R$ are ideals. \emph{Denoted by} $\bm{I+J}$. \emph{Given by}
@@ -397,21 +400,20 @@
         \begin{equation*}
             AX+AY = \{f(X,Y)X+g(X,Y)Y\mid f,g\in A\}
         \end{equation*}
-        \item All of these functions vanish at $(0,0)$. Thus, this ideal is not principal??
+        \item All of these functions vanish at $(0,0)$. Thus, this ideal is not prime.
         \begin{itemize}
             \item It'll be a while before we treat such rings formally.
             \item We can take this claim as an exercise for now, though (see below).
         \end{itemize}
         \item Note that similarly, $AX$ is the set of all functions vanishing on the $y$-axis.
     \end{itemize}
-    \item Exercise: Prove that $AX+AY$ is not a principal ideal.
+    \item Exercise: Prove that $AX+AY$ is not a prime ideal.
     \item \textbf{Intersection} (of ideals): The ideal defined as follows, where $\{I_\lambda\}_{\lambda\in\Lambda}$ is a family of ideals. \emph{Given by}
     \begin{equation*}
         \bigcap_{\lambda\in\Lambda}I_\lambda
     \end{equation*}
     \begin{itemize}
-        \item Definitions for left, right, and two-sided ideals.
-        \item Easy said aloud, not written down??
+        \item If all $I_\lambda$ are left (resp. right, two-sided) ideals, then the intersection is a left (resp. right, two-sided) ideal.
     \end{itemize}
     \item \textbf{Product} (of ideals): The ideal defined as follows, where $I,J$ are ideals. \emph{Denoted by} $\bm{IJ}$. \emph{Given by}
     \begin{equation*}
@@ -438,7 +440,7 @@
         \begin{itemize}
             \item In particular, $a\in I$ and $b\in R$ imply $ab\in I$.
         \end{itemize}
-        \item Same logic: $IJ\cap J$.
+        \item Same logic: $IJ\subset J$.
         \item Combining these results: $IJ\subset I\cap J$.
         \item $IJ=I\cap J$ iff $I,J$ are both two-sided ideals??
         \item In fact, if $I$ is a left ideal and $J$ is a right ideal, then $IJ$ is a 2-sided ideal.
@@ -523,7 +525,7 @@
         \item $f$ a polynomial implies that $S$ is finite.
         \item $f\neq 0$ implies $S\neq\emptyset$.
     \end{itemize}
-    \item \textbf{Leading coefficient} (of $f\in R[X]$ nonzero): The number $a_d$, where $d=\deg(f)$.
+    \item \textbf{Leading coefficient} (of $f\in R[X]$ nonzero): The number $a_d$, where $d=\deg(f)$. \emph{Denoted by} $\bm{\ell(f)}$.
     \item Proposition: If $R$ is an integral domain, then $R[X]$ is an integral domain.
     \begin{proof}
         Let $f,g\in R[X]$ both be nonzero polynomials of degrees $d,e$ with leading coefficients $a_d,a_e$. In particular, let
@@ -578,18 +580,18 @@
             \end{itemize}
             \item $H\subset R/I$ is an ideal. Is $\pi^{-1}(H)$ an ideal?
             \begin{itemize}
-                \item Yes.
-                \item No luck required (we didn't use any assumptions). This is pretty close to a homework problem.
+                \item Yes. Additionally, no luck was required (we didn't use any assumptions).
+                \item This is pretty close to a homework problem (HW2 Q3).
                 \item We're assuming $I$ is a nonzero ideal here.
                 \item Consider a map from the set of ideals in $R/I$ to the set of ideals of $R$ that contain $I$. $H$ is in the first set; $\pi^{-1}(H)$ is in the second set. But $\pi(\pi^{-1}(H))=H$ because $\pi$ is onto.
-                \item If $H_1,H_2$ are ideals of $R/I$ and $\pi^{-1}(H_1)=\pi^{-1}(H_2)$, then $\pi\pi^{-1}H_1=\pi\pi^{-1}H_2$, i.e., $H_1=H_2$.
-                \item ...
+                \item Injectivity: If $H_1,H_2$ are ideals of $R/I$ and $\pi^{-1}(H_1)=\pi^{-1}(H_2)$, then $\pi\pi^{-1}H_1=\pi\pi^{-1}H_2$, i.e., $H_1=H_2$.
+                \item Surjectivity: If $R\supset J\supset I$, $J$ an ideal, then $\pi(J)$ is also an ideal of $R/I$ and $J/I$.
             \end{itemize}
         \end{enumerate}
     \end{itemize}
-    \item Every ideal of $R/I$ equals $J/I$ for a unique ideal $J$ of $R$ such that $J\supset I$.
+    \item Takeaway: Every ideal of $R/I$ equals $J/I$ for a unique ideal $J$ of $R$ such that $J\supset I$.
     \item Exercise: $R/J\cong (R/I)/(J/I)$ using nothing but the FIT.
-    \item Why did we get into this discussion? Trying to figure out when a ring is a field??
+    \item Recall that we got into this discussion trying to figure out what properties of $I$ make $R/I$ into a field. Now that we have more tools, we return to the problem directly.
     \item Let $I\subset R$ be an ideal such that $R/I$ is a field. This is true iff $R/I$ has exactly two ideals, and iff there are exactly two ideals $R\supset J\supset I$.
     \begin{itemize}
         \item This is true if $I\neq R$ and $J$ an ideal of $R$ and $I\subset J$ implies $J=R$ is called a \textbf{maximal ideal}.
@@ -597,7 +599,7 @@
         \item Proposition: $R/I$ is a field implies $I$ is a maximal ideal.
     \end{itemize}
     \item HW3: Basic problems and some easy linear algebra problems.
-    \item There will be Nori office hours on 1 day. He will come in-person unless it's very cold, and in that case, they will be virtually.
+    \item There will be Nori office hours on Monday. He will come in-person unless it's very cold, and in that case, they will be virtually.
 \end{itemize}
 
 
@@ -785,6 +787,43 @@
             \item We know, for example, that $2,x\in I$. Thus, $4=2\cdot 2$ and $x^2=x\cdot x$ are elements of $I^2=II$, as is their sum $x^2+4$; however, $x^2+4$ cannot be written as a single product $p(x)q(x)$ of two elements of $I$.
         \end{itemize}
     \end{enumerate}
+\end{itemize}
+
+
+\subsection*{Section 7.4: Properties of Ideals}
+\begin{itemize}
+    \item \marginnote{1/18:}\textbf{Ideal generated by $\bm{A}$}: The smallest (two-sided) ideal of $R$ containing $A\subset R$. \emph{Denoted by} $\bm{(A)}$.
+    \begin{itemize}
+        \item When $A=\{a\}$ or $\{a_1,a_2,\dots\}$, we drop the set brackets and simply write $(a)$ or $(a_1,a_2,\dots)$ for $(A)$, respectively.
+        \item This idea is analogous to that of subgroups generated by subsets.
+    \end{itemize}
+    \item Defines \textbf{products} of ideals.
+    \begin{itemize}
+        \item $RA=0$ if $A=\emptyset$.
+    \end{itemize}
+    \item \textbf{Principal ideal}: An ideal generated by a single element.
+    \item \textbf{Finitely generated ideal}: An ideal generated by a finite set $A$.
+    \item $(A)$ is the intersection of all ideals of $R$ that contain $A$.
+    \begin{equation*}
+        (A) = \bigcap_{\substack{I\text{ an ideal}\\A\subset I}}I
+    \end{equation*}
+    \begin{itemize}
+        \item This is because the intersection of any nonempty collection of ideals of $R$ is also an ideal of $R$, and $A$ is always contained in at least one ideal (namely, $R$).
+    \end{itemize}
+    \item \textbf{Left ideal generated by $\bm{A}$}: The intersection of all left ideals of $R$ that contain $A$.
+    \item We now prove that $RA$ is the left ideal generated by $A$.
+    \begin{itemize}
+        \item It follows from its definition that $RA$ is closed under addition and left multiplication by any element of $R$. Thus, $RA$ is a left ideal.
+        \item There exists $1_R\in R$. Thus, $A\subset RA$ (consider all finite sums $1_Ra$ for $a\in A$).
+        \item Conversely, any left ideal $I$ containing $A$ must contain all finite sums of elements of the form $ra$ ($r\in R$ and $a\in A$), so $RA\subset I$.
+        \item Therefore, $RA$ is left ideal containing $A$, and is the smallest such ideal, so it must be the left ideal generated by $A$.
+    \end{itemize}
+    \item Similar results.
+    \begin{itemize}
+        \item $AR$ is the right ideal generated by $A$.
+        \item $RAR$ is the (two-sided) ideal generated by $A$.
+        \item If $R$ is commutative, then $RA=AR=RAR=(A)$.
+    \end{itemize}
 \end{itemize}
 
 
