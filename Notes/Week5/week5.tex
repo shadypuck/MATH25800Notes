@@ -9,7 +9,7 @@
 
 
 
-\chapter{???}
+\chapter{Characterizing Polynomials}
 \section{Prime Factorizations}
 \begin{itemize}
     \item \marginnote{1/30:}Midterm next Monday.
@@ -345,6 +345,97 @@
     \item Lecture 3.2: Is the final theorem the "Universal Property of the Ring of Fractions?"
     \item $I^e$ means extending $I$. If $f:A\to B$ where $I\subset A$, then $I^e=(f(I))\subset B$ ($f(I)$ is not an ideal in $B$ unless $f$ is surjective). Similarly, the contraction $J^c$ of some $J\subset B$ is $J^c=f^{-1}(J)$ (this is already an ideal).
     \item I asked misc. questions about the HW4 problems as I went through them.
+\end{itemize}
+
+
+
+\section{Prime Ideals of Complex Polynomials}
+\begin{itemize}
+    \item \marginnote{2/3:}Last lecture on rings for a while.
+    \item Monday begins modules.
+    \item Today: Applications of the Gauss lemma.
+    \item Questions to answer today.
+    \begin{enumerate}
+        \item Prime ideals of $\C[X,Y]$.
+        \item Branched coverage.
+        \item Relation between topology and algebra.
+    \end{enumerate}
+    \item Prerequisites for today: The following lemma.
+    \item Lemma: Let $R$ be a UFD and $K=\Frac R$. Then there exists a bijection
+    \begin{equation*}
+        R^\times\backslash\{f\in R[Y]:\deg_Y(f)>0,\ c(f)=1\} \cong K^\times\backslash\{f\in K[Y]:\deg_{Y}(f)>0\}
+    \end{equation*}
+    defined by $f\mapsto f$.
+    \begin{itemize}
+        \item This bijection sends irreducibles to irreducibles.
+        \item We should have proven this on Monday.
+    \end{itemize}
+    \item Example: $R=\C[X]$ and $K=\C(X)$.
+    \item What are the prime ideals $P$ in $\C[X,Y]$?
+    \begin{itemize}
+        \item $\{0\}$.
+        \item $(f)$ where $f$ is irreducible.
+        \item Are there any others?
+    \end{itemize}
+    \item We presently build up to answering this question.
+    \begin{itemize}
+        \item Let $P\in\C[X,Y]$ be a nonzero prime ideal. Pick a nonzero $f\in P$. Let $f=f_1\cdots f_r$, where each $f_i$ is irreducible.
+        \item Since $P$ is a prime, it follows that one of the $f_i$ must be an element of $P$.
+        \item Additionally, $(f_i)\subset P$. Then assuming that $(f_i)\neq P$, there exists $g_i\in P$ such that $g_i\notin(f_i)$. Repeat the same argument for each $f_j$.
+        \item Then we get $(f_j,g_j)\subset P$. $f_j,g_j$ are irreducible and $g\notin(f)$.
+        \item Case 0: If $f\in R=\C[X]$ and $f$ is irreducible, then $(f)=(X-a)$. Recall that $\C[X,Y]/(X-a)\cong\C[Y]$ (the isomorphism is given by $f(X,Y)=f(a,Y)$). More generally, we have that $\C[X,Y]/P\cong\C[Y]/\phi(P)$ since $P\supsetneq(X-a)$ and hence $\phi(P)\neq 0$.
+        \item It follows that there exists a $b\in\C$ such that $\phi(P)=(Y-b)$. Thus, $P=(X-a,Y-b)$.
+    \end{itemize}
+    \item \textbf{Nonzero} (ideal): An ideal $I$ for which there exists a nonzero $f\in I$.
+    \item We now state the theorem.
+    \item Theorem: Every prime ideal of $\C[X,Y]$ is either\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item $\{0\}$.
+        \item $(f)$ where $f$ is irreducible.
+        \item $(X-a,Y-b)$ for all $(a,b)\in\C^2$.
+    \end{enumerate}
+    The ideals (iii) are the maximal ideals. We define $\phi:\C[X,Y]\to\C$ by $\phi(f)=f(a,b)$; then $\ker\phi=(X-a,Y-b)$.
+    \begin{proof}
+        Rest of the proof: Let $f,g\in P$ be such that $f,g\notin\C[X]$. It follows from the Gauss lemma that $f,g$ are irreducible in $\C(X)[Y]$ and the gcd in $\C(X)[Y]$ is $(f,g)=1$. It follows that there exist $A,B\in\C(X)[Y]$ such that $1=Af+By$.
+        Form of $A,B$: We have
+        \begin{equation*}
+            A = \alpha_dY^d+\cdots+\alpha_0
+        \end{equation*}
+        where each $\alpha_i=u_i(X)/v_i(X)$ for $u_i,v_i\in\C[X]$. Similarly, $B=\beta_eY^e+\cdots+\beta_0$ with a similar condition on the $\beta_i$.
+        Let $h=\prod_iv_i\cdot\prod_j\omega_j$. Then $h$ is nonzero and an element of $\C[X]$. It follows that $hA=A'$ and $hB=B'$ are elements of $\C[X,Y]$. It follows that $A'f+B'g=h$ where $A',B'\in\C[X,Y]$. Thus, $h\in(f,g)\subset P$. Thus, $h=\prod_{i=1}^e(X-a_i)$ and $X-a\in P$ for some $a\in\C$. And thus we have reduced to case 0.
+    \end{proof}
+    \item Hilbert null statement The only maximum ideals of $\C[X_1,\dots,X_n]$ are $(X_1-a_1,\dots,X_n-a_n)$ where $(a_1,\dots,a_n)\in\C^n$.
+    \begin{itemize}
+        \item This is outside this course.
+    \end{itemize}
+    \item Exercise: Continue the proof to show that the collection $\{(a,b)\in\C^2:f(a,b)=g(a,b)=0\}$ is finite if both $f,g$ are distinct and irreducible in the usual sense, i.e., $(f)\neq(g)$.
+    \item The set
+    \begin{equation*}
+        \{(a,b)\in\C^2:(f\cdot g)(a,b)=0\} = \{(a,b)\in\C^2:f(a,b)=0\}\cup\{(a,b)\in\C^2:g(a,b)=0\}
+    \end{equation*}
+    minus a finite set is disconnected.
+    \emph{picture; draw diagram of Cartesian plane with missing origin!!}
+    \item Example: Let $f=X$ and $g=Y$. Then $\{(a,b)\in\C^2:ab=0\}$ is the $X,Y$ axes and it is disconnected if we remove a finite set of points (e.g., 0). Same in more general, curvy spaces.
+    \item Consider one irreducible polynomial $f(X,Y)=a_0(X)Y^d+\cdots+a_d(X)$. where the $a_i\in\C[X]$ and $a_0(X)\neq 0$.
+    \begin{itemize}
+        \item Freeze $X=c$.
+        \item Denote $f(c,Y)$ by $f_c(Y)$.
+        \item Take the intersection of $X=c$ and the polynomial in $Y$.
+        \item There is a finite set of distinct points. How do we know that there are at most $d$?
+        \item Now assume $f$ is irreducible and in $\C[X][Y]$. Then $f$ is irreducible in $\C(X)[Y]$.
+        \item Comparing $f_c$ and $\pdv*{f_c}{y}=(\pdv*{f}{y})_c$. The $Y$-degree of $\pdv*{f}{y}$ is $d-1$. Since $f$ is irreducible,
+        \begin{equation*}
+            \gcd_{\C(X)[Y]}(f,\pdv*{f}{y}) = 1
+        \end{equation*}
+        \item Same game gives $A',B'\in\C[X,Y]$ and a nonzero $h\in\C[X]$ such that
+        \begin{equation*}
+            A'(X,Y)f(X,Y)+B'(X,Y)\pdv{f}{Y}=h(X)
+        \end{equation*}
+    \end{itemize}
+    \item Now consider $\{c\in\C:a_0(c)\neq 0\text{ and }h(c)\neq 0\}$.
+    \item What we have shown is that if you omit a finite set of vertical lines, you understand the zeroes pretty well. This is called a \textbf{branched covering}.
+    \item Complex analysis takes it from here.
+    \item Theorem: If $f\in\C[X,Y]$ is square-free and not a constant, then $\{(a,b)\in\C^2:f(a,b)=0\}$ minus any finite set is connected iff $f$ is irreducible.
 \end{itemize}
 
 

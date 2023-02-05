@@ -10,7 +10,7 @@
 \usepackage{tikz}
 \usepackage{float}
 \usepackage{amsmath,amssymb,amsthm,amsbsy}
-\usepackage{bm,nicematrix}
+\usepackage{bm,nicematrix,physics}
 \usepackage[hidelinks]{hyperref}
 \usepackage{subfiles}
 
@@ -42,7 +42,7 @@
 \DeclareMathOperator{\Fun}{Fun}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\evl}{ev}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\lcm}{lcm}
@@ -55,6 +55,8 @@
 \newtheorem{theorem}[proposition]{Theorem}
 
 \NiceMatrixOptions{cell-space-limits=1pt}
+
+\renewcommand{\ev}{\evl}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
