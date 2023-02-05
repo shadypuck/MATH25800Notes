@@ -10,7 +10,7 @@
 
 
 
-\chapter{???}
+\chapter{Intro to Ring Types}
 \section{Intro to Chapters 8-9}
 \begin{itemize}
     \item \marginnote{1/18:}Moving onto Chapter 8 today.
@@ -213,6 +213,155 @@
         \item Most people seem to think that the HW is at a reasonable level of difficulty.
         \item The third one should be more challenging.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Rings of Fractions}
+\begin{itemize}
+    \item \marginnote{1/20:}This lecture will cover material from Sections 7.5 and 15.4 of \textcite{bib:DummitFoote}.
+    \item Defining $\Q$.
+    \begin{itemize}
+        \item Rigorously, we define $\Q$ as a subset of $(\Z\times\Z)\setminus\{(a,0)\mid a\in\Z\}$. In particular, we let $\Q$ be the set of equivalence classes in $\Z\times\Z$ under the equivalence relation
+        \begin{equation*}
+            \frac{a}{b} = \frac{c}{d}
+            \quad\Longleftrightarrow\quad
+            ad-bc = 0
+        \end{equation*}
+        where $a/b$ denotes $(a,b)\in\Z\times\Z$.
+        \item Addition on $\Q$:
+        \begin{equation*}
+            \frac{a_1}{b_1}+\frac{a_2}{b_2} = \frac{a_1b_2+a_2b_1}{b_1b_2}
+        \end{equation*}
+        \begin{itemize}
+            \item This makes $(\Q,+)$ an abelian group with identity $0=0/c$ for any $c\neq 0$.
+        \end{itemize}
+        \item Multiplication on $\Q$:
+        \begin{equation*}
+            \frac{a_1}{b_1}\cdot\frac{a_2}{b_2} = \frac{a_1a_2}{b_1b_2}
+        \end{equation*}
+        \begin{itemize}
+            \item This makes $(\Q,+,\cdot)$ a ring with identity $1=1/1=d/d$ for any $d\neq 0$.
+        \end{itemize}
+    \end{itemize}
+    \item Notice the similarities between the above approach and the definition of $\C$ from $\R$ in Lecture 2.1.
+    \item It follows from the definition that $\Q$ is also a field: For any $a/b\in\Q$, $a/b\cdot b/a=1$.
+    \item We can generalize this construction to any commutative ring $R$.
+    \begin{itemize}
+        \item As in $\Q$, we may only be able to take the "quotient" of certain elements of $R$ by certain other elements of $R$. For example, $a/0$ does not make sense in $\Q$. Thus, we first define a subset of $R$ called $D$: $D$ contains elements which can act as \underline{d}enominators. The properties of $D$ are motivated by the properties of denominators in $\Q$. In particular\dots
+        \item Let $D\subset R$ be such that $1_R\in D$, $0_R\notin D$, $D$ has no zero divisors, and $D$ is closed under multiplication (that is, $b,d\in D$ implies $bd\in D$).
+        \begin{itemize}
+            \item We need $1_R\in D$ so that all of the elements $a\in R$ appear in the related ring of fractions as $a/1_R$.
+            \item We can't have $0_R\in D$ because you cannot divide by zero.
+            \item We can't have any zero divisors in $D$ because then during addition or multiplication, as defined above, the sum or product could have zero in the denominator.
+            \item We need closure under multiplication so that the sums and products defined above are well-defined.
+        \end{itemize}
+        \item With these constraints on $D$, we can define the \textbf{ring of fractions}.
+    \end{itemize}
+    \item $\bm{\sim}$: The equivalence relation on a product ring $(A\times B,+,\cdot)$ defined as follows. \emph{Given by}
+    \begin{equation*}
+        (a_1,b_1) \sim (a_2,b_2)
+        \quad\Longleftrightarrow\quad
+        a_1\cdot b_2-a_2\cdot b_1 = 0
+    \end{equation*}
+    \item Exercise: Confirm that $\sim$ is an equivalence relation.
+    \item Just as taking the quotient of a group by a normal subgroup or a ring by an ideal yields a partition of the original object where all elements in any set in the partition are related by the substructure, taking the quotient of a set by an equivalence relation yields a partition of that set into classes called \emph{equivalence} classes.
+    \begin{itemize}
+        \item Thus, when we write $(A\times B)/\sim$, we refer to the set of equivalence classes of $A\times B$ under $\sim$.
+    \end{itemize}
+    \item \textbf{Ring of fractions} (of $D$ with respect to $R$): The set defined as follows, under the operations defined as follows. \emph{Denoted by} $\bm{D^{-1}R}$. \emph{Given by}
+    \begin{equation*}
+        D^{-1}R = \{(x,t)\mid x\in R,\ t\in D\}/\sim
+    \end{equation*}
+    \begin{enumerate}
+        \item Addition:
+        \begin{equation*}
+            \frac{x_1}{t_1}+\frac{x_2}{t_2} = \frac{x_1t_2+x_2t_1}{t_1t_2}
+        \end{equation*}
+        \begin{itemize}
+            \item Let $0_{D^{-1}R}=0/1$.
+            \begin{itemize}
+                \item Note that because of the way $0/1$ is defined (i.e., as an equivalence class), we no longer need to say $0/1=0/d$ for all $d\in D$ since all $0/d$ are included in $0/1$. In fact, at this point, $0/d$ is just an alternate name for the set $0/1$.
+            \end{itemize}
+            \item It follows from the above definition that $-(x/t)=-x/t$.
+        \end{itemize}
+        \item Multiplication:
+        \begin{equation*}
+            \frac{x_1}{t_1}\cdot\frac{x_2}{t_2} = \frac{x_1x_2}{t_1t_2}
+        \end{equation*}
+        \begin{itemize}
+            \item Let $1_{D^{-1}R}=1/1$.
+        \end{itemize}
+    \end{enumerate}
+    \item Notes on the ring of fractions.
+    \begin{itemize}
+        \item Notice how the notation is a nice alternative to the (already taken) $R/D$.
+        \item Notation: Write $x/t$ for the equivalence class $[(x,t)]$.
+    \end{itemize}
+    \item Proposition: $D^{-1}R$ is a ring as defined above.
+    \begin{proof}
+        There are three steps needed: (1) check that $+,\times$ are well defined; (2) check that $(D^{-1}R,+)$ is an abelian group; and (3) check that $\times$ is an associative, commutative, and distributive operation with an identity.
+    \end{proof}
+    \item \textbf{Field of fractions} (of $R$): The set $D^{-1}R$ where $R$ is an integral domain and $D=R\setminus\{0\}$. \emph{Also known as} \textbf{quotient field}. \emph{Denoted by} $\bm{\Frac R}$.
+    \begin{itemize}
+        \item Inverses are given by
+        \begin{equation*}
+            \left( \frac{a}{b} \right)^{-1} = \frac{b}{a}
+        \end{equation*}
+        for all nonzero elements $a/b\in\Frac R$ (i.e., all elements for which $a,b\neq 0$).
+    \end{itemize}
+    \item Example: Let $R$ be an integral domain, and let $f\in R$ not be nilpotent. Take $D=\{1,f,f^2,\dots\}$. Then $R_f=D^{-1}R$.
+    \begin{itemize}
+        \item Example: If $R=\Z$ and $f=2$, then $R_2=\{a/b\in\Q\mid b=2^n\}$. Recall that these are the diadic rationals.
+    \end{itemize}
+    \item Example: Let $R=\Z$ and $D=\{a\in\Z:2\nmid a\}$. Then $D^{-1}R=\{a/b\in\Q:2\nmid b\}$.
+    \item Besides the last two examples, the only nontrivial ideal of $\Q$ left is $(2^n)$.
+    \begin{itemize}
+        \item Do I have this statement right??
+    \end{itemize}
+    \item If $R$ is an integral domain, then $\Frac(R[X])$ is the set of all rational functions with coefficients in $R$.
+    \item We have a canonical injection $\iota:R\to D^{-1}R$ defined by $x\mapsto x/1$.
+    \item Theorem (universal property of the ring of fractions):
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.6]
+            \small
+            \node (R)  at (0,1) {$R$};
+            \node (DR) at (0,0) {$D^{-1}R$};
+            \node (S)  at (1,1) {$S$};
+    
+            \footnotesize
+            \draw [right hook->] (R)  -- node[left]            {$\iota$}           (DR);
+            \draw [->]           (DR) -- node[below right=-2pt]{$\tilde{\varphi}$} (S);
+            \draw [->]           (R)  -- node[above]           {$\varphi$}         (S);
+        \end{tikzpicture}
+        \caption{Decomposition of a ring homomorphism using $D^{-1}R$.}
+        \label{fig:fracDecomp}
+    \end{figure}
+    \begin{enumerate}[label={(\arabic*)}]
+        \item $\iota:R\to D^{-1}R$ is an injective ring homomorphism.
+        \item If $\varphi:R\to S$ is a ring homomorphism such that $\varphi(r)$ is a unit in $S$ for all $r\in D$, then there exists a unique ring homomorphism $\tilde{\varphi}:D^{-1}R\to S$ such that $\tilde{\varphi}\circ\iota=\varphi$ (see Figure \ref{fig:fracDecomp}).
+        \item If $\varphi$ is injective, then so is $\tilde{\varphi}$.
+    \end{enumerate}
+    \begin{proof}
+        (1) is easy.\par\smallskip
+        We address (2) in two parts.\par
+        \underline{Existence}: Define $\tilde{\varphi}(x/t)=\varphi(x)\varphi(t)^{-1}$.\par
+        \underline{Uniqueness}: Suppose that there exists $\rho:D^{-1}R\to S$ such that $\rho\circ\iota=\varphi$. Then $\varphi(x)=(\rho\circ\iota)(x)=\rho(x/1)$. This result combined with the fact that $\rho$ is a ring homomorphism implies that
+        \begin{equation*}
+            1 = \rho(\tfrac{1}{1})
+            = \rho(\tfrac{t}{1})\rho(\tfrac{1}{t})
+            = \varphi(t)\rho(\tfrac{1}{t})
+        \end{equation*}
+        It follows since $\varphi(D)\subset S^\times$ by hypothesis that if $t\in D$, then $\rho(1/t)=\varphi(t)^{-1}$. Therefore,
+        \begin{equation*}
+            \rho(\tfrac{x}{t}) = \rho(\tfrac{x}{1})\rho(\tfrac{1}{t})
+            = \varphi(x)\varphi(t)^{-1}
+            = \tilde{\varphi}(\tfrac{x}{t})
+        \end{equation*}\smallskip
+        We now address (3).\par
+        Suppose that $\varphi$ is injective. To prove that $\tilde{\varphi}$ is injective, it will suffice to show that $\ker\tilde{\varphi}=0$. Let $x/t\in\ker\tilde{\varphi}$ be arbitrary. Then $\tilde{\varphi}(\tfrac{x}{t})=0$. It follows by the definition of $\tilde{\varphi}$ that $\varphi(x)\varphi(t)^{-1}=0$. Since $\varphi(t)$ is a unit by hypothesis and hence nonzero, it must be that $\varphi(x)=0$. Additionally, as a ring homomorphism, $\varphi(0)=0$. Combining the last two results, we have by transitivity that $\varphi(x)=\varphi(0)$. Thus, since $\varphi$ is injective, $x=0$. It follows that $x/t=0/t$, so $\ker\tilde{\varphi}=0$, as desired.
+    \end{proof}
 \end{itemize}
 
 
