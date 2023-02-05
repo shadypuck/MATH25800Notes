@@ -3,7 +3,6 @@
 \pagestyle{main}
 \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
 \setcounter{chapter}{3}
-\setcounter{proposition}{16}
 
 \begin{document}
 
@@ -481,6 +480,41 @@
     \item Midterm on Monday of sixth week; HW pushed to Friday that week.
 \end{itemize}
 
+
+
+\section{Chapter 8: Euclidean Domains, Principal Ideal Domains, and Unique Factorization Domains}
+\emph{From \textcite{bib:DummitFoote}.}
+\subsection*{Goals for the Chapter}
+\begin{itemize}
+    \item \marginnote{1/30:}Focus: Study classes of rings with more algebraic structure than generic rings.
+    \item \textbf{Euclidean Domain}: A ring with a division algorithm. \emph{Also known as} \textbf{ED}.
+    \item \textbf{Principal Ideal Domain}: A ring in which every ideal is principal. \emph{Also known as} \textbf{PID}.
+    \item \textbf{Unique Factorization Domain}: A ring in which all elements have factorizations into primes. \emph{Also known as} \textbf{UFD}.
+    \item Examples: $\Z$ and $F[X]$ ($F$ a field).
+    \item This chapter: Recover all theorems concerning the integers $\Z$ stated in Chapter 0 as special cases of results valid for more general rings.
+    \item Next chapter: Apply these results to the special case where $R=F[X]$.
+    \item Assumption for this chapter: All rings $R$ are commutative.
+\end{itemize}
+
+
+\subsection*{Section 8.1: Euclidean Domains}
+\begin{itemize}
+    % \item \textbf{Norm} (on $R$): A function from an integral domain $R$ to $\Zg$ that sends $0\mapsto 0$. \emph{Denoted by} $\bm{N}$.
+    % \item \textbf{Euclidean Domain}: An integral domain $R$ on which there exists a norm $N$ such that for any $a,b\in R$ with $b\neq 0$, there exist $q,r\in R$ such that
+    % \begin{equation*}
+    %     a = qb+r
+    % \end{equation*}
+    \item Definitions of a \textbf{norm} and \textbf{Euclidean Domain}.
+    \item Notes on norms.
+    \begin{itemize}
+        \item Essentially a measure of "size" in $R$.
+        \item The defined notion is fairly week, and an integral domain $R$ may possess several different norms.
+    \end{itemize}
+    \item \textbf{Positive norm}: A norm $N$ such that $N(a)>0$ for all $a\neq 0$.
+    \item EDs are said to possess a \textbf{Division Algorithm}.
+    \item \textbf{Quotient}: The element $q$ in the definition of a norm/ED. \emph{Denoted by} $\bm{q}$.
+    \item \textbf{Remainder}: The element $r$ in the definition of a norm/ED. \emph{Denoted by} $\bm{r}$.
+\end{itemize}
 
 
 
