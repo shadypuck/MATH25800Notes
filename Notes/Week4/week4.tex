@@ -3,6 +3,7 @@
 \pagestyle{main}
 \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
 \setcounter{chapter}{3}
+\setcounter{proposition}{16}
 
 \begin{document}
 
@@ -479,6 +480,65 @@
     \item How do we put $F[X,Y]\subset F[X,Z]$? Put $Y=XZ$. Then $\gcd(X,Y)=1$.
     \item Midterm on Monday of sixth week; HW pushed to Friday that week.
 \end{itemize}
+
+
+
+\section{Chapter 7: Introduction to Rings}
+\emph{From \textcite{bib:DummitFoote}.}
+\subsection*{Section 7.6: The Chinese Remainder Theorem}
+\begin{itemize}
+    \item \marginnote{2/1:}Assume commutative rings with identity.
+    \item \textbf{Ring direct product}: The direct product of an arbitrary collection of rings as (abelian) groups, which is made into a ring by defining multiplication componentwise. \emph{Denoted by} $\bm{R_1\times R_2}$.
+    \item $\varphi:R\to R\times\cdots$ is a ring homomorphism iff the induced maps to each component are all homomorphisms.
+    \item The units of a ring direct product are the $n$-tuples that have units in every entry.
+    \item \textbf{Comaximal} (ideals): Two ideals $A,B\subset R$ such that $A+B=R$.
+    \begin{itemize}
+        \item Motivation: Two numbers $n,m\in\Z$ being relatively prime is equivalent to $n\Z+m\Z=\Z$, where we may recall that $n\Z,m\Z$ are ideals.
+    \end{itemize}
+    \item Generalizing a result about integer division to rings.
+    \begin{theorem}[Chinese Remainder Theorem]\label{trm:7.17}
+        Let $A_1,\dots,A_k$ be ideals in $R$. The map from $R\to R/A_1\times\cdots\times R/A_k$ defined by
+        \begin{equation*}
+            r \mapsto (r+A_1,\dots,r+A_k)
+        \end{equation*}
+        is a ring homomorphism with kernel $A_1\cap\cdots\cap A_k$. If for each $i,j\in\{1,\dots,k\}$ with $i\neq j$, the ideals $A_i,A_j$ are comaximal, then this map is surjective and $A_1\cap\cdots\cap A_k=A_1\cdots A_k$, so
+        \begin{equation*}
+            R/(A_1\cdots A_k) = R/(A_1\cap\cdots\cap A_k)
+            \cong R/A_1\times\cdots\times R/A_k
+        \end{equation*}
+        \begin{proof}
+            Given. See HW3 Q3.3.
+        \end{proof}
+    \end{theorem}
+    \item History of the Chinese Remainder Theorem.
+    \begin{itemize}
+        \item Derives its name from the special case that when $n,m$ are relatively prime integers,
+        \begin{equation*}
+            \Z/mn\Z \cong (\Z/m\Z)\times(\Z/n\Z)
+        \end{equation*}
+        \item In number theoretic terms: This "relates to simultaneously solving two congruences modulo relatively prime integers (and states that such congruences can always be solved, and uniquely)" \parencite[266]{bib:DummitFoote}.
+        \item Such problems were originally considered by the ancient Chinese.
+    \end{itemize}
+    \item Using the Chinese Remainder Theorem to prove the Euler $\varphi$-function.
+    \begin{corollary}\label{cly:7.18}
+        Let $n$ be a positive integer and let $p_1^{\alpha_1}\cdots p_k^{\alpha_k}$ be its factorization into powers of distinct primes. Then
+        \begin{equation*}
+            \Z/n\Z \cong (\Z/p_1^{\alpha_1}\Z)\times\cdots\times(\Z/p_k^{\alpha_k}\Z)
+        \end{equation*}
+        as rings, so in particular, we have the following isomorphism of multiplicative groups.
+        \begin{equation*}
+            (\Z/n\Z)^\times \cong (\Z/p_1^{\alpha_1}\Z)^\times\times\cdots\times(\Z/p_k^{\alpha_k}\Z)^\times
+        \end{equation*}
+        Thus,
+        \begin{equation*}
+            \varphi(n) = \varphi(p_1^{\alpha_1})\cdots\varphi(p_k^{\alpha_k})
+        \end{equation*}
+        \begin{proof}
+            Since the rings above are isomorphic as rings, their groups of units must be isomorphic as well. Comparing orders on the two sides of the latter isomorphism gives the final result.
+        \end{proof}
+    \end{corollary}
+\end{itemize}
+\setcounter{proposition}{0}
 
 
 
