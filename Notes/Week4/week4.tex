@@ -574,6 +574,142 @@
     \item EDs are said to possess a \textbf{Division Algorithm}.
     \item \textbf{Quotient}: The element $q$ in the definition of a norm/ED. \emph{Denoted by} $\bm{q}$.
     \item \textbf{Remainder}: The element $r$ in the definition of a norm/ED. \emph{Denoted by} $\bm{r}$.
+    \item \marginnote{2/1:}Division Algorithms allow a \textbf{Euclidean Algorithm} for two elements $a,b\in R$ to find the greatest common divisor.
+    \begin{itemize}
+        \item Note that these "divisions" are actually divisions in $\Frac R$, for example.
+        \item Also, note that the Euclidean algorithm terminates since $N(b)>N(r_0)>\cdots>N(r_n)$ is a decreasing sequence of nonnegative integers and thus cannot continue indefinitely.
+        \item We have no guarantee (yet) that the quotient and remainder are unique.
+    \end{itemize}
+    \item Examples.
+    \begin{enumerate}
+        \item Fields.
+        \begin{itemize}
+            \item Any norm satisfies the defining condition of the Division Algorithm because we always have $a=qb+0$ for any $a,b\in F$.
+        \end{itemize}
+        \item Integers $\Z$, $N(m)=|m|$.
+        \begin{itemize}
+            \item From class.
+            \item \textcite{bib:DummitFoote} proves rigorously, from a ring theory perspective, that long division is a thing.
+            \item The quotient and remainder are not unique (unless we require the remainder to be nonnegative).
+            \begin{itemize}
+                \item Example: $5=2\cdot 2+1=3\cdot 2-1$.
+            \end{itemize}
+        \end{itemize}
+        \item $F[X]$ with $N(f)=\deg(f)$.
+        \begin{itemize}
+            \item That long division is a thing is proved similarly to for $\Z$ (see Chapter 9).
+            \item For polynomials, the quotient and remainder are unique.
+            \item We will prove later that $R[X]$ is an ED iff $R$ is a field. Essentially, this is because we must be able to divide arbitrary nonzero coefficients.
+        \end{itemize}
+        \item Quadratic integer rings.
+        \begin{itemize}
+            \item Gaussian integers are a subset.
+        \end{itemize}
+        \item \textbf{Discrete valuation rings}.
+        \begin{itemize}
+            \item Take $N=\nu$ and $N(0)=0$.
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Discrete valuation} (on $K$): A function from $K^\times\to\Z$, where $K$ is a field, satisfying the following constraints. \emph{Denoted by} $\bm{\nu}$. \emph{Constraints}
+    \begin{enumerate}[label={(\roman*)}]
+        \item $\nu(ab)=\nu(a)+\nu(b)$, i.e., $\nu:(K^\times,\cdot)\to(\Z,+)$ is a group homomorphism.
+        \item $\nu$ is surjective.
+        \item $\nu(x+y)\geq\min\{\nu(x),\nu(y)\}$ for all $x,y\in K^\times$ with $x+y\neq 0$.
+    \end{enumerate}
+    \item \textbf{Valuation ring} (of $\nu$): The subring of $K$ defined as follows. \emph{Given by}
+    \begin{equation*}
+        \{x\in K^\times\mid\nu(x)\geq 0\}\cup\{0\}
+    \end{equation*}
+    \item \textbf{Discrete valuation ring}: An integral domain $R$ for which there exists a valuation $\nu$ on $\Frac R$ such that $R$ is the valuation ring of $\nu$.
+    \item Example: The ring $R$ containing all rationals whose denominators are relatively prime to some fixed $p\in\Z$ is a discrete valuation ring of $\Q$.
+    \item A Division Algorithm makes every ideal of an ED principal.
+    \begin{proposition}\label{prp:8.1}
+        Every ideal in an ED is principal. More precisely, if $I$ is any nonzero ideal in the ED $R$, then $I=(d)$, where $d$ is any nonzero element of $I$ of minimum norm.
+        \begin{proof}
+            Given. See Lecture 4.1.
+        \end{proof}
+    \end{proposition}
+    \item Since $\Z$ is an ED, Proposition \ref{prp:8.1} implies that every ideal of $\Z$ is principal.
+    \begin{itemize}
+        \item Recall that we have previously proven this in Section 7.3 and 2.3.
+    \end{itemize}
+    \item Examples.
+    \begin{enumerate}
+        \item Consider $\Z[X]$.
+        \begin{itemize}
+            \item Since $(2,X)$ is not principal (see Section 7.4), $\Z[X]$ is not an ED.
+        \end{itemize}
+        \item Quadratic integer rings; specifically, $\Z[\sqrt{-5}]$.
+    \end{enumerate}
+    \item Euclidean Algorithms guarantee a greatest common divisor in any ED.
+    \item \textbf{Multiple} (of $b$): An element $a\in R$ such that $a=bx$ for some $x\in R$.
+    \item \textbf{Divisor} (of $a$): An element $b\in R$ such that $a=bx$ for some $x\in R$. \emph{Also known as} \textbf{$\bm{b}$ divides $\bm{a}$}.
+    \item Definition of the \textbf{greatest common divisor} of $a,b$.
+    \item Note:
+    \begin{equation*}
+        b \mid a
+        \quad\Longleftrightarrow\quad
+        a \in (b)
+        \quad\Longleftrightarrow\quad
+        (a) \subset (b)
+    \end{equation*}
+    \begin{itemize}
+        \item More on discussing gcd's in terms of ideals (repeat from class).
+    \end{itemize}
+    \item A \emph{sufficient} condition for the existence of a gcd.
+    \begin{proposition}\label{prp:8.2}
+        If $a,b$ are nonzero elements in the commutative ring $R$ such that the ideal generated by $a,b$ is a principal ideal $(d)$, then $d$ is the greatest common divisor of $a,b$.
+    \end{proposition}
+    \item Note that the condition is not \emph{necessary}: For example, in $\Z[X]$, $(2,x)$ is nonprincipal even though $1$ is a valid gcd.
+    \item \textbf{Bezout Domain}: An integral domain in which every ideal generated by two elements is principal.
+    \begin{itemize}
+        \item Per the exercises, there are Bezout Domains that contain nonprincipal (necessarily infinitely generated) ideals.
+    \end{itemize}
+    \item gcd uniqueness.
+    \begin{proposition}\label{prp:8.3}
+        Let $R$ be an integral domain. If two elements $d,d'$ of $R$ generate the same principal ideal, i.e., $(d)=(d')$, then $d'=ud$ for some unit $u\in R$. In particular, if $d,d'$ are both greatest common divisors of $a,b$, then $d'=ud$ for some unit $u$.
+        \begin{proof}
+            Given. Very slick.
+        \end{proof}
+    \end{proposition}
+    \item Very important property of EDs: gcd's always exist and can be computed algorithmically.
+    \begin{theorem}\label{trm:8.4}
+        Let $R$ be an ED, and let $a,b\in R$ be nonzero. Let $d=r_n$ be the last nonzero remainder in the Euclidean algorithm for $a,b$. Then
+        \begin{enumerate}
+            \item $d=\gcd(a,b)$.
+            \item The principal ideal $(d)=(a,b)$. In particular, $d$ can be written as an $R$-linear combination of $a,b$, i.e., there exist $x,y\in R$ such that
+            \begin{equation*}
+                d = ax+by
+            \end{equation*}
+        \end{enumerate}
+        \begin{proof}
+            Given. See the Lemma from Lecture 4.3.
+        \end{proof}
+    \end{theorem}
+    \item The Euclidean Algorithm is \textbf{logarithmic} in the size of the integers.
+    \begin{itemize}
+        \item It can be proven that "the number of steps required to determine the greatest common divisor of two integers $a$ and $b$ is at worst 5 times the number of digits of the smaller of the two numbers" \parencite[276]{bib:DummitFoote}.
+    \end{itemize}
+    \item Some more stuff on uniqueness and Diophantine equations.
+    \item $\bm{\widetilde{R}}$: The collection of units of $R$ together with 0. \emph{Given by}
+    \begin{equation*}
+        \widetilde{R} = R^\times\cup\{0\}
+    \end{equation*}
+    \item \textbf{Universal side divisor}: An element $u\in R-\widetilde{R}$ such that for every $x\in R$, there is some $z\in\widetilde{R}$ such that $u$ divides $x-z$ in $R$.
+    \begin{itemize}
+        \item Implication: There is a type of division algorithm for every $x\in R$ by $u$; indeed, if $u\mid(x-z)$, then there exists $q\in R$ such that $x-z=qu$ or
+        \begin{equation*}
+            x = qu+z
+        \end{equation*}
+    \end{itemize}
+    \item The existence of universal side divisors is a weakening of the Euclidean condition (i.e. here, we only postulate that we can divide by \emph{some} elements, not \emph{all} elements).
+    \begin{proposition}\label{prp:8.5}
+        Let $R$ be an integral domain that is not a field. If $R$ is a Euclidean Domain, then there are universal side divisors in $R$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Example: Proving $\Z[(1+\sqrt{-19})/2]$ is not an ED using Proposition \ref{prp:8.5}.
 \end{itemize}
 
 
