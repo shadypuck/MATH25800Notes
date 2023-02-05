@@ -17,6 +17,44 @@
         C(a) = \{r\in R\mid ra=ar\}
     \end{equation*}
     Prove that $C(a)$ is a subring of $R$ containing $a$. Prove that the center of $R$ is the intersection of the subrings $C(a)$ over all $a\in R$.
+    \begin{proof}
+        Since $a\in R$ and $aa=aa$ by reflexivity, $C(a)$ contains $a$.\par\smallskip
+        To prove that $C(a)$ is a subring of $R$, it will suffice to show that $C(a)$ is closed under addition, multiplication, and inverses, and that $1_R\in C(a)$. Let's begin.\par
+        \underline{Addition}: Let $r,s\in C(a)$ be arbitrary. As elements of $C(a)$, we know that $ra=ar$ and $sa=as$. It follows by the additive property of equality and the distributive law for rings that
+        \begin{align*}
+            ra+sa &= ar+as\\
+            (r+s)a &= a(r+s)
+        \end{align*}
+        Therefore, $r+s\in C(a)$, as desired.\par
+        \underline{Multiplication}: This argument is analogous to the previous one, except that the critical step is
+        \begin{equation*}
+            (rs)a = r(sa)
+            = r(as)
+            = (ra)s
+            = (ar)s
+            = a(rs)
+        \end{equation*}
+        \underline{Inverses}: Likewise, this argument is analogous to the previous two, except that the critical step is
+        \begin{equation*}
+            (-r)a = -(ra)
+            = -(ar)
+            = a(-r)
+        \end{equation*}
+        \underline{Identity}: We have by the definition of the multiplicative identity that
+        \begin{equation*}
+            a = 1_Ra = a1_R
+        \end{equation*}
+        where the second equality above gives the desired result.\par\smallskip
+        As defined in Exercise 7.1.7 of \textcite{bib:DummitFoote}, the center of $R$ is the set
+        \begin{equation*}
+            Z(R) = \{z\in R\mid zr=rz\ \forall\ r\in R\}
+        \end{equation*}
+        We will prove that
+        \begin{equation*}
+            Z(R) = \bigcap_{a\in R}C(a)
+        \end{equation*}
+        via a bidirectional inclusion proof. Suppose first that $z\in Z(R)$. To confirm that $z\in\bigcap_{a\in R}C(a)$, it will suffice to determine if $z\in C(a)$ for all $a\in R$. Let $a\in R$ be arbitrary. By the definition of $Z(R)$, $za=az$. Thus, by the definition of $C(a)$, $z\in C(a)$, as desired. Now suppose that $z\in\bigcap_{a\in R}C(a)$. To confirm that $z\in Z(R)$, it will suffice to determine if $zr=rz$ for all $r\in R$. Let $r\in R$ be arbitrary. By hypothesis, $z\in C(r)$. Thus, $zr=rz$, as desired.
+    \end{proof}
     \item Exercise 7.2.3(b-c) of \textcite{bib:DummitFoote}: Define the set $R[[X]]$ of \textbf{formal power series} in the indeterminate $X$ with coefficients from $R$ to be all formal infinite sums
     \begin{equation*}
         \sum_{n=0}^\infty a_nx^n = a_0+a_1x+a_2x^2+a_3x^3+\cdots
@@ -29,28 +67,272 @@
     (The term "formal" is used here to indicate that convergence is not considered, so that formal power series need not represent functions on $R$.)
     \begin{enumerate}[start=2,label={\textbf{(\alph*)}}]
         \item Show that $1-x$ is a unit in $R[[X]]$ with inverse $1+x+x^2+\cdots$.
+        \begin{proof}
+            Note that
+            \begin{align*}
+                1-x &= \sum_{n=0}^\infty a_nx^n&
+                1+x+x^2+\cdots &= \sum_{n=0}^\infty b_nx^n
+            \end{align*}
+            under the definitions
+            \begin{align*}
+                a_n &=
+                \begin{cases}
+                    1 & n=0\\
+                    -1 & n=1\\
+                    0 & n\geq 2
+                \end{cases}&
+                b_n &= 1
+            \end{align*}
+            Thus, both objects are elements of $R[[X]]$. All that remains is to show that
+            \begin{equation*}
+                (1-x)\left( \sum_{n=0}^\infty x^n \right) = 1
+            \end{equation*}
+            Invoking the definition of multiplication on formal power series, we have that the above equals
+            \begin{equation*}
+                \sum_{n=0}^\infty\left( \sum_{k=0}^na_k1 \right)x^n = 1+\sum_{n=1}^\infty\left[ (1)(1)+(-1)(1)+\sum_{k=2}^n(0)(1) \right]x^n
+                = 1+\sum_{n=1}^\infty 0x^n
+                = 1
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Prove that $\sum_{n=0}^\infty a_nx^n$ is a unit in $R[[X]]$ iff $a_0$ is a unit in $R$.
+        \begin{proof}
+            Suppose first that $\sum_{n=0}^\infty a_nx^n$ is a unit in $R[[X]]$. Then there exists some $\sum_{n=0}^\infty b_nx^n\in R[[X]]$ such that
+            \begin{align*}
+                1 &= \left( \sum_{n=0}^\infty a_nx^n \right)\left( \sum_{n=0}^\infty b_nx^n \right)\\
+                1+\sum_{n=1}^\infty 0x^n &= \sum_{n=0}^\infty\left( \sum_{k=0}^na_kb_{n-k} \right)x^n
+            \end{align*}
+            It follows by comparing terms that we must have $a_0b_0=1$. Therefore, $a_0$ is a unit in $R$.\par
+            Now suppose that $a_0$ is a unit in $R$. Let $\sum_{n=0}^\infty a_nx^n$ be a polynomial in $R[[X]]$ having $a_0$ as its constant term. To prove that $\sum_{n=0}^\infty a_nx^n$ is a unit in $R[[X]]$, it will suffice to find a polynomial $\sum_{n=0}^\infty b_nx^n\in R[[X]]$ such that
+            \begin{equation*}
+                \left( \sum_{n=0}^\infty a_nx^n \right)\left( \sum_{n=0}^\infty b_nx^n \right) = 1
+            \end{equation*}
+            To construct such a polynomial, we recursively define $b_0,b_1,\dots$ using strong induction. For the base case $b_0$, let this be the element of $R$ that makes $a_0b_0=1$ (such an element is guaranteed to exist by the supposition that $a_0$ is a unit in $R$). Now suppose inductively that we have defined $b_0,\dots,b_{n-1}$. We define $b_n$ via
+            \begin{equation*}
+                b_n = -b_0\sum_{k=1}^na_kb_{n-k}
+            \end{equation*}
+            It follows from this definition that
+            \begin{align*}
+                \left( \sum_{n=0}^\infty a_nx^n \right)\left( \sum_{n=0}^\infty b_nx^n \right) &= \sum_{n=0}^\infty\left( \sum_{k=0}^na_kb_{n-k} \right)x^n\\
+                &= a_0b_0X^0+\sum_{n=1}^\infty\left( a_0b_n+\sum_{k=1}^na_kb_{n-k} \right)x^n\\
+                &= 1\cdot 1+\sum_{n=1}^\infty\left( -a_0b_0\sum_{k=1}^na_kb_{n-k}+\sum_{k=1}^na_kb_{n-k} \right)x^n\\
+                &= 1+\sum_{n=1}^\infty\left( -1\sum_{k=1}^na_kb_{n-k}+\sum_{k=1}^na_kb_{n-k} \right)x^n\\
+                &= 1
+            \end{align*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \item Exercise 7.3.24 of \textcite{bib:DummitFoote}: Let $\varphi:R\to S$ be a ring homomorphism.
     \begin{enumerate}[label={\textbf{(\alph*)}}]
         \item Prove that if $J$ is an ideal of $S$, then $\varphi^{-1}(J)$ is an ideal of $R$. Apply this to the special case when $R$ is a subring of $S$ and $\varphi$ is the inclusion homomorphism to deduce that if $J$ is an ideal of $S$, then $J\cap R$ is an ideal of $R$.
+        \begin{proof}
+            Let $I=\varphi^{-1}(J)$. To prove that $I$ is an ideal of $R$, it will suffice to show that $(I,+)\leq(R,+)$, and $aI\subset I$ and $Ia\subset I$ for all $a\in R$. Let's begin.\par
+            Since $\varphi:(R,+)\to(S,+)$ is a group homomorphism and $J\leq S$, the preimage $I=\varphi^{-1}(J)$ is a subgroup of $(R,+)$ --- see Exercise 3.1.1 of \textcite{bib:DummitFoote} for further justification. Moving on, let $a\in R$ and $i\in I$ be arbitrary. It follows by the definition of $I$ that $\varphi(i)=j$ for some $j\in J$. Thus, $\varphi(ai)=\varphi(a)\varphi(i)=\varphi(a)j\in J$ since $\varphi$ is a ring homomorphism, $\varphi(a)\in S$, and $J$ is an ideal of $S$. Therefore, $ai\in\varphi^{-1}(J)=I$, as desired. An analogous argument verifies that $Ia\subset I$ for all $a\in R$.\par\smallskip
+            Now let $R$ be a subring of $S$ and $\varphi=i$ be the canonical injection. By the above result, $i^{-1}(J)$ is an ideal of $R$. Thus, to prove that $J\cap R$ is an ideal of $R$, it will suffice to show that $J\cap R=i^{-1}(J)$. Let $I=i^{-1}(J)$. Since $i$ is the inclusion map, $I=i^{-1}(J)$ is the set of all $r\in R$ such that $r=i(r)\in J$. In other words, if $r\in I$, then $r\in R$ and $r\in J$; thus, $I\subset J\cap R$. On the other hand, if $r\in J\cap R$, then $r\in J$ and $r\in R$. Since $r\in R$, $r=i(r)$. This combined with the fact that $r\in J$ implies that $i(r)=r\in J$. Thus, $r\in i^{-1}(J)$, so $J\cap R\subset I$, as desired.
+        \end{proof}
         \item Prove that if $\varphi$ is surjective and $I$ is an ideal of $R$, then $\varphi(I)$ is an ideal of $S$. Give an example where this fails if $\varphi$ is not surjective.
+        \begin{proof}
+            To prove that $J=\varphi(I)$ is an ideal of $S$, it will suffice to show that $(J,+)\leq(S,+)$, and $bJ\subset J$ and $Jb\subset J$ for all $b\in S$. Let's begin.\par
+            Since $(I,+)\leq(R,+)$, we can define a restricted group homomorphism $\varphi:(I,+)\to(S,+)$. It follows from Proposition 3.1 of \textcite{bib:DummitFoote} that the image $(J,+)=\varphi(I)$ is a subgroup of $(S,+)$, as desired. Moving on, let $b\in S$ and $j\in J$ be arbitrary. Since $b\in S$ and $\varphi$ is surjective, there exists $a\in R$ such that $\varphi(a)=b$. Since $j\in J$, there exists $i\in I$ such that $\varphi(i)=j$. Since $I$ is an ideal of $R$, $i\in I$, and $a\in R$, we know that $ai\in I$. Thus,
+            \begin{equation*}
+                bj = \varphi(a)\varphi(i)
+                = \varphi(ai)
+                \in J
+            \end{equation*}
+            Therefore, $bJ\subset J$, as desired. An analogous argument verifies that $Jb\subset J$ for all $b\in S$.\par\smallskip
+            Consider $\varphi:\Z\to\Z$ defined by $\varphi(z)=z\bmod 3$. Then $\varphi(2\Z)=\{0,1,2\}$. Taking $a=2$, for example, shows that $\varphi(2\Z)$ is not closed under multiplication since $a2=4\notin\varphi(2\Z)$.
+        \end{proof}
     \end{enumerate}
     \item Exercise 7.4.27 of \textcite{bib:DummitFoote}: Let $R$ be a commutative ring with $1\neq 0$. Prove that if $a$ is a nilpotent element of $R$, then $1-ab$ is a unit for all $b\in R$.
+    \begin{proof}
+        Let $b\in R$ be arbitrary. To prove that $1-ab$ is a unit in $R$ commutative, it will suffice to find a $v\in R$ such that $(1-ab)v=1$. Since $a$ is nilpotent, there exists $m\in\N$ such that $a^m=0$. Thus, let
+        \begin{equation*}
+            v = \sum_{k=0}^{m-1}(ab)^k
+        \end{equation*}
+        Then
+        \begin{align*}
+            (1-ab)v &= 1+ab+\cdots+(ab)^{m-1}-ab-(ab)^2-\cdots-(ab)^m\\
+            &= 1-(ab)^m\\
+            &= 1-a^mb^m\\
+            &= 1-0\cdot b^m\\
+            &= 1
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Exercise 7.4.33 of \textcite{bib:DummitFoote}: Let $R$ be the ring of all continuous functions from the closed interval $[0,1]$ to $\R$, and for each $c\in[0,1]$, let $M_c=\{f\in R\mid f(c)=0\}$. (Recall that $M_c$ was shown to be a maximal ideal of $R$.)
     \begin{enumerate}[label={\textbf{(\alph*)}}]
         \item Prove that if $M$ is any maximal ideal of $R$, then there is a real number $c\in[0,1]$ such that $M=M_c$.
+        \begin{proof}
+            % $R/M$ is a field.
+            % $M$ is a prime ideal.
+            % $fM\subset M$ and $Mf\subset M$ for all $f\in R$.
+            % $(M,+)\leq(R,+)$.
+            % $M\subsetneq R$.
+            % If $I$ is an ideal and $M\subset I$, then $I\in\{M,R\}$.
+
+            % Suppose for the sake of contradiction that $M\neq M_c$ for any $c\in[0,1]$. We cannot have $M\subset M_c$ for any $c$ because this would imply that $M=M_c$. Thus, for every $c\in R$, $M$ contains a function that is not in $M_c$, i.e., a function $f_c$ for which $f_c(c)\neq 0$. Thus, $M\supset\{f_c\mid c\in[0,1]\}$.
+            % To make $f_c(c)>0$ for all $c$, we multiply any unhelpful $f_c$ by $-1\in R$, knowing since $M$ is an ideal that $-f_c\in M$.
+            % Compactness argument.
+
+            % WTS: $M$ contains a unit.
+
+            % Plan: Construct a unit inside $M$.
+
+            % {\color{white}hi}
+            % \begin{itemize}
+            %     \item Let $M$ be a maximal ideal of $R$.
+            %     \item Suppose (contradiction): $M\neq M_c$ for any $c\in[0,1]$.
+            %     \item Two cases: $M\subset M_c$ for some $c\in[0,1]$ and $M\not\subset M_c$ for any $c\in[0,1]$.
+            %     \item Case 1:
+            %     \begin{itemize}
+            %         \item $M$ a maximal ideal: $M=M_c$.
+            %         \item Contradiction.
+            %     \end{itemize}
+            %     \item Case 2 continues.
+            %     \item It follows: There exists $f_c\in M$ such that $f_c(c)\neq 0$ for all $c\in[0,1]$.
+            %     \item We may take $f_c(c)>0$ WLOG: If $f_c(c)<0$, then since $M$ is an ideal, $-f_c\in M$ and $-f_c(c)>0$.
+            %     \item Lemma 11.8\footnote{From Honors Calculus IBL.}: For all $c\in[0,1]$, there exists a region $G_c=(c-\delta_c,c+\delta_c)$ such that $f_c(c)>0$ for all $c\in G_c\cap[0,1]$.
+            %     \item Definition of an open cover: The set
+            %     \begin{equation*}
+            %         \mathcal{G} = \{G_c\mid c\in[0,1]\}
+            %     \end{equation*}
+            %     is an open cover of $[0,1]$.
+            %     \item Theorem 10.14: $[0,1]$ is compact.
+            %     \item The above: There exists a finite subcover $\mathcal{G}'\subset\mathcal{G}$, i.e., there exists a finite subset $K\subset[0,1]$ such that
+            %     \begin{equation*}
+            %         \mathcal{G}' = \{G_c\mid c\in K\}
+            %     \end{equation*}
+            %     is an open cover of $[0,1]$.
+            %     \item For each $c\in K$, define $g_c\in R$ by
+            %     \begin{equation*}
+            %         x \mapsto
+            %         \begin{cases}
+            %             1-\frac{1}{\delta_c}|x-c| & x\in G_c\\
+            %             0 & \text{otherwise}
+            %         \end{cases}
+            %     \end{equation*}
+            %     \item $M$ is an ideal of $R$: $h=\sum_{c\in K}g_cf_c\in M$.
+            %     \item Let $x\in[0,1]$ be arbitrary.
+            %     \begin{itemize}
+            %         \item $\mathcal{G}'$ is a cover: $x\in G_c$ for some $c\in K$.
+            %         \item The above: $f_c(x),g_c(x)>0$ so $(f_cg_c)(x)>0$.
+            %         \item Every $f_cg_c:[0,1]\to\Rg$: $h(x)>0$.
+            %     \end{itemize}
+            %     \item $h\in M$ is a unit with inverse $1/h\in M$ (multiply $h$ by $1/h^2\in R$).
+            %     \item Proposition 9(1): $M=R$.
+            %     \item $M\not\subsetneq R$: Contradiction.
+            % \end{itemize}
+
+
+            Let $M$ be an arbitrary maximal ideal of $R$, and suppose for the sake of contradiction that $M\neq M_c$ for any $c\in[0,1]$. We now divide into two cases ($M\subset M_c$ for some $c\in[0,1]$ and $M\not\subset M_c$ for any $c\in[0,1]$). If $M\subset M_c$ for some $c\in[0,1]$, then since $M$ is a maximal ideal, $M=M_c$, a contradiction. We devote the remainder of this proof to a treatment of the other case. In this treatment, we will construct a function $h\in M$ that is a unit, which will imply a contradiction by the results of Section 7.4.\par\smallskip
+            We first define a set of functions $\{f_c\}\subset M$ that we will later deform and combine into $h$. Suppose $M\not\subset M_c$ for any $c\in[0,1]$. Then for all $c\in[0,1]$, there exists $f_c\in M$ such that $f_c(c)\neq 0$. Moreover, we may take $f_c(c)>0$ WLOG: If $f_c(c)<0$, then since $M$ is an ideal, $-1_R\cdot f_c\in M$ and $(-1_R\cdot f_c)(c)>0$, so we may redefine $f_c:=-f_c$. This combined with the continuity of each $f_c$ implies by Lemma 11.8\footnote{From Honors Calculus IBL.} that to every $c\in[0,1]$, there corresponds a region $G_c=(c-\delta_c,c+\delta_c)$ such that $f_c>0$ for all $c\in G_c\cap[0,1]$.\par
+            We now construct the deforming functions. It follows from the above that the set
+            \begin{equation*}
+                \mathcal{G} = \{G_c\mid c\in[0,1]\}
+            \end{equation*}
+            is an open cover of $[0,1]$. This combined with the fact that $[0,1]$ is compact by Theorem 10.14\footnote{From Honors Calculus IBL.} implies that there exists a finite subcover $\mathcal{G}'\subset\mathcal{G}$; in particular, there exists a finite subset $K\subset[0,1]$ such that
+            \begin{equation*}
+                \mathcal{G}' = \{G_c\mid c\in K\}
+            \end{equation*}
+            is an open cover of $[0,1]$. Now for each $c\in K$, define $g_c\in R$ by
+            \begin{equation*}
+                x \mapsto
+                \begin{cases}
+                    1-\frac{1}{\delta_c}|x-c| & x\in G_c\cap[0,1]\\
+                    0 & \text{otherwise}
+                \end{cases}
+            \end{equation*}
+            Lastly, we construct $h$. In particular, let
+            \begin{equation*}
+                h = \sum_{c\in K}g_cf_c
+            \end{equation*}
+            Since $M$ is an ideal of $R$, each $f_c\in M$, and each $g_c\in R$, it follows from its definition that $h\in M$. We now show that $h$ is positive on $[0,1]$. Let $x\in[0,1]$ be arbitrary. Since $\mathcal{G}'$ covers $[0,1]$, $x\in G_c$ for some $c\in K$. It follows by the above that both $f_c(x),g_c(x)>0$; hence, $(f_cg_c)(x)>0$. This combined with the fact that every $f_cg_c:[0,1]\to\Rg$ by definition implies that $h(x)>0$, as desired.\par
+            It follows that $h\in M$ is a unit with inverse $1/h\in M$ (multiply $h\in M$ by $1/h^2\in R$). Thus, by Proposition 9(1), $M=R$. In particular, $M\not\subsetneq R$, so $M$ is not a maximal ideal, a contradiction.
+        \end{proof}
         \item Prove that if $b,c$ are distinct points in $[0,1]$, then $M_b\neq M_c$.
+        \begin{proof}
+            To prove that $M_b\neq M_c$, it will suffice to find $f\in M_b$ such that $f\notin M_c$. Let $f\in R$ be defined by
+            \begin{equation*}
+                x \mapsto x-b
+            \end{equation*}
+            Since $f(b)=b-b=0$, $f\in M_b$. However, since $f(c)=c-b\neq 0$, $f\notin M_c$, as desired.
+        \end{proof}
         \item Prove that $M_c$ is not equal to the principal ideal generated by $x-c$.
+        \begin{proof}
+            To prove that $M_c\neq R(x-c)$, it will suffice to show that there exists $f\in M_c$ such that $f\notin R(x-c)$. Pick $f=|x-c|$. We have that $f(c)=|c-c|=0$, so $f\in M_c$. Now suppose for the sake of contradiction that $g\in R$ satisfies $f(x)=g(x)\cdot(x-c)$. Then we must have
+            \begin{equation*}
+                g(x) = \frac{|x-c|}{x-c} =
+                \begin{cases}
+                    -1 & x<c\\
+                    a & x=c\\
+                    1 & x>c
+                \end{cases}
+            \end{equation*}
+            for some $a\in\R$. But no matter which $a$ we pick, $g$ will still be discontinuous and hence not be an element of $R$, a contradiction.
+        \end{proof}
         \item Prove that $M_c$ is not a finitely generated ideal.
+        \begin{proof}
+            % Any possible generator misses functions?
+            % Any finite set of generators misses functions?
+            % The issues comes at nondifferentiable points.
+            % For any finite set of generators, there still exists a function that we would need to multiply by a noncontinuous function to get.
+
+            % Construct a function from the generators that is zero only at $c$. Modify this function slightly. Express it in terms of the generators. Note that the continuous modifications are actually not continuous.
+
+
+            The motivation for many of the steps in this argument will not become clear until the very end. Essentially, we wish to construct a function from the generators that is zero only at $c$. We then modify this function slightly, allowing us to express it in terms of the generators. Lastly, we show that the supposedly continuous left multipliers in $R$ imply the existence of a discontinuous function in $R$. Let's begin.\par
+            Suppose for the sake of contradiction that $M_c=(A)$, where $A=\{a_i\mid 1\leq i\leq n\}$ for some $a_i:[0,1]\to\R$. Let $f=\sum_{i=1}^n|a_i|$. By the definition of the square root, $\sqrt{f}\in R$ and $\sqrt{f}\in M_c$. It follows from the latter statement that $\sqrt{f}=\sum_{i=1}^nr_ia_i$ for some $r_i\in R$. Let $r=\sum_{i=1}^n|r_i|$. Then
+            \begin{align*}
+                \sqrt{f(x)} &= \sum_{i=1}^nr_i(x)a_i(x)\\
+                &\leq \sum_{i=1}^n|r_i(x)|\cdot|a_i(x)|\\
+                &\leq r(x)f(x)\\
+                \frac{1}{\sqrt{f(x)}} &\leq r(x)
+            \end{align*}
+            We know that $f$ is nonzero in the region surrounding (but excluding) $c$: To guarantee that we can access functions in $M_c$ that are nonzero at every $x\in[0,1]$ not equal to $c$, we need $a_i(x)\neq 0$ for at least one $i\in[n]$ and for all $x\in[0,1]$. Thus, as $x\to c^+$, the above inequality implies that $r(x)\to +\infty$. But this means that $r$ has a discontinuity at $x$, contradicting its definition as a necessarily continuous sum of continuous functions.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 The preceding exercise shows that there is a bijection between the \emph{points} of the closed interval $[0,1]$ and the set of \emph{maximal ideals} in the ring $R$ of all continuous functions on $[0,1]$ given by $c\leftrightarrow M_c$. For any subset $X\subset\R$ or, more generally, for any completely regular topological space $X$, the map $c\mapsto M_c$ is an injection from $X$ to the set of maximal ideals of $R$, where $R$ is the ring of all bounded, continuous, real-valued functions on $X$ and $M_c$ is the maximal ideal of functions that vanish at $c$. Let $\beta(X)$ be the set of maximal ideals of $R$. One can put a topology on $\beta(X)$ in such a way that if we identify $X$ with its image in $\beta(X)$, then $X$ (in its given topology) becomes a subspace of $\beta(X)$. Moreover, $\beta(X)$ is a compact space under this topology and is called the \textbf{Stone-\u{C}ech compactification} of $X$.
 \begin{enumerate}[resume]
-    \item Let $R$ be the ring of all continuous functions from $\R$ to $\R$, and for each $c\in\R$, let $M_c$ be the maximal ideal $\{f\in R\mid f(c)=0\}$.
+    \item Exercise 7.4.34 of \textcite{bib:DummitFoote}: Let $R$ be the ring of all continuous functions from $\R$ to $\R$, and for each $c\in\R$, let $M_c$ be the maximal ideal $\{f\in R\mid f(c)=0\}$.
     \begin{enumerate}[label={\textbf{(\alph*)}}]
         \item Let $I$ be the collection of functions $f\in R$ with \textbf{compact support} (i.e., $f(x)=0$ for $|x|$ sufficiently large). Prove that $I$ is an ideal of $R$ that is not a prime ideal.
+        \begin{proof}
+            To prove that $I$ is an ideal of $R$, it will suffice to show that $(I,+)\leq(R,+)$ and $aI\subset I$ for all $a\in R$.\par
+            \underline{Subgroup}: Since $0\in I$, $I$ is nonempty. Adding any two functions with compact support yields a third since the zero values at the extremes add to zero, so $I$ is closed under addition. If $f$ has compact support, then $-f$ will still evaluate to zero at the extremes; hence, $I$ has inverses.\par
+            \underline{Ideal condition}: Let $a\in R$ and $i\in I$ be arbitrary. Since $i$ evaluates to zero for sufficiently large $x$, so will $ai$. Therefore, $aI\subset I$ for all $a\in I$, as desired.\par\smallskip
+            Let $a\in R$ be a modification of the triangle wave, specifically one with each triangle spaced apart by a zero gap. Let $b\in R$ be the same wave but offset so that the positive areas of $b$ overlap with the zero areas of $a$. Formally, let the unit cell of each function be
+            \begin{align*}
+                a(x) &=
+                \begin{cases}
+                    0.25-|x-0.25| & x\in[0,0.5]\\
+                    0 & x\in[0.5,1]
+                \end{cases}&
+                b(x) &=
+                \begin{cases}
+                    0 & x\in[0,0.5]\\
+                    0.25-|x-0.75| & x\in[0.5,1]
+                \end{cases}
+            \end{align*}
+            and let them satisfy the periodicity relations
+            \begin{align*}
+                a(x+1) &= a(x)&
+                b(x+1) &= b(x)
+            \end{align*}
+            Then $ab=0$, which is compactly supported, but neither $a$ nor $b$ is compactly supported in its own right. Therefore, $I$ is not a prime ideal, as desired.
+        \end{proof}
         \item Let $M$ be a maximal ideal of $R$ containing $I$ (properly, by part (a)). Prove that $M\neq M_c$ for any $c\in\R$ (refer to the preceding exercise).
+        \begin{proof}
+            Let $c\in\R$ be arbitrary. To prove that $M\neq M_c$, it will suffice to show that there exists $f\in M$ such that $f\notin M_c$. Define $f$ by
+            \begin{equation*}
+                f(x) =
+                \begin{cases}
+                    1-|x-c| & x\in[c-1,c+1]\\
+                    0 & \text{otherwise}
+                \end{cases}
+            \end{equation*}
+            Clearly, $f$ has compact support, so $f\in I\subset M$. However, $f(c)=1\neq 0$, so $f\notin M_c$, as desired.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
@@ -59,15 +341,112 @@ The preceding exercise shows that there is a bijection between the \emph{points}
 The first problem below is analogous to Corollary 3 on \textcite[228]{bib:DummitFoote}, where it is shown that any finite integral domain is a field.
 \begin{enumerate}[resume]
     \item Let $R$ be a commutative ring, and $F$ be a subring of $R$ that is a field. Then $R$ acquires the structure of a vector space over the field $F$. Assume now that $R$ is a finite dimensional vector space over $F$. Show that if $R$ is an integral domain, then $R$ is a field.
+    \begin{proof}
+        % Something with the finite basis implying surjectivity??
+
+        % WTF: $b$ s.t. $ab=1$. Suppose no such $b$ exists.
+
+
+        We already know that $R$ is a commutative ring. Thus, to prove that $R$ is a field, it only remains to show that $0_R\neq 1_R$, and $a\in R$ nonzero implies that there exists $b\in R$ such that $ab=1$. Let's begin.\par
+        Since $R$ is an integral domain, $0_R\neq 1_R$, as desired.\par
+        Let $a\in R$ nonzero be arbitrary. Consider the map $l_a:R\to R$. Since $R$ is an integral domain, the cancellation law holds, so we may write
+        \begin{equation*}
+            l_a(r) = l_a(s)
+            \quad\Longrightarrow\quad
+            ar = as
+            \quad\Longrightarrow\quad
+            r = s
+        \end{equation*}
+        Thus, $l_a$ is injective. It follows that $\ker(l_a)=\{0\}$. Now, viewing $R$ as a finite dimensional vector space over $F$, we can show that $l_a$ is a linear transformation.
+        \begin{align*}
+            l_a(r+s) &= a(r+s)&
+                l_a(fr) &= afr\\
+            &= ar+as&
+                &= far\\
+            &= l_a(r)+l_a(s)&
+                &= fl_a(r)
+        \end{align*}
+        Hence, by fundamental theorem of linear algebra,
+        \begin{align*}
+            \dim R &= \dim\ker(l_a)+\dim\im(l_a)\\
+            &= 0+\dim\im(l_a)\\
+            &= \dim\im(l_a)
+        \end{align*}
+        It follows that $l_a$ is surjective. Therefore, we know in particular that there exists $b$ such that $l_a(b)=1$. By the definition of $l_a$, this means that $ab=1$, as desired.
+    \end{proof}
     \item Give an example to show that the hypothesis of finite dimensionality cannot be dropped in the previous problem.
+    \begin{proof}
+        Consider
+        \begin{equation*}
+            \boxed{R = \Q[X]\text{ and }F = \Q}
+        \end{equation*}
+        These objects satisfy all of the necessary hypotheses. However, $\Q[X]$ is still not a field: Consider $X\in\Q[X]$, for instance. We know that $\deg(X)=1$, $\deg(fg)=\deg(f)+\deg(g)$, and $\deg(1)=0$, so there is no polynomial $g\in\Q[X]$ such that $gX=1$.
+    \end{proof}
     \item Let $V$ be a finite dimensional vector space over a field $F$, and let $\End_F(V)$ denote the set of linear transformations $T:V\to V$.
     \begin{enumerate}[label={(\alph*)}]
         \item Let $W\subset V$ be a linear subspace. Show that $\{T\in\End_F(V):T(W)=0\}$ is a left ideal of the ring $\End_F(V)$.
+        \begin{proof}
+            Let $W^0$ denote $\{T\in\End_F(V):T(W)=0\}$. To prove that $W^0$ is a left ideal of $\End_F(V)$, it will suffice to show that $(W^0,+)\leq(\End_F(V),+)$ and $SW^0\subset W^0$ for all $S\in\End_F(V)$. Let's begin.\par
+            The zero map is an element of $W^0$, so it is nonempty. If $T(W)=0$ and $T'(W)=0$, then $(T+T')(W)=0$, so $W^0$ is closed under addition. If $T(W)=0$, then $-T(W)=0$, so $W^0$ is closed under inverses. Therefore, $(W^0,+)\leq(\End_F(V),+)$ as desired.\par
+            Let $S\in\End_F(V)$ and $T\in W^0$ be arbitrary. By definition, $Tw=0$ for all $w\in W$. This combined with the fact that linear transformations send zero to zero implies that
+            \begin{equation*}
+                (S\circ T)(w) = S(Tw)
+                = S(0)
+                = 0
+            \end{equation*}
+            for all $w\in W$. Therefore, $(S\circ T)(W)=0$, so $S\circ T\in W^0$, as desired.
+        \end{proof}
         \item Let $T:V\to V$ be a linear transformation, and let $W=\ker(T)$. Show that the left ideal generated by $T$ is $\{S\in\End_F(V):S(W)=0\}$.
+        \begin{proof}
+            The left ideal generated by $T$ is $[\End_F(V)]T$. We will prove that
+            \begin{equation*}
+                [\End_F(V)]T = \{S\in\End_F(V):S(W)=0\}
+            \end{equation*}
+            via a bidirectional inclusion argument. Suppose first that $R\in[\End_F(V)]T$. Then $R=S\circ T$ for some $S\in\End_F(V)$. It follows as before that since $T$ annihilates $W$, $R=S\circ T$ annihilates $W$, so $R\in\{S\in\End_F(V):S(W)=0\}$, as desired. Now suppose that $R\in\{S\in\End_F(V):S(W)=0\}$. Then $R$ annihilates $W$, i.e., $\ker(R)\supset W$. Let $S=R\circ T^{-1}\in\End_F(V)$ ($T^{-1}$ denotes a linear transformation satisfying $T^{-1}\circ T=\id$). Then $R=S\circ T$, so $R\in[\End_F(V)]T$, as desired.
+        \end{proof}
         \item Show that $\{T\in\End(V):T(V)\subset W\}$ is a right ideal of $\End_F(V)$.
+        \begin{proof}
+            Let $W^1$ denote $\{T\in\End(V):T(V)\subset W\}$. To prove that $W^1$ is a right ideal of $\End_F(V)$, it will suffice to show that $(W^1,+)\leq(\End_F(V),+)$ and $W^1S\subset W^1$ for all $S\in\End_F(V)$. Let's begin.\par
+            The first part proceeds as in part (a).\par
+            Let $S\in\End_F(V)$ and $T\in W^1$ be arbitrary. Then since $S(V)\subset V$, $(T\circ S)(V)=T(S(V))\subset W$. Therefore, $TS\in W^1$, as desired.
+        \end{proof}
         \item Show that if $\im(T)=W$, then the right ideal of $\End_F(V)$ generated by $T$ is $\{S\in\End_F(V):S(V)\subset W\}$.
+        \begin{proof}
+            The right ideal generated by $T$ is $T[\End_F(V)]$. We will prove that
+            \begin{equation*}
+                T[\End_F(V)] = \{S\in\End_F(V):S(V)\subset W\}
+            \end{equation*}
+            via a bidirectional inclusion argument. Suppose first that $R\in T[\End_F(V)]$. Then $R=T\circ S$ for some $S\in\End_F(V)$. It follows as before that since $T$ maps into $W$ that $R=T\circ S$ maps $S(V)\subset V$ into $W$, so $R\in\{S\in\End_F(V):S(V)\subset W\}$, as desired. Now suppose that $R\in\{S\in\End_F(V):S(V)\subset W\}$. Then $R$ maps into $W$, i.e., $\im(R)\subset W$. Let $S=T^{-1}\circ R\in\End_F(V)$ ($T^{-1}$ denotes a linear transformation satisfying $T\circ T^{-1}=\id$). Then $R=T\circ S$, so $R\in T[\End_F(V)]$, as desired.
+        \end{proof}
     \end{enumerate}
     \item Prove that if $T$ is in the center of $\End_F(V)$, then there is some $c\in F$ such that $Tv=cv$ for all $v\in V$.
+    \begin{proof}
+        % Let $T\in Z(\End_F(V))$. Then $T\circ S=S\circ T$ for all $S\in\End_F(V)$. In particular, $T=STS^{-1}$ for all $S\in\End_F(V)$,
+        % \begin{align*}
+        %     Tv &= STS^{-1}v
+        % \end{align*}
+
+        % $T$ has an eigenvalue, i.e., there exists $c\in F$ and $v\in V$ such that $Tv=STS^{-1}V$; Rotations: $T$ does the same thing to every vector.
+        
+        % including the change of coordinates transformation to the Jordan basis. It follows that if $v$ is the first vector 
+
+
+        Let $\{v_1,v_2,\dots\}$ be a basis of $V$. Consider $v_i$. Let $S$ be a linear transformation satisfying $Sv_i=v_i$ and $S(Tv_i)=c_iv_i$ for some $c_i\in F$. Note that if $Tv_i,v_i$ are linearly dependent, then $c_i$ is specified by the ratio of the magnitudes of $Tv_i$ to $v_i$, and if $Tv_i,v_i$ are linearly independent, any $c_i$ suffices; either way, $S$ is well-defined. It follows that
+        \begin{equation*}
+            Tv_i = T(Sv_i)
+            = S(Tv_i)
+            = c_iv_i
+        \end{equation*}
+        Thus, $T$ scales every basis vector. Now we show that all of the $c_i$ are equal. Let $S_i$ be a linear transformation satisfying $S_iv_1=v_i$. Then
+        \begin{equation*}
+            Tv_i = TS_iv_1
+            = S_iTv_1
+            = S_ic_1v_1
+            = c_1S_iv_1
+            = c_1v_i
+        \end{equation*}
+        It follows that $Tv_i=cv_i$ for all basis vectors $v_i$. Therefore, $Tv=cv$ for all $v\in V$.
+    \end{proof}
 \end{enumerate}
 
 
