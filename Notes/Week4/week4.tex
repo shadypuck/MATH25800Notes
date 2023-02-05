@@ -166,5 +166,133 @@
 
 
 
+\section{Unique Factorization Domains}
+\begin{itemize}
+    \item \marginnote{1/25:}Goal: UFDs.
+    \item We review some definitions from last time to start.
+    \item \textbf{Prime} (ideal): An ideal $P$ in a commutative ring $R$ for which $R/P$ is an integral domain.
+    \begin{itemize}
+        \item Equivalently, $1\notin P$ and $a,b\notin P$ imply $ab\notin P$, i.e., $R\setminus P$ is a multiplicative set.
+    \end{itemize}
+    \item Observation: Maximal ideals are prime ideals.
+    \item From now on, $R$ denotes an integral domain.
+    \item \textbf{Factorization} (of a nonzero element): A product $a=u\pi_1\pi_2\cdots\pi_r$, where $u\in R^\times$, each $\pi_i$ is irreducible, and $r=0$ is allowed.
+    \item \textbf{Irreducible} (element): An element...
+    \begin{itemize}
+        \item Think of them a bit like primes, though this is very dangerous.
+    \end{itemize}
+    \item \textbf{Equivalent} (factorizations): Two factorizations $a=u\pi_1\pi_2\cdots\pi_r$ and $a=u'\pi_1'\pi_2'\cdots\pi_s'$ for which $r=s$ and there exists $\sigma\in S_r$ and $u_1,\dots,u_r\in R^\times$ such that $\pi_i'=u_i\pi_{\sigma(i)}$ ($i=1,\dots,r$) where $u\pi_1$ is also irreducible.
+    \item \textbf{Unique factorization domain}: An integral domain $R$ for which every nonzero $a$ has a factorization and any factorizations of $a$ are equivalent to each other.
+    \item \textbf{Prime} (element): A nonzero $\pi\in R$ for which $(\pi)$ is a prime ideal.
+    \item Exercise: Prove that if $\pi$ is prime, then $\pi$ is irreducible.
+    \begin{itemize}
+        \item Note that $\pi$ irreducible does \emph{not} imply that $\pi$ is prime in general.
+    \end{itemize}
+    \item Lemma*: If every irreducible element of $R$ is prime, then any two factorizations of any nonzero $a\in R$ are equivalent.
+    \begin{proof}
+        % Thus, since anything that divides a unit is a unit, everything else goes away??
+        % Example: $u=\alpha_1\alpha_2\cdots\alpha_m$ and $u\in R^\times$ implies that all $\alpha_i\in R^\times$. Thus, $r=0$ implies $s=0$, as desired.\par
+
+        % Now suppose inductively that $\pi_1$ is irreducible implies $\pi_1$ is prime, i.e., $(\pi_1)$ is a prime ideal. Let $a\in(\pi_1)$ LHS. Then $u'\pi_1'\cdots\pi_s'$. Does not imply that $u'\in(\pi_1)$ since this would make $u'$ a unit?? Thus, $\pi_1'\in(\pi_1$). WLOG, let $\pi_1'\in(\pi_1)$. Then $\pi_1'=b\pi_1$. It follows that $\pi_1'$ irreducible implies $b\in R^\times$ or $\pi_1\in R^\times$, where the latter statement is a contradiction. Then $\pi_1'=b\pi_1$, $b\in R^\times$, where $u\pi_2\pi_3\cdots\pi_r=u'b\pi_2'\cdots\pi_s'$ and $b\in R^\times$. Finished by induction.
+
+
+        We induct on the length $r\geq 0$ of factorizations.\par
+        For the base case $r=0$, let $a\in R$ be arbitrary. Factor it into
+        \begin{equation*}
+            a = u\prod_{i=1}^r\pi_i
+            = u\prod_{i=1}^0\pi_i
+            = u
+        \end{equation*}
+        It follows that $a$ is a unit. Therefore, there exists $b\in R$ such that $ab=1$. Now suppose for the sake of contradiction that we also have
+        \begin{equation*}
+            a = u'\pi_1'\cdots\pi_s'
+        \end{equation*}
+        It follows that
+        \begin{equation*}
+            1 = (u'\pi_1'\cdots\pi_s')b
+            = \pi_1'(u'\pi_2'\cdots\pi_s'b)
+        \end{equation*}
+        Thus, $\pi_1'$ is a unit, contradicting the hypothesis that $\pi_1'$ is irreducible. Therefore, $s=0$ and $u'=u$, as desired.\par
+        Now suppose inductively that we have proven the claim for $r-1$; we now wish to prove it for $r$. Let
+        \begin{align*}
+            a &= u\pi_1\cdots\pi_r&
+            a &= u'\pi_1'\cdots\pi_s'
+        \end{align*}
+        be two factorizations of an arbitrary $a\in R$. By the definition of a factorization, $\pi_1$ is irreducible. Thus, by hypothesis, $\pi_1$ is prime and hence $(\pi_1)$ is a prime ideal. Additionally, we have that
+        \begin{equation*}
+            a = u\pi_1\cdots\pi_r
+            = (u\pi_2\cdots\pi_r)\pi_1
+            \in R\pi_1
+            = (\pi_1)
+        \end{equation*}
+        Thus, we must have $u'\pi_1'\cdots\pi_s'\in(\pi_1)$ as well. It follows that one of the elements in the product $u'\pi_1'\cdots\pi_s'$ is equal to $\pi_1b$ for some $b\in R$. Suppose for the sake of contradiction that this element is $u'$. Then $u'=\pi_1b$. But since $u'$ is a unit, there exists $c\in R$ such that $1=u'c$. It follows via substitution that
+        \begin{equation*}
+            1 = u'c
+            = \pi_1bc
+            = \pi_1(bc)
+        \end{equation*}
+        i.e., that $\pi_1$ is a unit, contradicting the hypothesis that it's irreducible. Therefore, $u'\notin(\pi_1)$. It follows that one of the $\pi_i'\in(\pi_1)$. WLOG, let $\pi_1'\in(\pi_1)$. Then $\pi_1'=u_1\pi_1$ for some $u_1\in R$. In particular, since $\pi_1'$ is irreducible, then either $u_1\in R^\times$ or $\pi_1\in R^\times$. But we can't have the second case since $\pi_1$ is irreducible (and hence not a unit) by assumption. Thus $u_1\in R^\times$. It follows that
+        \begin{align*}
+            a &= a\\
+            u\pi_1\cdots\pi_r &= u'\pi_1'\cdots\pi_s'\\
+            u\pi_1\cdots\pi_r &= u'u_1\pi_1\pi_2'\cdots\pi_s'\\
+            u\pi_2\cdots\pi_r &= u'u_1\pi_2'\cdots\pi_s'
+        \end{align*}
+        where we apply the cancellation lemma in the last step, as permitted by the facts that $R$ is an integral domain and $\pi_1$ is irreducible (hence nonzero). Thus, by the induction hypothesis, the factorizations $u\pi_2\cdots\pi_r$ and $u'u_1\pi_2'\cdots\pi_s'$ are equivalent. It follows that $r=s$ and there exists $\sigma\in S_{[2:r]}$ and units $u_2,\dots,u_r\in R^\times$ such that $\pi_i'=u_i\pi_{\sigma(i)}$ ($i=2,\dots,r$). Extend $\sigma$ to $S_r$ by defining $\sigma(1)=1$. Thus, taking $\sigma\in S_r$ and $u_1,\dots,u_r\in R^\times$, we know that $\pi_i'=u_i\pi_i$ ($i=1,\dots,r$). Therefore, $u\pi_1\cdots\pi_r$ and $u'\pi_1'\cdots\pi_s'$ are equivalent factorizations of $a$, as desired.
+    \end{proof}
+    \item To prove that something is a UFD, it is all important to show that irreducible...??
+    \item Notation: $a\mid b$ iff $b\in(a)$.
+    \item \textbf{Greatest common divisor}: The number pertaining to $a,b\in R$ both nonzero which satisfies the following two constraints. \emph{Denoted by} $\bm{d}$, $\bm{\gcd(a,b)}$, $\bm{\textbf{g.c.d.}\,(a,b)}$. \emph{Constraints}
+    \begin{enumerate}[label={(\roman*)}]
+        \item $d\mid a$ and $d\mid b$.
+        \item $d'\mid a$ and $d'\mid b$ implies $d'|d$.
+    \end{enumerate}
+    \item $d$ is well-defined up to multiplication by $u\in R^\times$.
+    \begin{itemize}
+        \item Example: We commonly think of $\gcd(6,9)=3$, but in $\Z$, it could also be $-3=-1\cdot 3$ where $-1\in\Z^\times=\{\pm 1\}$.
+    \end{itemize}
+    \item Essay: $d\mid a$ implies $a=bd$ and the factors of $d$ are a subset of the factors of $a$. Let $a=u\pi_1\cdots\pi_r\cdot\pi_1'\pi_2'\cdots\pi_h'$ and $b=u'\pi_1\cdots\pi_r\cdot\pi_1''\pi_2''\cdots\pi_g''$. For all $i\leq h$, $j\leq g$: $\pi_i\nmid\pi_j''$.
+    \begin{itemize}
+        \item I.e., the factors of $a,b$ that don't multiply out to $\gcd(a,b)=d$ are all relatively prime.
+    \end{itemize}
+    \item Let $d=\pi_1\cdots\pi_r=\gcd(a,b)R$.
+    \item Existence of factorization in a PID.
+    \item Example: $F[X]$.
+    \begin{itemize}
+        \item Recall that $F[X]$ is a PID.
+        \item Let $f\in F[X]$ have $\deg(f)>0$.
+        \item Then since PIDs are UFDs, $f=uf_1\cdots f_r$ where $u\in F[X]^\times=F^\times$ and each $f_i$ is irreducible.
+        \item We have that $\deg f=\deg f_1+\cdots+\deg f_r\geq r$.
+        \item This is the Fundamental Theorem of Algebra!
+    \end{itemize}
+    \item We now attempt a rigorous proof of existence in PIDs. Without a good norm (as we have in EDs), we need this proof.
+    \begin{itemize}
+        \item Suppose that $a\in R$ nonzero is not a unit.
+        \item Then $a=bc$ where $b,c\notin R^\times$.
+        \item If $b,c$ have a factorization, then $a=bc$ has a factorization.
+        \item WLOG, let $b$ have a factorization.
+        \item Let $a=b_1a_2$, where $b_1\notin R^\times$ and $a_2$ does not admit a factorization. Therefore, $a_2=b_2a_3$, where $b_2$ is not a unit and $a_3$ does not admit a factorization.
+        \item We can go on forever: $a_n=b_na_{n+1}$ where $b_n\notin R^\times$ and $a_{n+1}\cdots$.
+        \item It follows that $(a_n)\subset(a_{n+1})$ and $b_n\notin R^\times$ implies $(a_n)\neq(a_{n+1})$.
+        \item All ideals $I_1\subset I_2\subset I_3\subset\cdots$. Is $\bigcup_{n=1}^\infty I_n$ an ideal? Yes, it is. Let's call it $I$.
+        \item $R$ is a PID implies that $I=(\alpha)$.
+        \item There exists $n$ such that $\alpha\in I_n$, and $(\alpha)\subset I_n\subsetneq I_{n+1}\subset\cdots\subset(\alpha)$.
+        \item See the proof in the book for clarification: Theorem \ref{trm:8.14} on \textcite[287-89]{bib:DummitFoote}.
+    \end{itemize}
+    \item Last theorem to prove.
+    \item Theorem: $R$ is a PID implies $R$ is a UFD.
+    \begin{itemize}
+        \item Existence, we've done.
+        \item Equivalence: By Lemma*, we only need irreducible $\pi\in R$ to be prime.
+        \item $a$ is reducible. $a=bc$, $b\notin R^\times$ and $c\notin R^\times$ implies $(a)\subsetneq(b)\subsetneq R$.
+        \item Thus, $a$ is irreducible. It follows that $(a)$ is maximal and hence $(a)$ is prime. All these concepts are equivalent in a PID.
+    \end{itemize}
+    \item Examples: $\Z$, $F[X]$, $F[[X]]$.
+    \item Let $a_n=b_na_{n+1}$. Then $(a_n)\subset(a_{n+1})$. and $b_n\notin R^\times$.
+    \item If $(a_n)=(a_{n+1})$, then $a_{n+1}=ca_n$, $a_n=b_n\subset a_n$, $1=b_nc$.
+\end{itemize}
+
+
+
 
 \end{document}
