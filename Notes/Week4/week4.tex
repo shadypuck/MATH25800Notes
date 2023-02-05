@@ -10,7 +10,7 @@
 
 
 
-\chapter{???}
+\chapter{Classes of Rings}
 \section{Euclidean Domains and Reducibility}
 \begin{itemize}
     \item \marginnote{1/23:}Notes to wrap up last time to start.
@@ -352,6 +352,133 @@
         \item Tips: Show that $X^2-\theta^2$ is a maximal ideal in the polynomial ring. If $f$ is irreducible, then $(f)$ is maximal. Check that $X^2-\theta^2$ is irreducible.
         \item Like 5 problems in 1 problem. Takes a bunch of techniques. The case where the square is zero is not hard. Write down four distinct rings and then use this to prove that you can't get any other ones. Keep them all in the quotient form? One is a product of two cyclic groups; that's a product of fields. You're allowed to multiply differently when they're rings, not groups. 2 groups, but 4 rings.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Division and the Chinese Remainder Theorem}
+\begin{itemize}
+    \item \marginnote{1/27:}This whole lecture is a speech for PIDs over UFDs.
+    \item Proposition: Let $R$ be a PID, and let $\pi\in R$ be nonzero. Then TFAE.
+    \begin{enumerate}[label={(\arabic*)}]
+        \item $\pi$ is irreducible.
+        \item $(\pi)$ is a maximal ideal.
+        \item $\pi$ is prime.
+    \end{enumerate}
+    \begin{proof}
+        \underline{$(2)\Longrightarrow(3)$}: Since $(\pi)$ is a maximal ideal, $R/(\pi)$ is a field. Thus, it's an integral domain. Therefore, $(\pi)$ is a prime ideal.\par
+        \underline{$(3)\Longrightarrow(1)$}: Holds in any integral domain.\par
+        \underline{$(1)\Longrightarrow(2)$}: If $(\pi)$ is not maximal, then there exists an ideal $I$ such that $(\pi)\subsetneq I\subsetneq R$. But $I=(a)$. Then $\pi=ab$. $I\neq R$ implies that $a\notin R^\times$. Additionally, $(\pi)\neq(a)$ implies $b\notin R^\times$. Therefore, $\pi$ is reducible, a contradiction.
+    \end{proof}
+    \item Recall computing greatest common divisors from last lecture.
+    \begin{itemize}
+        \item In particular, we know that $R\setminus\{0\}$ (or $R$??) is an integral domain.
+        \item Thus, if $a,b\in R\setminus\{0\}$, then $a\sim b$ if there exists $u\in R^\times$ such that $a=ub$.
+        \begin{itemize}
+            \item Nori confirms that $\sim$ is an equivalence relation.
+            \item If $a\sim b$, we say that $a$ is an \textbf{associate} of $b$.
+        \end{itemize}
+        \item Notation: $\sim\backslash R-\{0\}$ implies that we're applying the equivalence relation $\sim$ to the set $R\setminus\{0\}$.
+        \item $\gcd(a,b)\in\sim\backslash R-\{0\}$.
+        \begin{itemize}
+            \item This allows us to define a unique gcd; recall that gcd's are only unique up to multiplication by units, so by making all elements multiplied by units part of the same equivalence class, we can define a unique one.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Associate} (elements): Two elements $a,b\in R$ such that $a=ub$ where $u\in R^\times$. \emph{Denoted by} $\bm{a\sim b}$.
+    \item Lemma: If $a,b\in R$ a PID, then $\gcd(a,b)$ is equal to any generator of the ideal $Ra+Rb$.
+    \begin{proof}
+        % Assume that $Rd=Ra+Rb$ (thus, there exists $\alpha,\beta\in R$ such that $d=\alpha a+\beta b$). Then $Rd\subset Ra$ implies that $d\mid a$. Similarly, $d\mid b$. If $d'\mid a$ and $d'\mid b$, then $a\in(d')$ and $b\in(d')$. It follows that $d=\alpha a+\beta b\in(d')$, so $d'\mid d$.
+
+        Since $R$ is a PID, there exists $d\in R$ such that $Ra+Rb=Rd$. Any such $d$ is a generator of $Ra+Rb$. To prove that $d=\gcd(a,b)$, it will suffice to show that $d\mid a$, $d\mid b$, and $d'\mid a,b$ implies $d'\mid d$. Let's begin.\par
+        Since $Ra,Rb\subset Ra+Rb=Rd$, we know that $a,b\in(d)$. Thus, $d\mid a,b$. Now let $d'\in R$ be an arbitrary element such that $d'\mid a$ and $d'\mid b$. It follows that $a,b\in(d')$. Since $d\in Ra+Rb$, there exist $\alpha,\beta\in R$ such that $\alpha a+\beta b=d$. Thus, $d=\alpha a+\beta b\in(d')$, so $d'\mid d$, as desired.
+    \end{proof}
+    \item Look back to $AX+AY$ from Lecture 2.2!
+    \item We will see later (next week) that $F[X,Y]$ is a UFD and that $\gcd(X,Y)=1$.
+    \begin{itemize}
+        \item But $1\notin(X,Y)$.
+    \end{itemize}
+    \item Assume $R$ is a UFD and $a\neq 0$.
+    \begin{itemize}
+        \item A (traditional) factorization of $a=u\pi_1^{k_1}\pi_2^{k_2}\cdots\pi_r^{k_r}$. We assume as we have been that each $\pi_i$ is irreducible and $i\neq j$ implies that $(\pi_i)\neq(\pi_j)$ iff $\pi_i\nsim\pi_j$.
+        \item What is $R/(a)$?
+        \item Note: If $I\subset J\subset R$, then there exist ring homomorphisms from
+        \begin{align*}
+            R &\to R/I&
+            R &\to R/J&
+            R/I &\to R/J
+        \end{align*}
+        \item Consider $(a)\subset(\pi_i^{k_i})$. Then $R/(a)\to R/(\pi_i^{k_i})$. Moreover, we get a ring homomorphism
+        \begin{equation*}
+            R/(a) \hookrightarrow \prod_{i=1}^rR/(\pi_i^{k_i})
+        \end{equation*}
+        \begin{itemize}
+            \item For the integers, this is an isomorphism.
+            \item See the Chinese remainder theorem.
+        \end{itemize}
+        \item As per before, there exists $\varphi:R\to\prod_{i=1}^rR/(\pi_i^{k_i})$.
+        \item What is $\ker(\varphi)$?
+        \item We have that $\varphi(h)=0$ iff $\pi_i^{k_i}\mid h$ for all $i=1,2,\dots,r$ iff $\prod_{i=1}^r\pi_i^{k_i}\mid h$ iff $a=u\prod_{i=1}^r\pi_i^{k_i}\mid h$ iff $h\in(a)$.
+        \begin{itemize}
+            \item Nori pauses to explain why the factors of $a$ dividing $h$ implies that that the product of the factors does as well.
+        \end{itemize}
+        \item $\ker(\varphi)=(a)$. Product of commutative diagrams?? \emph{See lower right of board 2}
+        \item Let $I\subset J_1\subset R$ and $I\subset J_2\subset R$.
+    \end{itemize}
+    \item Aside.
+    \begin{itemize}
+        \item Let $R=F[X,Y]$.
+        \item Then $R/(XY)\to(R/(X))\times(R/(Y))$ is not onto.
+        \item Note that $R/(X)=F[X,Y]/(X)\cong F[Y]$ and likewise for $R/(Y)$.
+        \item There is a function $R\to R/(XY)$.
+        \item $f(X,Y)\in R$ maps to $f(0,Y)$ and $f(X,0)$. There must be a condition: $g(0)=h(0)$.
+    \end{itemize}
+    \item Let $\pi_1^{k_1}=b$ and $\pi_2^{k_2}\cdots\pi_r^{k_r}=c$. Then $\gcd(b,c)=1$. If $R$ is a PID, then $Rb+Rc$ is the ideal generated by $\gcd(b,c)$, and hence is $R$.
+    \begin{itemize}
+        \item It follows that there exists $\beta,\gamma\in R$ such that $\beta\pi_1^{k_1}+\gamma c=1$.
+        \item This is the Chinese Remainder Theorem.
+        \item Consider $R\to R/(\pi_1^{k_1})\times(R/(\pi_2^{k_2})\times\cdots\times R/(\pi_r^{k_r}))$ sending
+        \begin{equation*}
+            \gamma c\mapsto (1,0,\dots,0)
+        \end{equation*}
+        \item Multiply by an arbitrary $h\in R$. Then $h\gamma c\mapsto(h,0,\dots,0)$.
+        \item The image contains $R/(\pi_1^{k_1})\times 0\times\cdots\times 0$ which contains $0\times R/(\pi_2^{k_2})\times 0\times\cdots\times 0$. This is because if we have $(\alpha_1,\dots,\alpha_r)$, then we can always write it as
+        \begin{equation*}
+            (\alpha_1,\dots,\alpha_r) = (\alpha,0,0,\dots,0)+(0,\alpha_2,0,\dots,0)+\cdots+(0,0,0,\dots,\alpha_r)
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Chinese Remainder Theorem}: Let $R$ be a PID, and let $a$ factor as we've discussed. Then the natural arrow $R/(a)\to\prod_{i=1}^rR/(\pi_i^{k_i})$ is an isomorphism of rings.
+    \item Examples:
+    \begin{itemize}
+        \item $F[X]$: $X-a$ is irreducible for all $a\in F$.
+        \item $\C[X]$: These are the only irreducibles (fundamental theorem of algebra).
+        \item $\R[X]$: $X-a$ for $a\in\R$ and $(X-z)(x-z)$ for $z\in\C-\R$ are all irreducible.
+    \end{itemize}
+    \item Corollary of the earlier lemma: If $R_1\subset R_2$ are both PIDs and $(a,b)\in R_1$, then "$\gcd_{R_1}(a,b)=\gcd_{R_2}(a,b)$."
+    \begin{proof}
+        Let $R_1a+R_1b=R_1d$, $d\in R_1$. Then $R_2a+R_2b=R_2d$.
+    \end{proof}
+    \item Explanation of what's in quotes: We're taking gcd's in different rings. See the commutative diagram below.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[xscale=3,yscale=2]
+            \small
+            \node (1)  at (0,1) {$R_1-\{0\}$};
+            \node (1s) at (0,0) {$\sim\backslash R_1-\{0\}$};
+            \node (2s) at (1,0) {$\sim\backslash R_2-\{0\}$};
+            \node (2)  at (1,1) {$R_2-\{0\}$};
+
+            \footnotesize
+            \draw [->] (1)  -- (1s);
+            \draw [->] (1s) -- (2s);
+            \draw [->] (2s) -- (2);
+            \draw [right hook->] (1)  -- (2);
+        \end{tikzpicture}
+        \caption{Greatest common divisor in different rings.}
+        \label{fig:gcdContext}
+    \end{figure}
+    \item We should check this.
+    \item How do we put $F[X,Y]\subset F[X,Z]$? Put $Y=XZ$. Then $\gcd(X,Y)=1$.
+    \item Midterm on Monday of sixth week; HW pushed to Friday that week.
 \end{itemize}
 
 
