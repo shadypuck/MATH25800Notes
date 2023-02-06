@@ -402,7 +402,7 @@ The first problem below is analogous to Corollary 3 on \textcite[228]{bib:Dummit
             \begin{equation*}
                 [\End_F(V)]T = \{S\in\End_F(V):S(W)=0\}
             \end{equation*}
-            via a bidirectional inclusion argument. Suppose first that $R\in[\End_F(V)]T$. Then $R=S\circ T$ for some $S\in\End_F(V)$. It follows as before that since $T$ annihilates $W$, $R=S\circ T$ annihilates $W$, so $R\in\{S\in\End_F(V):S(W)=0\}$, as desired. Now suppose that $R\in\{S\in\End_F(V):S(W)=0\}$. Then $R$ annihilates $W$, i.e., $\ker(R)\supset W$. Let $S=R\circ T^{-1}\in\End_F(V)$ ($T^{-1}$ denotes a linear transformation satisfying $T^{-1}\circ T=\id$). Then $R=S\circ T$, so $R\in[\End_F(V)]T$, as desired.
+            via a bidirectional inclusion argument. Suppose first that $R\in[\End_F(V)]T$. Then $R=S\circ T$ for some $S\in\End_F(V)$. It follows as before that since $T$ annihilates $W$, $R=S\circ T$ annihilates $W$, so $R\in\{S\in\End_F(V):S(W)=0\}$, as desired. Now suppose that $R\in\{S\in\End_F(V):S(W)=0\}$. Then $R$ annihilates $W$, i.e., $\ker(R)\supset W$. Let $S=R\circ T^{-1}\in\End_F(V)$ ($T^{-1}$ denotes a partial left inverse, specifically any linear transformation satisfying $T^{-1}\circ T=\id_{V\setminus W}$). Then $R=S\circ T$, so $R\in[\End_F(V)]T$, as desired.
         \end{proof}
         \item Show that $\{T\in\End(V):T(V)\subset W\}$ is a right ideal of $\End_F(V)$.
         \begin{proof}
