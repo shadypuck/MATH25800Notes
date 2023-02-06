@@ -4,6 +4,7 @@
 \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
 \setcounter{chapter}{3}
 \setcounter{proposition}{16}
+\setcounter{bookch}{7}
 
 \begin{document}
 
@@ -150,15 +151,15 @@
     \begin{equation*}
         a = u\pi_1\pi_2\cdots\pi_r
     \end{equation*}
-    \item \textbf{Unique factorization domain}: A ring $R$ such that for every nonzero element $a\in R$, any two factorizations
+    \item \textbf{Unique factorization domain}: An integral domain $R$ such that for every nonzero element $a\in R$ which is not a unit, any two factorizations
     \begin{align*}
         a &= u\pi_1\pi_2\cdots\pi_r&
         a &= u'\pi_1'\pi_2'\cdots\pi_s'
     \end{align*}
     of $a$ satisfy the following conditions.
     \begin{enumerate}[label={(\roman*)}]
-        \item $r=s$.
-        \item There exists $\sigma\in S_r$ such that $\pi_i'=\pi_{\sigma(i)}u_i$ for all $1\leq i\leq r$, $u_i$ being a unit.
+        \item \emph{Same length}: $r=s$.
+        \item \emph{Uniqueness up to \textbf{associates}}: There exists $\sigma\in S_r$ such that $\pi_i'=\pi_{\sigma(i)}u_i$ for all $1\leq i\leq r$, $u_i$ being a unit.
     \end{enumerate}
     \emph{Also known as} \textbf{UFD}.
     \item Wednesday: Show that a PID is a UFD.
@@ -265,27 +266,27 @@
         \item We have that $\deg f=\deg f_1+\cdots+\deg f_r\geq r$.
         \item This is the Fundamental Theorem of Algebra!
     \end{itemize}
-    \item We now attempt a rigorous proof of existence in PIDs. Without a good norm (as we have in EDs), we need this proof.
+    \item We now attempt a rigorous proof of the existence of prime factorizations in PIDs. Without a convenient norm from which to derive a prime factorization (as we have in EDs), we need this proof.
     \begin{itemize}
         \item Suppose that $a\in R$ nonzero is not a unit.
         \item Then $a=bc$ where $b,c\notin R^\times$.
-        \item If $b,c$ have a factorization, then $a=bc$ has a factorization.
-        \item WLOG, let $b$ have a factorization.
-        \item Let $a=b_1a_2$, where $b_1\notin R^\times$ and $a_2$ does not admit a factorization. Therefore, $a_2=b_2a_3$, where $b_2$ is not a unit and $a_3$ does not admit a factorization.
-        \item We can go on forever: $a_n=b_na_{n+1}$ where $b_n\notin R^\times$ and $a_{n+1}\cdots$.
-        \item It follows that $(a_n)\subset(a_{n+1})$ and $b_n\notin R^\times$ implies $(a_n)\neq(a_{n+1})$.
-        \item All ideals $I_1\subset I_2\subset I_3\subset\cdots$. Is $\bigcup_{n=1}^\infty I_n$ an ideal? Yes, it is. Let's call it $I$.
+        \item If $b$ or $c$ has a factorization, then $a=bc$ factors further.
+        \item WLOG, let $c$ have a factorization.
+        \item Let $c=b_1a_2$, where $b_1,a_2\notin R^\times$. Suppose $a_2$ admits a factorization. Then $a_2=b_2a_3$, where $b_2,a_3\notin R^\times$.
+        \item We can go on forever: $a_n=b_na_{n+1}$ where $b_n\notin R^\times$ and $a_{n+1}$ factors further.
+        \item By their definitions, $\cdots(a_n)\subset(a_{n+1})\cdots$. Additionally, $b_n\notin R^\times$ implies $(a_n)\neq(a_{n+1})$.
+        \item Now consider a chain of ideals $I_1\subset I_2\subset I_3\subset\cdots$. Is $\bigcup_{n=1}^\infty I_n$ an ideal? Yes, it is. Let's call it $I$.
         \item $R$ is a PID implies that $I=(\alpha)$.
-        \item There exists $n$ such that $\alpha\in I_n$, and $(\alpha)\subset I_n\subsetneq I_{n+1}\subset\cdots\subset(\alpha)$.
+        \item Definition of an infinite union: There exists $n$ such that $\alpha\in I_n$. Therefore, $(\alpha)\subset I_n\subsetneq I_{n+1}\subset\cdots\subset(\alpha)$. It follows that the factorization is finite.
         \item See the proof in the book for clarification: Theorem \ref{trm:8.14} on \textcite[287-89]{bib:DummitFoote}.
     \end{itemize}
     \item Last theorem to prove.
     \item Theorem: $R$ is a PID implies $R$ is a UFD.
     \begin{itemize}
-        \item Existence, we've done.
+        \item Existence, we've done directly above.
         \item Equivalence: By Lemma*, we only need irreducible $\pi\in R$ to be prime.
-        \item $a$ is reducible. $a=bc$, $b\notin R^\times$ and $c\notin R^\times$ implies $(a)\subsetneq(b)\subsetneq R$.
-        \item Thus, $a$ is irreducible. It follows that $(a)$ is maximal and hence $(a)$ is prime. All these concepts are equivalent in a PID.
+        \item $a$ is reducible.
+        \item Gist: $a=bc$, $b\notin R^\times$ and $c\notin R^\times$ implies $(a)\subsetneq(b)\subsetneq R$. Thus, $a$ is irreducible. It follows that $(a)$ is maximal and hence $(a)$ is prime. All these concepts are equivalent in a PID.
     \end{itemize}
     \item Examples: $\Z$, $F[X]$, $F[[X]]$.
     \item Let $a_n=b_na_{n+1}$. Then $(a_n)\subset(a_{n+1})$. and $b_n\notin R^\times$.
@@ -544,6 +545,7 @@
 
 \section{Chapter 8: Euclidean Domains, Principal Ideal Domains, and Unique Factorization Domains}
 \emph{From \textcite{bib:DummitFoote}.}
+\stepcounter{bookch}
 \subsection*{Goals for the Chapter}
 \begin{itemize}
     \item \marginnote{1/30:}Focus: Study classes of rings with more algebraic structure than generic rings.
@@ -772,6 +774,169 @@
     \end{proposition}
     \item Note: That a ring satisfying the Dedekind-Hasse condition is a PID has been known since 1928. That a PID necessarily satisfies the Dedekind-Hasse condition was not discovered until 1997.
     \item Example: Proof that $\Z[(1+\sqrt{-19})/2]$ is a PID but not an ED.
+\end{itemize}
+
+
+\subsection*{Section 8.3: Unique Factorization Domains}
+\begin{itemize}
+    \item \marginnote{2/5:}In addition to the Euclidean Algorithm, gcd's can be computed via factorization into primes and a simple comparison.
+    \item The notion of factorization can be extended to a larger class of rings called UFDs.
+    \item Goal of this section: Prove that every PID is a UFD; thus, all results in this section will hold for EDs and PIDs, too.
+    \item \textbf{Irreducible} (element): A nonzero element $r\in R$ that is not a unit and such that whenever $r=ab$ with $a,b\in R$, at least one of $a$ or $b$ must be a unit in $R$.
+    \item \textbf{Reducible} (element): An element that is not reducible.
+    \begin{itemize}
+        \item Recall from class that even though it's not explicitly stated in the definition, we can prove that reducible elements are not units.
+    \end{itemize}
+    \item \textbf{Prime} (element): A nonzero element $p\in R$ that is not a unit and such that whenever $p\mid ab$ for any $a,b\in R$, then either $p\mid a$ or $p\mid b$.
+    \begin{itemize}
+        \item The definition from class is also given.
+    \end{itemize}
+    \item Definition of \textbf{associate} elements.
+    \item Prime implies reducible.
+    \begin{proposition}\label{prp:8.10}
+        In an integral domain, a prime element is always irreducible.
+        \begin{proof}
+            Given (see Lecture 4.2).
+        \end{proof}
+    \end{proposition}
+    \item $\text{Irreducible}\nRightarrow\text{prime}$ in general.
+    \begin{itemize}
+        \item Example using quadratic integer rings given.
+    \end{itemize}
+    \item $\text{Prime}\Longleftrightarrow\text{irreducible}$ in a PID.
+    \begin{proposition}\label{prp:8.11}
+        In a PID, a nonzero element is prime iff it is irreducible.
+        \begin{proof}
+            Given (see Lecture 4.3).
+        \end{proof}
+    \end{proposition}
+    \item Example.
+    \begin{enumerate}
+        \item Quadratic integer rings.
+    \end{enumerate}
+    \item Example:
+    \begin{itemize}
+        \item The irreducible of $\Z$ are the prime numbers (and their negatives).
+        \item Two integers $a,b\in\Z$ are associates iff $a=\pm b$.
+    \end{itemize}
+    \item \textcite{bib:DummitFoote} discusses factorization in $\Z$ in the language of rings (e.g., "units," "irreducible," "unique," etc.) to motivate UFDs.
+    \begin{itemize}
+        \item Very insightful.
+    \end{itemize}
+    \item \textbf{Prime factorization}: The expression of an element in $\N$ as a product of other elements in $\Z$, all of which are positive and prime.
+    \item Definition of a \textbf{UFD}.
+    \item Examples.
+    \begin{enumerate}
+        \item All fields $F$ are trivially UFDs.
+        \begin{itemize}
+            \item All elements are units, so there exist no elements for which we can verify the constraints, so the condition is vacuously true.
+        \end{itemize}
+        \item PIDs are UFDs.
+        \begin{itemize}
+            \item E.g., $\Z$, $F[X]$ are UFDs.
+        \end{itemize}
+        \item $R[X]$, where $R$ is a UFD.
+        \begin{itemize}
+            \item Proven in Chapter 9.
+            \item This contrasts with EDs and PIDs, where $R$ being an ED (resp. PID) does not make $R[X]$ an ED (resp. PID).
+            \item It follows that $\Z[X]$ is a UFD.
+        \end{itemize}
+        \item $\Z[2i]$: Integral domain that is not a UFD.
+        \begin{itemize}
+            \item See Exercise 7.1.23.
+            \item Argument included.
+        \end{itemize}
+        \item $\Z[\sqrt{-5}]$: Another integral domain that is not a UFD.
+        \begin{itemize}
+            \item Argument included.
+        \end{itemize}
+    \end{enumerate}
+    \item Proposition \ref{prp:8.11} for UFDs.
+    \begin{proposition}\label{prp:8.12}
+        In a UFD, a nonzero element is prime iff it is irreducible.
+        \begin{proof}
+            Given (not covered in class).\par
+            Note that this proposition plus the previously alluded to result that $\text{PID}\Longrightarrow\text{UFD}$ do \emph{not} suffice to prove Proposition \ref{prp:8.11}. This is because we will need Proposition \ref{prp:8.11} to prove that $\text{PID}\Longrightarrow\text{UFD}$, and we must avoid circular reasoning.
+        \end{proof}
+    \end{proposition}
+    \item Greatest common divisors exist in UFDs.
+    \begin{proposition}\label{prp:8.13}
+        Let $a,b$ be two nonzero elements of a UFD $R$ and suppose that
+        \begin{align*}
+            a &= up_1^{e_1}\cdots p_n^{e_n}&
+            b &= vp_1^{f_1}\cdots p_n^{f_n}
+        \end{align*}
+        are prime factorizations for $a$ and $b$, where $u,v$ are units, the primes $p_1,\dots,p_n$ are \emph{distinct}, and the exponents $e_i,f_i\geq 0$ ($i=1,\dots,n$). Then the element
+        \begin{equation*}
+            d = p_1^{\min(e_1,f_1)}\cdots p_n^{\min(e_n,f_n)}
+        \end{equation*}
+        (where $d=1$ if all the exponents are 0) is a gcd of $a,b$.
+        \begin{proof}
+            Given (not covered in class).
+        \end{proof}
+    \end{proposition}
+    \item Example.
+    \begin{enumerate}
+        \item An application of Proposition \ref{prp:8.13}.
+    \end{enumerate}
+    \item We now prove the main result.
+    \begin{theorem}\label{trm:8.14}
+        Every PID is a UFD. In particular, every ED is a UFD.
+        \begin{proof}
+            Let $R$ be a PID, and let $r$ be an arbitrary nonzero element of $R$ which is not a unit. To prove that $R$ is a UFD, it will suffice to show that $r$ can be written as a finite product of irreducible elements of $R$ and that this decomposition is unique up to associates.\par\smallskip
+            \underline{Existence}: We proceed analogously to the prime factorization algorithm for integers, meaning that we will divide into cases, subcases, subsubcases, etc. as needed depending on whether or not all factors are irreducible at each step and then use the "finiteness" of $r$ to prove that the decomposition can only go on for so long. To see what this means, let's begin. If $r$ is irreducible, then we are done. Otherwise, $r$ is reducible, and hence $r=r_1r_2$ where $r_1,r_2\notin R^\times$. If $r_1,r_2$ are both irreducible, then (again) we are done. Otherwise, at least one of the two elements (say $r_1$) is reducible and hence can be written $r_1=r_{11}r_{12}$ for nonunit elements $r_{11},r_{12}$. We can continue on in this manner.\par
+            We now verify that this process terminates. Precisely, we verify that we necessarily reach a point where all of the elements obtained as factors of $r$ are irreducible. Let's begin. Suppose for the sake of contradiction that the process never terminates. Then we obtain a \emph{proper} inclusion of ideals
+            \begin{equation*}
+                (r) \subsetneq (r_1) \subsetneq (r_{11}) \subsetneq \cdots \subsetneq R
+            \end{equation*}
+            where the labeling is justified WLOG\footnote{If $r_1$ is irreducible and $r_2$ is reducible, flip the names.} Note that the above can also be called an infinite ascending chain of ideals. Also note that the first inclusion is proper because $r_2$ is not a unit, the second is proper because $r_{12}$ is not a unit, on and on until the last inclusion is proper because $r_{1\cdots 1}$ is not a unit. Lastly, note that we need the Axiom of Choice (why??) to justify the existence of such an infinite chain.\par
+            To verify that the proper inclusion terminates, it will suffice to demonstrate that any ascending chain $I_1\subsetneq\cdots\subsetneq R$ of ideals \emph{in a PID} eventually becomes stationary. Precisely, we wish to find a positive integer $n$ such that $I_k=I_n$ for all $k\geq n$. Let's begin. Let
+            \begin{equation*}
+                I = \bigcup_{i=1}^\infty I_i
+            \end{equation*}
+            We can prove (easily from the definition) that $I$ is an ideal. Thus, since $R$ is a PID, we may write $I=(a)$ for some $a\in R$. It follows by the definition of $I$ that $a\in I_n$ for some $n\geq 1$. By definition, $I_n\subset I$; additionally, $I=(a)\subset I_n$ since $I_n$ is an ideal. Consequently, $I=I_n$ and the chain becomes stationary at $I_n$.\par
+            Returning to the original case, the above result implies a contradiction. Thus, the original chain of ideals terminates. Therefore, a factorization of $r$ into irreducibles is finite and, importantly, \emph{exists}.\par\smallskip
+            \underline{Uniqueness}: Since $R$ is a PID, Proposition \ref{prp:8.11} implies that all irreducible elements are prime. Therefore, by Lemma* from Lecture 4.2, any two factorizations of $r$ are equivalent, as desired. Note that \textcite{bib:DummitFoote} proves their own version of Lemma* as part of the argument.\par\smallskip
+            The second statement follows from the first and Proposition \ref{prp:8.1}.
+        \end{proof}
+    \end{theorem}
+    \item In the proof of Theorem \ref{trm:8.14}, we showed that any ascending chain of ideals in a PID eventually becomes stationary.
+    \begin{itemize}
+        \item In Chapter 12, we will prove a more general result: An ascending chain of ideals becomes stationary in any commutative ring where all the ideals are \emph{finitely generated}.
+    \end{itemize}
+    \item Theorem \ref{trm:8.14} implies another, very important result.
+    \begin{corollary}[Fundamental Theorem of Arithmetic]\label{cly:8.15}
+        The integers $\Z$ are a UFD.
+        \begin{proof}
+            They're an ED, and hence a UFD by Theorem \ref{trm:8.14}.
+        \end{proof}
+    \end{corollary}
+    \item Relation to Dedekind-Hasse norms.
+    \begin{corollary}\label{cly:8.16}
+        Let $R$ be a PID. Then there exists a multiplicative Dedekind-Hasse norm on $R$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item We now switch to the specific example of factorization in the Gaussian integers.
+    \item \textcite{bib:DummitFoote} proves a number of interesting theorems not covered in any depth in class.
+    \item \textcite{bib:DummitFoote} concludes the chapter with a short summary.
+    \begin{itemize}
+        \item Restatement of the central result:
+        \begin{equation*}
+            \text{fields} \subsetneq \text{EDs}
+            \subsetneq \text{PIDs}
+            \subsetneq \text{UFDs}
+            \subsetneq \text{integral domains}
+        \end{equation*}
+        \item Review of examples that prove \emph{proper} inclusion:
+        \begin{itemize}
+            \item $\Z$ is an ED, not a field.
+            \item $\Z[(1+\sqrt{-19})/2]$ is a PID, not an ED.
+            \item $\Z[X]$ is a UFD (see Theorem \ref{trm:9.7}), not a PID.
+            \item $\Z[\sqrt{-5}]$ is an integral domain, not a UFD.
+        \end{itemize}
+    \end{itemize}
 \end{itemize}
 
 
