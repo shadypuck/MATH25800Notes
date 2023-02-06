@@ -626,14 +626,14 @@
     \end{itemize}
     \item We begin with polynomial rings.
     \item Fix a commutative ring $R$ with identity.
-    \item \textbf{Indeterminate}: The "variable" $x$.
-    \item \textbf{Polynomial} (in $x$ with coefficients $a_i$ in $R$): The formal sum
+    \item \textbf{Indeterminate}: The "variable" $X$.
+    \item \textbf{Polynomial} (in $X$ with coefficients $a_i$ in $R$): The formal sum
     \begin{equation*}
-        a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
+        a_nX^n+a_{n-1}X^{n-1}+\cdots+a_1X+a_0
     \end{equation*}
     with $n\geq 0$ and each $a_i\in R$.
     \item \textbf{Degree $\bm{n}$} (polynomial): A polynomial for which $a_n\neq 0$.
-    \item \textbf{Leading term}: The $a_nx^n$ term.
+    \item \textbf{Leading term}: The $a_nX^n$ term.
     \item \textbf{Leading coefficient}: The $a_n$ coefficient.
     \item \textbf{Monic} (polynomial): A polynomial for which $a_n=1$.
     \item Definition of $R[X]$ \parencite[234]{bib:DummitFoote}.
@@ -643,32 +643,32 @@
     \item We can also define polynomial rings like $\Z/3\Z[X]$.
     \begin{itemize}
         \item This ring consists of the set of polynomials with coefficients $0,1,2$ and calculations on the coefficients performed modulo 3.
-        \item Example: If $p(x)=x^2+2x+1$ and $q(x)=x^3+x+2$, then $p(x)+q(x)=x^3+x^2$.
+        \item Example: If $p(X)=X^2+2X+1$ and $q(X)=X^3+X+2$, then $p(X)+q(X)=X^3+X^2$.
     \end{itemize}
     \item The ring in which the coefficients are taken makes a substantial difference in the polynomials' behavior.
     \begin{itemize}
-        \item Example: $x^2+1$ is not a perfect square in $\Z[X]$, but is in $\Z/2\Z[X]$ since here,
+        \item Example: $X^2+1$ is not a perfect square in $\Z[X]$, but is in $\Z/2\Z[X]$ since here,
         \begin{equation*}
-            (x+1)^2 = x^2+2x+1 = x^2+1
+            (X+1)^2 = X^2+2X+1 = X^2+1
         \end{equation*}
     \end{itemize}
     \item Properties of polynomials over integral domains.
     \begin{proposition}\label{prp:7.4}
-        Let $R$ be an integral domain and let $p(x),q(x)$ be nonzero elements of $R[X]$. Then
+        Let $R$ be an integral domain and let $p(X),q(X)$ be nonzero elements of $R[X]$. Then
         \begin{enumerate}
-            \item $\deg p(x)q(x)=\deg p(x)+\deg q(x)$;
+            \item $\deg p(X)q(X)=\deg p(X)+\deg q(X)$;
             \begin{proof}
-                If $p(x),q(x)$ are polynomials with leading terms $a_nx^n,b_mx^m$, respectively, then the leading term of $p(x)q(x)$ is $a_nb_mx^{n+m}$, provided $a_nb_m\neq 0$. But since $a_n,b_m\neq 0$ (as leading coefficients) and $R$ has no zero divisors (as an integral domain), we have that $a_nb_m\neq 0$. Applying the definition of degree completes the proof.
+                If $p(X),q(X)$ are polynomials with leading terms $a_nX^n,b_mX^m$, respectively, then the leading term of $p(X)q(X)$ is $a_nb_mX^{n+m}$, provided $a_nb_m\neq 0$. But since $a_n,b_m\neq 0$ (as leading coefficients) and $R$ has no zero divisors (as an integral domain), we have that $a_nb_m\neq 0$. Applying the definition of degree completes the proof.
             \end{proof}
             \item The units of $R[X]$ are just the units of $R$;
             \begin{proof}
-                Suppose $p(x)\in R[X]$ is a unit. Then $p(x)q(x)=1$ for some $q(x)\in R[X]$. It follows by part (1) that
+                Suppose $p(X)\in R[X]$ is a unit. Then $p(X)q(X)=1$ for some $q(X)\in R[X]$. It follows by part (1) that
                 \begin{equation*}
-                    \deg p(x)+\deg q(x) = \deg p(x)q(x) = 0
+                    \deg p(X)+\deg q(X) = \deg p(X)q(X) = 0
                     \quad\Longleftrightarrow\quad
-                    \deg p(x)=\deg q(x) = 0
+                    \deg p(X)=\deg q(X) = 0
                 \end{equation*}
-                Therefore, $p(x),q(x)\in R$ and hence are units of $R$, as desired.
+                Therefore, $p(X),q(X)\in R$ and hence are units of $R$, as desired.
             \end{proof}
             \item $R[X]$ is an integral domain.
             \begin{proof}

@@ -30,6 +30,10 @@
 \reversemarginpar
 
 \setitemize[3]{label={\scriptsize$\blacksquare$}}
+\setitemize[4]{label={\tikz[scale=0.06,baseline={(0,-0.14)}]{
+    \draw [line width=0.3pt] (0,1) -- (1.2,0) -- (0,-1) -- (3.5,0) -- cycle;
+    \fill (1.2,0) -- (0,-1) -- (3.5,0);
+}}}
 
 \deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
 \deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnote}}
@@ -48,6 +52,7 @@
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\chr}{char}
 \DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Aut}{Aut}
 
 \theoremstyle{definition}
 \newtheorem{proposition}{Proposition}

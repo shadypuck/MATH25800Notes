@@ -20,10 +20,19 @@
         \item We've been talking about fields, which are contained in EDs, which are contained in PIDs. There probably will not be anything on EDs. Use the weakest definition for ED (the ones in class and the book differ). Which is this??
         \item PIDs are contained in UFDs, which are contained in integral domains, which are contained in commutative rings.
     \end{itemize}
-    \item PIDs are nice! $\gcd(a,b)$ can be computed without factoring $a,b$. Review page 2 of Chapter 8, as referenced in a previous class.
-    \item In PIDs, you can factor $a=qb+r$, but $q,r$ may not be specific; in EDs, these $q,r$ are unique.
+    \item PIDs are nice!
+    \begin{itemize}
+        \item For instance, $\gcd(a,b)$ can be computed in them without factoring $a,b$.
+        \item This is accomplished with the Euclidean Algorithm.
+        \begin{itemize}
+            \item Review page 2 of Chapter 8, as referenced in a previous class, for more context.
+        \end{itemize}
+    \end{itemize}
+    \item In PIDs, you can factor $a=qb+r$, but $q,r$ may not be specific; in EDs (under a nice norm), these $q,r$ are unique.
     \begin{itemize}
         \item Is this correct??
+        \item It can be proven that if $R$ is an ED, $a=qb+r$ for $a,b\in R-\{0\}$ and $q,r\in R$ with $N(r)<N(b)$, then $r,q$ are unique iff $N(a+b)\leq\max\{N(a),N(b)\}$.
+        \item For instance, we have this for $\Z$ under $|n|$ and for $R[X]$ under $2^{\deg(p)}$.
     \end{itemize}
     \item Theorem: $R$ is a UFD implies $R[X]$ is a UFD.
     \item Corollary: $R$ is a UFD implies $R[X_1,\dots,X_n]$ is a UFD.
@@ -33,6 +42,7 @@
     \item Corollary: $R[X]$ is a field implies $R$ is a PID implies $R[X_1,\dots,X_n]$ is a UFD.
     \begin{itemize}
         \item Something about $\Z$, $F[[X]]$ where $F$ is a field??
+        \item These are examples of PIDs.
     \end{itemize}
     \item Example: What are the irreducibles of $\Z[X]$?
     \begin{itemize}
@@ -61,20 +71,27 @@
         Note that $\pi\in\mathcal{P}(R)$ implies $\pi$ is irreducible.\par
         Argument for something?? Let $\pi=ab$. Suppose $a=\pi^{m_0}\pi^{m_1}\cdots\pi_h^{m_h}u$ and $b=\pi^{n_0}\pi_1^{n_1}\cdots\pi_h^{n_h}$. Then $\pi=ab=\pi^{m_0+n_0}\pi^{m_1+n_1}\cdots$. But then because of unique factorization, we cannot have $\pi_1^{x_1}\cdots\pi_h^{x_h}$.
     \end{proof}
-    \item \textbf{Content} (of $f\in R[X]$): The greatest common divisor of the coefficients of a nonzero $f=a_0+a_1X+a_2X^2\cdots$ in $R[X]$. \emph{Denoted by} $\bm{c(f)}$. \emph{Given by}
+    \item \textbf{Content} (of $f\in R[X]$): The greatest common divisor of the coefficients of a nonzero $f=a_0+a_1X+a_2X^2+\cdots$ in $R[X]$. \emph{Denoted by} $\bm{c(f)}$. \emph{Given by}
     \begin{equation*}
         c(f) = \gcd(a_0,a_1,a_2,\dots)
     \end{equation*}
     \item Let $c(f)=\prod_{\pi\in\mathcal{P}(R)}\pi^{k(\pi)}$.
     \item Gauss lemma: $f,g\in R[X]$ both nonzero implies that $c(fg)=c(f)c(g)$.
     \begin{proof}
-        It suffices to prove the case where $c(f)=c(g)=1$.\par
-        Let $\pi$ be irreducible (hence prime). Consider the canonical surjection $R\to R/(\pi)$. It gives rise to a ring homomorphism $\varphi:R[X]\to R/(\pi)[X]$ defined by
+        % It suffices to prove the case where $c(f)=c(g)=1$.\par
+        % Let $\pi$ be irreducible (hence prime). Consider the canonical surjection $R\to R/(\pi)$. It gives rise to a ring homomorphism $\varphi:R[X]\to R/(\pi)[X]$ defined by
+        % \begin{equation*}
+        %     \varphi(a_0+a_1X+\cdots+a_dX^d) = \bar{a}_0+\bar{a}_1X+\cdots+\bar{a}_dX^d
+        % \end{equation*}
+        % Notationally, if $a_i\in R$, then $\bar{a}_i$ is the image of $a_i$ in $R/(\pi)$ under the canonical surjection.\par
+        % $c(f)=1$ implies that there exists $i$ such that $a_i\neq 0$. Therefore, $\varphi(f)\neq 0$. Similarly, $c(g)=1$ implies that $\varphi(g)\neq 0$. It follows that $\varphi(fg)=\varphi(f)\varphi(g)$. Since $R/(\pi)$ is an integral domain and thus contains no zero divisors, we know that $\varphi(fg)=\varphi(f)\varphi(g)\neq 0$. It follows that $\pi\nmid c(fg)$. This is true for all irreducible $\pi\in R$. Indeed, it follows that $c(fg)=1$.
+
+        For our purposes, it will suffice to prove the case where $c(f)=c(g)=1$. This is because our ultimate purpose in proving this lemma is to show that a polynomial in $R[X]$ that is not irreducible is reducible specifically in $R[X]$, i.e., we need not resort to higher container rings such as $\Frac R$ in which we could reduce $p\in R[X]$. Let's begin.\par
+        Let $\pi\in R$ be irreducible (hence prime). Consider the canonical surjection $R\to R/(\pi)$. It gives rise to a ring homomorphism $\varphi:R[X]\to R/(\pi)[X]$ defined by
         \begin{equation*}
             \varphi(a_0+a_1X+\cdots+a_dX^d) = \bar{a}_0+\bar{a}_1X+\cdots+\bar{a}_dX^d
         \end{equation*}
-        Notationally, if $a_i\in R$, then $\bar{a}_i$ is the image of $a_i$ in $R/(\pi)$ under the canonical surjection.\par
-        $c(f)=1$ implies that there exists $i$ such that $a_i\neq 0$. Therefore, $\varphi(f)\neq 0$. Similarly, $c(g)=1$ implies that $\varphi(g)\neq 0$. It follows that $\varphi(fg)=\varphi(f)\varphi(g)$. Since $R/(\pi)$ is an integral domain and thus contains no zero divisors, we know that $\varphi(fg)=\varphi(f)\varphi(g)\neq 0$. It follows that $\pi\nmid c(fg)$. This is true for all irreducible $\pi\in R$. Indeed, it follows that $c(fg)=1$.
+        In words, the ring homomorphism takes any input polynomial and reduces all of its coefficients modulo $p$. Moving on, $c(f)=1$ implies that there exists $i$ such that $\bar{a}_i\neq 0$ (if $c(f)=\pi$, for instance, then all $\bar{a}_i=0$). Therefore, $\varphi(f)\neq 0$. Similarly, $c(g)=1$ implies that $\varphi(g)\neq 0$. It follows since $R/(\pi)$ is an integral domain and thus contains no zero divisors that $\varphi(fg)=\varphi(f)\varphi(g)\neq 0$. Consequently, $\pi\nmid c(fg)$ (again, if $\pi\mid c(fg)$, then all coefficients would be divisible by $\pi$, hence would be equivalent to 0 mod $\pi$, hence $\varphi(fg)$ would equal 0). Clearly, this argument holds for any $\pi\in R$ irreducible. Thus, since $c(fg)$ is not divisible by any element of $R$, we must have that $c(fg)=1$.
     \end{proof}
     \item This proof can be done by brute force without quotient rings, and elegantly with quotient rings. \textcite{bib:DummitFoote} does both and we should check this out. The above is Nori's cover of just the latter, elegant argument.
     \item Let $K$ be the fraction field of $R$. We know that $K[X]$ is a PID (hence a UFD, etc.). The primes are the irreducible monic polynomials. Let $g=a_0+a_1X+\cdots+a_{d-1}X^{d-1}+X^d\in K[X]$ be monic. Then there exists a nonzero $\alpha\in R$ such that $R[X]\subset K[X]$. It follows that $a_i=\alpha_i/\beta_i$ for some $\alpha_i,\beta_i\in R$ with $\beta_i\neq 0$ since $K=\Frac R$.
@@ -218,6 +235,7 @@
             \begin{itemize}
                 \item Consider $X^2-1/4\in\Q[X]$. This polynomial reduces to $(X-1/2)(X+1/2)$. Thus, taking $n=4$, $4X^2-1$ is still reducible in $\Z[X]$ as it equals $(2X-1)(2X+1)$.
                 \item Consider $X^2-1/3\in\Q[X]$. This polynomial reduces to $(X-1/\sqrt{3})(1+1/\sqrt{3})$ in $\R[X]$, but is irreducible in $\Q[X]$. Thus, taking $n=3$, $3X^2-1$ is still irreducible in $\Z[X]$.
+                \item This is the logic underlying Proposition \ref{prp:9.5}.
             \end{itemize}
             \item If $\deg(f)=0$, then $f$ is irreducible in $\Z[X]$ iff $f$ is a prime integer.
         \end{itemize}
@@ -239,7 +257,7 @@
         \item If $aX+b\mid f$, then $a\mid a_0$ and $b\mid a_n$.
         \item We know that $a_0>0$ by the definition of the $X^n$ term as the leading term. It may be either way with $a_n$.
         \begin{itemize}
-            \item For the sake of continuing, we will assume that $a_n\neq 0$. Why??
+            \item For the sake of continuing, we will assume that $a_n\neq 0$. Why?? Perhaps because then we would have $b=0$ in one monomial and 0 doesn't divide anything?
             \item We also assume that $\gcd(a,b)=1$.
         \end{itemize}
         \item Because of the above constraint, we know that
@@ -449,6 +467,413 @@
         \item The rest is the other case. As an additive group, we have it as a decomposition into the direct sum of two vector spaces $\F_p\gen{1}\oplus\F_p\gen{\theta}$. Now we just need to pin down $\theta^2=\alpha\theta+\beta$. If $p\neq 2$, then division exists, so $\theta'=\theta-\alpha/2$. Then $\theta'^2=\gamma\in\F_p$. If you bash it out, then the linear $\alpha/2$ term cancels. We want to say that there's only three different $\gamma$s. We can change $\gamma$ by scalars. $\gamma$ matters up to $(\F_p^\times)^2$. Case 1: $\gamma=0$. Second case: $\gamma$ is a square (so pick $\gamma=1$). Third case: $\gamma$ is nonzero and not a square. Because any square is the same, there's only one case there. Three cases correspond to $\F_p[X]/X^2$, $(\F_p^\times)^2$, and $\F_{p^2}$. $X^2-c$ is irreducible in this last case. So take $\F_p[X]/(X^2-c)$. Irreducible in a PID implies prime implies maximal implies $\F_p[X]/(X^2-c)$ is a field.
         \item A small number of people did it a cleaner way: We know we have a map from $\F_p[X]\to R$ by the universal property that sends $X\mapsto\theta$ and $\theta\notin i(\F_p)$. By the FIT, $\F_p[X]/(\ker\phi)\cong R$. For size reasons, $\ker\phi$ must be a quadratic. There are three cases then for a quadratic $X^2+aX+b$: Irreducible, reducible to a product of two distinct factors, reducible to a square. These are analogous to the other cases in the other method. This is a nicer way of doing it since there's often a feeling in algebra like it's just definition upon definition, but this allows us to use some of the "algebra" we remember from high school!
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 9: Polynomial Rings}
+\emph{From \textcite{bib:DummitFoote}.}
+\setcounter{bookch}{9}
+\subsection*{Section 9.1: Definitions and Basic Properties}
+\begin{itemize}
+    \item \marginnote{2/5:}Review of the definitions of \textbf{polynomial rings}, \textbf{formal sums}, \textbf{degrees}, \textbf{leading terms}, \textbf{leading coefficients}, \textbf{monic} polynomials, and polynomial \textbf{addition} and \textbf{multiplication}.
+    \item Restatement of Proposition \ref{prp:7.4}.
+    \begin{proposition}\label{prp:9.1}
+        Let $R$ be an integral domain and let $p(X),q(X)$ be nonzero elements of $R[X]$. Then
+        \begin{enumerate}
+            \item $\deg p(X)q(X)=\deg p(X)+\deg q(X)$;
+            \item The units of $R[X]$ are just the units of $R$;
+            \item $R[X]$ is an integral domain.
+        \end{enumerate}
+    \end{proposition}
+    \item Recall that the quotient field of $R[X]$ is the field of rational functions in $X$ with coefficients in $R$.
+    \item Relating the ideals of $R$ and $R[X]$.
+    \begin{proposition}\label{prp:9.2}
+        Let $I$ be an ideal of the ring $R$, and let $(I)=I[X]$ denote the ideal of $R[X]$ generated by $I$ (the set of polynomials with coefficients in $I$). Then
+        \begin{equation*}
+            R[X]/(I) \cong (R/I)[X]
+        \end{equation*}
+        In particular, if $I$ is a prime ideal of $R$, then $(I)$ is a prime ideal of $R[X]$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item $I\subset R$ maximal $\nRightarrow$ $(I)\subset R[X]$ maximal.
+    \item However, $I\subset R$ maximal $\Rightarrow$ $(I,X)\subset R[X]$ maximal.
+    \item Example.
+    \begin{enumerate}
+        \item $R=\Z$ and $I=n\Z$.
+        \begin{itemize}
+            \item The "reduction homomorphism" is given by reducing the coefficients of polynomials in $\Z[X]$ modulo $n$.
+            \item If $n$ is composite, then $\Z[X]/(n\Z)=\Z[X]/n\Z[X]$ is not an integral domain.
+            \item If $p$ is prime, then $\Z[X]/(p\Z)$ is an integral domain --- and in fact an ED as well.
+            \item Additionally, $p\Z[X]\subset\Z[X]$ is a prime ideal.
+        \end{itemize}
+    \end{enumerate}
+    \item We now introduce polynomial rings in several variables.
+    \item \textbf{Polynomial ring} (in the variables $X_1,\dots,X_n$ with coefficients in $R$): The ring defined inductively as follows. \emph{Denoted by} $\bm{R[X_1,\ldots,X_n]}$. \emph{Given by}
+    \begin{equation*}
+        R[X_1,\dots,X_n] = R[X_1,\dots,X_{n-1}][X_n]
+    \end{equation*}
+    \begin{itemize}
+        \item Interpretation: Polynomials in $n$ variables with coefficients in $R$ are just "polynomials in \emph{one} variable but now with coefficients that are themselves \emph{polynomials in $n-1$ variables}" \parencite[296-97]{bib:DummitFoote}.
+        \item Such a polynomial is a finite sum of nonzero \textbf{monomial terms}.
+    \end{itemize}
+    \item \textbf{Monomial term}: A term of the following form, where $a\in R$ is the \textbf{coefficient} of the term and the $d_i\in\Zg$. \emph{Also known as} \textbf{term}. \emph{Given by}
+    \begin{equation*}
+        aX_1^{d_1}\cdots X_n^{d_n}
+    \end{equation*}
+    \item \textbf{Monomial}: A monic term of the above form. \emph{Given by}
+    \begin{equation*}
+        X_1^{d_1}\cdots X_n^{d_n}
+    \end{equation*}
+    \item \textbf{Monomial part} (of a term): The part $X_1^{d_1}\cdots X_n^{d_n}$ of a term $aX_1^{d_1}\cdots X_n^{d_n}$.
+    \item \textbf{Degree} (in $X_i$ of a term): The exponent $d_i$.
+    \item \textbf{Degree} (of a term): The quantity defined as follows. \emph{Denoted by} $\bm{d}$. \emph{Given by}
+    \begin{equation*}
+        d = d_1+\cdots+d_n
+    \end{equation*}
+    \item \textbf{Multidegree} (of a term): The ordered $n$-tuple of the following form, where the term corresponds to a nonzero polynomial in $n$ variables. \emph{Given by}
+    \begin{equation*}
+        (d_1,\dots,d_n)
+    \end{equation*}
+    \item \textbf{Degree} (of a nonzero polynomial): The largest degree of any of its terms.
+    \item \textbf{Homogeneous} (polynomial): A polynomial in which all terms have the same degree. \emph{Also known as} \textbf{form}.
+    \item \textbf{Homogeneous component} (of $f$ of degree $k$): The sum of all the monomial terms in $f$ of degree $k$, where $f$ is a nonzero polynomial in $n$ variables. \emph{Denoted by} $\bm{f_k}$.
+    \item To define a polynomial ring in an arbitrary number of variables with coefficients in $R$, we can take the union of all the polynomial rings in a finite number of variables.
+    \begin{itemize}
+        \item \textcite{bib:DummitFoote} also discusses another way to define such a ring using homogeneous components.
+    \end{itemize}
+    \item \textcite{bib:DummitFoote} gives an example in which all of the terms above are used.
+    \item Each statement in Proposition \ref{prp:9.1} is true for polynomial rings with an arbitrary number of variables.
+    \begin{itemize}
+        \item To see this, just induct.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 9.2: Polynomial Rings Over Fields I}
+\begin{itemize}
+    \item Herein, we focus on polynomial rings of the form $F[X]$, where $F$ denotes a field.
+    \item \textcite{bib:DummitFoote} choose a different norm on $F[X]$ than Nori; they choose $N(p)=\deg(p)$ and $N(0)=0$.
+    \item Polynomial division.
+    \begin{theorem}\label{trm:9.3}
+        Let $F$ be a field. The polynomial ring $F[X]$ is a Euclidean Domain. Specifically, if $a(X)$ and $b(X)$ are two polynomials in $F[X]$ with $b(X)$ nonzero, then there are \emph{unique} $q(X),R(X)\in F[X]$ such that
+        \begin{equation*}
+            a(X) = q(X)b(X)+r(X)
+        \end{equation*}
+        with $r(X)=0$ or $\deg r<\deg b$.
+        \begin{proof}
+            Given (see Lecture 3.1).\par
+            Differences between the two version: The in-class one does not assume that the coefficients lie in a field, and thus divisors are taken to be monic therein. Otherwise, the arguments are identical.
+        \end{proof}
+    \end{theorem}
+    \item Further relating $F[X]$ to the terms from Chapter 8.
+    \begin{corollary}\label{cly:9.4}
+        If $F$ is a field, then $F[X]$ is a PID and a UFD.
+        \begin{proof}
+            Follows from Theorem \ref{trm:9.3}, Proposition \ref{prp:8.1}, and Theorem \ref{trm:8.14}.
+        \end{proof}
+    \end{corollary}
+    \item Examples.
+    \begin{enumerate}
+        \item $\Z[X]$ is not a PID.
+        \begin{itemize}
+            \item Recall $(2,X)$.
+        \end{itemize}
+        \item $\Q[X]$ is a PID.
+        \begin{itemize}
+            \item Here, $(2,X)=(1)=\Q[X]$.
+        \end{itemize}
+        \item $\Z/p\Z[X]$ is a PID.
+        \begin{itemize}
+            \item Takeaway: The quotient of a ring that is \emph{not} a PID \emph{may} be a PID, itself.
+            \item Example: $(2,X)$ becomes $(X)$ when $p=2$, and $(1)$ when $p\neq 2$.
+        \end{itemize}
+        \item $\Q[X,Y]$ is not a PID.
+        \begin{itemize}
+            \item $\Q[X,Y]=\Q[X][Y]$, and $\Q[X]$ is not a field.
+            \item $(X,Y)$ is not principal.
+        \end{itemize}
+    \end{enumerate}
+    \item The quotient and remainder of Theorem \ref{trm:9.3} are independent of field extensions.
+    \begin{itemize}
+        \item Suppose $F\subset E$ are both fields. Divide $a$ by $q$ in both $F[X]$ and $E[X]$. Applying the uniqueness condition in $E[X]$, we get that there is only one factorization in $E[X]$, which must be the same as the one in $F[X]\subset E[X]$.
+        \item It follows that $\gcd(a,b)$ is the same in both $F[X],E[X]$, since the gcd is obtained from the Euclidean Algorithm.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 9.3: Polynomial Rings That Are Unique Factorization Domains}
+\begin{itemize}
+    \item Allowing fractional coefficients makes calculations in $R[X]$ much nicer.
+    \begin{itemize}
+        \item We know that $R\subset\Frac R=F$ for any integral domain $R$.
+        \item It follows by Theorem \ref{trm:9.3} that $F[X]$ is an ED, hence a PID and a UFD.
+        \item Thus, it is very nice to perform calculations on $R[X]$ in its containing ring $F[X]$.
+        \item We spend this section specifying how computations (e.g., factorizations of polynomials) in $F[X]$ can give information about $R[X]$.
+    \end{itemize}
+    \item $R$ a UFD is a \emph{necessary} condition for $R[X]$ to be a UFD.
+    \begin{itemize}
+        \item Suppose that $R[X]$ is a UFD.
+        \item Then any $r\in R\subset R[X]$ has a unique factorization in terms of the irreducibles of $R[X]$, specifically those of degree 0 (i.e., in $R$) since $\deg(r)=0$. Thus, $r$ has a unique factorization, and $R$ must be a UFD.
+    \end{itemize}
+    \item We now build up to proving that $R$ being a UFD is also a \emph{sufficient} condition for $R[X]$ to be a UFD.
+    \begin{itemize}
+        \item Sketch: To do so, we'll factor in $F[X]$ and then "clear denominators."
+    \end{itemize}
+    \item We begin by comparing the factorization of a polynomial in $F[X]$ to a factorization in $R[X]$.
+    \begin{proposition}[Gauss' Lemma]\label{prp:9.5}
+        Let $R$ be a UFD with $\Frac R=F$, and let $p\in R[X]$. If $p$ is reducible in $F[X]$, then $p$ is reducible in $R[X]$. More precisely, if $p=AB$ for some nonconstant polynomials $A,B\in F[X]$, then there are nonzero elements $r,s\in F$ such that $rA=a$ and $sB=b$ both lie in $R[X]$ and $p=ab$ is a factorization in $R[X]$.
+        \begin{proof}
+            The coefficients of $A,B$ lie in $F$. Let $d$ be a common denominator\footnote{We may choose the \emph{greatest} common denominator, but we don't need to in this case.} of these coefficients. Then
+            \begin{equation*}
+                dp = a'b'
+            \end{equation*}
+            where $a',b'\in R[X]$. If $d\in R^\times$, then the proposition is true with $a=d^{-1}a'$ and $b=b'$. If $d\notin R^\times$, then we continue.\par
+            Since $d\notin R^\times$, we may write $d=p_1\cdots p_n$ as a product of irreducibles in $R$. By Proposition \ref{prp:8.12}, $p_1$ irreducible implies $p_1$ prime. Thus, by Proposition \ref{prp:9.2}, $p_1R[X]$ is prime in $R[X]$. Consequently, by Proposition \ref{prp:7.13}, $(R/p_1R)[X]\cong R[X]/p_1R[X]$ is an integral domain. Reducing the equation modulo $p_1$ yields
+            \begin{equation*}
+                0 = \overline{a'}\cdot\overline{b'}
+            \end{equation*}
+            Moreover, since $(R/p_1R)[X]$ is an integral domain, at least one of $\overline{a'},\overline{b'}$ is zero. Suppose that $\overline{a'}=0$. Then the coefficients of $a'$ are congruent to 0 modulo $p_1$, i.e., are divisible by $p_1$ so that $\frac{1}{p_1}a'$ has coefficients in $R$. Since $p_1\mid d$ by definition as well, we can divide $p_1$ from both sides of $dp=a'b'$ to obtain an equation in which every term still has coefficients in $R$. Iterating the process allows us to cancel out all of the factors of $d$, leaving an equation $p=ab$ with $a,b\in R[X]$ and $a,b$ being $F$-multiples of $A,B$, respectively, as desired.
+        \end{proof}
+    \end{proposition}
+    \item Relation to the Gauss Lemma, as presented in Lecture 5.1.
+    \begin{itemize}
+        \item If the gcd of the coefficients of $fg$ is 1, then $fg\in R[X]$. Nori's Gauss Lemma proves that the coefficients of $fg$ being in $R[X]$ imply that the coefficients of both $f,g$ are only divisible by 1, i.e., are in $R[X]$ as well.
+        \item Essentially, Nori's Gauss lemma skips the whole business with fraction fields and just goes straight from polynomials in $R[X]$ to reducibility in $R[X]$.
+        \item Nori's version probably is better and more powerful.
+        \item Perhaps it's a bit like Proposition \ref{prp:9.5} rolls Nori's version, Claim 1, and Claim 2 from class all into one statement.
+    \end{itemize}
+    \item Example:
+    \begin{itemize}
+        \item Let $R=\Q$, $F=\Q$.
+        \item Consider $p(X)=2X^2+7X+3\in\Z[X]$.
+        \item We know that $p$ is reducible in $\Q[X]$. In particular, we have that
+        \begin{equation*}
+            p(X) = (X+\tfrac{1}{2})(2X+6)
+        \end{equation*}
+        \item Choose 2 as a common denominator. Then we have
+        \begin{equation*}
+            2p(X) = (2X+1)(2X+6)
+        \end{equation*}
+        which is a factorization of $2p$ in $\Z[X]$.
+        \item The prime factorization of $d$ is just $2$. Reducing the coefficients above modulo 2, we get
+        \begin{equation*}
+            0 = (0X+1)(0X+0) = 1\cdot 0
+        \end{equation*}
+        \item Evidently, $2X+6$ has coefficients which are divisible by 2, so we may take $\frac{1}{2}(2X+6)$ to get
+        \begin{equation*}
+            p(X) = (2X+1)(X+3)
+        \end{equation*}
+    \end{itemize}
+    \item The only difference between the irreducible elements in $R[X]$ and $F[X]$: That all elements of $R$ become units in the UFD $F[X]$, so (for example) $7X=7\cdot X$ in $\Z[X]$, but $7X$ is irreducible in $\Q[X]$.
+    \begin{corollary}\label{cly:9.6}
+        Let $R$ be a UFD, left $F=\Frac R$, and let $p\in R[X]$. Suppose that the gcd of the coefficients of $p$ is 1. Then $p$ is irreducible in $R[X]$ iff it is irreducible in $F[X]$. In particular, if $p$ is a monic polynomial that is irreducible in $R[X]$, then $p$ is irreducible in $F[X]$.
+        \begin{proof}
+            We prove this claim via double contrapositives.\par
+            Suppose first that $p$ is reducible in $F[X]$. Then by \hyperref[prp:9.5]{Gauss' Lemma}, $p$ is reducible in $R[X]$.\par
+            Now suppose that $p$ is reducible in $R[X]$. Then $p=ab$ for some $a,b\in R[X]$. Moreover, neither $a$ nor $b$ is constant as if (say $a$) were, then the assumption that the gcd of its coefficients is 1 would imply that $a=1$, itself, i.e., $a$ is a unit, contradicting the statement that $ab$ is a factorization of $p$. This same factorization proves that $p$ is reducible in $F$.
+        \end{proof}
+    \end{corollary}
+    \item We can now prove the result we've been building up toward.
+    \begin{theorem}\label{trm:9.7}
+        $R$ is a UFD iff $R[X]$ is a UFD.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Extending Theorem \ref{trm:9.7} to multivariable polynomials.
+    \begin{corollary}\label{cly:9.8}
+        If $R$ is a UFD, then a polynomial ring in an arbitrary number of variables with coefficients in $R$ is also a UFD.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Examples.
+    \begin{enumerate}
+        \item $\Z[X]$ and $\Z[X,Y]$ are UFDs.
+        \begin{itemize}
+            \item As mentioned earlier, $\Z[X]$ is a UFD that is not a PID.
+        \end{itemize}
+        \item $\Q[X]$, $\Q[X,Y]$, etc. are UFDs.
+    \end{enumerate}
+    \item "A nonconstant monic polynomial\dots is irreducible if and only if it cannot be factored as a product of two monic polynomials of smaller degree" \parencite[306]{bib:DummitFoote}.
+    \item Polynomials that are irreducible in $R[X]$ for $R$ an arbitrary \emph{integral domain} are not necessarily irreducible in $(\Frac R)[X]$.
+    \begin{itemize}
+        \item \textcite{bib:DummitFoote} justifies this using an example with quadratic integer rings.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 9.4: Irreducibility Criteria}
+\begin{itemize}
+    \item \textbf{Irreducibility criterion}: An easy mechanism for determining when some types of polynomials are irreducible.
+    \begin{itemize}
+        \item Simplify the typically laborious process of checking for factors.
+    \end{itemize}
+    \item \textbf{Linear} (factor): A factor of degree 1.
+    \item \textbf{Root} (in $F$ of $p\in F[X]$): An $\alpha\in F$ with $p(\alpha)=0$.
+    \item When is there a linear factor?
+    \begin{proposition}\label{prp:9.9}
+        Let $F$ be a field and let $p\in F[X]$. Then $p$ has a factor of degree one iff $p$ has a root in $F$.
+        \begin{proof}
+            Given (related to the example following the in-class proof of the Euclidean algorithm for monic polynomials in Lecture 3.1).
+        \end{proof}
+    \end{proposition}
+    \item Reducibility in polynomials of small degree.
+    \begin{proposition}\label{prp:9.10}
+        A polynomial of degree two or three over a field $F$ is reducible iff it has a root in $F$.
+        \begin{proof}
+            Given (see the argument under "Factorization by monomials" in Lecture 5.2).
+        \end{proof}
+    \end{proposition}
+    \item Possible roots of polynomials with integer coefficients.
+    \begin{proposition}\label{prp:9.11}
+        Let $p(X)=a_nX^n+\cdots+a_0$ be a polynomial of degree $n$ with integer coefficients. If $r/s\in\Q$ is in lowest terms (i.e., $(r,s)=1$ or $r,s$ are relatively prime) and $r/s$ is a root of $p(X)$, then $r$ divides the constant term and $s$ divides the leading coefficient of $p$:
+        \begin{align*}
+            r &\mid a_0&
+            s &\mid a_n
+        \end{align*}
+        In particular, if $p$ is a monic polynomial with integer coefficients and $p(d)\neq 0$ for all integers $d$ dividing the constant term of $p$, then $p$ has no roots in $\Q$.
+        \begin{proof}
+            Given (also related to the "Factorization by monomials" discussion from Lecture 5.2).
+        \end{proof}
+    \end{proposition}
+    \item Note that Proposition \ref{prp:9.11} generalizes to $R[X]$ for any UFD $R$.
+    \item Examples.
+    \begin{enumerate}
+        \item $X^3-3X-1$ is irreducible in $\Z[X]$.
+        \begin{itemize}
+            \item \hyperref[prp:9.5]{Gauss' Lemma}: To prove that it is irreducible in $\Z[X]$, it will suffice to show that it is irreducible in $\Q[X]$.
+            \item Proposition \ref{prp:9.10}: To show that it is irreducible in $\Q[X]$, it will suffice to show that it has no roots in $\Q$.
+            \item Proposition \ref{prp:9.11}: The only possible roots are the integers which divide the constant term 1, i.e., $\pm 1$.
+            \item Since
+            \begin{align*}
+                (1)^3-3(1)-1 &= -3 \neq 0&
+                (-1)^3-3(-1)-1 &= 1 \neq 0
+            \end{align*}
+            we have the desired result.
+        \end{itemize}
+        \item $X^2-p$ and $X^3-p$ are irreducible in $\Q[X]$ for any prime $p$.
+        \begin{itemize}
+            \item Use the same strategy as above.
+            \item This is very related to my $X^2-1/4$ and $X^2-1/3$ example from Lecture 5.2, since 3 is prime and this implies irreducibility in $\Q[X]$.
+        \end{itemize}
+        \item $X^2+1$ is reducible in $\Z/2\Z[X]$.
+        \item $X^2+X+1$ is irreducible in $\Z/2\Z[X]$.
+        \item $X^3+X+1$ is irreducible in $\Z/2\Z[X]$.
+    \end{enumerate}
+    \item Treating higher degree polynomials.
+    \begin{proposition}\label{prp:9.12}
+        Let $I$ be a proper ideal in the integral domain $R$ and let $p$ be a nonconstant monic polynomial in $R[X]$. If the image of $p$ in $(R/I)[X]$ cannot be factored in $(R/I)[X]$ into two polynomials of smaller degree, then $p$ is irreducible in $R[X]$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item This technique is not a be-all/end-all: "There are examples of polynomials even in $\Z[X]$ which are irreducible but whose reductions modulo every ideal are reducible (so their irreducibility is not detectable by this technique)" \parencite[309]{bib:DummitFoote}.
+    \item Examples.
+    \begin{enumerate}[start=0]
+        \item $X^4+1$ is irreducible in $\Z[X]$ but reducible modulo every prime (see Chapter 14 for a proof of this). $X^4-72X^2+4$ is irreducible in $\Z[X]$ but is reducible modulo every integer.
+        \item Using Proposition \ref{prp:9.12} to treat $X^2+X+1$ and $X^3+X+1$ again.
+        \item The converse to Proposition \ref{prp:9.12} does not hold: $X^2+1$ is irreducible in $\Z[X]$ since is is irreducible in $\Z/2\Z[X]$ but it reducible mod 2.
+        \item We can reduce modulo ideals in multivariable cases \emph{to an extent}.
+        \begin{itemize}
+            \item Some nonunit polynomials can reduce to units modulo certain ideals, creating challenges.
+        \end{itemize}
+    \end{enumerate}
+    \item A special case of reducing modulo an ideal to test for irreducibility.
+    \begin{proposition}[Eisenstein's Criterion]\label{prp:9.13}
+        Let $P$ be a prime ideal of the integral domain $R$, and let $f(X)=X^n+a_{n-1}X^{n-1}+\cdots+a_0$ be a polynomial in $R[X]$ (here, $n\geq 1$). Suppose $a_{n-1},\dots,a_0$ are all elements of $P$ and suppose $a_0$ is not an element of $P^2$. Then $f$ is irreducible in $R[X]$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item This method is in frequent use.
+    \begin{itemize}
+        \item Note that it was originally proven by Sch\"{o}nemann, so it is more properly known as the \textbf{Eisenstein-Sch\"{o}nemann Criterion}.
+    \end{itemize}
+    \item Eisenstein's criterion is most frequently applied to $\Z[X]$, so we state that special case separately.
+    \begin{corollary}[{Eisenstein's Criterion for $\Z[X]$}]\label{cly:9.14}
+        Let $p$ be a prime in $\Z$ and let $f(X)=X^n+a_{n-1}X^{n-1}+\cdots+a_0\in\Z[X]$, $n\geq 1$. Suppose $p$ divides $a_i$ for all $i\in\{0,1,\dots,n-1\}$ but that $p^2$ does not divide $a_0$. Then $f$ is irreducible in both $\Z[X]$ and $\Q[X]$.
+        \begin{proof}
+            Follows from Proposition \ref{prp:9.13} and Corollary \ref{cly:9.6}.
+        \end{proof}
+    \end{corollary}
+    \item Example applications of \hyperref[prp:9.13]{Eisenstein's Criterion}.
+    \item There are now efficient algorithms for factoring polynomials over certain fields.
+    \begin{itemize}
+        \item Moreover, many of these are now available as computer packages.
+    \end{itemize}
+    \item \textbf{Berlekamp Algorithm}: An efficient algorithm for factoring polynomials over $\F_p$.
+    \begin{itemize}
+        \item Described in detail in the exercises at the end of Section 14.3.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 9.5: Polynomial Rings Over Fields II}
+\begin{itemize}
+    \item Additional results for the one-variable polynomial ring $F[X]$.
+    \begin{proposition}\label{prp:9.15}
+        The maximal ideals in $F[X]$ are the ideals $(f)$ generated by irreducible polynomials $f$. In particular, $F[X]/(f)$ is a field iff $f$ is irreducible.
+        \begin{proof}
+            Apply Propositions \ref{prp:8.10} and \ref{prp:8.7} to the PID $F[X]$.
+        \end{proof}
+    \end{proposition}
+    \begin{proposition}\label{prp:9.16}
+        Let $g$ be a nonconstant element of $F[X]$, and let $g(X)=f_1(X)^{n_1}\cdots f_k(X)^{n_k}$ be its factorization into irreducibles, where the $f_i$ are distinct. Then we have the following isomorphism of rings.
+        \begin{equation*}
+            F[X]/(g) \cong F[X]/(f_1^{n_1})\times\cdots\times F[X]/(f_k^{n_k})
+        \end{equation*}
+        \begin{proof}
+            Follows from the \hyperref[trm:7.17]{Chinese Remainder Theorem}.
+        \end{proof}
+    \end{proposition}
+    \begin{proposition}\label{prp:9.17}
+        If the polynomial $f$ has roots $\alpha_1,\dots,\alpha_k$ in $F$ (not necessarily distinct), then $f$ has $(x-\alpha_1)\cdots(x-\alpha_k)$ as a factor. In particular, a polynomial of degree $n$ in one variable over a field $F$ has at most $n$ roots in $F$, even counted with multiplicity.
+        \begin{proof}
+            First statement: Induct. Second statement: $F[X]$ is a UFD (Corollary \ref{cly:9.4}).
+        \end{proof}
+    \end{proposition}
+    \begin{proposition}\label{prp:9.18}
+        A finite subgroup of the multiplicative group of a field is cyclic. In particular, if $F$ is a finite field, then the multiplicative group $F^\times$ of nonzero elements of $F$ is a cyclic group.
+        \begin{proof}
+            Given; relies on more group theory than I covered in Honors Algebra I.
+        \end{proof}
+    \end{proposition}
+    \begin{corollary}\label{cly:9.19}
+        Let $p$ be a prime. The multiplicative group $(\Z/p\Z)^\times$ of nonzero residue classes mod $p$ is cyclic.
+        \begin{proof}
+            This is the multiplicative group of the finite field $\Z/p\Z$, so apply Proposition \ref{prp:9.18}.
+        \end{proof}
+    \end{corollary}
+    \begin{corollary}\label{cly:9.20}
+        Let $n\geq 2$ be an integer with factorization $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ in $\Z$, where $p_1,\dots,p_r$ are distinct primes. We have the following isomorphisms of multiplicative groups.
+        \begin{enumerate}
+            \item $(\Z/n\Z)^\times\cong(\Z/p_1^{\alpha_1}\Z)^\times\times\cdots\times(\Z/p_r^{\alpha_r}\Z)^\times$.
+            \item $(\Z/2^\alpha\Z)^\times$ is the direct product of a cyclic group of order 2 and a cyclic group of order $2^{\alpha-2}$ for all $\alpha\geq 2$.
+            \item $(\Z/p^\alpha\Z)^\times$ is a cyclic group of order $p^{\alpha-1}(p-1)$ for all odd primes $p$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Note that Corollary \ref{cly:9.20} gives the group-theoretic structure of the automorphism group of the cyclic group of order $n$ since $\Aut(Z_n)=\cong(\Z/n\Z)^\times$.
+\end{itemize}
+
+
+\subsection*{Section 9.6: Polynomials in Several Variables Over a Field and Gr\"{o}bner Bases}
+\begin{itemize}
+    % \item Definitions and first 2 results good to have, esp. finitely generated ideals in polynomial rings.
+    % \item Don't need all the stuff on leading terms in a multivariable polynomial, though perhaps I'll list the key words defined, Buchberger's criterion.
+    % \item Don't think I need the results past the definition of a Grobner basis.
+    \stepcounter{proposition}
+    \item A potentially useful result.
+    \begin{corollary}\label{cly:9.22}
+        Every ideal in the polynomial ring $F[X_1,\dots,X_n]$ with coefficients from a field $F$ is finitely generated.
+    \end{corollary}
+    \item Everything else is unquestionably beyond the scope of this class.
 \end{itemize}
 
 
