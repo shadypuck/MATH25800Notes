@@ -159,5 +159,93 @@
 
 
 
+\section{Office Hours (Nori)}
+\begin{itemize}
+    \item Is the final cumulative? Will we ever be responsible for the Week 5 material?
+    \begin{itemize}
+        \item Stuff from Week 5 and this lecture may show up in terms of thought processes you need to go through again, but the exact stuff won't show up. And certainly not on Wednesday's midterm.
+        \item The midterm will test who is thinking correctly and who can write proper proofs; there will only be one proof problem, most likely.
+        \item Several T/F questions.
+        \item If $R[X]$ is a UFD, prove that $R$ is a UFD.
+        \item The two Lecture 5.2 methods are important to know (e.g., for the final).
+    \end{itemize}
+    \item Review questions email?
+    \begin{itemize}
+        \item Looking at the \emph{fourth week summary} and the problems in there will help you prepare for your midterm.
+        \item That may be too strong a statement, but it might be nice.
+        \item The gcd of two elements in a PID is just found by looking for a generator. Study this!! Nori wants to put a problem on it.
+    \end{itemize}
+    \item Lecture 3.1: What is $\bar{X}$ in a quotient ring with a degree 1 or 0 polynomial divisors?
+    \begin{itemize}
+        \item It is an abrupt and jumpy transition from degree 1 to 0.
+        \item For degree $n=0$, we have a natural homomorphism from $\Z/2\Z[X]$ to $\Z[X]/(2)$.
+        \item For degree $n\geq 2$ in the ideal, we have a new polynomial that's solvable.
+        \item For degree $n=1$, we get dyadics or something like that.
+        \item What about $(2X)$? It's kind of in between the $n=1$ and $n=0$ cases. We have an injection
+        \begin{equation*}
+            \Z[X]/(2X) \hookrightarrow \Z[X]/(2)\times\Z[X]/(X)
+            \cong \F_2[X]\times\Z
+        \end{equation*}
+        \begin{itemize}
+            \item We also have a ring homomorphism from $F_2[X]\times\Z\to\F_2\times\F_2$ defined by evaluation in the first slot and then $f(0)$ in the next.
+            \item But $(\F_2[X]\times\Z)/(\Z[X]/(2X))\cong\F_2$. This conjugacy only happens as groups, though.
+            \item To get down to one element, you can prove that $\Z[X]/(2X)\cong\Delta^{-1}(\F_2)$ where $\Delta$ is the diagonal.
+        \end{itemize}
+    \end{itemize}
+    \item Lecture 4.1: Showing $r\in I$ in this way would not be acceptable in the HW?
+    \begin{itemize}
+        \item Probably a misstatement.
+    \end{itemize}
+    \item Lecture 4.2: Incomplete statement on what's all important to prove that something is a UFD.
+    \begin{itemize}
+        \item It's all important to prove that irreducibles are prime. This is equivalent to $R$ being a UFD.
+    \end{itemize}
+    \item Lecture 4.2: The whole essay thing and the greatest common divisors being well-defined.
+    \begin{itemize}
+        \item This is just talking about the algorithm for finding the gcd via factorization.
+    \end{itemize}
+    \item Section 8.3: Using the Axiom of Choice in the construction of the infinite chain?
+    \begin{itemize}
+        \item Nori never gives much thought to such matters lol.
+        \item You're doing something infinitely many times, but via induction so countably so. Thus, use a countable Axiom of Choice. So it is an Axiom of Choice, but a limited one, too.
+    \end{itemize}
+    \item Lecture 5.1: Conversely statement.
+    \begin{itemize}
+        \item Statement (*) provides a "factorization." But for us to know that it actually is a \emph{factorization}, we need to know that each $\pi\in\mathcal{P}(R)$ is, in fact, irreducible. We do that as follows.
+        \item Suppose that $\pi=ab$ is a factorization of an irreducible element. By statement (*), write $a=u\pi^{m_0}\pi_1^{m_1}\cdots\pi_h^{m_h}$ and $b=v\pi^{n_0}\pi_1^{n_1}\cdots\pi_h^{n_h}$. It follows that
+        \begin{equation*}
+            \pi^1\pi_1^0\cdots\pi_h^0 = \pi = ab = \pi^{m_0+n_0}\pi_1^{m_1+n_1}\cdots\pi_h^{m_h+n_h}
+        \end{equation*}
+        Thus, $m_i+n_i=0$ ($i=1,\dots,h$), so $m_i,n_i=0$ for these $i$. Additionally, $m_0+n_0=1$, so WLOG let $m_0=1$. Then $n_0=0$ and $b$ is a unit. Therefore, $\pi$ is irreducible.
+    \end{itemize}
+    \item Lecture 5.2: Why do we assume that $a_n\neq 0$?
+    \item Lecture 5.2: Clarification on the end of Method 1.
+    \begin{itemize}
+        \item See Week 5 notes.
+        \item Key takeaway: You want to get a bound; it doesn't matter if it's the best possible bound, but a bound on the coefficients of a monic polynomial implies a bound on the roots.
+    \end{itemize}
+    \item Lecture 5.2: What is going on at the end of Method 2?
+    \item Lecture 5.2: What was the thing about reducing polynomials modulo primes?
+    \item Lecture 6.1: Will we ever consider right $A$-modules?
+    \begin{itemize}
+        \item No --- and going forward, \textbf{$\bm{A}$-module} means "left $A$-module."
+    \end{itemize}
+    \item Lecture 6.1: How long have in-class definitions matched those in the book?
+    \begin{itemize}
+        \item Practically any book has a different definition of EDs. The book has the weakest definition (i.e., that with the Dedekind-Hasse norm). This definition is basically used nowhere, though.
+        \item The \textbf{class group} is a measure of the failure of unique factorizations. This is an example of something that's actually useful.
+        \item Rings, ring homomorphisms, etc. But basically stopped in second week.
+        \item We need the $\phi(1)=1$ property for instance because otherwise the image of 1 might not act like 1 in the product.
+    \end{itemize}
+    \item Lecture 6.1: Axiom of Choice needed to pick an element out of each set?
+    \item Lecture 6.1: What is the direct product a submodule of?
+    \item Lecture 6.1: Is the submodule under the same binary operation as Example?
+    \begin{itemize}
+        \item The direct sum is a submodule of the product.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
