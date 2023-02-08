@@ -53,16 +53,16 @@
     \begin{itemize}
         \item This statement has a clear parallel for every UFD.
     \end{itemize}
-    \item Let $R$ be a UFD, and let $\mathcal{P}(R)\subset R\setminus\{0\}$ be such that\dots
+    \item Let $R$ be a UFD, and let $\mathcal{P}(R)\subset R-\{0\}$ be such that\dots
     \begin{enumerate}[label={(\roman*)}]
         \item Every $\pi\in\mathcal{P}(R)$ is irreducible.
-        \item For all $\alpha\in\R\setminus\{0\}$, $\alpha$ irreducible, there exists a unique $\pi\in\mathcal{P}(R)$ such that $(\alpha)=(\pi)$.
+        \item For all $\alpha\in\R-\{0\}$, $\alpha$ irreducible, there exists a unique $\pi\in\mathcal{P}(R)$ such that $(\alpha)=(\pi)$.
     \end{enumerate}
     \item Statement (*): Every nonzero element $\alpha\in R$ is uniquely expressible as
     \begin{equation*}
         \alpha = u\prod_{\pi\in\mathcal{P}(R)}\pi^{k(\pi)}
     \end{equation*}
-    where $u\in R^\times$ and for all $\pi$, $k(\pi)\in\Zg$ and $|\{\pi\in\mathcal{P}(R)\mid k(\pi)>0\}|$ is finite.
+    where $u\in R^\times$ and for all $\pi$, $k(\pi)\in\Zg$ and $|\{\pi\in\mathcal{P}(R):k(\pi)>0\}|$ is finite.
     \begin{proof}
         $R$ is a UFD implies (*).
     \end{proof}
@@ -110,7 +110,7 @@
         Use the Gauss lemma.
     \end{proof}
     \item Statement (*) holds as a result.
-    \item $\mathcal{P}(R[X])=\mathcal{P}(R)\sqcup\{\tilde{g}\mid g\in K[X]\text{ is monic and irreducible}\}$.
+    \item $\mathcal{P}(R[X])=\mathcal{P}(R)\sqcup\{\tilde{g}:g\in K[X]\text{ is monic and irreducible}\}$.
     \item Claim 3: (*) holds for $\mathcal{P}(R[X])$.
     \begin{proof}
         Scratch: Let $f\in R[X]$ be nonzero. Then $f/\ell(f)\in K[X]$ for each $g_i$ monic and irreducible.\par
@@ -165,7 +165,7 @@
         \item Suppose $R$ is a ring such that $f(X)\in R[X]$ doesn't have a solution. Then it does have a solution in $R[X]/(f(X))$.
         \item We recover $\C$ as a special case of this more general construction, specifically the case where $f(X)=X^2+1$.
     \end{itemize}
-    \item Lecture 3.2: Do I have it right that the only nontrivial ideals of $\Q$ are the diadic numbers, $\Z_{(2)}$, and $(2^n)$? Why is this? What about the triadics, for instance?
+    \item Lecture 3.2: Do I have it right that the only nontrivial ideals of $\Q$ are the dyadic numbers, $\Z_{(2)}$, and $(2^n)$? Why is this? What about the triadics, for instance?
     \begin{itemize}
         \item In $\Z_{(2)}$, the only ideals are of the form $(2^n)$ for some $n$.
     \end{itemize}
@@ -179,7 +179,7 @@
         \item The idea is the irreducible elements of one ring can become reducible in the context of other rings. This is just a specific example; note how $X$ is the only irreducible element in the first ring, but it reduces to $X=(X^{1/2})^2$ in the next ring, and so on.
     \end{itemize}
     \item Lecture 4.3: Speech for PIDs over UFDs?
-    \item Lecture 4.3: $R\setminus\{0\}$ or $R$ is an integral domain.
+    \item Lecture 4.3: $R-\{0\}$ or $R$ is an integral domain.
     \begin{itemize}
         \item Takeaway: You don't need to factor $a,b$ to get their gcd; indeed, you can just find a single generator of $(a,b)$.
     \end{itemize}
@@ -243,11 +243,11 @@
         \item If $f$ is irreducible in $\Q[X]$, then so is $f/\ell(f)$, but now $f/\ell(f)$ is monic.
         \item Consider $f\mapsto f/\ell(f)$. It sends
         \begin{equation*}
-            \{f\in\Z[X]\mid f\text{ is irreducible and }\deg(f)>0\} \to \{\text{monic irreducible polynomials in }\Q[X]\}
+            \{f\in\Z[X]:f\text{ is irreducible and }\deg(f)>0\} \to \{\text{monic irreducible polynomials in }\Q[X]\}
         \end{equation*}
         \item The above is not a bijection as is, but if we treat $\pm f$ as the same, then it is. In other words,
         \begin{equation*}
-            \pm\backslash\{f\in\Z[X]\mid f\text{ is irreducible and }\deg(f)>0\} \cong \{\text{monic irreducible polynomials in }\Q[X]\}
+            \pm\backslash\{f\in\Z[X]:f\text{ is irreducible and }\deg(f)>0\} \cong \{\text{monic irreducible polynomials in }\Q[X]\}
         \end{equation*}
         where the isomorphism is defined as above.
     \end{itemize}
@@ -262,7 +262,7 @@
         \end{itemize}
         \item Because of the above constraint, we know that
         \begin{equation*}
-            \{g\in\Z[X]\mid \deg g=1,\ g\mid f\} \subset \text{known finite set}
+            \{g\in\Z[X]:\deg g=1,\ g\mid f\} \subset \text{known finite set}
         \end{equation*}
         where the latter set consists of all monomials $g$ with $a\mid a_0$ and $b\mid a_n$.
         \item $aX+b\mid f$ in $\Z[X]$ iff $aX+b\mid f$ in $\Q[X]$ iff $f(-b/a)=0$.
@@ -282,7 +282,7 @@
     \item Select $d+1$ distinct integers $c_0,\dots,c_d$.
     \item Easy lemma: Let $c_0,\dots,c_d\in F$ be distinct, and let
     \begin{equation*}
-        P_d = \{g\in F[X]\mid\deg(g)\leq d\}
+        P_d = \{g\in F[X]:\deg(g)\leq d\}
     \end{equation*}
     be a a $(d+1)$-dimensional vector space. Then $T:P_d\to F^{d+1}$ given by
     \begin{equation*}

@@ -19,7 +19,7 @@
     \begin{itemize}
         \item Callum redraws Figure \ref{fig:fracDecomp}.
     \end{itemize}
-    \item Something Callum misstated last time: Diadic refers to 2-adic, not $p$-adic.
+    \item Something Callum misstated last time: Dyadic refers to 2-adic, not $p$-adic.
     \item Corollary: If $f\in R$ is not a zero divisor, then $R_f\cong R[X]/(fX-1)$.
     \begin{itemize}
         \item We can prove this using the universal property; it's on the HW.
@@ -36,7 +36,7 @@
         K \cong \Frac R
     \end{equation*}
     \begin{proof}
-        Background: Consider the injection $R\to F$. It sends every element of $D=R\setminus\{0\}$ to a unit in $F$. Moreover, this function "factors through the fraction field" via Figure \ref{fig:fracDecomp} as per the theorem. We now begin the argument in earnest.\par
+        Background: Consider the injection $R\to F$. It sends every element of $D=R-\{0\}$ to a unit in $F$. Moreover, this function "factors through the fraction field" via Figure \ref{fig:fracDecomp} as per the theorem. We now begin the argument in earnest.\par
         To prove that $K\cong\Frac R$, we will use a bidirectional inclusion proof. For the forward direction, observe that $R\subset\Frac R\subset F$. Therefore, by the definition of $K$, $K\subset\Frac R$, as desired. For the backward direction, let $x/y\in\Frac R$ be arbitrary. To confirm that $x/y\in K$, it will suffice to verify that $x/y\in F'$ for all $R\subset F'\subset F$. Let $F'$ subject to said constraint be arbitrary. Since $x/y\in\Frac R$, $x,y\in R$. It follows since $R\subset F'$ that $x,y\in F'$. Thus, since $F'$ is a field and hence closed under multiplicative inverses, $1/y\in F'$. Finally, since $F'$ is closed under multiplication and $x,1/y\in F'$, we have that $x/y\in F'$, as desired.
     \end{proof}
     \item Example: Let $R=\Z[\sqrt{2}]=\Z[X]/(X^2-2)$. Then
@@ -51,18 +51,22 @@
         \item $h,f\in R$ and $f\neq 0$ implies that there exists $q,r\in R$ such that $h=qf+r$ and $N(r)<N(f)$.
     \end{enumerate}
     \item \textbf{Euclidean domain}: An integral domain on which there exists a norm. \emph{Also known as} \textbf{ED}.
+    \item \textbf{Strongly Euclidean domain}: An ED for which the norm $N$ satisfies the additional constraint (iii) below. \emph{Also known as} \textbf{SED}. \emph{Constraint}
+    \begin{enumerate}[label={(\roman*)},start=3]
+        \item $N(ab)=N(a)N(b)$ for all $a,b\in R$.
+    \end{enumerate}
     \item Theorem: If $R$ is an ED, then $R$ is a PID.
     \begin{proof}
         % Identical to that for polynomials in one variable.
-        % WTS: Let $I\subset R$ is a nonzero ideal. Let $d=\min\{N(a)\mid a\in I\setminus\{0\}\}$ (by assumption nonempty, and hence the min is well defined b/c of well-ordering). Choose $f\in I\setminus\{0\}$ such that $N(f)=d$. Since $I$ is an ideal and $f\in I$, $I\supset Rf$. Now let $h\in I$. Then $h=qf+r$ and $N(r)<N(f)=d$. Additionally, $r=h-qf$ where $h,qf\in I$ so $r\in I$. (Note that showing that $r\in I$ this way would not be acceptable in the HW??) It follows by the definition of $d$ that $r=0$, and hence that $h=qf$, and that's what we wanted to show, i.e., that everything is a multiple of $f$.
+        % WTS: Let $I\subset R$ is a nonzero ideal. Let $d=\min\{N(a):a\in I-\{0\}\}$ (by assumption nonempty, and hence the min is well defined b/c of well-ordering). Choose $f\in I-\{0\}$ such that $N(f)=d$. Since $I$ is an ideal and $f\in I$, $I\supset Rf$. Now let $h\in I$. Then $h=qf+r$ and $N(r)<N(f)=d$. Additionally, $r=h-qf$ where $h,qf\in I$ so $r\in I$. (Note that showing that $r\in I$ this way would not be acceptable in the HW??) It follows by the definition of $d$ that $r=0$, and hence that $h=qf$, and that's what we wanted to show, i.e., that everything is a multiple of $f$.
 
 
         This proof will use an analogous argument to that used in the proof that $F[X]$ is a PID from the end Lecture 3.1. Let's begin.\par
         To prove that $R$ is a PID, it will suffice show that for every ideal $I\subset R$, $I=(f)$ for some $f\in I$. Let $I\subset R$ be arbitrary. Let
         \begin{equation*}
-            d = \min\{N(a)\mid a\in I\setminus\{0\}\}
+            d = \min\{N(a):a\in I-\{0\}\}
         \end{equation*}
-        Pick $f\in I\setminus\{0\}$ such that $N(f)=d$. We will now argue that $I=(f)$ via a bidirectional inclusion proof. In one direction, since $I$ is an ideal, $(f)=Rf\subset I$. In the other direction, let $h\in I$ be arbitrary. Then since $f\neq 0$ by assumption, the hypothesis that $R$ is an ED implies that there exist $q,r\in R$ such that $h=qf+r$ and $N(r)<N(f)$. It follows since $h,qf\in I$ that $r=h-qf\in I$. But since $N(r)<N(f)=d$, $r\in I$ implies by the definition of $d$ that necessarily $N(r)=0$ and hence $r=0$. Therefore, $h=qf$, as desired.
+        Pick $f\in I-\{0\}$ such that $N(f)=d$. We will now argue that $I=(f)$ via a bidirectional inclusion proof. In one direction, since $I$ is an ideal, $(f)=Rf\subset I$. In the other direction, let $h\in I$ be arbitrary. Then since $f\neq 0$ by assumption, the hypothesis that $R$ is an ED implies that there exist $q,r\in R$ such that $h=qf+r$ and $N(r)<N(f)$. It follows since $h,qf\in I$ that $r=h-qf\in I$. But since $N(r)<N(f)=d$, $r\in I$ implies by the definition of $d$ that necessarily $N(r)=0$ and hence $r=0$. Therefore, $h=qf$, as desired.
     \end{proof}
     \item Note that showing that $r\in I$ this way would not be acceptable in the HW??
     \item Examples of EDs:
@@ -76,8 +80,14 @@
             \item We define the norm in this way because then the degree of the zero polynomial being $-\infty$ makes $N(0)=2^{-\infty}=0$.
             \item Note that since $\deg(fg)=\deg(f)+\deg(g)$, $N(fg)=N(f)N(g)$ here.
         \end{itemize}
-        \item $\Z[\sqrt{d}]=\{a+b\sqrt{d}\mid a,b\in\Z\}$ ($d$ is a \textbf{square-free integer}), $N(a+b\sqrt{d})=|(a+b\sqrt{d})(a-b\sqrt{d})|=|a^2-b^2d|$ for $a,b\in\Q$.
+        \item $\Z[\sqrt{d}]=\{a+b\sqrt{d}:a,b\in\Z\}$ ($d$ is a \textbf{square-free integer}), $N(a+b\sqrt{d})=|(a+b\sqrt{d})(a-b\sqrt{d})|=|a^2-b^2d|$ for $a,b\in\Q$.
         \begin{itemize}
+            \item Observations (in the context of $\Q[\sqrt{d}]$, not $\Z[\sqrt{d}]$):
+            \begin{itemize}
+                \item $N(a+b\sqrt{d})=0$ iff $(a,b)=(0,0)$.
+                \item $\Q[\sqrt{d}]$ is SE (strongly Euclidean) since $N(\alpha\beta)=N(\alpha)N(\beta)$ for all $\alpha,\beta\in\Q[\sqrt{d}]$.
+                \item $N(\alpha)\in\Z$ for all $\alpha\in\Z[\sqrt{d}]$. This is why only $\Z[\sqrt{d}]$ is an ED.
+            \end{itemize}
             \item Most famous example: $\Z[\sqrt{-1}]$, which are the \textbf{Gaussian integers}.
             \item Also interesting are $\Z[\sqrt{-2}]$, $\Z[\sqrt{2}]$, and $\Z[\frac{-1+\sqrt{-3}}{2}]\cong\Z[X]/(X^2+X+1)$.
             \begin{itemize}
@@ -88,13 +98,18 @@
                 \item The number $\theta$ in $\Z[\theta]$ may not always be a radical or imaginary; it can be complex, too, as in the case of $\Z[\frac{-1+\sqrt{-3}}{2}]$.
                 \item Let $\theta=\frac{-1+\sqrt{-3}}{2}$. In this case, we have
                 \begin{equation*}
-                    \left\{ \alpha+\beta\frac{-1+\sqrt{-3}}{2}\mid\alpha,\beta\in\Z \right\} \cong \left\{ a+b\sqrt{-3}\mid a,b\in\Q,\ a=\alpha-\frac{1}{2}\beta,\ b=\frac{1}{2}\beta,\ \alpha,\beta\in\Z \right\}
+                    \left\{ \alpha+\beta\frac{-1+\sqrt{-3}}{2}\middle| \alpha,\beta\in\Z \right\} \cong \left\{ a+b\sqrt{-3}\middle| a,b\in\Q,\ a=\alpha-\frac{1}{2}\beta,\ b=\frac{1}{2}\beta,\ \alpha,\beta\in\Z \right\}
                 \end{equation*}
             \end{itemize}
         \end{itemize}
     \end{enumerate}
     \item \textbf{Square-free integer}: An integer that is not divisible by the square of any integer.
     \item \textbf{Gaussian integers}: The Euclidean domain $\Z[\sqrt{-1}]$.
+    \item Exercise: Prove that $\Z[\sqrt{d}]$ is SE (i.e., is an SED) for $d=-1,-2,2,3$.
+    \begin{itemize}
+        \item Hint: Given $h,f\in\Z[\sqrt{d}]$, we have $h/f\in\Q[\sqrt{d}]$. Choose $q\in\Z[\sqrt{d}]$ as close as possible to $h/f$. For a given $d$, you will find $N(q-h/f)<1$.
+        \item The same procedure will show that $\Z[(-1+\sqrt{d})/2]$ is SE for $d=-3,5$.
+    \end{itemize}
     \item \textbf{Unit}: An element $u\in R$ for which there exists $v\in R$ such that $uv=vu=1$.
     \item $\bm{R^\times}$: The set of all units of $R$.
     \begin{itemize}
@@ -102,7 +117,7 @@
     \end{itemize}
     \item Examples:
     \begin{enumerate}
-        \item $F^\times=F\setminus\{0\}$.
+        \item $F^\times=F-\{0\}$.
         \item $F[X]^\times=F^\times$, i.e., is the nonzero constant polynomials.
         \begin{itemize}
             \item This is because any higher degree polynomial cannot be taken back down in degree --- multiplying polynomials adds degrees.
@@ -119,20 +134,24 @@
     \begin{itemize}
         \item Alternative definition: An element that is the product of two things, neither of which is a unit.
     \end{itemize}
-    \item $R\setminus\{0\}$ is a disjoint union of\dots
+    \item $R-\{0\}$ is a disjoint union of\dots
     \begin{enumerate}[label={(\roman*)}]
         \item Units;
         \item Reducible elements;
         \item And irreducible elements.
     \end{enumerate}
     \begin{proof}
-        Suppose for the sake of contradiction that $a\in R\setminus\{0\}$ is both reducible and a unit. Since $a$ is reducible, $a=bc$ where $b,c\notin R^\times$. Since $a$ is a unit, we may define $d=a^{-1}$. Then
+        Suppose for the sake of contradiction that $a\in R-\{0\}$ is both reducible and a unit. Since $a$ is reducible, $a=bc$ where $b,c\notin R^\times$. Since $a$ is a unit, we may define $d=a^{-1}$. Then
         \begin{equation*}
             1 = ad
             = bcd
             = b(cd)
         \end{equation*}
         so $b\in R^\times$, a contradiction.
+    \end{proof}
+    \item Corollary: If $a_1\cdots a_r\in R^\times$, then $a_i\in R^\times$ ($i=1,\dots,r$).
+    \begin{proof}
+        Same strategy as above, i.e., definition of a unit followed by associativity.
     \end{proof}
     \item Reducibility/irreducibility changes based on context.
     \item Example:
@@ -173,14 +192,15 @@
     \item We review some definitions from last time to start.
     \item \textbf{Prime} (ideal): An ideal $P$ in a commutative ring $R$ for which $R/P$ is an integral domain.
     \begin{itemize}
-        \item Equivalently, $1\notin P$ and $a,b\notin P$ imply $ab\notin P$, i.e., $R\setminus P$ is a multiplicative set.
+        \item Equivalently, $1\notin P$ and $a,b\notin P$ imply $ab\notin P$, i.e., $R-P$ is a multiplicative set.
+        \item Equivalently (contrapositive): $ab\in P$ implies $a\in P$ or $b\in P$.
     \end{itemize}
     \item Observation: Maximal ideals are prime ideals.
     \item From now on, $R$ denotes an integral domain.
     \item \textbf{Factorization} (of a nonzero element): A product $a=u\pi_1\pi_2\cdots\pi_r$, where $u\in R^\times$, each $\pi_i$ is irreducible, and $r=0$ is allowed.
-    \item \textbf{Irreducible} (element): An element...
+    \item \textbf{Irreducible} (element): A nonzero element that is neither a unit nor reducible.
     \begin{itemize}
-        \item Think of them a bit like primes, though this is very dangerous.
+        \item Think of them a bit like primes, though this is very dangerous. See \textcite{bib:DummitFoote}.
     \end{itemize}
     \item \textbf{Equivalent} (factorizations): Two factorizations $a=u\pi_1\pi_2\cdots\pi_r$ and $a=u'\pi_1'\pi_2'\cdots\pi_s'$ for which $r=s$ and there exists $\sigma\in S_r$ and $u_1,\dots,u_r\in R^\times$ such that $\pi_i'=u_i\pi_{\sigma(i)}$ ($i=1,\dots,r$) where $u\pi_1$ is also irreducible.
     \item \textbf{Unique factorization domain}: An integral domain $R$ for which every nonzero $a$ has a factorization and any factorizations of $a$ are equivalent to each other.
@@ -278,7 +298,7 @@
         \item Now consider a chain of ideals $I_1\subset I_2\subset I_3\subset\cdots$. Is $\bigcup_{n=1}^\infty I_n$ an ideal? Yes, it is. Let's call it $I$.
         \item $R$ is a PID implies that $I=(\alpha)$.
         \item Definition of an infinite union: There exists $n$ such that $\alpha\in I_n$. Therefore, $(\alpha)\subset I_n\subsetneq I_{n+1}\subset\cdots\subset(\alpha)$. It follows that the factorization is finite.
-        \item See the proof in the book for clarification: Theorem \ref{trm:8.14} on \textcite[287-89]{bib:DummitFoote}.
+        \item See the proof in the book for clarification: Theorem \ref{trm:8.14} of \textcite{bib:DummitFoote}.
     \end{itemize}
     \item Last theorem to prove.
     \item Theorem: $R$ is a PID implies $R$ is a UFD.
@@ -291,6 +311,16 @@
     \item Examples: $\Z$, $F[X]$, $F[[X]]$.
     \item Let $a_n=b_na_{n+1}$. Then $(a_n)\subset(a_{n+1})$. and $b_n\notin R^\times$.
     \item If $(a_n)=(a_{n+1})$, then $a_{n+1}=ca_n$, $a_n=b_n\subset a_n$, $1=b_nc$.
+    \item Lastly, we have a theorem summarizing some of today's results.
+    \item Theorem: Let $R$ be an integral domain such that every nonzero $a\in R$ admits a factorization. Then TFAE.
+    \begin{enumerate}
+        \item $R$ is a UFD.
+        \item Every irreducible element of $R$ is prime.
+        \item Every pair of elements of $R$ has a gcd.
+    \end{enumerate}
+    \begin{proof}
+        Partially given above.
+    \end{proof}
 \end{itemize}
 
 
@@ -373,16 +403,16 @@
     \end{proof}
     \item Recall computing greatest common divisors from last lecture.
     \begin{itemize}
-        \item In particular, we know that $R\setminus\{0\}$ (or $R$??) is an integral domain.
-        \item Thus, if $a,b\in R\setminus\{0\}$, then $a\sim b$ if there exists $u\in R^\times$ such that $a=ub$.
+        \item In particular, we know that $R-\{0\}$ (or $R$??) is an integral domain.
+        \item Thus, if $a,b\in R-\{0\}$, then $a\sim b$ if there exists $u\in R^\times$ such that $a=ub$.
         \begin{itemize}
             \item Nori confirms that $\sim$ is an equivalence relation.
             \item If $a\sim b$, we say that $a$ is an \textbf{associate} of $b$.
         \end{itemize}
-        \item Notation: $\sim\backslash R-\{0\}$ implies that we're applying the equivalence relation $\sim$ to the set $R\setminus\{0\}$.
+        \item Notation: $\sim\backslash R-\{0\}$ implies that we're applying the equivalence relation $\sim$ to the set $R-\{0\}$.
         \item $\gcd(a,b)\in\sim\backslash R-\{0\}$.
         \begin{itemize}
-            \item This allows us to define a unique gcd; recall that gcd's are only unique up to multiplication by units, so by making all elements multiplied by units part of the same equivalence class, we can define a unique one.
+            \item This allows us to define a unique gcd; recall that gcd's are only unique up to multiplication by units, so by making all \textbf{associates} the same equivalence class, we can define a unique one.
         \end{itemize}
     \end{itemize}
     \item \textbf{Associate} (elements): Two elements $a,b\in R$ such that $a=ub$ where $u\in R^\times$. \emph{Denoted by} $\bm{a\sim b}$.
@@ -420,7 +450,7 @@
         \item What is $\ker(\varphi)$?
         \item We have that $\varphi(h)=0$ iff $\pi_i^{k_i}\mid h$ for all $i=1,2,\dots,r$ iff $\prod_{i=1}^r\pi_i^{k_i}\mid h$ iff $a=u\prod_{i=1}^r\pi_i^{k_i}\mid h$ iff $h\in(a)$.
         \begin{itemize}
-            \item Nori pauses to explain why the factors of $a$ dividing $h$ implies that that the product of the factors does as well.
+            \item Nori pauses to motivate why the factors of $a$ dividing $h$ implies that that the product of the factors does as well.
         \end{itemize}
         \item $\ker(\varphi)=(a)$. Product of commutative diagrams?? \emph{See lower right of board 2}
         \item Let $I\subset J_1\subset R$ and $I\subset J_2\subset R$.
@@ -480,6 +510,8 @@
     \item We should check this.
     \item How do we put $F[X,Y]\subset F[X,Z]$? Put $Y=XZ$. Then $\gcd(X,Y)=1$.
     \item Midterm on Monday of sixth week; HW pushed to Friday that week.
+    \item Problem: Let $F$ be a subfield of the field $E$. Assume $\gcd(f,g)=1$ where $f,g\in F[X]$. Show that there does not exist $a\in E$ such that $f(a)=g(a)=0$.
+    \item Problem: Let $f\in\Q[X]$. Assume that $\gcd(f,f')=1$ where $f'$ denotes the derivative of $f$. Prove that if $f(a)=0$ for some $a\in\R$, then $f$ is not divisible by $(X-a)^2$ in $\R[X]$.
 \end{itemize}
 
 
@@ -574,6 +606,10 @@
     \end{itemize}
     \item \textbf{Positive norm}: A norm $N$ such that $N(a)>0$ for all $a\neq 0$.
     \item EDs are said to possess a \textbf{Division Algorithm}.
+    \item Converting between the book's definition of an ED and the in-class one.
+    \begin{itemize}
+        \item Take the $N$ of the book, define $N'(x)=N(x)+1$ for all nonzero $x\in R$ and $N'(0)=0$. Then $N'$ satisfies the in-class requirements.
+    \end{itemize}
     \item \textbf{Quotient}: The element $q$ in the definition of a norm/ED. \emph{Denoted by} $\bm{q}$.
     \item \textbf{Remainder}: The element $r$ in the definition of a norm/ED. \emph{Denoted by} $\bm{r}$.
     \item \marginnote{2/1:}Division Algorithms allow a \textbf{Euclidean Algorithm} for two elements $a,b\in R$ to find the greatest common divisor.
@@ -592,7 +628,7 @@
         \begin{itemize}
             \item From class.
             \item \textcite{bib:DummitFoote} proves rigorously, from a ring theory perspective, that long division is a thing.
-            \item The quotient and remainder are not unique (unless we require the remainder to be nonnegative).
+            \item The quotient and remainder are not unique (unless we require the remainder is nonnegative).
             \begin{itemize}
                 \item Example: $5=2\cdot 2+1=3\cdot 2-1$.
             \end{itemize}
@@ -603,9 +639,11 @@
             \item For polynomials, the quotient and remainder are unique.
             \item We will prove later that $R[X]$ is an ED iff $R$ is a field. Essentially, this is because we must be able to divide arbitrary nonzero coefficients.
         \end{itemize}
-        \item Quadratic integer rings.
+        \item Quadratic integer rings are not EDs in general.
         \begin{itemize}
-            \item Gaussian integers are a subset.
+            \item Take the absolute value of the field norm to get a potential norm, but these rarely work.
+            \item Gaussian integers do work, though, under this absolute value field norm.
+            \item The rest of the proof that $\Z[i]$ is an ED goes beyond the scope of class.
         \end{itemize}
         \item \textbf{Discrete valuation rings}.
         \begin{itemize}
@@ -620,7 +658,7 @@
     \end{enumerate}
     \item \textbf{Valuation ring} (of $\nu$): The subring of $K$ defined as follows. \emph{Given by}
     \begin{equation*}
-        \{x\in K^\times\mid\nu(x)\geq 0\}\cup\{0\}
+        \{x\in K^\times:\nu(x)\geq 0\}\cup\{0\}
     \end{equation*}
     \item \textbf{Discrete valuation ring}: An integral domain $R$ for which there exists a valuation $\nu$ on $\Frac R$ such that $R$ is the valuation ring of $\nu$.
     \item Example: The ring $R$ containing all rationals whose denominators are relatively prime to some fixed $p\in\Z$ is a discrete valuation ring of $\Q$.
@@ -628,7 +666,7 @@
     \begin{proposition}\label{prp:8.1}
         Every ideal in an ED is principal. More precisely, if $I$ is any nonzero ideal in the ED $R$, then $I=(d)$, where $d$ is any nonzero element of $I$ of minimum norm.
         \begin{proof}
-            Given. See Lecture 4.1.
+            Given (see Lecture 4.1).
         \end{proof}
     \end{proposition}
     \item Since $\Z$ is an ED, Proposition \ref{prp:8.1} implies that every ideal of $\Z$ is principal.
@@ -641,7 +679,10 @@
         \begin{itemize}
             \item Since $(2,X)$ is not principal (see Section 7.4), $\Z[X]$ is not an ED.
         \end{itemize}
-        \item Quadratic integer rings; specifically, $\Z[\sqrt{-5}]$.
+        \item The quadratic integer ring $\Z[\sqrt{-5}]$ is not a PID.
+        \begin{itemize}
+            \item Consider the ideal $I=(3,2+\sqrt{-5})$. Suppose it equals $(a+b\sqrt{-5})$ for some $a,b\in\Z$ and then arrive at contradictions in every case you consider.
+        \end{itemize}
     \end{enumerate}
     \item Euclidean Algorithms guarantee a greatest common divisor in any ED.
     \item \textbf{Multiple} (of $b$): An element $a\in R$ such that $a=bx$ for some $x\in R$.
@@ -671,7 +712,19 @@
     \begin{proposition}\label{prp:8.3}
         Let $R$ be an integral domain. If two elements $d,d'$ of $R$ generate the same principal ideal, i.e., $(d)=(d')$, then $d'=ud$ for some unit $u\in R$. In particular, if $d,d'$ are both greatest common divisors of $a,b$, then $d'=ud$ for some unit $u$.
         \begin{proof}
-            Given. Very slick.
+            Not very important since its only relation to class content is via the lemma from Lecture 4.3 that $Ra+Rb=(\gcd(a,b))$. However, included because it's very slick. We prove each statement separately.\par\smallskip
+            Suppose $(d)=(d')$. We divide into two cases ($d$ or $d'$ is 0, and neither is zero). Suppose first that $d$ or $d'$ is 0. WLOG, let $d=0$. Then $d'\in(0)=\{0\}$, so $d'=0$. Therefore, since $0=1\cdot 0$, $d'=ud$ for a unit (specifically the identity, for example) in $R$. Now suppose that $d,d'\neq 0$. Since $d\in(d')$, $d=xd'$ for some $x\in R$. Similarly, $d'=yd$ for some $y\in R$. It follows that
+            \begin{align*}
+                d &= xyd\\
+                d(1-xy) &= 0
+            \end{align*}
+            Since $R$ is an integral domain, $d=0$ or $1-xy=0$. But $d\neq 0$ by hypothesis, so
+            \begin{align*}
+                1-xy &= 0\\
+                1 &= xy
+            \end{align*}
+            Therefore, $x,y$ are both units and we have the desired result.\par
+            If $d,d'$ are both gcd's of $a,b$, then $(d)=(d')$. Thus, apply the first statement to obtain the desired result.
         \end{proof}
     \end{proposition}
     \item Very important property of EDs: gcd's always exist and can be computed algorithmically.
@@ -685,7 +738,7 @@
             \end{equation*}
         \end{enumerate}
         \begin{proof}
-            Given. See the Lemma from Lecture 4.3.
+            Given (see the Lemma from Lecture 4.3).
         \end{proof}
     \end{theorem}
     \item The Euclidean Algorithm is \textbf{logarithmic} in the size of the integers.
@@ -760,6 +813,7 @@
     \item \textbf{Dedekind-Hasse norm}: A positive norm $N$ such that for every nonzero $a,b\in R$, either $a\in(b)$ or there exists a nonzero element $x\in(a,b)$ such that $N(x)<N(b)$.
     \begin{itemize}
         \item Alternate definition: Either $b\mid a\in R$ or there exist $s,t\in R$ such that $0<N(sa-tb)<N(b)$.
+        \item Dedekind-Hasse norms and all related content will be omitted from this course.
     \end{itemize}
     \item $R$ is Euclidean with respect to $N$ if it is always possible to satisfy the Dedekind-Hasse condition with $s=1$..
     \begin{itemize}
@@ -792,11 +846,11 @@
         \item The definition from class is also given.
     \end{itemize}
     \item Definition of \textbf{associate} elements.
-    \item Prime implies reducible.
+    \item Prime implies irreducible.
     \begin{proposition}\label{prp:8.10}
         In an integral domain, a prime element is always irreducible.
         \begin{proof}
-            Given (see Lecture 4.2).
+            Let $(p)$ be an arbitrary prime ideal in $R$ an integral domain. Suppose $p=ab$. Then $ab\in(p)$, so WLOG $a\in(p)$. It follows that $a=pr$ for some $r\in R$. Thus, $p=ab=prb$, so by the cancellation lemma (which applies under the given hypotheses), $rb=1$. Therefore, $b$ is a unit, so $p$ is irreducible, as desired.
         \end{proof}
     \end{proposition}
     \item $\text{Irreducible}\nRightarrow\text{prime}$ in general.
@@ -872,7 +926,9 @@
         \end{equation*}
         (where $d=1$ if all the exponents are 0) is a gcd of $a,b$.
         \begin{proof}
-            Given (not directly covered in class; related to Statement (*) from Lecture 5.1).
+            Given (not directly covered in class; related to Statement (*) from Lecture 5.1). According to the Week 4 summary, it is important. The proof in the book is a bit hand-wavey, though.\par
+            We first must prove that $d\mid a,b$. This follows immediately from the fact the the exponents of each prime in $d$ are no larger than the corresponding ones in $a,b$.\par
+            We now must prove that if $c\mid a,b$, then $c\mid d$. Since $R$ is a UFD, factor $c$ into $q_1^{g_1}\cdots q_m^{g_m}$. Consider an arbitrary $q_i$. Since it divides $c$, it must divide $a,b$. In particular, since it and all of the $p_j$ are irreducible by Proposition \ref{prp:8.12}, it must divide some $p_j$ to yield a unit. Thus, $q_i$ and $p_j$ are the same up to associates. Consequently, all $q$'s are equal to $p$'s up to associates. We get a similar condition on the exponents to that in $d$, implying that $c\mid d$, as desired.
         \end{proof}
     \end{proposition}
     \item Example.
@@ -919,6 +975,9 @@
         \end{proof}
     \end{corollary}
     \item We now switch to the specific example of factorization in the Gaussian integers.
+    \begin{itemize}
+        \item This will be covered in the class at a later date.
+    \end{itemize}
     \item \textcite{bib:DummitFoote} proves a number of interesting theorems not covered in any depth in class.
     \item \textcite{bib:DummitFoote} concludes the chapter with a short summary.
     \begin{itemize}

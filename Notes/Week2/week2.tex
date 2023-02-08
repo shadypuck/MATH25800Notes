@@ -77,19 +77,23 @@
         \end{itemize}
         \item Quotient groups become quotient rings.
         \item The FIT does translate.
-        \item The other ITs also translate: If $I_1,I_2$ are two-sided ideals, then $I_1\cap I_2$, $I_1+I_2$, and $I_1I_2$ are also two-sided ideals.
+        \item The other ITs also translate: If $I_1,I_2$ are two-sided ideals, then $I_1\cap I_2$, $I_1+I_2$, and $I_1I_2$ are also two-sided ideals. See Theorem \ref{trm:7.8}.
     \end{itemize}
     \item Constructing ideals.
     \item \textbf{Kernel} (of a ring homomorphism): The set defined as follows, where $f:A\to B$ is a ring homomorphism. \emph{Denoted by} $\bm{\ker(f)}$. \emph{Given by}
     \begin{equation*}
-        \ker(f) = \{a\in A\mid f(a)=0\}
+        \ker(f) = \{a\in A:f(a)=0\}
     \end{equation*}
     \item Immediate consequences.
     \begin{enumerate}[label={(\roman*)}]
         \item $\ker(f)$ is a subgroup of $(A,+)$.
         \begin{proof}
-            We will not check associativity, identity, and inverses (but these can all be checked). Do remember that we are working with \emph{addition} as our group operation here, though, so the identity of interest is 0, not 1. We will check closure.\par
-            Let $h\in\ker(f)$ and let $a\in A$. We WTS that $f(ah)=0$ and $f(ha)=0$. For the first statement, we have
+            % We will not check associativity, identity, and inverses (but these can all be checked). Do remember that we are working with \emph{addition} as our group operation here, though, so the identity of interest is 0, not 1.\par
+            This statement follows from the fact that $f:(A,+)\to(B,+)$ is a group homomorphism by definition, and thus by results from last quarter, $\ker(f)$ is a subgroup (a \emph{normal} subgroup even!).
+        \end{proof}
+        \item If $h\in\ker(f)$ and $a\in A$, then both $ah,ha\in\ker(f)$.
+        \begin{proof}
+            To prove that $ah,ha\in\ker(F)$, it will suffice to show that $f(ah)=0$ and $f(ha)=0$. For the first statement, we have
             \begin{equation*}
                 f(ah) = f(a)f(h)
                 = f(a)0
@@ -116,13 +120,13 @@
     \item \textbf{Power set} (of $A$): The set of all subsets of $A$, where $A$ is a set. \emph{Denoted by} $\bm{\mathcal{P}(A)}$.
     \item \textbf{Quotient ring}: The following set, where $I\subset R$ is a two-sided ideal of a ring $R$. \emph{Denoted by} $\bm{R/I}$. \emph{Given by}
     \begin{equation*}
-        R/I = \{a+I\mid a\in R\}
+        R/I = \{a+I:a\in R\}
     \end{equation*}
     \begin{itemize}
         \item A subset of $\mathcal{P}(R)$.
         \item We define an associated projection function $\pi:R\to R/I$ by $\pi(a)=a+I$ for all $a\in R$.
     \end{itemize}
-    \item Don't we need $I$ to be normal for $R/I$ to be a subgroup under $+$?
+    \item Don't we need $I$ to be normal for $R/I$ to be a group under $+$?
     \begin{itemize}
         \item No, because $(R,+)$ is already abelian, so that takes care of the normality condition for all subgroups.
     \end{itemize}
@@ -133,10 +137,13 @@
     \item To build intuition for how to do this, consider the following instructive example.
     \begin{itemize}
         \item Suppose $X$ has a binary operation $\cdot$ and $\pi:X\to Y$ is onto.
-        \item Question: Does there exist a binary operation $\cdot$ on $Y$ such that $\pi$ respects it, i.e., $\pi(x_1\cdot x_2)=\pi(x_1)\cdot\pi(x_2)$.
+        \item Question: Does there exist a binary operation $\cdot$ on $Y$ such that $\pi$ respects it, i.e.,
+        \begin{equation*}
+            \pi(x_1\cdot x_2) = \pi(x_1)\cdot\pi(x_2)
+        \end{equation*}
         \item Let $y_1,y_2\in Y$. Consider $\pi^{-1}(y_1),\pi^{-1}(y_2)$. They are both nonempty since $\pi$ is onto by hypothesis. Thus, we can multiply the sets.
         \begin{equation*}
-            \pi^{-1}(y_1)\cdot\pi^{-1}(y_2) = \{x_1\cdot x_2\mid x_1\in\pi^{-1}(y_1),x_2\in\pi^{-1}(y_2)\}
+            \pi^{-1}(y_1)\cdot\pi^{-1}(y_2) = \{x_1\cdot x_2:x_1\in\pi^{-1}(y_1),\ x_2\in\pi^{-1}(y_2)\}
         \end{equation*}
         \item If $\cdot:Y\times Y\to Y$ exists, then $\pi(\pi^{-1}(y_1)\cdot\pi^{-1}(y_2))$ must be a singleton set, i.e.,
         \begin{equation*}
@@ -147,14 +154,14 @@
     \end{itemize}
     \item Therefore, for all $\alpha_1,\alpha_2\in R/I$, it suffices to check that $\pi(\pi^{-1}(\alpha_1)\cdot\pi^{-1}(\alpha_2))$ is a singleton.
     \begin{itemize}
-        \item More explicitly, we know that there exists $a_1,a_2\in R$ such that $\alpha_i=a_i+I$ ($i=1,2$).
+        \item More explicitly, we know that there exist $a_1,a_2\in R$ such that $\alpha_i=a_i+I$ ($i=1,2$).
         \item In particular, we know from group theory that $\pi^{-1}(\alpha_i)=a_i+I\subset R$ ($i=1,2,\dots$).
         \item Thus,
         \begin{align*}
             \pi^{-1}(\alpha_1)\cdot\pi^{-1}(\alpha_2) &= (a_1+I)\cdot(a_2+I)\\
-            &= \{(a_1+c_1)(a_2+c_2)\mid c_1,c_2\in I\}\\
-            &= \{a_1\cdot a_2+a_1\cdot c_2+c_1\cdot(a_2+c_2)\mid c_1,c_2\in I\}
-            \intertext{Since $c_2,c_1$ are part of an ideal, $a_1c_2$ and $c_1(a_2+c_2)$ are elements of $I$. Since $I\leq(R,+)$, the sum of the terms is also an element of $I$.}
+            &= \{(a_1+c_1)(a_2+c_2):c_1,c_2\in I\}\\
+            &= \{a_1\cdot a_2+a_1\cdot c_2+c_1\cdot(a_2+c_2):c_1,c_2\in I\}
+            \intertext{Since $c_2,c_1$ are part of an ideal, $a_1c_2$ and $c_1(a_2+c_2)$ are elements of $I$. Since $I\leq(R,+)$, the sum of the terms is also an element of $I$. Thus, we can combine all of these terms into $I$, leaving only $a_1a_2$ behind. Therefore, the above is a\dots}
             &\subset a_1a_2+I
         \end{align*}
         \item Therefore,
@@ -174,7 +181,7 @@
     \end{itemize}
     \item We know that (i) $\pi(a+b)=\pi(a)+\pi(b)$, (ii) $\pi(a\cdot b)=\pi(a)\cdot\pi(b)$, and (iii) $\pi$ is onto.
     \begin{itemize}
-        \item Thus, all laws are trivial to prove.
+        \item Thus, all laws and formulas that we would expect the quotient ring to obey (as a ring) are trivial to prove.
     \end{itemize}
     \item Example: Check that
     \begin{equation*}
@@ -339,6 +346,7 @@
             \item The language used in the proof we have now is not intended to confuse but to provide intuition; we can investigate rigor to whatever depth we choose.
         \end{itemize}
         \item More on the structure of the decomposition: $\pi$ is the canonical surjection and $i$ is the canonical injection; $\bar{f}$ is in the middle.
+        \item See Theorem \ref{trm:7.7}.
     \end{itemize}
     \item \textbf{Isomorphism} (of rings): A ring homomorphism $f:A\to B$ for which\dots
     \begin{enumerate}[label={(\roman*)}]
@@ -354,11 +362,15 @@
         \end{itemize}
         \item "Iso" means bijective homomorphism.
         \item We need bijectivity because continuous functions don't necessarily have continuous inverses??
+        \begin{itemize}
+            \item Essentially, there are two different but related definitions of an isomorphism.
+            \item Typically, we just say that it's a bijective homomorphism. But sometimes, we actually \emph{need} the $f,g$ definition. See OH.
+        \end{itemize}
     \end{itemize}
     \item Let's go back to talking about ideals.
     \item \textbf{Principal left ideal}: An ideal of the following form, where $R$ is a ring and $b\in R$. \emph{Denoted by} $\bm{Rb}$. \emph{Given by}
     \begin{equation*}
-        Rb = \{ab\mid a\in R\}
+        Rb = \{ab:a\in R\}
     \end{equation*}
     \begin{itemize}
         \item $(Rb,+)$ is an additive subgroup of $R$.
@@ -379,7 +391,7 @@
     \item We now look at three constructions originating from ideals: Sums, intersections, and products.
     \item \textbf{Sum} (of ideals): The ideal defined as follows, where $I,J\subset R$ are ideals. \emph{Denoted by} $\bm{I+J}$. \emph{Given by}
     \begin{equation*}
-        I+J = \{a+b\mid a\in I,b\in J\}
+        I+J = \{a+b:a\in I,\ b\in J\}
     \end{equation*}
     \begin{itemize}
         \item Definitions for left, right, and two-sided ideals.
@@ -388,7 +400,7 @@
     \end{itemize}
     \item Let $\{I_\lambda\}_{\lambda\in\Lambda}$ be a (finite??) family of ideals (left, right, or two-sided). Then
     \begin{equation*}
-        \sum_{\lambda\in\Lambda}I_\lambda = \{a_1+a_2+\cdots+a_n\mid n\in\N,a_i\in I_{\lambda_i}\text{ for some }\lambda_i\in\Lambda\}
+        \sum_{\lambda\in\Lambda}I_\lambda = \{a_1+a_2+\cdots+a_n:n\in\N,a_i\in I_{\lambda_i}\text{ for some }\lambda_i\in\Lambda\}
     \end{equation*}
     is a (left, right, or two-sided) ideal.
     \item Example: Given $a_1,a_2\in R$, $Ra_1+Ra_2$ is a left ideal.
@@ -399,29 +411,29 @@
     \begin{itemize}
         \item Let $R[X,Y]=A$ and $R=\R$. Then, for instance,
         \begin{equation*}
-            AX+AY = \{f(X,Y)X+g(X,Y)Y\mid f,g\in A\}
+            AX+AY = \{f(X,Y)X+g(X,Y)Y:f,g\in A\}
         \end{equation*}
         \item All of these functions vanish at $(0,0)$. Thus, this ideal is not prime.
         \begin{itemize}
             \item It'll be a while before we treat such rings formally.
-            \item We can take this claim as an exercise for now, though (see below).
+            \item We can take this claim as an exercise for now, though.% (see below).
         \end{itemize}
         \item Note that similarly, $AX$ is the set of all functions vanishing on the $y$-axis.
     \end{itemize}
-    \item Exercise: Prove that $AX+AY$ is not a prime ideal.
+    % \item Exercise: Prove that $AX+AY$ is not a prime ideal.
     \item \textbf{Intersection} (of ideals): The ideal defined as follows, where $\{I_\lambda\}_{\lambda\in\Lambda}$ is a family of ideals. \emph{Given by}
     \begin{equation*}
         \bigcap_{\lambda\in\Lambda}I_\lambda
     \end{equation*}
     \begin{itemize}
-        \item If all $I_\lambda$ are left (resp. right, two-sided) ideals, then the intersection is a left (resp. right, two-sided) ideal.
+        \item If all $I_\lambda$ are left (resp. right, two-sided) ideals, then the intersection is a the same kind of ideal.
     \end{itemize}
     \item \textbf{Product} (of ideals): The ideal defined as follows, where $I,J$ are ideals. \emph{Denoted by} $\bm{IJ}$. \emph{Given by}
     \begin{equation*}
-        IJ = \{a_1b_1+a_2b_2+a_nb_n\mid n\in\N,\ a_1,\dots,a_n\in I,\ b_1,\dots,b_n\in J\}
+        IJ = \{a_1b_1+\cdots+a_nb_n:n\in\N,\ a_1,\dots,a_n\in I,\ b_1,\dots,b_n\in J\}
     \end{equation*}
     \begin{itemize}
-        \item Note that $IJ\neq\{ab\mid a\in I,b\in I\}$. This is not even a subgroup under addition.
+        \item Note that $IJ\neq\{ab:a\in I,b\in I\}$. This is not even a subgroup under addition.
         \item $IJ$ as defined, however, is a subgroup with respect to $+$.
         \item The fact that $IJ$ is an ideal is justified by the distributive law:
         \begin{equation*}
@@ -518,7 +530,7 @@
     \item All subrings of fields are integral domains (proved later).
     \item \textbf{Degree} (of $f\in R[X]$ nonzero): The number $\max S$, where
     \begin{equation*}
-        S = \{n\in\Zg\mid a_n\neq 0\}
+        S = \{n\in\Zg:a_n\neq 0\}
     \end{equation*}
     \emph{Denoted by} $\bm{\deg(f)}$.
     \begin{itemize}
@@ -591,7 +603,7 @@
         \end{enumerate}
     \end{itemize}
     \item Takeaway: Every ideal of $R/I$ equals $J/I$ for a unique ideal $J$ of $R$ such that $J\supset I$.
-    \item Exercise: $R/J\cong (R/I)/(J/I)$ using nothing but the FIT.
+    \item Exercise: $R/J\cong (R/I)/(J/I)$ using nothing but the FIT. See Theorem \ref{trm:7.8.2}.
     \item Recall that we got into this discussion trying to figure out what properties of $I$ make $R/I$ into a field. Now that we have more tools, we return to the problem directly.
     \item Let $I\subset R$ be an ideal such that $R/I$ is a field. This is true iff $R/I$ has exactly two ideals, and iff there are exactly two ideals $R\supset J\supset I$.
     \begin{itemize}
@@ -677,7 +689,7 @@
             \item If $I$ is any ideal of $R$, then the \textbf{natural projection} of $R$ onto $R/I$ is a surjective ring homomorphism with kernel $I$. Thus, every ideal is the kernel of a ring homomorphism and vice versa.
         \end{enumerate}
         \begin{proof}
-            Given.
+            Given (see Lecture 2.2).
         \end{proof}
     \end{theorem}
     \item \textbf{Natural projection} (of $R$ onto $R/I$): The map from $R\to R/I$ defined as follows. \emph{Denoted by} $\bm{\pi}$. \emph{Given by}
@@ -753,10 +765,10 @@
     \item \marginnote{1/11:}\textcite{bib:DummitFoote} does a deep dive on reduction mod $n$ and how it relates to the foundations of \textbf{Diophantine equations} (interesting but irrelevant).
     \item The remaining isomorphism theorems.
     \begin{theorem}\label{trm:7.8}\leavevmode
-        \begin{enumerate}
-            \item (The Second Isomorphism Theorem for Rings) Let $A$ be a subring and let $B$ be an ideal of $R$. Then $A+B=\{a+b\mid a\in A,b\in B\}$ is a subring of $R$, $A\cap B$ is an ideal of $A$, and $(A+B)/B\cong A/(A\cap B)$.
-            \item (The Third Isomorphism Theorem for Rings) Let $I,J$ be ideals of $R$ with $I\subset J$. Then $J/I$ is an ideal of $R/I$ and $(R/I)/(J/I)\cong R/J$.
-            \item (The Fourth Isomorphism Theorem for Rings) Let $I$ be an ideal of $R$. The correspondence $A\leftrightarrow A/I$ is an inclusion-preserving bijection between the set of subrings $A$ of $R$ that contain $I$ and the set of subrings of $R/I$. Furthermore, $A$ (a subring containing $I$) is an ideal of $R$ if and only if $A/I$ is an ideal of $R/I$.
+        \begin{enumerate}[ref={\theproposition(\arabic*)}]
+            \item \label{trm:7.8.1}(The Second Isomorphism Theorem for Rings) Let $A$ be a subring and let $B$ be an ideal of $R$. Then $A+B=\{a+b:a\in A,b\in B\}$ is a subring of $R$, $A\cap B$ is an ideal of $A$, and $(A+B)/B\cong A/(A\cap B)$.
+            \item \label{trm:7.8.2}(The Third Isomorphism Theorem for Rings) Let $I,J$ be ideals of $R$ with $I\subset J$. Then $J/I$ is an ideal of $R/I$ and $(R/I)/(J/I)\cong R/J$.
+            \item \label{trm:7.8.3}(The Fourth Isomorphism Theorem for Rings) Let $I$ be an ideal of $R$. The correspondence $A\leftrightarrow A/I$ is an inclusion-preserving bijection between the set of subrings $A$ of $R$ that contain $I$ and the set of subrings of $R/I$. Furthermore, $A$ (a subring containing $I$) is an ideal of $R$ if and only if $A/I$ is an ideal of $R/I$.
         \end{enumerate}
         \begin{proof}
             All proofs follow the same structure: "First use the corresponding theorem from group theory to obtain an isomorphism of \emph{additive groups} (or correspondence of groups, in the case of the Fourth Isomorphism Theorem) and then check that this group isomorphism (or correspondence, respectively) is a multiplicative map, and so defines a \emph{ring} isomorphism. In each case the verification is immediate from the definition of multiplication in quotient rings" \parencite[246]{bib:DummitFoote}.
@@ -826,7 +838,7 @@
         \item If $R$ is commutative, then $RA=AR=RAR=(A)$.
         \item \marginnote{1/23:}Note that if $R$ is not commutative, then
         \begin{equation*}
-            \{r_1as_1+\cdots+r_nas_n\mid n\in\N,\ r_1,\dots,r_n,s_1,\dots,s_n\in R\} = RaR = (a) \neq \{ras\mid r,s\in R\}
+            \{r_1as_1+\cdots+r_nas_n:n\in\N,\ r_1,\dots,r_n,s_1,\dots,s_n\in R\} = RaR = (a) \neq \{ras:r,s\in R\}
         \end{equation*}
     \end{itemize}
     \item Principal ideals are analogous to cyclic subgroups in some ways.
@@ -867,18 +879,18 @@
         \begin{itemize}
             \item Suppose for the sake of contradiction that $(2,X)=(a(X))$ for some $a(X)\in\Z[X]$. Since $2\in(a(X))$, there must be some $p(X)\in(a(X))$ such that $2=p(X)a(X)$. Since $0=\deg(pa)=\deg p+\deg a$, we have that $\deg p=\deg a=0$. It follows that $p,a$ are integers. In particular, since $p,z\in\Z$ and $pa=2$, we must have $p,a\in\{\pm 1,\pm 2\}$. We now divide into two cases ($a=\pm 1$ and $a=\pm 2$). If $a=\pm 1$, then $(2,X)=(1)=\Z[X]$, i.e., $(2,X)$ is \emph{not} a proper ideal. However,
             \begin{equation*}
-                (2,X) = \{2p(X)+Xq(X)\mid p(X),q(X)\in\Z[X]\}
+                (2,X) = \{2p(X)+Xq(X):p(X),q(X)\in\Z[X]\}
             \end{equation*}
             This means that $(2,X)$ is the set of all polynomials with integer coefficients and even constant term (as discussed in Example 5, Section 7.3). But this clearly \emph{is} a proper ideal (i.e., it excludes all polynomaials with integer coefficients and odd constant term), a contradiction. If $a=\pm 2$, then we may note that $X\in(a(X))=(2)=(-2)$, i.e., $X=2q(X)$ for some polynomial $q(X)\in\Z[X]$. But since $q$ has integer coefficients, this is impossible (we would need $q(X)=\frac{1}{2}X\in\Q[X]$), a contradiction.
             \item It follows from the above that $(2,X)\subset\Q[X]$ \emph{is} a principal ideal. Thus, $(A)$ is ambiguous if the ring is not specified.
             \item More generally (see Chapter 9), all ideals of $F[X]$ are principal given that $F$ is a field.
         \end{itemize}
-        \item $M=\{f\mid f(1/2)=0\}=\ker(\ev_{1/2})\subset \R^{[0,1]}$ is a principal ideal.
+        \item $M=\{f:f(1/2)=0\}=\ker(\ev_{1/2})\subset \R^{[0,1]}$ is a principal ideal.
         \begin{itemize}
             \item $M=(g)$, where $g:[0,1]\to\R$ is any function that sends $1/2\mapsto 0$.
             \item If $R=C([0,1],\R)$, then $M$ is not principal or even finitely generated (see the exercises).
         \end{itemize}
-        \item The augmentation ideal is generated by $\{g-1\mid g\in G\}$.
+        \item The augmentation ideal is generated by $\{g-1:g\in G\}$.
         \begin{itemize}
             \item Follows from the definitions; coefficients sum to zero by the distributive law.
             \item This need not be the minimal set of generators; for example, if $G=\gen{\sigma}$, then the augmentation ideal is $(\sigma-1)$.
@@ -894,7 +906,7 @@
             \end{proof}
             \item \label{prp:7.9.2}If $R$ is commutative, then $R$ is a field iff its only ideals are 0 and $R$.
             \begin{proof}
-                Given.
+                Given (see Lectures 2.2 and 2.3).
             \end{proof}
         \end{enumerate}
     \end{proposition}
@@ -926,7 +938,7 @@
     \begin{proposition}\label{prp:7.12}
         Let $R$ be commutative. Then the ideal $M$ is a maximal ideal iff the quotient ring $R/M$ is a field.
         \begin{proof}
-            Given.
+            Given (see Lecture 2.3).
         \end{proof}
     \end{proposition}
     \item Notes on Proposition \ref{prp:7.12}.
@@ -949,7 +961,7 @@
         \item $(X)\subset\Z[X]$ is \emph{not} a maximal ideal.
         \begin{itemize}
             \item Counterexample: $(X)\subsetneq(2,X)\subsetneq\Z[X]$.
-            \item Alternate proof: Since $(x)=\ker(\ev_0:\Z[X]\to\Z)$, we know that $\Z[X]/(x)\cong\Z$, which is not a field.
+            \item Alternate proof: Since $(X)=\ker(\ev_0:\Z[X]\to\Z)$, we know that $\Z[X]/(X)\cong\Z$, which is not a field.
         \end{itemize}
         \item $M_a=\ker(\ev_a:\R^{[0,1]}\to\R)\subset\R^{[0,1]}$ is a maximal ideal.
         \begin{itemize}

@@ -261,5 +261,160 @@
 
 
 
+\section{Midterm Review Sheet}
+\begin{itemize}
+    \item \marginnote{2/8:}Definitions and alternate definitions.
+    \item \textbf{Ring}: Abelian group, associative multiplication, distributive laws.
+    \item \textbf{Subring}: Closed under addition, multiplication, inverses; contains $1_R$.
+    \item \textbf{Ring homomorphism}: Respects addition, multiplication, identites.
+    \item \textbf{Field}: Commutative, multiplicative inverses for every element save $0_R$.
+    \begin{itemize}
+        \item A commutative division ring.
+        \item Commutative, $0_F\neq 1_R$, multiplicative inverses.
+    \end{itemize}
+    \item \textbf{Polynomial ring}: Union of all formal sums of finite length.
+    \item \textbf{Power series ring}: $R^\Zg$ under
+    \begin{gather*}
+        \left( \sum_{n=0}^\infty a_nX^n \right)+\left( \sum_{n=0}^\infty b_nX^n \right) = \sum_{n=0}^\infty(a_n+b_n)X^n\\
+        \left( \sum_{p=0}^\infty a_pX^p \right)\left( \sum_{q=0}^\infty b_qX^q \right) = \sum_{\substack{p\geq 0,\\ q\geq 0}}a_pb_qX^{p+q}
+            = \sum_{r=0}^\infty\left( \sum_{p=0}^ra_pb_{r-p} \right)X^r
+    \end{gather*}
+    \item \textbf{Division ring}: Multiplicative inverses only.
+    \item \textbf{Trivial ring}: Multiplication is the zero function.
+    \item \textbf{Zero ring}: The ring $R=\{0\}$.
+    \item \textbf{Zero divisor}: A nonzero element $a\in R$ to which there corresponds a nonzero element $b\in R$ such that either $ab=0$ or $ba=0$.
+    \item \textbf{Unit}: An element $u\in R$ to which there corresponds some $v\in R$ such that $uv=1$.
+    \item \textbf{Integral domain}: Commutative, no zero divisors.
+    \begin{itemize}
+        \item Commutative, $0_R\neq 1_R$, $a\neq 0$ and $ab=0$ implies $b=0$.
+        \item Commutative, $0_R\neq 1_R$, $a,b\neq 0$ implies $ab\neq 0$.
+    \end{itemize}
+    \item \textbf{Gaussian integers}: $\Z[i]$.
+    \item \textbf{Ideal}: A subset $I$ of a ring $R$ for which $(I,+)\leq(R,+)$ and $aI$, $Ia$, or both are subsets of $I$.
+    \begin{itemize}
+        \item Left, right, and two-sided variations.
+    \end{itemize}
+    \item \textbf{Quotient ring}: The set of all additive cosets.
+    \item \textbf{Canonical injection}: $\iota$.
+    \item \textbf{Canonical surjection}: $i$.
+    \item \textbf{Isomorphism} (of rings): $f\circ g$ and $g\circ f$ definition formally.
+    \begin{itemize}
+        \item Bijectivity isn't always enough.
+    \end{itemize}
+    \item \textbf{Principal ideal}: An ideal with a single generator.
+    \item \textbf{Sum} (of ideals): $\{a+b:a\in I,\ b\in J\}$.
+    \item \textbf{Product} (of ideals): $\{a_1b_1+\cdots+a_nb_n:n\in\N,\ a_1,\dots,a_n\in I,\ b_1,\dots,b_n\in J\}$.
+    \item \textbf{Characteristic} (of $R$): The unique $d\in\Zg$ such that $\ker(j)=\Z d$, where $j:\Z\to R$ is the homomorphism defined by $m\mapsto m_R$.
+    \item \textbf{Generated} (ideal): The ideal consisting of all $R$-multiples of some set of elements in $R$.
+    \item \textbf{Maximal} (ideal): $M\subsetneq R$, no ideal $S$ satisfies $M\subsetneq S\subsetneq R$.
+    \item \textbf{Prime} (ideal): $P\subsetneq R$ (for $R$ commutative), $a,b\in R$ and $ab\in P$ implies $a\in P$ or $b\in P$.
+    \item \textbf{ED}: Integral domain, has a (positive) norm [induces a division algorithm].
+    \item \textbf{Reducible} (element): Nonzero, $a=bc$ for some $b,c\notin R^\times$.
+    \item \textbf{Irreducible} (element): Nonzero, not a unit, not reducible.
+    \begin{itemize}
+        \item Equivalently: $\pi=ab$ implies $a$ or $b$ is in $R^\times$.
+    \end{itemize}
+    \item \textbf{Factorization}: Product of irreducibles and a unit.
+    \item \textbf{Equivalent} (factorizations): Same length, uniqueness up to associates (don't forget the permutation thing!).
+    \item \textbf{UFD}: Integral domain, all factorizations of a given element are equivalent.
+    \item \textbf{Greatest common divisor}: Divides $a,b$; all others divide it.
+    \item We now move on to other major/useful results and proof sketches.
+    \item Cancellation law: $a,b,c$ with $a$ not a zero divisor, $ab=ac$, implies $a=0$ or $b=c$.
+    \item Finite integral domains are fields.
+    \item The property "is a subring of" is transitive.
+    \item Proof that $\pi$ respects multiplication (review!).
+    \item NIT: The natural extension of the FIT holds.
+    \item The cancellation lemma holds in integral domains.
+    \item Images and kernels are subrings.
+    \item Evaluation is a ring homomorphism.
+    \item $I=R$ iff $I$ contains a unit.
+    \item $R$ is a field iff it's commutative and its only ideals are $0,R$.
+    \item $F$ a field implies any nonzero ring homomorphism into another ring is an injection.
+    \item Every proper ideal is contained in a maximal ideal.
+    \item In commutative rings: $M$ is maximal iff $R/M$ is a field.
+    \item In commutative rings: $P$ is prime iff $R/P$ is an integral domain.
+    \item In commutative rings: $I$ maximal implies $I$ prime.
+    \item EDs, PIDs, and UFDs are all integral domains at their most basic level; then they have additional structures corresponding to their names added on top.
+    \item $R-\{0\}=\bigsqcup\{\text{units},\text{reducibles},\text{irreducibles}\}$.
+    \item TFAE (in a PID): $\pi$ irreducible, $(\pi)$ maximal, $\pi$ prime.
+    \item $R[X]$ a UFD implies $R$ a UFD.
+    \begin{itemize}
+        \item Consider $r\in R$. $r\in R[X]$. Therefore it has a unique factorization. Its factorization must be in terms of degree 0 elements since it's degree 0. Therefore, $R$ is a UFD.
+    \end{itemize}
+    \item $\gcd(a,b)$ is a generator of $Ra+Rb$.
+    \begin{itemize}
+        \item $R$ is a PID, so $Ra+Rb=Rd$.
+        \item $a,b\in(d)$ implies $d\mid a,b$.
+        \item $a,b\in(d')$ implies $d=\alpha a+\beta b\in(d')$, so $d'\mid d$.
+    \end{itemize}
+    \item Lastly, a checklist of things from the midterm syllabus.
+    \item All of the material in Chapter 7 excluding\dots
+    \begin{enumerate}
+        \item The CRT in the generality stated there (a less general version may still appear).
+        \begin{itemize}
+            \item Essentially, for coprime ideals, the quotient of their product equals the quotient of their intersection is congruent to the product of their quotients.
+        \end{itemize}
+        \item Group rings.
+        \item Monoid rings.
+    \end{enumerate}
+    \item Special focus on\dots
+    \begin{enumerate}
+        \item Polynomial rings and power series rings.
+        \begin{itemize}
+            \item Universal property: $R$ a ring, $\alpha:R\to B$, $x\in B$, $x$ commutes with all $\alpha(a)$ $\Rightarrow$ there exists a unique $\beta:R[X]\to B$ such that $\beta(a)=\alpha(a)$ for all $a\in R$ and $\beta(X)=x$.
+            \begin{itemize}
+                \item Like change of coordinates and evaluation.
+            \end{itemize}
+        \end{itemize}
+        \item Rings of fractions \emph{only} for when the ring is an integral domain (no need to go to the more general Chapter 15 version).
+        \begin{itemize}
+            \item Characteristics of $D$: $1_R\in D$, $0_R\notin D$, $D$ contains no zero divisors, $D$ is a multiplicative subset.
+            \item Universal property: $\iota:R\to D^{-1}R$ is injective, $\varphi:R\to S$ satisfying $\varphi(D)\subset S^\times$ implies a unique $\tilde{\varphi}:D^{-1}R\to S$ such that $\tilde{\varphi}\circ\iota=\varphi$, and $\varphi$ injective implies $\tilde{\varphi}$ injective.
+            \begin{itemize}
+                \item Key step in proof: $\tilde{\varphi}(x/t)=\varphi(x)\varphi(t)^{-1}$.
+            \end{itemize}
+            \item $\Frac R$ is isomorphic to the subfield of $F$ generated by $R$.
+            \item $R_f\cong R[X]/(fX-1)$.
+        \end{itemize}
+    \end{enumerate}
+    \item Chapter 8/9 material.
+    \begin{enumerate}
+        \item Euclidean algorithm for monic polynomials.
+        \begin{itemize}
+            \item Strict less than, uniqueness proof (subtract two possibilities and get constraints), existence (induct and reduce degree).
+        \end{itemize}
+        \item ED implies PID.
+        \begin{itemize}
+            \item Take a smallest element under the norm and call it $d$. Divide an arbitrary $h\in I$ by $d$ to get $qd+r$. Know that $r$ must have smaller norm and thus be 0. Set $I=(q)$.
+        \end{itemize}
+        \item PID implies UFD.
+        \begin{itemize}
+            \item If every irreducible element of $R$ is prime, then any two factorizations are equivalent.
+            \begin{itemize}
+                \item Prove via induction.
+                \item Start with $r=0$ which is trivial.
+                \item Show that $u'\pi_1'\cdots\pi_s'\in(\pi_1)$.
+                \item It's not $u'$ that's divisible by $\pi_1$ (contradiction; proves $\pi_1$ is a unit).
+                \item It must be one of the others (WLOG $\pi_1'$).
+                \item Relates $\pi_1=u_1\pi_1'$. Apply the cancellation lemma to equal factorizations, and then the induction hypothesis. Rigorously extend $\sigma\in S_{r-1}$ in the natural way (function can stay the same).
+            \end{itemize}
+            \item Infinite chain construction.
+            \begin{itemize}
+                \item Assume we can keep reducing. Generates an infinite ascending chain of ideals.
+                \item The infinite union is an ideal; it must have a generator. That generator must belong to an $I_n$; the process terminates there.
+                \item Uniqueness: All irreducibles are prime ($\pi$ irreducible implies $(\pi)$ maximal via contradiction that $\pi$ is reducible, $R/(\pi)$ is a field hence integral domain hence $(\pi)$ prime hence $\pi$ prime), then invoke Lemma*.
+            \end{itemize}
+        \end{itemize}
+        \item $\gcd(a,b)$ can be computed in a PID without factorizing the given $a,b$ (use the Euclidean Algorithm).
+        \begin{itemize}
+            \item $a=q_0b+r_0$, $b=q_1r_0+r_1$, $r_0=q_2r_1+r_2$, \dots, $r_{n-1}=q_{n+1}r_n$.
+        \end{itemize}
+    \end{enumerate}
+    \item Wrap my head around an elementary statement of the Chinese Remainder Theorem!
+    \item Stuff from OH on Monday.
+\end{itemize}
+
+
+
 
 \end{document}

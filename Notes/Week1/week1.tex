@@ -203,7 +203,7 @@
     \end{itemize}
     \item Subrings of $\Q$:
     \begin{itemize}
-        \item $\Z,\Q$, the $p$-adic rationals $\{a/p^n\mid a\in\Z,n=0,1,\dots\}$, $\{a/(p_1p_2\cdots p_r)^n\mid a\in\Z,n=0,1,\dots\}$, arbitrary subsets of primes in the denominator.
+        \item $\Z,\Q$, the $p$-adic rationals $\{a/p^n:a\in\Z,n=0,1,\dots\}$, $\{a/(p_1p_2\cdots p_r)^n:a\in\Z,n=0,1,\dots\}$, arbitrary subsets of primes in the denominator.
         \item Exercise: There's a bijective correspondence between the subrings of $\Q$ and the power set of the prime numbers.
     \end{itemize}
 \end{itemize}
@@ -243,7 +243,7 @@
         for all $n\in\Z$.
         \item Moving on, $x\in M$ implies that $n_Rx,xn_R\in M$. Is it true that $n_Rx=xn_R$? Yes it is. Here's why.
         \begin{itemize}
-            \item Let $C=\{c\in R\mid cx=xc\}$, where $x$ is the element we've been talking about.
+            \item Let $C=\{c\in R:cx=xc\}$, where $x$ is the element we've been talking about.
             \item We can prove that $C$ is a subring of $R$; this is Exercise 7.1.9 of \textcite{bib:DummitFoote}; see HW2.
             \item If $C$ is a subring, then $1_R\in C$ implies $1_R+1_R=2_R\in C$, implies $n_R\in C$. Therefore,
             \begin{equation*}
@@ -253,9 +253,9 @@
         \end{itemize}
         \item The above and additive closure:
         \begin{equation*}
-            \{a_R+b_Rx\mid a,b\in\Z\} \subset M
+            \{a_R+b_Rx:a,b\in\Z\} \subset M
         \end{equation*}
-        \item Multiplicative closure: $x\cdot x=x^2\in M$. Moreover, defining $x^n$ in the usual way (i.e., inductively),
+        \item Multiplicative closure: $x\cdot x=x^2\in M$. In general, defining $x^n$ in the usual way (i.e., inductively), shows that
         \begin{equation*}
             x^n \in M
         \end{equation*}
@@ -281,7 +281,7 @@
     \pagebreak
     \item \textbf{Polynomial ring} (over $\Z$): The ring defined as follows. \emph{Denoted by} $\bm{\pmb{\Z}[X]}$. \emph{Given by}
     \begin{equation*}
-        \Z[X] = \bigcup_{m=0}^\infty\{a_0+a_1X+\cdots+a_mX^m\mid a_0,a_1,\dots,a_m\in\Z\}
+        \Z[X] = \bigcup_{m=0}^\infty\{a_0+a_1X+\cdots+a_mX^m:a_0,a_1,\dots,a_m\in\Z\}
     \end{equation*}
     \begin{itemize}
         \item Note that we \emph{insist} on using uppercase for the indeterminate. The motivation for doing so is illustrated by the next example.
@@ -316,14 +316,14 @@
         \end{equation*}
         for $a_0,\dots,a_m\in R$, $m\in\Zg$.
         \item This set of polynomials is already a subring. Thus, it is not only contained in $M$, but must also equal $M$.
-        \item Difference between this set of polynomials and the ones from Question 1: These are the polynomials with coefficients in $R\supset\Z$.
+        \item Difference between these polynomials and the ones from Question 1: These are the polynomials with coefficients in $R\supset\Z$, where this containment is homomorphic (not necessarily injective).
         \begin{itemize}
             \item Therefore, we need to define a broader type of polynomial ring.
         \end{itemize}
     \end{itemize}
     \item \textbf{Polynomial ring} (over $R$): The ring defined as follows. \emph{Denoted by} $\bm{R[X]}$. \emph{Given by}
     \begin{equation*}
-        R[X] = \bigcup_{m=0}^\infty\{a_0+a_1X+\cdots+a_mX^m\mid a_0,a_1,\dots,a_m\in R\}
+        R[X] = \bigcup_{m=0}^\infty\{a_0+a_1X+\cdots+a_mX^m:a_0,a_1,\dots,a_m\in R\}
     \end{equation*}
     \begin{itemize}
         \item We do not require that $R$ is commutative.
@@ -374,7 +374,7 @@
     \end{itemize}
     \item Alternate definition of $R[X]$: The subring of $R[[X]]$ given by
     \begin{equation*}
-        R[X] = \left\{ \sum_{m=0}^\infty a_mX^m\in R[[X]] \middle| |\{m\in\Zg\mid a_m\neq 0\}|<\infty \right\}
+        R[X] = \left\{ \sum_{m=0}^\infty a_mX^m\in R[[X]] \middle| |\{m\in\Zg:a_m\neq 0\}|<\infty \right\}
     \end{equation*}
     \item Theorem (Universal Property of a Polynomial Ring): Let $R$ be a ring, $\alpha:R\to B$ a ring homomorphism, and $x\in B$. Assume that $x\cdot\alpha(a)=\alpha(a)\cdot x$ for all $a\in R$. Then there is a unique ring homomorphism $\beta:R[X]\to B$ such that $\beta(a)=\alpha(a)$ for all $a\in R$ and $\beta(X)=x$.
     \begin{proof}
@@ -406,7 +406,7 @@
     \end{proof}
     \item The idea of the theorem.
     \begin{itemize}
-        \item Evaluation of a function ($f\in R[X]$) at a point ($x\in B$): If $R\subset B$ and $\alpha(a)=a$ for all $a\in R$, then $\beta(f)=f(x)$.
+        \item Evaluation of a function ($f\in R[X]$) at a point ($x\in B$): If $R\subset B$ and $\alpha(a)=a$ for all $a\in R$, then $\beta(f)=f(x)$. Recall the $\phi_x$ from earlier.
         \item $\alpha$ is like a coordinate change function, allowing us to evaluate variants of each $f$.
         \item In fact, this idea is highly related to the linear algebra concept that specifying the action of a map on a basis specifies its action on all elements.
         \begin{itemize}
@@ -532,7 +532,7 @@
     \begin{itemize}
         \item As the name implies, $R^\times$ is a group under multiplication.
     \end{itemize}
-    \item Alternate definition of field: A commutative ring $F$ with identity $1\neq 0$ in which every nonzero element is a unit, i.e., $F^\times=F\setminus\{0\}$.
+    \item Alternate definition of field: A commutative ring $F$ with identity $1\neq 0$ in which every nonzero element is a unit, i.e., $F^\times=F-\{0\}$.
     \item A zero divisor can never be a unit.
     \begin{itemize}
         \item Suppose for the sake of contradiction that $a$ is a unit in $R$ and $ab=0$ for some nonzero $b\in R$. Then $va=1$ for some $v\in R$. It follows that
@@ -573,6 +573,38 @@
         \end{itemize}
         \item \textbf{Quadratic fields} (see Section 13.2).
     \end{enumerate}
+    \item \textbf{Quadratic field}: A ring of the following form, where $D$ is a rational number and not a perfect square in $\Q$. \emph{Denoted by} $\bm{\pmb{\Q}(\sqrt{D})}$. \emph{Given by}
+    \begin{equation*}
+        \Q(\sqrt{D}) = \{a+b\sqrt{D}:a,b\in\Q\}
+    \end{equation*}
+    \begin{itemize}
+        \item Addition is componentwise and multiplication is "as expected" based on the notation, i.e.,
+        \begin{align*}
+            (a+b\sqrt{D})+(c+d\sqrt{D}) &= (a+c)+(b+d)\sqrt{D}\\
+            (a+b\sqrt{D})\times(c+d\sqrt{D}) &= (ac+bdD)+(ad+bc)\sqrt{D}
+        \end{align*}
+        \begin{itemize}
+            \item It follows that multiplication is commutative; hence, $\Q(\sqrt{D})$ is a commutative ring.
+        \end{itemize}
+        \item $\Q(\sqrt{D})$ is a subring of $\C$.
+        \begin{itemize}
+            \item If $D>0$, then it is a subring of $\R$.
+        \end{itemize}
+        \item The assumption that $D$ is not a perfect square implies that every element in $\Q(\sqrt{D})$ can be written uniquely in the form $a+b\sqrt{D}$.
+        \begin{itemize}
+            \item Consequence: $a^2-Db^2\neq 0$ if $a,b$ are nonzero.
+        \end{itemize}
+        \item Since $(a+b\sqrt{D})(a-b\sqrt{D})=a^2-Db^2$, the inverse of $a+b\sqrt{D}\neq 0$ is
+        \begin{equation*}
+            \frac{a-b\sqrt{D}}{a^2-Db^2}
+        \end{equation*}
+        \item Thus, all nonzero elements in $\Q(\sqrt{D})$ are units; hence, $\Q(\sqrt{D})$ is a field.
+    \end{itemize}
+    \item \textbf{Squarefree part} (of $D\in\Q$): The unique integer $D'$ that is not divisible by the square of any integer greater than 1 and such that $D=f^2D'$ for some $f\in\Q$.
+    \begin{itemize}
+        \item Since $\sqrt{D}=f\sqrt{D'}$, we may take $D$ to be a squarefree integer in the definition of $\Q(\sqrt{D})$ in general and WLOG.
+        \item Indeed, we just combine $f$ into $b$.
+    \end{itemize}
     \item \textbf{Integral domain}: A commutative ring with identity $1\neq 0$ that has no zero divisors.
     \begin{itemize}
         \item $\Z$ is the prototypical integral domain.
@@ -607,7 +639,61 @@
     \begin{itemize}
         \item See Section 7.5.
     \end{itemize}
-    \item \textcite{bib:DummitFoote} does a deep dive on quadratic integer rings.
+    \item \textbf{Ring of integers} (in the quadratic field $\Q(\sqrt{D})$): The subring defined as follows. \emph{Denoted by} $\bm{\mathcal{O}}$, $\bm{\mathcal{O}_{\pmb{\Q}(\sqrt{D})}}$. \emph{Given by}
+    \begin{equation*}
+        \mathcal{O} = \Z[\omega]
+        = \{a+b\omega:a,b\in\Z\}
+    \end{equation*}
+    where
+    \begin{equation*}
+        \omega =
+        \begin{cases}
+            \sqrt{D} & D\equiv 2,3\mod 4\\
+            \frac{1+\sqrt{D}}{2} & D\equiv 1\mod 4
+        \end{cases}
+    \end{equation*}
+    \begin{itemize}
+        \item Etymology: Elements of the subring $\mathcal{O}$ in the field $\Q(\sqrt{D})$ have many analogous properties to those of the of the subring $\Z$ in the field $\Q$.
+        \item $\mathcal{O}$ is the \textbf{integral closure} of $\Z$ in $\Q(\sqrt{D})$ --- see Section 15.3.
+    \end{itemize}
+    \item \textbf{Gaussian integers}: The ring of integers in the quadratic field $\Q(\sqrt{-1})$. \emph{Denoted by} $\bm{\pmb{\Z}[i]}$.
+    \begin{itemize}
+        \item Gauss originally introduced these in 1800 to state the \textbf{biquadratic reciprocity law}.
+    \end{itemize}
+    \item \textbf{Biquadratic reciprocity law}: A statement dealing with the "beautiful relations that exist among fourth powers modulo primes" \parencite[229]{bib:DummitFoote}.
+    \item \textbf{Field norm}: The function from $\Q(\sqrt{D})\to\Q$ defined as follows. \emph{Denoted by} $\bm{N}$. \emph{Given by}
+    \begin{equation*}
+        N(a+b\sqrt{D}) = (a+b\sqrt{D})(a-b\sqrt{D}) = a^2-Db^2
+    \end{equation*}
+    \begin{itemize}
+        \item $N$ is nonzero when $a+b\sqrt{D}\neq 0$ (see above).
+        \item Measures "size" --- for example, if $D=-1$, then $N(a+bi)=a^2+b^2$, which is the length of this complex number considered as a vector in the complex plane.
+        \item Useful for establishing many properties of $\mathcal{O}$.
+        \item $N$ is multiplicative: $N(\alpha\beta)=N(\alpha)N(\beta)$ for all $\alpha,\beta\in\Q(\sqrt{D})$.
+        \item Defining $N$ on $\mathcal{O}$ shows that $N(\alpha)$ is an \emph{integer} for every $\alpha\in\mathcal{O}$.
+    \end{itemize}
+    \item $\alpha\in\mathcal{O}^\times$ iff $N(\alpha)=\pm 1$.
+    \begin{itemize}
+        \item \textcite{bib:DummitFoote} proves this from the definition.
+    \end{itemize}
+    \item \textbf{Pell's equation}: The following equation, where $x,y,D\in\Z$. \emph{Given by}
+    \begin{equation*}
+        x^2-Dy^2 = \pm 1
+    \end{equation*}
+    \begin{itemize}
+        \item Finding solutions is equivalent to finding units in $\mathcal{O}$.
+    \end{itemize}
+    \item Proves via Pell's equation that
+    \begin{align*}
+        \Z[i]^\times &= \{\pm 1,\pm i\}&
+        \Z\left[ \frac{1+\sqrt{-3}}{2} \right] &= \{\pm 1,\pm\rho,\pm\rho^2\}
+    \end{align*}
+    where $\rho=(1+\sqrt{-3})/2$.
+    \begin{itemize}
+        \item When $D<0$ and $D\neq -1,-3$, $\mathcal{O}^\times=\{\pm 1\}$.
+        \item When $D>0$, $\mathcal{O}^\times$ is infinite.
+    \end{itemize}
+    \item This whole discussion on the ring of integers in a quadratic field is highly related to HW4 Q4.3-4.4.
     \item \textbf{Nilpotent} (element): An element $x\in R$ such that $x^m=0$ for some $m\in\N$.
 \end{itemize}
 
@@ -681,6 +767,9 @@
         \item If $f\in R[X]$ is a zero divisor, then $cf=0$ for some nonzero $c\in R$ (see Exercise \ref{exr:7.2.2}).
     \end{itemize}
     \item If $S$ is a subring of $R$, then $S[X]$ is a subring of $R[X]$.
+    \begin{itemize}
+        \item Think back to the definition.
+    \end{itemize}
     \item More on polynomial rings in Chapter 9.
     \item \marginnote{1/9:}We now move onto matrix rings.
     \item \textbf{Matrix ring} (over $R$): The set of all $n\times n$ matrices $(a_{ij})$ with entries from $R$ under componentwise addition and matrix multiplication, where $R$ is an arbitrary ring and $n\in\N$. \emph{Denoted by} $\bm{M_n(R)}$.
@@ -690,7 +779,7 @@
     \end{proof}
     \item The matrices defined in the above proof are also zero divisors.
     \begin{itemize}
-        \item Thus, $M_n(R)$ ahs zero divisors for all nonzero rings $R$ where $n\geq 2$.
+        \item Thus, $M_n(R)$ has zero divisors for all nonzero rings $R$ where $n\geq 2$.
     \end{itemize}
     \item \textbf{Scalar matrix}: An element $(a_{ij})\in M_n(R)$ such that
     \begin{equation*}
