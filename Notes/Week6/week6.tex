@@ -249,6 +249,11 @@
 
 \section{Office Hours (Ray)}
 \begin{itemize}
+    \item Q5.2(i).
+    \begin{itemize}
+        \item Do it by hand; $X^4-1$ and $X^2-1$ is an instructive example.
+        \item We have that $X^4-1=(X^2-1)(X^2+1)$.
+    \end{itemize}
     \item Do we need proofs for Q5.4?
     \begin{itemize}
         \item No.
@@ -256,6 +261,10 @@
     \item What additionally does Q5.1(iii) want us to do?
     \begin{itemize}
         \item You can include a pointer to the previous part and reiterate your proof.
+    \end{itemize}
+    \item Q5.6.
+    \begin{itemize}
+        \item Commutative rings of characteristic $p$: The "raise to the power $p$" function is a ring homomorphism. This is the \textbf{Frobenius map}.
     \end{itemize}
 \end{itemize}
 
@@ -509,6 +518,78 @@
             \item Zorn's lemma allows us to give a proof that $A^m\cong A^n$ iff $m=n$.
             \item We will delay this proof, though, until Cayley's theorem.
         \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Office Hours (Ray)}
+\begin{itemize}
+    \item Q5.1(ii).
+    \begin{itemize}
+        \item We know that $\varphi(1,1)=(1,1)$. We know $\varphi(x,y)\neq(z,t)$. We know that $\varphi(1,0)=(1,0)$.
+        \item Then $\varphi$ is the identity function, which is unique.
+        \item Necessary: If there is a unique isomorphism, then $a\neq b$.
+        \item Sufficient: If $a\neq b$, then you can't send identities to identities, then the isomorphism is unique.
+        \item You only need to \emph{find} conditions here; prove below.
+    \end{itemize}
+    \item Q5.1(iii).
+    \begin{itemize}
+        \item $a\neq b$ implies that $(1,1)\mapsto(1,1)$?
+        \item $(1,0)\mapsto?$. It better map to an element of order $p^a$. It also better be idempotent, i.e., equal to its square. $(1,0)\cdot(0,1)=0$. If it maps to $(\gamma,\delta)$, then $\gamma^2=\gamma$ and $\delta^2=\delta$. Either $p\nmid\gamma$ or $\gamma=0$. Same with $\delta$. This is all if $(1,0)\mapsto(\gamma,\delta)$. We have to solve $X^2-X=0$ in a nonintegral domain, i.e., $X(X-1)=0$. $\gamma(\gamma-1)=0$ and $\delta(\delta-1)=0$. At least one of these is a unit so has an inverse. Multiply through by the inverse to get $\gamma=0$ or $\gamma-1=0$. Therefore, $\gamma=0,1$.
+        \item We can prove that in any case, $(1,0)\mapsto(1,0)$ or $(0,1)$. Now we use order $a\neq b$.
+        \item We can just state the generalization of $a\neq b$ here; do the proof in the other one.
+    \end{itemize}
+    \item Q5.2(i).
+    \begin{itemize}
+        \item We have that
+        \begin{equation*}
+            X^m-1 = X^{m-n}(X^n-1)+(X^{m-n}-1)
+        \end{equation*}
+        so we can induct to some extent.
+        \begin{itemize}
+            \item Induct on $n+m$??
+        \end{itemize}
+        \item The three things in the picture give us what we need.
+        \begin{enumerate}
+            \item Suppose $(f,g)=(h)$. Then $h\mid f,g$, i.e., $f,g\in(h)$. This implies that there exist $\alpha,\beta\in R$ such that $f=\alpha h$ and $g=\beta h$. Furthermore, equality implies that there exist $\gamma,\delta\in R$ such that $h=\gamma f+\delta g$. With this, a supposition that $d\mid f,g$ implies that $d\mid h$.
+            \item Proving that $X^d-1\mid X^m-1,X^n-1$:
+            \begin{equation*}
+                X^n-1 = (X^d-1)(1+X^d+X^{2d}+\cdots+X^{n-d})
+            \end{equation*}
+            \item Suppose $n<m$. Then
+            \begin{equation*}
+                X^m-1 = X^{m-n}(X^n-1)+(X^{m-n}-1)
+            \end{equation*}
+            It follows that $X^m-1\in(X^n-1,X^{m-n}-1)$.
+        \end{enumerate}
+    \end{itemize}
+    \item Q5.2(ii).
+    \begin{itemize}
+        \item Use the evaluation homomorphism, which is surjective so it sends ideals to ideals. Thus, $(X^m-1,X^n-1)\mapsto(q^n-1,q^m-1)$ and likewise for $(X^d-1)$.
+        \item We could quotient by $(X-q)$ to make that surjection an isomorphism, but we don't need to.
+    \end{itemize}
+    \item Q5.4(i).
+    \begin{itemize}
+        \item Example of a UFD that is not a PID. $\Z[\sqrt{5}]$ has $(1+\sqrt{5})(1-\sqrt{5})=2\cdot 3$?
+        \item $R$ is a UFD implies that $R[X]$ is a UFD; it follows pretty quickly to the field of fractions via Gauss's lemma?
+        \item $\C[X,Y]\in\text{UFD}-\text{PID}$. $\C[X]$ as well.
+    \end{itemize}
+    \item Q5.4(ii).
+    \begin{itemize}
+        \item Primes are irreducible. We know this. In $\Z_2$, the only units are the powers of 2 in both numerators and denominators. Importantly, 2 is no longer a prime. Everything else may not be either. For instance, $3=6\cdot 1/2=3\cdot 2\cdot 1/2$. Now $1/2$ is a unit Take an element in $D^{-1}R$. Then the numerator is reducible to a product of primes.
+        \item Think about the example of rings $R$ such that $\Z\subsetneq R\subsetneq\Q$. Such rings have a certain subset of primes in the denominators. It's true in the integers, strongly hinting that the answer is true. $3/5$ implies $1/5$ in $R$.
+        \item $r,s$ are relatively prime, hence generate 1. Bezout's identity would be helpful.
+        \item Ray all but said it's true.
+    \end{itemize}
+    \item Q5.4(iv).
+    \begin{itemize}
+        \item Don't assume that there's a unique way to write a fraction.
+    \end{itemize}
+    \item Q5.5.
+    \begin{itemize}
+        \item A natural thing is contradiction.
+        \item Suppose for the sake of contradiction that $f$ is reducible in $\Z[X]$. Let $f=qh$. We sent $f$ to $\Z/p\Z[X]$. We reduce the coefficients by $p$ and then our homomorphism implies that $\bar{f}=\bar{q}\bar{h}$. Let $d=\deg(f)$. We know by the irreducibility of $\bar{f}$ that either $\bar{q}$ or $\bar{h}$ is a unit. WLOG, let $\bar{h}$ be a unit. We know that $\deg(\bar{f})=\deg(f)$. We know that $\deg(h)\geq\deg(\bar{h})$ and $\deg(g)=d\geq\deg(\bar{g})$. It follows that $\deg(\bar{h})=0$. Thus, $\deg(h)=0$, so $h$ is an integer. Finally, use that $c(f)=1$, i.e., that gives us that $h=\pm 1$, i.e., is a unit. Proposition 9.12. Set $p=3$?
     \end{itemize}
 \end{itemize}
 
