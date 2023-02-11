@@ -9,7 +9,7 @@
 
 
 
-\chapter{???}
+\chapter{Modules Intro}
 \section{Module Tools}
 \begin{itemize}
     \item \marginnote{2/6:}A fifth week summary has been posted.
@@ -86,7 +86,7 @@
         \end{itemize}
         \item In particular, $A^m$ is an $A$-module with $a(b_1,\dots,b_n)=(ab_1,\dots,ab_n)$.
     \end{enumerate}
-    \item \textbf{Submodule}: A subgroup $(N,+)$ of $(M,+)$ such that for all $a\in A$ and $\omega\in N$, $a\omega\in N$.
+    \item \textbf{$\bm{A}$-submodule}: A subgroup $(N,+)$ of $(M,+)$ such that for all $a\in A$ and $\omega\in N$, $a\omega\in N$.
     \item Observation: If $N_1,N_2$ are submodules of $M$, then $N_1+N_2$ and $N_1\cap N_2$ are submodules.
     \item Question (base case): What are the submodules of $A$, itself?
     \begin{itemize}
@@ -412,6 +412,104 @@
     \end{enumerate}
     \item Wrap my head around an elementary statement of the Chinese Remainder Theorem!
     \item Stuff from OH on Monday.
+\end{itemize}
+
+
+
+\section{Sub- and Quotient-Module Structure}
+\begin{itemize}
+    \item \marginnote{2/10:}On the midterm.
+    \begin{itemize}
+        \item All of our midterms have been graded but 2.
+        \item The midterm was bad.
+        \item Nori is more depressed than we will be when we get ours back.
+        \item He wants us to understand all of the stuff that was on it.
+        \item The first two questions were really important.
+        \item The last two were on gcd's in PIDs, which is really important for Spring Quarter.
+        \item Nori was pretty severe on those who didn't know the definition of a ring homomorphism. You need $f(1)=1$. You can't have $f(1)=0$ because that takes everything to 0. You also need to know that $1_R$ belongs to subrings.
+        \item We should have it back on Monday; Wednesday latest.
+    \end{itemize}
+    \item On HW5.
+    \begin{itemize}
+        \item Q5.2: Proving that $(X^m-1,X^n-1)$ in $\Z[X]$ is $(X^d-1)$ where $d=\gcd(m,n)$.
+        \begin{itemize}
+            \item Nori thinks it's nice and hopes we all get it.
+            \item $\gcd(X-1,X+1)=1$ does not imply that $\gcd(q-1,q+1)=1$ for all $q\in\Z$.
+            \item Ring homomorphisms do not preserve the gcd.
+        \end{itemize}
+        \item It's all important, though.
+    \end{itemize}
+    \item On HW6.
+    \begin{itemize}
+        \item It is long and challenging.
+        \item Assuming that you've never seen modules before Monday, it will take time.
+    \end{itemize}
+    \item We now begin lecture in earnest.
+    \item A simplification of the theorem from last time that will lead into it.
+    \item Theorem: Let $R$ be a PID and let $M\subset R^h$ be an $R$-submodule. Then $M\cong R^m$ for some $0\leq m\leq h$.
+    \begin{proof}
+        Consider the module homomorphism $\varphi:M\to R$ that selects for the last component, i.e., is defined by
+        \begin{equation*}
+            \varphi(a_1,\dots,a_h) = a_h
+        \end{equation*}
+        for all $m=(a_1,\dots,a_h)\in M$. We now investigate the image and kernel of $\varphi$. These facts may seem disjointed now, but they will be useful later.\par
+        Kernel: Let $M'=\ker(\varphi)$. Then $M'=M\cap(R^{h-1}\times\{0\})$.\par
+        Image: Since $M$ is an $R$-submodule, it is an additive subgroup and it is closed under multiplication by elements of $R$. Therefore, it is an ideal of $R^h$. It follows that $\im(\varphi)$ is an ideal of $R$ ($\varphi$ would be surjective were it extended to $R^h$, and then $\varphi(M)$ would be the image of an ideal under a surjective map; see Q2.3b).\par
+        We now divide into two cases ($\im(\varphi)=\{0\}$ and otherwise). Suppose first that $\im(\varphi)=\{0\}$. Then $M'=M$. Now suppose that $\im(\varphi)\neq\{0\}$. By hypothesis, $R$ is a PID. In particular, the ideal $\im(\varphi)$ is principal, i.e., that there exists $0\neq b\in R$ such that $\im(\varphi)=Rb$. Choose $e\in M$ such that $\varphi(e)=b$ (in other words, take $e\in M$ to have $b$ as its last entry). Define $T:M'\oplus R\to M$ by
+        \begin{equation*}
+            T(m',a) = m'+ae
+        \end{equation*}
+        We now prove that $T$ is a module homomorphism\footnote{Nori said $A$-module homomorphism. What is $A$??}. ...\par
+        We now prove that $T$ is an $A$-module \emph{iso}morphism.\par
+        We first check that $T$ is onto. Pick an element $m\in M$ and suppose that $a_h$ is its last element. By definition, $a_h\in\im(\varphi)=Rb$. Thus, there exists $d\in R$ such that $a_h=db=\varphi(de)$. Thus, $\varphi(m)=\varphi(de)$, so $\varphi(m-de)=0$, i.e., $m'=m-de\in M'$. It follows that $m=m'+de$, so $m=T(m',d)$, as desired.\par
+        We now check that $T$ is injective. Since $R$ is an integral domain, $d$ is unique. Thus, since distinct inputs map to distinct outputs, $T$ is 1-1. It follows that $\ker(T)=0$.\par
+        It follows that $M'\oplus R\cong M$.\par
+        The rest of the proof follows by induction on $h\geq 0$. In particular, assume $h>0$ and assume that we've proved the claim for $h-1$. Then $M'\cong R^\ell$ for $0\leq\ell\leq h-1$. Case 1: $M'=M$ and Case 2: $M\cong M'\oplus R\cong R^\ell\oplus R=R^{\ell+1}$.
+    \end{proof}
+    \item On sets, $\oplus$ is the same as $\times$.
+    \begin{itemize}
+        \item By the definition of module homomorphisms, to give a module homomorphism from $N_1\oplus N_2\to M$ is to give one from $N_1\to M$ and $N_2\to M$ and add the results.
+        \item Related to the definition of $T(1)$ and $\varphi(e)$ from the proof.
+    \end{itemize}
+    \item Why is the image an ideal?
+    \begin{itemize}
+        \item $i:M\hookrightarrow R^n$ is a module homomorphism, and $\text{proj}:R^n\to R$ is a module homomorphism.
+        \item $I\subset R$ is a submodule, i.e., for all $m\in I$ and $\lambda\in R$, $\lambda m\in I$.
+        \item Then it's surjection, as discussed in the proof.
+    \end{itemize}
+    \item Module homomorphisms are not ring homomorphisms. Modules don't necessarily have a ring structure.
+    \item The collection
+    \begin{equation*}
+        \{(a_1,\dots,a_{h-1},0):a_i\in R\} \cong R^{h-1}
+    \end{equation*}
+    is an $R$-module.
+    \item We now return to the theorem from last lecture.
+    \item Theorem: Let $A$ be a ring, let $M$ be an $A$-module, and let $M'\subset M$ be an $A$-submodule (all modules are left modules). Suppose that there is an isomorphism of $A$-modules $\varphi:M/M'\to A^n$. Then $M'\oplus A^n\cong M$ as an $A$-module.
+    \begin{proof}
+        You can either do this in one short proof with horrible notation, or you can prove it for $n=1$ and say that induction solves the rest. We'll do the latter.\par
+        The existence of $\varphi$ says that there exists a surjection of $A$-modules $\psi:M\to A$ with $\ker\psi=M'$. "Take $\psi^{-1}(1)$ and set it equal to $e$. Then repeat the (previous??) proof." Choose $e\in M$ such that $\varphi(e)=1$. Then $T:M'\oplus A\to M$, $T(m',a)=m'+ae$ for all $m'\in M'$ and $a\in A$. To check that $T$ is onto will proceed symmetrically to in the previous proof.
+        (Let $m\in M$ Put $a=\varphi(m)$. Then $a=\varphi(ae)$. Put $m'=m-ae$. Then $\varphi(m')=\varphi(m-ae)=\varphi(m)-\varphi(ae)=a-a=0$. (This $\varphi$ may be $\psi$!). Therefore, $m'\in M$ and $T(m',a)=m$ is onto.)
+        How about $\ker(T)$? Let $m'\in M'$. We have $(m',a)\in\ker(T)$ implies $m'+ae=0$. Then $\varphi(m'+ae)=0$, $\varphi(m')+a=0$, $m'=0$.
+    \end{proof}
+    \item Build up to Zorn's Lemma.
+    \begin{itemize}
+        \item If $\varphi:\Z^m\to\Z^n$ is an isomorphism of abelian groups, then $\bar{\varphi}:\Z^m/2\Z^m\to\Z^n/2\Z^n$ is still an isomorphism. Hence, $2^m=2^n$ and thus $m=n$.
+        \item Exercise: Suppose $V$ is an infinite dimensional vector space over a field $F$. Let $A=\End_F(V)$. Then $A^m\cong A^n$ for all $m,n>0$ where the isomorphism is of $A$-modules.
+        \item On the other hand, we can just resolve this issue axiomatically.
+        \begin{itemize}
+            \item Let $A$ be a ring. Consider $\End_A(A^2)$. For a field, it's $2\times 2$ matrices. Here,
+            \begin{equation*}
+                \End_A(A^2) \cong M_2(A^\text{opp})
+            \end{equation*}
+            where the opp notation denotes that multiplication has been reversed and addition is still the same, i.e.,
+            \begin{equation*}
+                a\cdot_\text{new}b = b\cdot_\text{old}a
+            \end{equation*}
+            \item Assuming that $A$ is commutative and $A\cong A^2$ as an $A$-module, this implies that $M_2(A)\cong A$.
+            \item Zorn's lemma allows us to give a proof that $A^m\cong A^n$ iff $m=n$.
+            \item We will delay this proof, though, until Cayley's theorem.
+        \end{itemize}
+    \end{itemize}
 \end{itemize}
 
 
