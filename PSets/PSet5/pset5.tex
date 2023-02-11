@@ -18,24 +18,262 @@
             \phi:\Z/(a)\times\Z/(b)\to\Z/(M)\times\Z/(m)
         \end{equation*}
         \emph{Hint}: Chinese Remainder Theorem.
+        \begin{proof}
+            % We have that $Mm=ab$. $(a),(b)$ are ideals in $\Z$. The map
+            % \begin{equation*}
+            %     f:\Z \to \Z/(a)\times\Z/(b)
+            % \end{equation*}
+            % is a ring homomorphism. Similarly, the map
+            % \begin{equation*}
+            %     g:\Z \to \Z/(m)\times\Z/(M)
+            % \end{equation*}
+            % is a ring homomorphism.
+
+            % $a/m,b/m$ are coprime. Thus, $(a/m)+(b/m)=R$. $(a)\subsetneq(a/m)$ and $(b)\subsetneq(b/m)$.
+
+            % Example: 10,12. lcm = 60, gcd = 2.
+
+            % Take the initial thing, expand using the CRT to a full prime factorization, mention that conjugacy is an equivalence relation and the direct product operation is associative and commutative up to isomorphism.
+            % $\Z/p^n\Z\times\Z/p^m\Z\cong\Z/p^{n+m}\Z$.
+            % $a=p_1^{e_1}\cdots p_n^{e_n}$.
+            % $b=p_1^{f_1}\cdots p_n^{f_n}$.
+            % $\Z/a\Z=\Z/p_1^{e_1}\Z\times\cdots\times\Z/p_n^{e_n}\Z$
+
+            % We know that $\Z$ is a UFD. Thus, we may set $ab=mM$ equal to the prime factorization $p_1^{e_1+f_1}\cdots p_n^{e_n+f_n}$ where 
+
+
+            Let $a=p_1^{e_1}\cdots p_n^{e_n}$ and $b=p_1^{f_1}\cdots p_n^{f_n}$, where $e_i,f_i\geq 0$ ($i=1,\dots,n$) and we pick all primes to be greater than zero to obviate the need for multiplication by a unit (1 or $-1$ in this case). It follows that $ab=p_1^{e_1+f_1}\cdots p_n^{e_n+f_n}$. We know from Proposition 8.13 that we can pick $m=p_1^{\min(e_1,f_1)}\cdots p_n^{\min(e_n,f_n)}$. Additionally, since $ab=mM$, we know that we can pick 
+            \begin{equation*}
+                M = p_1^{e_1+f_1-\min(e_1,f_1)}\cdots p_n^{e_n+f_n-\min(e_n,f_n)}
+                = p_1^{\max(e_1,f_1)}\cdots p_n^{\max(e_n,f_n)}
+            \end{equation*}
+            By the Chinese Remainder Theorem (CRT), or more directly Corollary 7.18, we know that
+            \begin{align*}
+                \Z/(a) &= \Z/(p_1^{e_1})\times\cdots\times\Z/(p_n^{e_n})&
+                \Z/(b) &= \Z/(p_1^{f_1})\times\cdots\times\Z/(p_n^{f_n})
+            \end{align*}
+            Thus,
+            \begin{equation*}
+                \Z/(a)\times\Z/(b) \cong \Z/(p_1^{e_1})\times\cdots\times\Z/(p_n^{e_n})\times\Z/(p_1^{f_1})\times\cdots\times\Z/(p_n^{f_n})
+            \end{equation*}
+            Similarly,
+            \begin{equation*}
+                \Z/(M)\times\Z/(m) \cong \Z/(p_1^{\max(e_1,f_1)})\times\cdots\times\Z/(p_n^{\max(e_n,f_n)})\times\Z/(p_1^{\min(e_1,f_1)})\times\cdots\times\Z/(p_n^{\min(e_n,f_n)})
+            \end{equation*}
+            For every $i=1,\dots,n$, there are two relevant terms in the above direct product: $\Z/(p_i^{\max(e_i,f_i)})$ and $\Z/(p_i^{\min(e_i,f_i)})$. We divide into two cases ($\min(e_i,f_i)=e_i$ and $\min(e_i,f_i)=f_i$). If $\min(e_i,f_i)=e_i$, then $\max(e_i,f_i)=f_i$ (this holds true even when $e_i=f_i$). Thus,
+            \begin{align*}
+                \Z/(p_i^{\min(e_i,f_i)}) &= \Z/(p_i^{e_i})&
+                \Z/(p_i^{\max(e_i,f_i)}) &= \Z/(p_i^{f_i})
+            \end{align*}
+            It follows that the $i^\text{th}$ and $(n+i)^\text{th}$ slots in the direct product expansions of $\Z/(a)\times\Z/(b)$ and $\Z/(M)\times\Z/(m)$ above are identical. Now suppose $\min(e_i,f_i)=f_i$. Then for a similar reason to the previous case,
+            \begin{align*}
+                \Z/(p_i^{\min(e_i,f_i)}) &= \Z/(p_i^{f_i})&
+                \Z/(p_i^{\max(e_i,f_i)}) &= \Z/(p_i^{e_i})
+            \end{align*}
+            Thus, since the direct product operation is commutative,\footnote{Ray said that this assertion need not be justified further.} we may flip the entries in the $i^\text{th}$ and $(n+i)^\text{th}$ slots in the direct product expansion of $\Z/(M)\times\Z/(m)$ and still have an isomorphic ring. Doing this for all $i$ proves that
+            \begin{align*}
+                & \Z/(p_1^{e_1})\times\cdots\times\Z/(p_n^{e_n})\times\Z/(p_1^{f_1})\times\cdots\times\Z/(p_n^{f_n})\\
+                &\cong \Z/(p_1^{\max(e_1,f_1)})\times\cdots\times\Z/(p_n^{\max(e_n,f_n)})\times\Z/(p_1^{\min(e_1,f_1)})\times\cdots\times\Z/(p_n^{\min(e_n,f_n)})
+            \end{align*}
+            and hence by transitivity that
+            \begin{equation*}
+                \Z/(a)\times\Z/(b) \cong \Z/(M)\times\Z/(m)
+            \end{equation*}
+            Stating that two sets are isomorphic as rings is equivalent to stating that there exists an isomorphism of rings
+            \begin{equation*}
+                \phi:\Z/(a)\times\Z/(b)\to\Z/(M)\times\Z/(m)
+            \end{equation*}
+            so we are done.
+        \end{proof}
         \item Find necessary and sufficient conditions for uniqueness of the $\phi$. \emph{Hint}: Do this first when $a=p^c$ and $b=p^d$, where $p$ is prime.
+        \begin{proof}
+            % WLOG, let $c\leq d$. Then $m=p^c$ and $M=p^d$. By part (a), there exists an isomorphism
+            % \begin{equation*}
+            %     \phi:\Z/(a)\times\Z/(b)\to\Z/(M)\times\Z/(m)
+            % \end{equation*}
+            % is an isomorphism. Another ring isomorphism between those two rings is the identity $i$. Suppose they're distinct. Then there exists $x$ such that $i(x)\neq\varphi(x)$, i.e., $\varphi(x)\neq x$.
+
+
+            Let $a=p_1^{e_1}\cdots p_n^{e_n}$ and $b=p_1^{f_1}\cdots p_n^{f_n}$. Then a necessary and sufficient condition for the uniqueness of $\phi$ is that
+            \begin{equation*}
+                \boxed{e_i \neq f_i\ \forall\ i=1,\dots,n}
+            \end{equation*}
+        \end{proof}
         \item Prove that the condition you provided for part (ii) is sufficient.
+        \begin{proof}
+            % Now suppose that $a,b$ have more complex prime factorizations. We induct on the number $n$ of prime factors needed to encapsulate the prime factorizations of $a,b$, i.e., the $n=2$ case would be there exists $e_1,e_2,f_1,f_2\geq 0$ such that $a=p_1^{e_1}p_2^{e_2}$ and $b=p_1^{f_1}p_2^{f_2}$. If $a\neq b$, then some $e_i\neq f_i$. The existence of $\phi$ implies the existence of an isomorphism
+            % \begin{align*}
+            %     \psi & :\Z/(p_1^{e_1})\times\cdots\times\Z/(p_n^{e_n})\times\Z/(p_1^{f_1})\times\cdots\times\Z/(p_n^{f_n})\\
+            %     &\to \Z/(p_1^{\max(e_1,f_1)})\times\cdots\times\Z/(p_n^{\max(e_n,f_n)})\times\Z/(p_1^{\min(e_1,f_1)})\times\cdots\times\Z/(p_n^{\min(e_n,f_n)})
+            % \end{align*}
+
+            % Suppose $\phi$ is not unique. Then it implies the existence of two distinct $\psi$. Can we reduce the more general case to the base case?
+            % We know that there is only one isomorphism $\phi_1:\Z/(p_1^{e_1})\times\Z/(p_1^{f_1})\to\Z/(p_1^{e_1})\times\Z/(p_1^{f_1})$ given $e_1\neq f_1$. Same for $\phi_2$. Now suppose we wish to construct an isomorphism from $\Z/(p_1^{e_1})\times\Z/(p_2^{e_2})\times\Z/(p_1^{f_1})\times\Z/(p_1^{f_1})$ to itself. Suppose $\phi,\phi'$ both accomplish the task. Use tildes instead. Consider $(a,b,c,d)$ such that $\phi(a,b,c,d)\neq\phi'(a,b,c,d)$. We know that $\phi(a,b,0,0)=\phi'(a,b,0,0)$ and likewise for the other two components. Do we tho?? Thus, this is unique. We don't even need to induct. So we've got a unique decomp. homomorphism.
+
+            % Now suppose $\phi,\phi'$ are distinct variations of the original isomorphism. Then $\phi(c,d)\neq\phi'(c,d)$ for some $(c,d)$. How would this imply that there are two $\phi$ on primes?
+            % We know that $\Z/(a)\times\Z/(b)$ is isomorphic to $\Z/(p_1^{e_1})\times\Z/(p_2^{e_2})\times\Z/(p_1^{f_1})\times\Z/(p_1^{f_1})$. Thus, $i(c,d)$
+
+            % Similar strategy to before: Define $\phi(1,0)$.
+
+            % We could also prove that every isomorphism obeys the above construction and that the other two branches are unique as well...
+
+            % What do we know? We know that there is one, and that it's the identity with coordinate changes as necessary, but it maps like elements in the direct product.
+            % Fuck it, try bashing it out.
+            % Where does $\phi(1,0)$ go?
+
+
+            Taking the hint from part (ii), we first treat the case where $a=p^c$ and $b=p^d$. WLOG, let $c\leq d$, in agreement with part (ii). Suppose that $a\neq b$. Then $c<d$. Since $\phi$ is a ring homomorphism, we know that $\phi(1,1)=(1,1)$.\par
+            Now let's investigate the behavior of $\phi(1,0)$ and $\phi(0,1)$. Let $\phi(1,0)=(\gamma,\delta)$. Since $(1,0)$ is idempotent, i.e., $(1,0)^2=(1,0)$, we have that
+            \begin{align*}
+                \phi[(1,0)^2] &= \phi(1,0)\\
+                (\gamma,\delta)^2 &= (\gamma,\delta)\\
+                (\gamma^2,\delta^2) &= (\gamma,\delta)\\
+                (\gamma^2-\gamma,\delta^2-\delta) &= (0,0)
+            \end{align*}
+            Consider $\gamma(\gamma-1)=0$. It follows that $\gamma,\gamma-1$ are zero divisors. Hence, at \emph{least} one of $\gamma,\gamma-1$ is a multiple of $p$. Additionally, since $p\geq 2$ and $\gamma,\gamma-1$ are offset by 1, we know that $p$ divides at \emph{most} one of these. Thus, we divide into two cases ($p\mid\gamma$ and $p\mid\gamma-1$). Suppose first that $p\mid\gamma$. Then since the units of $\Z/p^n\Z$ are the integers coprime to $p$, we know that $\gamma-1$ is a unit. It follows that there exists an element $(\gamma-1)^{-1}$ and thus that
+            \begin{align*}
+                0 &= (\gamma-1)^{-1}\cdot\gamma(\gamma-1)\\
+                0 &= \gamma
+            \end{align*}
+            In the case $p\mid\gamma-1$, we similarly derive that $0=\gamma-1$, or $\gamma=1$. Thus, $\gamma\in\{1,0\}$. Similarly, $\delta\in\{1,0\}$.\par
+            Now suppose $\gamma=\delta=1$. Then $\phi(1,1)=(1,1)=\phi(1,0)$ and $\phi$ is not an isomorphism, a contradiction. Similarly, if $\gamma=\delta=0$, then $\phi(0,0)=(0,0)=\phi(1,0)$, which is the same contradiction. Therefore, $\phi(1,0)\in\{(1,0),(0,1)\}$.\par
+            It follows by a symmetric argument that $\phi(0,1)\in\{(1,0),(0,1)\}$. For the same isomorphism reason, $\phi(1,0)$ and $\phi(0,1)$ must equal distinct elements. Thus, $\phi$ can be two possible isomorphisms, since the values of $\phi(1,0)$ and $\phi(0,1)$ determine all other values of $\phi$.\par
+            We now invoke the condition that $c<d$. We know that $(1,0)^{p^c}=(0,0)$. Suppose $\phi(1,0)=(0,1)$. It follows that $\phi[(1,0)^{p^c}]=(0,p^c)\neq(0,0)$, we have a contradiction. Therefore, we must have that $\phi$ is the identity isomorphism.\par\smallskip
+
+            Now suppose that $a,b$ have more complex prime factorizations. In particular, let $a=p_1^{e_1}\cdots p_n^{e_n}$ and $b=p_1^{f_1}\cdots p_n^{f_n}$. The existence of $\phi$ implies the existence of an isomorphism
+            \begin{align*}
+                \psi & :\Z/(p_1^{e_1})\times\cdots\times\Z/(p_n^{e_n})\times\Z/(p_1^{f_1})\times\cdots\times\Z/(p_n^{f_n})\\
+                &\to \Z/(p_1^{\max(e_1,f_1)})\times\cdots\times\Z/(p_n^{\max(e_n,f_n)})\times\Z/(p_1^{\min(e_1,f_1)})\times\cdots\times\Z/(p_n^{\min(e_n,f_n)})
+            \end{align*}
+            Defining a restriction isomorphism to the $n$ sets consisting of elements where only the $p_i$ slots are nonzero, $\psi$ induces $n$ isomorphisms of the kind treated above. We know that all of these are unique. Thus, reassembling $\psi$, we have a unique isomorphism. It follows that $\phi$ is a unique isomorphism.
+        \end{proof}
     \end{enumerate}
+    \pagebreak
     \item The Euclidean algorithm for monic polynomials is valid for every commutative ring, but it does not provide a method of obtaining the gcd because the "remainder" may not have a unit as its leading coefficient, so we cannot proceed by induction. But we may get lucky:
     \begin{enumerate}
-        \item Prove that the ideal generated by $X^m-1$ and $X^n-1$ in $\Z[X]$ is the principle ideal $(X^d-1)$, where $d=\gcd(m,n)$.
+        \item Prove that the ideal generated by $X^m-1$ and $X^n-1$ in $\Z[X]$ is the principal ideal $(X^d-1)$, where $d=\gcd(m,n)$.
+        \begin{proof}
+            % Let $m=ad$. Then
+            % \begin{equation*}
+            %     X^m-1 = (X^d-1)\cdot\sum_{i=0}^{a-1}X^{di}
+            % \end{equation*}
+            % Then we do a bidirectional inclusion proof. One direction is easy. How about the other?
+
+            We will prove that $(X^m-1,X^n-1)=(X^d-1)$ via a bidirectional inclusion proof. Suppose first that $p\in(X^m-1,X^n-1)$. Then there exist polynomials $a,b\in\Z[X]$ such that $p(X)=a(X)\cdot(X^m-1)+b(X)\cdot(X^n-1)$. Now since $d=\gcd(m,n)$, there exist $s,t$ such that $m=sd$ and $n=td$. Using $s,t$, we may write
+            \begin{align*}
+                X^m-1 &= (X^d-1)\cdot\sum_{i=0}^{s-1}X^{di}&
+                X^n-1 &= (X^d-1)\cdot\sum_{i=0}^{t-1}X^{di}
+            \end{align*}
+            Therefore,
+            \begin{align*}
+                p(X) &= a(X)\cdot(X^m-1)+b(X)\cdot(X^n-1)\\
+                &= a(X)\cdot(X^d-1)\cdot\sum_{i=0}^{s-1}X^{di}+b(X)\cdot(X^d-1)\cdot\sum_{i=0}^{t-1}X^{di}\\
+                &= \left[ a(X)\cdot\sum_{i=0}^{s-1}X^{di}+b(X)\cdot\sum_{i=0}^{t-1}X^{di} \right]\cdot(X^d-1)\\
+                &\in (X^d-1)
+            \end{align*}
+            as desired.\par
+            On the other hand, suppose that $p\in(X^d-1)$. Then there exists a polynomial $a\in\Z[X]$ such that $p(X)=a(X)\cdot(X^d-1)$. WLOG let $n\leq m$. Then since
+            \begin{equation*}
+                X^m-1 = X^{m-n}(X^n-1)+(X^{m-n}-1)
+            \end{equation*}
+            we see that we can actually invoke a Euclidean algorithm for monic polynomials here. Thus, continuing, we will eventually reach $X^d-1$ and thus can rewrite
+            \begin{equation*}
+                X^d-1 = b(X)\cdot(X^m-1)+c(X)\cdot(X^n-1)
+            \end{equation*}
+            Therefore,
+            \begin{align*}
+                p(X) &= a(X)\cdot(X^d-1)\\
+                &= a(X)\cdot[b(X)\cdot(X^m-1)+c(X)\cdot(X^n-1)]\\
+                &= a(X)b(X)\cdot(X^m-1)+a(X)c(X)\cdot(X^n-1)\\
+                &\in (X^m-1,X^n-1)
+            \end{align*}
+            as desired.
+        \end{proof}
         \item Deduce that $\gcd(q^m-1,q^n-1)=(q^d-1)$ for every integer $q$.
+        \begin{proof}
+            % Direct substitution?
+
+            Consider the evaluation homomorphism $\ev_q:\Z[X]\to\Z$. Since every integer $z\in\Z$ is an element of $\Z[X]$, $\ev_q$ is surjective. It follows by Exercise 7.3.24(b) of \textcite{bib:DummitFoote} (proven in HW2) that $\ev_q$ sends ideals to ideals. Thus, under $\ev_q$,
+            \begin{align*}
+                (X^m-1,X^n-1) &\mapsto (q^n-1,q^m-1)&
+                (X^d-1) &\mapsto (q^d-1)
+            \end{align*}
+            It follows since $(X^m-1,X^n-1)=(X^d-1)$ as per part (i) that $(q^n-1,q^m-1)=(q^d-1)$, and hence $\gcd(q^m-1,q^n-1)=(q^d-1)$, as desired.
+        \end{proof}
     \end{enumerate}
     \item Let $K$ be the quotient field of a UFD $R$. If $f\in R[X]$ is a monic polynomial, $c\in K$, and $f(c)=0$, then $c\in R$.
+    \begin{proof}
+        % Something with the denominators. So $c=a/b$. Let $\deg(f)=n$. Then $c^n=a^n/b^n$ and by the rules of addition, the common denominator of the other terms will be $b^{n-1}$. Follows very quickly from Gauss's Lemma.
+
+        % $f(c)=0$ implies that $f$ is reducible in $K[X]$, i.e., $f=q(X-c)$. It follows by Gauss' Lemma that there exist $r,s\in K$ such that $rq,s(X-c)\in R[X]$ and $f=rqs(X-c)$. But $f$ is monic, so $rs=1$. It follows that $f=q(X-c)$ is a factorization in $R[X]$, and hence that $c\in R$.
+
+
+        Since $f(c)=0$, it follows that
+        \begin{equation*}
+            f(X) = q(X)\cdot(X-c)
+        \end{equation*}
+        for some $q\in K[X]$. Note that since $f$ is monic, $q$ must have leading coefficient 1. The main takeaway from the above equation is that $f$ is reducible in $K[X]$. Thus, since $R$ is a UFD, $\Frac R=K$, $f\in R[X]$, and $f$ is reducible in $K[X]$, Gauss' Lemma asserts that there exist $r,s\in K$ such that $rq,s(X-c)\in R[X]$ and
+        \begin{equation*}
+            f(X) = rq(X)\cdot s(X-c)
+        \end{equation*}
+        is a factorization of $f$ in $R[X]$. But since $q,(X-c)$ have leading coefficient 1 and $f$ is monic, we must have $rs=1$. Therefore,
+        \begin{equation*}
+            f(X) = q(X)\cdot(X-c)
+        \end{equation*}
+        is a factorization in $R[X]$. In particular, $X-c\in R[X]$, meaning that $c\in R$, as desired.
+    \end{proof}
     \item State whether true or false. If false, give a counterexample.
     \begin{enumerate}
         \item If $R$ is a UFD, then $D^{-1}R$ is a UFD.
+        \begin{proof}[Answer]
+            True.
+        \end{proof}
         \item Let $K$ be the field of fractions of a PID $R$. If $R\subset A\subset K$ is a chain of rings, then $A=D^{-1}R$ for some multiplicative subset $D$ of $R$.
+        \begin{proof}[Answer]
+            True.
+        \end{proof}
         \item Same problem as in (ii), except that now $R$ is a UFD.
+        \begin{proof}[Answer]
+            % Let $A$ be elements of the form $q(x)+p(x)/2^k$ where $q$ is any polynomial including constants, $\deg(p)\geq 1$, and $k\in\N$. Gotta have a component that divides by a multiplicative subset, and another that does not.
+            
+            True.
+        \end{proof}
         \item Let $K$ be the field of fractions of an integral domain $R$. If $D_1,D_2$ are multiplicative subsets of $R$, then $D_1^{-1}R$ and $D_2^{-1}R$ are subrings of $K$. If $D_1^{-1}R=D_2^{-1}R$, then $D_1=D_2$.
+        \begin{proof}[Answer]
+            False.\par
+            Let $R=\Z$. Pick $D_1=\N$ and $D_2=\Z-\{0\}$. Then since $D_1\subset D_2$, any $a/b\in D_1^{-1}R$. If $a/b\in D_2^{-1}R$, then we divide into two cases. If the denominator is positive, we are done. If the denominator is negative, represent the fraction by another member of the equivalence class: $-a/-b\in D_1^{-1}R$.
+        \end{proof}
     \end{enumerate}
     \item Let $f\in\Z[X]$ be a polynomial with content 1. Let $p$ be prime and let $\bar{f}$ denote the image of $f$ in $\F_p[X]$. If $\deg(f)=\deg(\bar{f})$ and $\bar{f}$ is irreducible, show that $f$ is irreducible in $\Z[X]$.
+    \begin{proof}
+        To prove that $f$ is irreducible in $\Z[X]$, it will suffice to show that for any factorization $f=qh$ of $f$, $q$ or $h$ is a unit. Let $f=qh$, let $d=\deg(f)$, and let $\pi:\Z[X]\to\F_p[X]$. We have that
+        \begin{equation*}
+            \bar{f} = \pi(f)
+            = \pi(qh)
+            = \pi(q)\pi(h)
+            = \bar{q}\cdot\bar{h}
+        \end{equation*}
+        Since $\bar{f}$ is irreducible, either $\bar{q}$ or $\bar{h}$ is a unit in $\F_p[X]$. WLOG, let $\bar{h}$ be a unit. Then $\deg(\bar{h})=0$. Thus,
+        \begin{equation*}
+            \deg(\bar{q}) = \deg(\bar{f})-\deg(\bar{h})
+            = d-0
+            = d
+        \end{equation*}
+        It follows since $\deg(q)\geq\deg(\bar{q})$ that $\deg(q)=d$, and hence $\deg(h)=0$ as well. Consequently, $h$ is an integer. Moreover, since $c(f)=1$, $h\mid 1$, so $h=\pm 1$, i.e., is a unit. Therefore, $f$ is irreducible in $\Z[X]$.
+    \end{proof}
     \item If $R$ is a (commutative) ring of characteristic $p$, where $p$ is prime, show that $(a+b)^p=a^p+b^p$.
+    \begin{proof}
+        By the binomial theorem,
+        \begin{equation*}
+            (a+b)^p = \sum_{k=0}^p\binom{p}{k}a^{p-k}y^k
+            = \sum_{k=0}^p\frac{p!}{k!(p-k)!}a^{p-k}y^k
+        \end{equation*}
+        It follows that in all cases except when $k=0,p$, the coefficient is a multiple of $p$. In particular, if the coefficient is a multiple of $p$ in a ring of characteristic $p$, the coefficient is equal to zero. Therefore, all terms save the $k=0$ and $k=p$ terms disappear, leaving only
+        \begin{equation*}
+            (a+b)^p = a^p+b^p
+        \end{equation*}
+        as desired.
+    \end{proof}
 \end{enumerate}
 
 
