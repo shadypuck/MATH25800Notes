@@ -1,0 +1,149 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{6}
+
+\begin{document}
+
+
+
+
+\chapter{???}
+\section{Zorn's Lemma and Intro to Modules Over PIDs}
+\begin{itemize}
+    \item \marginnote{2/13:}Picking up from last time with Zorn's lemma.
+    \item \textbf{Partially ordered set}: A set together with a binary relation indicating that, for certain pairs of elements in the set, one of the elements precedes the other in the ordering. \emph{Also known as} \textbf{poset}. \emph{Denoted by} $\bm{P}$.
+    \begin{itemize}
+        \item The domain of the \textbf{partial order} may be a proper subset of $P\times P$.
+    \end{itemize}
+    \item \textbf{Partial order}: The binary relation on a poset.
+    \item \textbf{Maximal} ($f\in P$): An element $f\in P$ such that for all $q\in P$, the statement $q>f$ is false.
+    \item Example.
+    \begin{itemize}
+        \item Let $X$ be a set with $|X|\geq 2$\footnote{Nori denotes cardinality by $\#X$.}.
+        \item Define a poset $P=\{A\subsetneq X\}$ with corresponding partial order defined by taking subsets. In particular, if $A\subset B$, write $A\leq B$.
+        \item For any $x\in X$, $X-\{x\}$ is a maximal element of $P$.
+    \end{itemize}
+    \item \textbf{Chain}: A subset of a poset $P$ such that if $c_1,c_2$ are in said subset, then implies $c_1\leq c_2$ or $c_2\leq c_1$. \emph{Denoted by} $\bm{C}$.
+    \begin{itemize}
+        \item In other words, a chain is a subset of a poset that is a \textbf{totally ordered set}.
+    \end{itemize}
+    \item \textbf{Totally ordered set}: A set together with a binary relation indicating that, for any pair of elements in the set, one of the elements precedes the other in the ordering.
+    \item Observation: If $F$ is a subset of a nonempty finite chain $C$, then there exists $c\in F$ such that $c\geq q$ for all $q\in F$.
+    \item \textbf{Upper bound} (of $C$): An element $p\in P$ such that $p\geq c$ for all $c\in C$.
+    \item \textbf{Zorn's lemma}: Let $P$ be a poset that satisfies
+    \begin{enumerate}[label={(\roman*)}]
+        \item $P\neq\emptyset$;
+        \item Every chain $C\subset P$ has an upper bound.
+    \end{enumerate}
+    Then $P$ has a maximal element.
+    \item We will not prove Zorn's lemma. It rarely if ever gets proven in an undergraduate course, maybe in a logic course.
+    \begin{itemize}
+        \item And by "prove" we mean "deduce Zorn's lemma from the Axiom of Choice."
+    \end{itemize}
+    \item We now investigate a situation in which Zorn's lemma gets applied.
+    \item Let $M$ be a finitely generated $A$-module.
+    \begin{itemize}
+        \item Let $v_1,\dots,v_r\in M$ be elements such that such that $M=Av_1+\cdots+Av_r$.
+        \item Before we prove the proposition that requires Zorn's lemma, we will need one more definition: that of a \textbf{maximal submodule}.
+    \end{itemize}
+    \item \textbf{Maximal submodule} (of $M$): A submodule of $M$ that is a maximal element of the poset
+    \begin{equation*}
+        P = \{N\subsetneq M:N\text{ is an }A\text{-submodule}\}
+    \end{equation*}
+    \item Proposition: Every nonzero finitely generated $A$-module $M$ has a maximal submodule.
+    \begin{proof}
+        % Apply Zorn's lemma: First, check that $P$ is nonempty. $M\neq\{0\}$ (by hypothesis) implies that $\{0\}\in P$ implies that $P$ is nonempty. Now let $C\subset P$ be a chain. Let $\mathcal{N}=\bigcup\{N:N\in C\}$. We will check that $\mathcal{N}$ is a submodule and that it's in $P$. It's a submodule since: Let $n_1,n_2\in\mathcal{N}$. Then $n_i\in N_i$ for $i=1,2$ and $N_1,N_2\in C$. WLOG, assume that $N_1\subset N_2$. Then $n_1,n_2\in N_2$. It follows that $a_1n_1+a_2n_2\in N_2\subset\mathcal{N}$ for all $a_1,a_2\in A$. This completes the proof that $\mathcal{N}$ is a submodule of $M$.\par
+        % Now we address if it's possible that $\mathcal{N}\in P$. Suppose for the sake of contradiction that $\mathcal{N}=M$. We have $v_1,\dots,v_r\in M$ such that $M=Av_1+\cdots+Av_r$. Because $\mathcal{N}=M$, $v_i\in\mathcal{N}$ for all $i$. Thus, there exist $N_i\in C$ such that $v_i\in N_i$ for all $i=1,\dots,r$. So there exists $i\in\{1,\dots,r\}$ such that for all $j\in\{1,\dots,r\}$, $N_j\subset N_i$. Therefore, $v_j\in N_j\subset N_i$ for all $j=1,\dots,r$. But $N_i$ is a module, so $M=Av_1+\cdots+Av_r\subset N_i\subset M$. So $N_i=M$, which contradicts the assumption that $N_i$ is proper (because $N_i\in P$). Therefore, $\mathcal{N}\in P$.\par
+        % We now apply Zorn's lemma to get the desired result.
+
+        To prove that $M$ has a maximal submodule, it will suffice show that there exists a maximal element of the poset
+        \begin{equation*}
+            P = \{N\subsetneq M:N\text{ is an }A\text{-submodule}\}
+        \end{equation*}
+        To do this, Zorn's lemma tells us that it will suffice to confirm that $P\neq\emptyset$ and that every chain $C\subset P$ has an upper bound. Let's begin.\par
+        We first confirm that $P\neq\emptyset$. By hypothesis, $M$ is nonzero. Thus, the zero $A$-submodule is a proper subset of $M$, so $0\in P$ and hence $P$ is nonempty.\par
+        We now confirm that every chain $C\subset P$ has an upper bound. Let $C\subset P$ be an arbitrary chain. Define
+        \begin{equation*}
+            \mathcal{N}_C = \bigcup\{N:N\in C\}
+        \end{equation*}
+        We will first verify that $\mathcal{N}_C\in P$, and then we will show that $\mathcal{N}_C$ is an upper bound of $C$. Let's begin. To verify that $\mathcal{N}_C\in P$, it will suffice to demonstrate that $\mathcal{N}_C$ is an $A$-submodule of $M$ and that $\mathcal{N}_C\subsetneq M$.\par
+        To demonstrate that $\mathcal{N}_C$ is an $A$-submodule, Proposition \ref{prp:10.1} tells us that it will suffice to show that $\mathcal{N}_C\neq\emptyset$ and $n_1+an_2\in\mathcal{N}_C$ for all $a\in A$ and $n_1,n_2\in\mathcal{N}_C$. Since $P$ is nonempty, $\mathcal{N}_C$ is nonempty by definition, as desired. Additionally, let $n_1,n_2\in\mathcal{N}_C$ be arbitrary. It follows by the definition of $\mathcal{N}_C$ that there exist $N_1,N_2\in C$ such that $n_i\in N_i$ ($i=1,2$). WLOG, assume $N_1\subset N_2$. Then $n_1,n_2\in N_2$. It follows since $N_2$ is an $A$-submodule that $n_1+an_2\in N_2\subset\mathcal{N}_C$ for all $a\in A$, as desired.\par
+        We know that $\mathcal{N}_C\subset M$. Thus, if $\mathcal{N}_C\not\subsetneq M$, then we must have $\mathcal{N}_C=M$. Suppose for the sake of contradiction that $\mathcal{N}_C=M$. Recall that $M=Av_1+\cdots+Av_r$. Since the $v_i$ are elements of $M$ and $\mathcal{N}_C=M$, it follows that $v_i\in\mathcal{N}_C$ ($i=1,\dots,r$). Thus, as before, there must exist $N_1,\dots,N_r\in C$, not necessarily distinct, such that $v_i\in N_i$ ($i=1,\dots,r$). It follows by the observation from earlier that there is an $i\in[r]$ such that for all $j\in[r]$, $N_j\subset N_i$. Consequently, $v_j\in N_j\subset N_i$ ($j=1,\dots,r$). But $N_i$ is an $A$-submodule, so $M=Av_1+\cdots+Av_r\subset N_i\subset M$. But this means that $N_i=M$, contradicting the assumption that $N_i\subsetneq P$ (since $N_i\in P$). Therefore, $\mathcal{N}_C\subsetneq M$, as desired.\par
+        It follows that $\mathcal{N}_C\in P$, as desired. Lastly, we have by its definition that $N\subset\mathcal{N}_C$ for all $N\in C$, meaning that $\mathcal{N}_C$ is an upper bound of $C$ by definition. Therefore, by Zorn's lemma, $P$ has a maximal element, and hence $M$ has a maximal submodule, as desired.
+    \end{proof}
+    \item Corollary: Every nonzero commutative ring $R$ has a maximal ideal.
+    \begin{proof}
+        % $A$ can be considered a module over itself.\par
+        % In particular, take $M=A$, $A\neq 0$, and let it be generated by 1.
+
+        Consider $R$ as an $R$-module. Then $R=(1)$ is finitely generated. This combined with the fact that it is nonzero by hypothesis allows us to invoke the above proposition, learning that $R$ has a maximal submodule $N$. But by the observation from Lecture 6.1, $N$ is a left ideal, which is equivalent to a two-sided ideal in a commutative ring. Maximality transfers over as well (as we can confirm), proving that $N$ is the desired maximal ideal of $R$.
+    \end{proof}
+    \item Remark: Suppose that $J$ is a two-sided ideal of $A$. Let $M$ be an $A$-module such that for all $a\in J$ and $m\in M$, we have $am=0$. Then $M$ may be regarded as an $(A/J)$-module in a natural manner.
+    \begin{itemize}
+        \item In particular, we may take $\rho:A\to\End(M,+)$ to be a ring homomorphism.
+        \item We can factor $\rho=\bar{\rho}\circ\pi$, where $\pi:A\to A/J$ and $\bar{\rho}:A/J\to\End(M,+)$. It follows that $\bar{\rho}$ is a ring homomorphism. Therefore, $M$ is an $A/J$-module.
+        \item This remark will be used!
+        \item Review annihilators from Section 10.1!
+    \end{itemize}
+    \item Remark: Given a left ideal $I\subset A$ and an $A$-module $M$, we get a whole lot of modules because each element of $M$ generates one. In particular, we note that $Im\subset Am\subset M$, where both $Im,Am$ are submodules for all $m\in M$.
+    \item \textbf{Product} (of modules): The $A$-submodule of $M$ defined as follows. \emph{Denoted by} $\bm{IM}$. \emph{Given by}
+    \begin{equation*}
+        IM = \sum_{m\in M}Im
+    \end{equation*}
+    \item It follows that $M/IM$ is an $A$-module, but also one with a special property: $a(M/IM)=0$ for all $a\in I$.
+    \begin{itemize}
+        \item If $A$ is commutative, then $M/IM$ is an $A/I$-module.
+    \end{itemize}
+    \item Proposition: Let $R$ be a nonzero commutative ring. If $R^m\cong R^n$ as $R$-modules, then $m=n$.
+    \begin{proof}
+        Let $I\subset R$ be a maximal ideal. (We know that one exists by the above corollary.) If $f:R^m\to R^n$ is an isomorphism of $R$-modules, then $f$ restricts to $I(R^m)\to I(R^n)$. This gives rise to the isomorphism $\bar{f}:R^m/I(R^m)\to R^n/I(R^n)$ of $R$-modules, in fact of $R/I$ modules. It follows that $R/I$ is a field, so $m=n$.
+    \end{proof}
+    \item Classifying modules up to isomorphism under commutative rings.
+    \begin{itemize}
+        \item This is a hard problem, and there are still many open problems in this field today.
+        \item We will not go into this, though.
+    \end{itemize}
+    \item We now move on to modules over PIDs.
+    \begin{itemize}
+        \item Nori will go \emph{much} slower than the book.
+        \item Do you have any recommended resources??
+        \item Do we need to read and understand Chapters 10-11 to start on Chapter 12??
+    \end{itemize}
+    \item Objective: Let $R$ be a PID. Classify all finitely generated $R$-modules up to isomorphism.
+    \begin{itemize}
+        \item Our first result in this field was that submodules of $R^n$ are equal to $R^m$ for $m\leq n$.
+        \item Where this is applicable: $\Z$ and $F[X]$.
+        \begin{itemize}
+            \item Go back and check out $\Z$-modules and $F[X]$-modules in Section 10.1!
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Torsion module}: An $R$-module $M$ such that for all $m\in M$, there exists $0\neq a\in R$ such that $am=0$.
+    \item \textbf{Torsion-free module}: An $R$-module $M$ such that for all nonzero $m\in M$ and for all nonzero $a\in R$, we have $am\neq 0$.
+    \item Theorem: If $M$ is a finitely generated torsion-free $R$-module, then $M\cong R^n$ for some $n$.
+    \begin{itemize}
+        \item With a little work, we could prove this. But Nori will postpone it.
+    \end{itemize}
+    \item \textbf{$\bm{p}$-primary} (module): An $R$-module $M$ such that for all $m\in M$, there exists $k\geq 0$ for which $p^km=0$, where $p$ is prime in $R$.
+    \item We want to classify these up to isomorphism.
+    \begin{itemize}
+        \item Nori can state these today, but will not have time to prove it until another day.
+        \item Something that gets annihilated by $p$ is a $\Z/(p)$-module. The moment you go from $k=1$ to $k=2$, things get interesting.
+    \end{itemize}
+    \item Examples: $R/(p^{n_1})\oplus\cdots\oplus R/(p^{n_k})$, where $n_1\geq\cdots\geq n_k\geq 1$.
+    \begin{itemize}
+        \item Note that $k=0$ is allowed.
+    \end{itemize}
+    \item Uniqueness will take some time, but existence can be given as an exercise now.
+    \item $M/pM$ is an $R/(p)$-vector space. $pM/p^2M$ is an $R/(p)$-vector space as well. So is $p^kM/p^{k+1}M$.
+    \begin{itemize}
+        \item Use $d_0,d_1,\dots,d_k$ to denote the dimensions of the vector spaces.
+        \item $d_0,\dots,d_k$ is a decreasing sequence of nonnegative integers.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
