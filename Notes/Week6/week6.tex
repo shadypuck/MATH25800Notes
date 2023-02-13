@@ -38,7 +38,7 @@
         \item The only ideals of a division ring are $0,D$, just like with fields.
         \item Linear independence, spanning, basis, etc. all hold in a general division ring; you only need fields for things like JCF.
     \end{itemize}
-    \item \textbf{Left $\bm{A}$-module}: An abelian group $(M,+)$ equipped with a binary operation $\cdot:A\times M\to M$ defined by $(a,m)\mapsto am$ (or $a\cdot m$ in the case of potential ambiguity) satisfying the following. \emph{Constraints}\par
+    \item \textbf{Left $\bm{A}$-module}: An abelian group $(M,+)$ equipped with an action $\cdot:A\times M\to M$ defined by $(a,m)\mapsto am$ (or $a\cdot m$ in the case of potential ambiguity) satisfying the following. \emph{Also known as} \textbf{left module} (over $A$). \emph{Constraints}\par
     For all $a,b\in A$ and $v,v_1,v_2\in M$\dots
     \begin{enumerate}[label={(\arabic*)}]
         \item $a(v_1+v_2)=av_1+av_2$;
@@ -62,6 +62,7 @@
             \End(M) = \{f:M\to M\mid f\text{ is a group homomorphism}\}
         \end{equation*}
         is a ring with identity under componentwise addition and composition (i.e., $g\cdot f=g\circ f$).
+        \item $\End(M)$ is formally defined in \textcite{bib:DummitFoote} at this point!
     \end{itemize}
     \item Going forward, in-class definitions will always match those in the book.
     \begin{itemize}
@@ -70,21 +71,25 @@
     \item Examples.
     \begin{enumerate}
         \item Let $M=A$. Then $\rho(a)b=ab$ for all $a\in A$, $b\in M=A$.
-        \item If $M_i$ ($i\in I$ an indexing set) is a (left) $A$-module, then the product $\prod_{i\in I}M_i$ is also an $A$-module.
-        \item Denote an element of $\prod_{i\in I}M_i$ by $\prod_{i\in I}m_i$. An arbitrary choice of $m_i\in M_i$ for all $i\in I$ is allowed (do we need the Axiom of Choice??). We define $\cdot$ by
-        \begin{equation*}
-            a\left( \prod_{i\in I}m_i \right) = \prod_{i\in I}(am_i)
-        \end{equation*}
-        \item The collection
+        \item If $M_i$ is a (left) $A$-module for all $i\in I$ an indexing set, then the product $\prod_{i\in I}M_i$ is also an $A$-module.
+        \begin{itemize}
+            \item The binary operation obeys the product topology: If we denote an element of $\prod_{i\in I}M_i$ by $\prod_{i\in I}m_i$, then we define $\cdot$ by
+            \begin{equation*}
+                a\cdot\left( \prod_{i\in I}m_i \right) = \prod_{i\in I}(am_i)
+            \end{equation*}
+        \end{itemize}
+        \item Special case of 2: The collection
         \begin{equation*}
             \oplus_{i\in I}M_i = \left\{ \prod_{i\in I}m_i\mid\{i\in I:m_i\neq 0\}\text{ is a finite set} \right\}
         \end{equation*}
         is an $A$-module.
         \begin{itemize}
-            \item This is a submodule of something??
-            \item Under the same binary operation as Example 3??
+            \item This is a submodule of Example 2 under the same binary operation.
         \end{itemize}
-        \item In particular, $A^m$ is an $A$-module with $a(b_1,\dots,b_n)=(ab_1,\dots,ab_n)$.
+        \item Special case of 2: $A^m$ is an $A$-module with $a(b_1,\dots,b_n)=(ab_1,\dots,ab_n)$.
+        \begin{itemize}
+            \item These are considered in much greater depth in \textcite{bib:DummitFoote}.
+        \end{itemize}
     \end{enumerate}
     \item \textbf{$\bm{A}$-submodule}: A subgroup $(N,+)$ of $(M,+)$ such that for all $a\in A$ and $\omega\in N$, $a\omega\in N$.
     \item Observation: If $N_1,N_2$ are submodules of $M$, then $N_1+N_2$ and $N_1\cap N_2$ are submodules.
@@ -99,8 +104,9 @@
     for all $a_1,a_2\in A$ and $v_1,v_2\in M$.
     \item Question: What are all of the module homomorphisms $T:A\to M$?
     \begin{itemize}
-        \item If $T(1)=v$, then $T(a\cdot 1)=aT(1)=av$ for all $a\in A$.
-        \item For all $v\in M$, there exists a unique $T:A\to M$ such that $T(1)=v$. This is more linear algebra.
+        \item If $T(1)=v$, then $T(a\cdot 1)=aT(1)=av$ for all $a\in A$. Thus, we see that defining $T(1)$ is sufficient to define $T$.
+        \item In other words, there exists a unique $T:A\to M$ for all $v\in M$ such that $T(1)=v$
+        \item This is very related to linear algebra!
     \end{itemize}
     \item Question: What are all linear transformations $T:A^n\to M$?
     \begin{itemize}
@@ -115,13 +121,17 @@
         \item Take any ordered $n$-tuple of elements in $M$; then given $v_1,\dots,v_n\in M$, there is a unique $A$-module homomorphism $T:A^n\to M$ such that $T(e_i)=v_i$ ($i=1,\dots,n$).
     \end{itemize}
     \item \textbf{Isomorphism} (of $A$-modules): A bijective module homomorphism $T:M\to N$, where $M,N$ are $A$-modules.
-    \item It follows that $T^{-1}:N\to M$ is also a homomorphism.
+    \begin{itemize}
+        \item It follows that $T^{-1}:N\to M$ is also a homomorphism.
+        \item Note that it suffices to use the bijectivity definition here, not the left and right inverse one.
+    \end{itemize}
     \item Proposition: Let $N$ be a submodule of $M$. Then the quotient group $M/N$ has a unique structure of an $A$-module such that $\pi:M\to M/N$ (defined with groups) is an $A$-module homomorphism.
     \begin{proof}
         {\color{white}hi}\par
-        \underline{Existence}: For all $a\in A$, we have that $\rho(a):M\to M$ take $\rho(a)N\subset N$. It induces $\overline{\rho(a)}:M/N\to M/N$. Take $\overline{\rho(a)}$, which is scalar multiplication by $a$ on $M/N$.
+        \underline{Existence}: For all $a\in A$, we have that $\rho(a):M\to M$ take $\rho(a)N\subset N$. It induces $\overline{\rho(a)}:M/N\to M/N$. Take $\overline{\rho(a)}$, which is scalar multiplication by $a$ on $M/N$.\par
+        See Proposition \ref{prp:10.3}.
     \end{proof}
-    \item FIT: Let $\phi:M\to N$ be a module homomorphism. Then $\ker(\phi)$ is a submodule $M$ and $\im(\phi)$ is a submodule of $N$.
+    \item FIT: Let $\phi:M\to N$ be a module homomorphism. Then $\ker(\phi)$ is a submodule of $M$ and $\im(\phi)$ is a submodule of $N$.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[xscale=3,yscale=2]
@@ -140,18 +150,21 @@
         \caption{First isomorphism theorem of modules.}
         \label{fig:FITModule}
     \end{figure}
+    \begin{proof}
+        See Theorem \ref{trm:10.4a}.
+    \end{proof}
     \item Example: $A=\Z$ and $M=\Z/(27)$.
-    \item Theorem: Let $R$ be a PID. Then every $R$-submodule of $R^n$ is isomorphic to $R^m$ for some $0\leq m\leq n$.
-    \item Think in terms of fields! If Nori had been couching all of this in terms of vector spaces, we would all get all of this immediately.
+    \item For all of this module stuff, think in terms of fields! If Nori had been couching all of this in terms of vector spaces, we would all get all of this immediately.
     \item Let $n=1$, $(2)\subsetneq\Z$. Then $m=n$ does not imply $M=R^n$.
     \item Submodules of $R$ are ideals. Thus, in a PID, they're principal ideals.
+    \item Theorem: Let $R$ be a PID. Then every $R$-submodule of $R^n$ is isomorphic to $R^m$ for some $0\leq m\leq n$.
     \begin{proof}
-        Case 1 (base case): Let $n=1$. We know that $M=(b)$ for some $b\in R$. If $b=0$, then we're done. Thus, assume $b\neq 0$. Then $T:R\to(b)$ given by $T(a)=ab$ for all $a\in A$. It follows that $T$ is onto. From the fact that $R$ is an integral domain, we have that $T$ is 1-1.\par
-        Case 2 (general case): We induct on $n$. Suppose that $i:R^{n-1}\hookrightarrow R^n$ is given by
+        We induct on $n$. For the base case $n=1$, let $M$ be an $R$-submodule of $R^1$. As a submodule of a ring, $M$ is an ideal. Thus, since $R$ is a PID, we know that $M=(b)$ for some $b\in R$. If $b=0$, then we're done (pick $m=0$). Thus, assume $b\neq 0$. Consider $T:R\to(b)$ given by $T(a)=ab$ for all $a\in A$. We have that $T$ is onto. From the fact that $R$ is an integral domain, we have that $0=T(a)=ab$ implies that $a=0$, so $\ker T=\{0\}$ and $T$ is 1-1. Hence $M\cong R$.\par
+        Now suppose inductively that we have proven the claim for $n-1$; we now seek to prove it for $n$. Define $i:R^{n-1}\hookrightarrow R^n$ by
         \begin{equation*}
             i(a_1,\dots,a_{n-1}) = (a_1,\dots,a_{n-1},0)
         \end{equation*}
-        Let $M$ be a submodule of $R^n$. Then $R^{n-1}\times\{0\}\hookrightarrow R^n$ and $M\cap(R^{n-1}\times\{0\})\cong R^\ell$ for $0\leq\ell\leq n-1$. Suppose that you define the ideal $\pi(a_1,\dots,a_n)=a_n$. Let $\pi(M)=I$. Then you have some ideal $I$. It follows that $\pi:M\to I\subset R$. Let $M'=\ker\phi$. $M/M'\cong I$. At this point, there are only two cases ($a=0$ and $a=M$).
+        Let $M$ be an $R$-submodule of $R^n$. We know that $R^{n-1}\times\{0\}\hookrightarrow R^n$ and, by the induction hypothesis, that $M\cap(R^{n-1}\times\{0\})\cong R^\ell$ for $0\leq\ell\leq n-1$. Now define the ideal $I$ as follows: Let $\pi(a_1,\dots,a_n)=a_n$, and let $I=\pi(M)$. Let $M'=\ker\pi$. $M/M'\cong I$. At this point, there are only two cases ($a=0$ and $a=M$).
     \end{proof}
     \item Next time: We will wrap up this proof with the following proposition.
     \item Proposition: If $M'$ is a submodule of $M$ and $M/M'\cong R$ as an $R$-module, then $M\cong M'\oplus R$.
@@ -454,7 +467,7 @@
         \item Assuming that you've never seen modules before Monday, it will take time.
     \end{itemize}
     \item We now begin lecture in earnest.
-    \item A simplification of the theorem from last time that will lead into it.
+    \item Picking up with the proof of the theorem from last time.
     \item Theorem: Let $R$ be a PID and let $M\subset R^h$ be an $R$-submodule. Then $M\cong R^m$ for some $0\leq m\leq h$.
     \begin{proof}
         Consider the module homomorphism $\varphi:M\to R$ that selects for the last component, i.e., is defined by
@@ -591,6 +604,240 @@
         \item A natural thing is contradiction.
         \item Suppose for the sake of contradiction that $f$ is reducible in $\Z[X]$. Let $f=qh$. We sent $f$ to $\Z/p\Z[X]$. We reduce the coefficients by $p$ and then our homomorphism implies that $\bar{f}=\bar{q}\bar{h}$. Let $d=\deg(f)$. We know by the irreducibility of $\bar{f}$ that either $\bar{q}$ or $\bar{h}$ is a unit. WLOG, let $\bar{h}$ be a unit. We know that $\deg(\bar{f})=\deg(f)$. We know that $\deg(h)\geq\deg(\bar{h})$ and $\deg(g)=d\geq\deg(\bar{g})$. It follows that $\deg(\bar{h})=0$. Thus, $\deg(h)=0$, so $h$ is an integer. Finally, use that $c(f)=1$, i.e., that gives us that $h=\pm 1$, i.e., is a unit. Proposition 9.12. Set $p=3$?
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 10: Introduction to Module Theory}
+\emph{From \textcite{bib:DummitFoote}.}
+\setcounter{bookch}{10}
+\subsection*{A Word on Module Theory}
+\begin{itemize}
+    \item \marginnote{2/12:}Emmy Noether led the way in demonstrating the power and elegance of modules at the beginning of the 20th century.
+    \item "Vector spaces are just special types of modules which arise when the underlying ring is a field" \parencite[336]{bib:DummitFoote}.
+    \item Modules are also very much like group actions, with the underlying structure being a ring as a "scalar field" acting on a set of "vectors."
+    \item Modules are \textbf{representation objects} for rings.
+    \item \textbf{Representation object}: An object on which something acts.
+    \item End goal: Reveal how the structure of a ring (and in particular, the structure of its ideals) is reflected by the structure of modules and vice versa.
+    \begin{itemize}
+        \item Analogous to studying groups via their permutation representations.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 10.1: Basic Definitions and Examples}
+\begin{itemize}
+    \item Definition of a \textbf{left $\bm{R}$-module}.
+    \begin{itemize}
+        \item If $R$ is commutative, defining $mr:=rm$ makes $M$ into a right $R$-module. We need $R$ to be commutative so that we still have $a(bv)=(ab)v$.
+    \end{itemize}
+    \item \textbf{Unital} (module): A module such that $1m=m$ for all $m\in M$.
+    \begin{itemize}
+        \item By Nori's definition, all modules we will consider are unital modules. \textcite{bib:DummitFoote} actually does the same here to avoid pathologies.
+    \end{itemize}
+    \item When $R$ is a field, the axioms for an $R$-module are precisely the same as those for a vector space over $F$.
+    \item Definition of an \textbf{$\bm{R}$-submodule}.
+    \begin{itemize}
+        \item Naturally, submodules are just subsets that are themselves modules under the restricted operations.
+    \end{itemize}
+    \item Every $R$-module $M$ has $M$ and 0 as submodules.
+    \item \textbf{Trivial submodule}: The submodule 0.
+    \item Examples.
+    \begin{enumerate}
+        \item $(R,+)$ is a left $R$-module for any ring $(R,+,\cdot)$ under $\cdot$.
+        \begin{itemize}
+            \item Vector space analogy: This formalizes the notion that $F$ is a one-dimensional vector space over itself.
+            \item Submodules: The left ideals of $R$.
+            \item If $R$ is not commutative, the left and right module structures may be different.
+        \end{itemize}
+        \item Every vector space over $F$ is an $F$-module and vice versa.
+        \begin{itemize}
+            \item Defines \textbf{affine $\bm{n}$-space} and notes that it's a vector space of dimension $n$ over $F$ the same way that \textbf{Euclidean $\bm{n}$-space} is.
+        \end{itemize}
+        \item The \textbf{free module of rank $\bm{n}$} over $R$.
+        \begin{itemize}
+            \item Free modules have the same universal property as \textbf{free groups} from Section 6.3.
+            \item Discussion of direct product of $R$-modules is coming.
+            \item Submodules of $R^n$ include those with arbitrary elements in the $i^\text{th}$ component and zeroes elsewhere.
+        \end{itemize}
+        \item Groups can be modules under multiple rings.
+        \begin{itemize}
+            \item If $S$ is a subring of $R$, $R$ is both an $R$-module and an $S$-module.
+            \item For instance, $\R$ is an $\R$-module, a $\Q$-module, and a $\Z$-module.
+        \end{itemize}
+        \item Quotient-ring modules.
+        \begin{itemize}
+            \item Suppose $I$ \textbf{annihilates} $M$.
+            \item Then $M$ is an $(R/I)$-module: Define $\cdot:(R/I)\times M\to M$ by
+            \begin{equation*}
+                (r+I)\cdot m = rm
+            \end{equation*}
+            \item Specific example: If $I$ is maximal and annihilates $M$, then $M$ is a vector space over the field $R/I$.
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Affine $\bm{n}$-space} (over $F$): The vector space defined as follows. \emph{Denoted by} $\bm{F^n}$. \emph{Given by}
+    \begin{equation*}
+        F^n = \{(a_1,\dots,a_n):a_i\in F\ \forall\ i\}
+    \end{equation*}
+    with
+    \begin{gather*}
+        (a_1,\dots,a_n)+(b_1,\dots,b_n) = (a_1+b_1,\dots,a_n+b_n)\\
+        \alpha(a_1,\dots,a_n) = (\alpha a_1,\dots,\alpha a_n)
+    \end{gather*}
+    \item \textbf{Euclidean $\bm{n}$-space}: The vector space defined as follows. \emph{Denoted by} $\bm{\R^n}$. \emph{Given by}
+    \begin{equation*}
+        \R^n = \{(a_1,\dots,a_n):a_i\in\R\ \forall\ i\}
+    \end{equation*}
+    with
+    \begin{gather*}
+        (a_1,\dots,a_n)+(b_1,\dots,b_n) = (a_1+b_1,\dots,a_n+b_n)\\
+        \alpha(a_1,\dots,a_n) = (\alpha a_1,\dots,\alpha a_n)
+    \end{gather*}
+    \item \textbf{Free module of rank $\bm{n}$} (over $R$): The module defined as follows. \emph{Denoted by} $\bm{R^n}$. \emph{Given by}
+    \begin{equation*}
+        R^n = \{(a_1,\dots,a_n):a_i\in R\ \forall\ i\}
+    \end{equation*}
+    with
+    \begin{gather*}
+        (a_1,\dots,a_n)+(b_1,\dots,b_n) = (a_1+b_1,\dots,a_n+b_n)\\
+        \alpha(a_1,\dots,a_n) = (\alpha a_1,\dots,\alpha a_n)
+    \end{gather*}
+    \item \textbf{Annihilator} (of $M$): A two-sided ideal $I$ of a ring $R$ corresponding to an $R$-module $M$ such that $am=0$ for all $a\in I$ and $m\in M$.
+    \item Example: $\Z$-modules (return to later; critical to the Fundamental Theorem of Finitely Generated Abelian Groups).
+    \item Example: $F[X]$-modules (return to later; critical to canonical forms of matrices).
+    \item $M$ may have many different $R$-module structures, even for the same $R$.
+    \begin{itemize}
+        \item These correspond to changes in $\cdot$.
+    \end{itemize}
+    \item Determining if a subset of a module is a submodule.
+    \begin{proposition}[The Submodule Criterion]\label{prp:10.1}
+        Let $R$ be a ring and let $M$ be an $R$-module. A subset $N$ of $M$ is a submodule if and only if
+        \begin{enumerate}
+            \item $N\neq\emptyset$;
+            \item $x+ry\in N$ for all $r\in R$, $x,y\in N$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item \textbf{$\bm{R}$-algebra}: A ring $A$ together with a ring homomorphism $f:R\to A$ such that the subring $f(R)$ of $A$ is contained in the center of $A$, where $R$ is a commutative ring.
+    \item More on $R$-algebras (return to later).
+\end{itemize}
+
+
+\subsection*{Section 10.2: Quotient Modules and Module Homomorphisms}
+\begin{itemize}
+    \item Definition of an \textbf{$\bm{R}$-module homomorphism}, \textbf{$\bm{R}$-module isomorphism}, \textbf{kernel}, and \textbf{image}.
+    \begin{itemize}
+        \item Naturally, module homomorphisms respect the \emph{module} structure of $M,N$.
+    \end{itemize}
+    \item $\bm{\Hom_R(M,N)}$: The set of all $R$-module homomorphisms from $M$ into $N$.
+    \item Kernels and images are submodules.
+    \begin{itemize}
+        \item Prove this with Proposition \ref{prp:10.1}
+    \end{itemize}
+    \item Examples.
+    \begin{enumerate}
+        \item Module homomorphisms and ring homomorphisms are distinct.
+        \begin{itemize}
+            \item Example: The $\Z$-module homomorphism $x\mapsto 2x$ is not a ring homomorphism since $1\not\mapsto 1$.
+        \end{itemize}
+        \item The projection map $\pi_i:R^n\to R$ is an $R$-module homomorphism.
+        \item \textbf{Linear transformations}.
+        \item $\Z$-module homomorphisms are the same as abelian group homomorphisms.
+        \begin{itemize}
+            \item This is because the action of integers on any $\Z$-module amounts to adding or subtracting within the additive abelian group.
+        \end{itemize}
+        \item Any $R$-module homomorphism from $N$ to $M$ (where $NI=MI=0$ for an annihilator $I$) is a homomorphisms of $(R/I)$-modules.
+        \begin{itemize}
+            \item More on $GL(A)$ (return to later).
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Linear transformation}: An $F$-module homomorphism.
+    \item Turning a set of maps into a group and/or ring (see Q1.14).
+    \begin{proposition}\label{prp:10.2}
+        Let $M,N,L$ be $R$-modules.
+        \begin{enumerate}
+            \item A map $\varphi:M\to N$ is an $R$-module homomorphism if and only if $\varphi(rx+y)=r\varphi(x)+\varphi(y)$ for all $x,y\in M$ and $R\in R$.
+            \item Let $\varphi,\psi\in\Hom_R(M,N)$. Define $\varphi+\psi$ by
+            \begin{equation*}
+                (\varphi+\psi)(m) = \varphi(m)+\psi(m)
+            \end{equation*}
+            for all $m\in M$. Then $\varphi+\psi\in\Hom_R(M,N)$ and with this operation, $\Hom_R(M,N)$ is an abelian group.\par
+            If $R$ is a commutative ring, then for $r\in R$, define $r\varphi$ by
+            \begin{equation*}
+                (r\varphi)(m) = r(\varphi(m))
+            \end{equation*}
+            for all $m\in M$. Then $r\varphi\in\Hom_R(M,N)$ and with this action of the commutative ring $R$, the abelian group $\Hom_R(M,N)$ is an $R$-module.
+            \item If $\varphi\in\Hom_R(L,M)$ and $\psi\in\Hom_R(M,N)$, then $\psi\circ\varphi\in\Hom_R(L,N)$.
+            \item With addition as above and multiplication defined as function composition, $\Hom_R(M,M)$ is a ring. When $R$ is commutative, $\Hom_R(M,M)$ is an $R$-algebra.
+        \end{enumerate}
+        \begin{proof}
+            Given.\par
+            Return to later?
+        \end{proof}
+    \end{proposition}
+    \item \textbf{Endomorphism ring} (of $M$): The ring defined as follows. \emph{Denoted by} $\bm{\End_R(M)}$, $\bm{\End(M)}$. \emph{Given by}
+    \begin{equation*}
+        \End(M) = (\Hom_R(M,M),+,\circ)
+    \end{equation*}
+    \item \textbf{Endomorphism}: An element of $\End(M)$.
+    \begin{itemize}
+        \item When $R$ is commutative, there is a natural map $R\to\End_R(M)$ which sends every $r\in R$ to the endomorphism defined by left multiplication by $r$.
+        \item More on $\End(M)$ in the context of algebras (return to later).
+    \end{itemize}
+    \item Every submodule $N$ of an $R$-module $M$ induces a quotient module $M/N$.
+    \begin{proposition}\label{prp:10.3}
+        Let $R$ be a ring, let $M$ be an $R$-module, and let $N$ be a submodule of $M$. The (additive abelian) quotient group $M/N$ can be made into an $R$-module by defining an action of element of $R$ by
+        \begin{equation*}
+            r(x+N) = (rx)+N
+        \end{equation*}
+        for all $r\in R$ and $x+N\in M/N$. The natural projection map $\pi:M\to M/N$ defined by $\pi(x)=x+N$ is an $R$-module homomorphism with kernel $N$.
+        \begin{proof}
+            To prove that $M/N$ is an $R$-module, it will suffice to show that it is an abelian group, that the action $\cdot$ defined on it above is well-defined, and that said action satisfies the four axioms. Let's begin.\par
+            Since $M$ is an abelian group under $+$, $N$ is abelian (hence normal) and thus the (additive) quotient group $(M/N,+)$ is defined and is abelian.\par
+            To confirm that $\cdot$ is well-defined, it will suffice to demonstrate that if $x+N=y+N$, then $r(x+N)=r(y+N)$. Pick $x,y\in M$ arbitrary but such that $x+N=y+N$. It follows that $x-y\in N$. Thus, since $N$ is a submodule, $rx-ry=r(x-y)\in N$. Consequently,
+            \begin{align*}
+                rx+N &= ry+N\\
+                r(x+N) &= r(y+N)
+            \end{align*}
+            as desired.\par
+            Since the action of $R$ on $M/N$ is "compatible" with the action of $r$ on $M$ (see subsequent example), the four axioms may be easily, procedurally checked. For example, axiom 3 may be confirmed as follows: Let $a,b\in R$ and $x+N\in M/N$ be arbitrary. Then by consecutive applications of definitions, we have that
+            \begin{align*}
+                (ab)(x+N) &= abx+N\\
+                &= a(bx+N)\\
+                &= a(b(x+N))
+            \end{align*}
+            as desired.\par
+            This concludes the proof of the first claim.\par\smallskip
+            To prove that $\pi$ is a module homomorphism, it will suffice to show that it is a group homomorphism and commutes with scalar multiplication. Treating $M,M/N$ purely as groups, we may recall from group theory that $\pi$ is a group homomorphism. With respect to the other condition, we have for all $a\in R$ and $m\in M$ that
+            \begin{align*}
+                \pi(am) &= am+N\\
+                &= a(m+N)\\
+                &= a\pi(m)
+            \end{align*}
+            as desired.\par\smallskip
+            The fact that $\ker\pi=N$ follows from group theory.
+        \end{proof}
+    \end{proposition}
+    \item Note that Proposition \ref{prp:10.3} makes intuitive sense since $N$ (as an abelian group) is a normal subgroup of $M$. All that we needed to do above was confirm the module parts of the definition.
+    \item \textbf{Sum} (of submodules): The submodule defined as follows, where $A,B\subset M$ are submodules. \emph{Denoted by} $\bm{A+B}$. \emph{Given by}
+    \begin{equation*}
+        A+B = \{a+b:a\in A,\ b\in B\}
+    \end{equation*}
+    \item $A+B$ is the smallest submodule containing both $A,B$, as expected.
+    \item We conclude by restating the isomorphism theorems for modules.
+    \begin{theorem}[Isomorphism Theorems]\label{trm:10.4}\leavevmode
+        \begin{enumerate}[ref={\thetheorem(\arabic*)}]
+            \item \label{trm:10.4a}(The First Isomorphism Theorem for Modules) Let $M,N$ be $R$-modules and let $\varphi:M\to N$ be an $R$-module homomorphism. Then $\ker\varphi$ is a submodule of $M$ and $M/\ker\varphi\cong\varphi(M)$.
+            \item \label{trm:10.4b}(The Second Isomorphism Theorem) Let $A,B$ be submodules of the $R$-module $M$. Then $(A+B)/B\cong A/(A\cap B)$.
+            \item \label{trm:10.4c}(The Third Isomorphism Theorem) Let $M$ be an $R$-module, and let $A,B$ be submodules of $M$ with $A\subset B$. Then $(M/A)/(B/A)\cong M/B$.
+            \item \label{trm:10.4d}(The Fourth or Lattice Isomorphism Theorem) Let $N$ be a submodule of the $R$-module $M$. There is a bijection between the submodules of $M$ which contain $N$ and the submodules of $M/N$. The correspondence is given by $A\longleftrightarrow A/N$ for all $A\supset N$. This correspondence commutes with the processes of taking sums and intersections (i.e., is a lattice isomorphism between the lattice of submodules of $M/N$ and the lattice of submodules of $M$ which contain $N$).
+        \end{enumerate}
+        \begin{proof}
+            Not given; see the Exercises.
+        \end{proof}
+    \end{theorem}
 \end{itemize}
 
 
