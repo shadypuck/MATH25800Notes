@@ -569,5 +569,422 @@
 
 
 
+\section{Chapter 11: Vector Spaces}
+\emph{From \textcite{bib:DummitFoote}.}
+\setcounter{bookch}{11}
+\subsection*{Section 11.1: Definitions and Basic Theory}
+\begin{itemize}
+    \item \marginnote{2/20:}Reviewing \textcite{bib:LADRNotes} is probably a good idea.
+    \begin{itemize}
+        \item Many of \textcite{bib:DummitFoote}'s proofs more elegant, though.
+    \end{itemize}
+    \item Goal of this chapter:
+    \begin{itemize}
+        \item Brief overview of results that will be used later on; more in-depth (even introductory level) linear algebra topics, such as Gauss-Jordan elimination, row echelon forms, etc., will not be covered.
+        \item Only finite-dimensional vector spaces are discussed in the text; some stuff on infinite dimensional vector spaces is included in the exercises
+        \item Characteristic polynomials and eigenvalues: Next chapter.
+    \end{itemize}
+    \item Module terminology vs. vector space terminology.
+    \begin{table}[h!]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{ll}
+            \textbf{Terminology for $\bm{R}$ any Ring} & \textbf{Terminology for $\bm{R}$ a Field}\\
+            \hline
+            $M$ is an $R$-module & $M$ is a vector space over $R$\\
+            $m$ is an element of $M$ & $m$ is a vector in $M$\\
+            $\alpha$ is a ring element & $\alpha$ is a scalar\\
+            $N$ is a submodule of $M$ & $N$ is a subspace of $M$\\
+            $M/N$ is a quotient module & $M/N$ is a quotient space\\
+            $M$ is a free module of rank $n$ & $M$ is a vector space of dimension $n$\\
+            $M$ is a finitely generated module & $M$ is a finite dimensional vector space\\
+            $M$ is a nonzero cyclic module & $M$ is a 1-dimensional vector space\\
+            $\varphi:M\to N$ is an $R$-module homomorphism & $\varphi:M\to N$ is a linear transformation\\
+            $M$ and $N$ are isomorphic as $R$-modules & $M$ and $N$ are isomorphic vector spaces\\
+            The subset $A$ of $M$ generates $M$ & The subset $A$ of $M$ spans $M$\\
+            $M=RA$ & \begin{tabular}{@{}l@{}}Each element of $M$ is a linear combination\\of elements of $A$, i.e., $M=\Span(A)$\end{tabular}\\
+        \end{tabular}
+        \caption{Module vs. vector space terminology.}
+        \label{tab:moduleVecTerms}
+    \end{table}
+    \item In this chapter, $F$ denotes a field and $V$ denotes a vector space over $F$.
+    \item \textbf{Linearly independent} (subset $S\subset V$): A subset $S$ of $V$ for which the equation $\alpha_1v_1+\cdots+\alpha_nv_n=0$ with $\alpha_1,\dots,\alpha_n\in F$ and $v_1,\dots,v_n\in S$ implies $\alpha_1=\cdots=\alpha_n=0$.
+    \item \textbf{Basis}: An ordered set of linearly independent vectors which span $V$. \emph{Also known as} \textbf{ordered basis}.
+    \begin{itemize}
+        \item In particular, two bases will be considered different even if one is simply a rearrangement of the other.
+    \end{itemize}
+    \item Examples.
+    \begin{enumerate}
+        \item $V=F[X]$.
+        \begin{itemize}
+            \item Basis: $1,X,X^2,\dots$ is linearly independent by definition since a polynomial is zero iff all of its coefficients are 0.
+        \end{itemize}
+        \item The collection of solutions of a linear, homogeneous, constant coefficient differential equation over $\C$.
+        \begin{itemize}
+            \item A vector space since differentiation is a linear operator.
+            \item Elements are linearly independent if they are linearly independent as functions.
+            \begin{itemize}
+                \item Example: $\e[t],\e[2t]$ are easily seen to be solutions of the equation $y''-3y'+2y=0$.
+                \item They are linearly independent since $a\e[t]+b\e[2t]=0$ implies $a+b=0$ ($t=0$) and $a\e+b\e[2]=0$ ($t=1$), and the only solution to this system of two equations is $a=b=0$.
+                \item It is a theorem of differential equations that these elements span the set of solutions of this equation.
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+    \item Vector spaces are free modules.
+    \begin{proposition}\label{prp:11.1}
+        Assume the set $\mathcal{A}=\{v_1,\dots,v_n\}$ spans the vector space $V$ but no proper subset of $\mathcal{A}$ spans $V$. Then $\mathcal{A}$ is a basis of $V$. In particular, any finitely generated (i.e., finitely spanned) vector space over $F$ is a free $F$-module.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Example.
+    \begin{enumerate}
+        \item Consider $F[X]/(f)$, where $f=X^n+a_{n-1}X^{n-1}+\cdots+a_0$.
+        \begin{itemize}
+            \item $(f)$ is a subspace of $F[X]$.
+            \item Euclidean Algorithm: Every $a\in F[X]$ can be written uniquely in the form $qf+r$ where $0\leq\deg(r)\leq n-1$. Thus, every element of the quotient is represented by a polynomial $r$ of degree $\leq n-1$.
+            \item It follows that $\overline{1},\overline{X},\overline{X^2},\dots,\overline{X^{n-1}}$ spans $F[X]/(f)$.
+        \end{itemize}
+    \end{enumerate}
+    \item Spanning sets contain bases.
+    \begin{corollary}\label{cly:11.2}
+        Assume the finite set $\mathcal{A}$ spans the vector space $V$. Then $\mathcal{A}$ contains a basis of $V$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item A new property of bases.
+    \begin{theorem}[Replacement Theorem]\label{trm:11.3}
+        Assume $\mathcal{A}=\{a_1,\dots,a_n\}$ is a basis for $V$ containing $n$ elements and $\{b_1,\dots,b_m\}$ is a set of linearly independent vectors in $V$. Then there is an ordering $a_1,\dots,a_n$ such that for each $k\in\{1,\dots,m\}$, the set
+        \begin{equation*}
+            \{b_1,\dots,b_k,a_{k+1},\dots,a_n\}
+        \end{equation*}
+        is a basis of $V$. In other words, the elements $b_1,\dots,b_m$ can be used to successively replace the elements of the basis $\mathcal{A}$, still retaining a basis. In particular, $n\geq m$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Linear independence, span, and cardinality.
+    \begin{corollary}\label{cly:11.4}\leavevmode
+        \begin{enumerate}
+            \item Suppose $V$ has a finite basis with $n$ elements. Any set of linearly independent vectors has $\leq n$ elements. Any spanning set has $\geq n$ elements.
+            \item If $V$ has some finite basis, then any two bases of $V$ have the same cardinality.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item \textbf{Dimension}: The cardinality of any basis of $V$. \emph{Denoted by} $\bm{\dim_FV}$, $\bm{\dim V}$.
+    \item \textbf{Finite dimensional} (vector space): A vector space $V$ that is finitely generated.
+    \item \textbf{Infinite dimensional} (vector space): A vector space $V$ that is not finitely generated.
+    \begin{itemize}
+        \item We write $\dim V=\infty$ for these.
+    \end{itemize}
+    \item Examples.
+    \begin{enumerate}
+        \item The dimension of the solution space to $y''-3y'+2y=0$ is 2.
+        \begin{itemize}
+            \item Recall from above that a basis is $\e[t],\e[2t]$.
+            \item In general, it is a theorem in differential equations that the space of solutions of an $n^\text{th}$ order linear, homogeneous, constant coefficient differential equation of degree $n$ over $\C$ is a vector space over $\C$ of dimension $n$.
+        \end{itemize}
+        \item The dimension of $F[X]/(f)$ is $\deg(f)$.
+        \begin{itemize}
+            \item $F[X]$ and $(f)$ are infinite dimensional vector spaces.
+        \end{itemize}
+    \end{enumerate}
+    \item Linearly independent lists and bases.
+    \begin{corollary}[Building-Up Lemma]\label{cly:11.5}
+        If $A$ is a set of linearly independent vectors in the finite dimensional space $V$, then there exists a basis of $V$ containing $A$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Characterizing finite dimensional vector spaces.
+    \begin{theorem}\label{trm:11.6}
+        If $V$ is an $n$-dimensional vector space over $F$, then $V\cong F^n$. In particular, any two finite dimensional vector spaces over $F$ of the same dimension are isomorphic.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Examples.
+    \begin{enumerate}
+        \item Bases of ${\F_q}^k$.
+        \begin{itemize}
+            \item \textcite{bib:DummitFoote} justifies that the number of distinct bases of ${\F_q}^k$ is
+            \begin{equation*}
+                (q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k-q^{k-1})
+            \end{equation*}
+            \item For every vector $v\in{\F_q}^k$, there are $q-1$ other linearly dependent vectors (corresponding to the $q$ $\F$-multiples of it).
+        \end{itemize}
+        \item Subspaces of ${\F_q}^n$.
+        \begin{itemize}
+            \item \textcite{bib:DummitFoote} justifies that the number of distinct $k$-dimensional subspaces of ${\F_q}^n$ is
+            \begin{equation*}
+                \frac{(q^n-1)(q^n-q)\cdots(q^n-q^{k-1})}{(q^k-1)(q^k-q)\cdots(q^k-q^{k-1})}
+            \end{equation*}
+        \end{itemize}
+    \end{enumerate}
+    \item Dimension of the quotient space.
+    \begin{theorem}\label{trm:11.7}
+        Let $V$ be a vector space over $F$, and let $W$ be a subspace of $V$. Then $V/W$ is a vector space with $\dim V=\dim W+\dim V/W$ (where if one side is infinite, then both are).
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Dimension of the kernel and image of a linear transformation.
+    \begin{corollary}\label{cly:11.8}
+        Let $\varphi:V\to U$ be a linear transformation of vector spaces over $F$. Then $\ker\varphi$ is a subspace of $V$, $\varphi(V)$ is a subspace of $U$, and $\dim V=\dim\ker\varphi+\dim\varphi(V)$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Classifying isomorphic operator.
+    \begin{corollary}\label{cly:11.9}
+        Let $\varphi:V\to W$ be a linear transformation of vector spaces of the same finite dimension. Then the following are equivalent.
+        \begin{enumerate}
+            \item $\varphi$ is an isomorphism.
+            \item $\varphi$ is injective, i.e., $\ker\varphi=0$.
+            \item $\varphi$ is surjective, i.e., $\varphi(V)=W$.
+            \item $\varphi$ sends a basis of $V$ to a basis of $W$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item \textbf{Null space} (of a linear transformation): The kernel of the linear transformation.
+    \item \textbf{Nullity} (of a linear transformation): The dimension of the kernel of the linear transformation.
+    \item \textbf{Rank} (of a linear transformation): The dimension of the image of the linear transformation.
+    \item \textbf{Nonsingular} (linear transformation): A linear transformation $\varphi$ for which $\ker\varphi=0$.
+    \item \textbf{General linear group}: The group of all nonsingular linear transformations from $V\to V$ under the group operation of composition. \emph{Denoted by} $\bm{GL(V)}$.
+    \begin{itemize}
+        \item \textcite{bib:DummitFoote} justifies that if $V={\F_q}^n$, then
+        \begin{equation*}
+            |GL(V)| = (q^n-1)(q^n-q)\cdots(q^n-q^{n-1})
+        \end{equation*}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Exercises}
+\begin{enumerate}[label={\textbf{\arabic*.}},ref={11.1.\arabic*},start=4]
+    \item \label{exr:11.1.4}Prove that the space of real-valued functions on the closed interval $[a,b]$ is an infinite dimensional vector space over $\R$, where $a<b$.
+    \item \label{exr:11.1.5}Prove that the space of continuous real-valued functions on the closed interval $[a,b]$ is an infinite dimensional vector space over $\R$, where $a<b$.
+    \setcounter{enumi}{9}
+    \item \label{exr:11.1.10}Prove that any vector space $V$ has a basis (by convention, the null set is the basis for the zero space). \emph{Hint}: Let $\mathcal{S}$ be the set of subsets of $V$ consisting of linearly independent vectors, partially ordered under inclusion; apply Zorn's Lemma to $\mathcal{S}$ and show that a maximal element of $\mathcal{S}$ is a basis.
+    \item \label{exr:11.1.11}Refine your argument in the preceding exercise to prove that any set of linearly independent vectors of $V$ is contained in a basis of $V$.
+    \item \label{exr:11.1.12}If $F$ is a field with a finite or countable number of elements and $V$ is an infinite dimensional vector space over $F$ with basis $\mathcal{B}$, prove that the cardinality of $V$ equals the cardinality of $\mathcal{B}$. Deduce in this case that any two bases of $V$ have the same cardinality.
+    \item \label{exr:11.1.13}Prove that as vector spaces over $\Q$, $\R^n\cong\R$ for all $n\in\Z^+$. Note that, in particular, this means that $\R^n$ and $\R$ are isomorphic as additive abelian groups.
+    \item \label{exr:11.1.14}Let $\mathcal{A}$ be a basis for the infinite dimensional vector space $V$. Prove that $V$ is isomorphic to the direct sum of copies of the field $F$ indexed by the set $\mathcal{A}$. Prove that the direct product of copies of $F$ indexed by $\mathcal{A}$ is a vector space over $F$ and it has strictly larger dimension than the dimension of $V$ (see the exercises in Section 10.3 for the definitions of direct sum and direct product over infinitely many modules).
+\end{enumerate}
+
+
+\subsection*{Section 11.2: The Matrix of a Linear Transformation}
+\begin{itemize}
+    \item Assumptions for this section.
+    \begin{itemize}
+        \item $V,W$ are vector spaces over the field $F$.
+        \item $\mathcal{B}=\{v_1,\dots,v_n\}$ is an (ordered) basis of $V$, and $\mathcal{E}=\{w_1,\dots,w_m\}$ is an (ordered) basis of $W$.
+        \item $\varphi\in\Hom(V,W)$.
+    \end{itemize}
+    \item \textbf{Matrix} (of $\varphi$ with respect to the bases $\mathcal{B},\mathcal{E}$): The $m\times n$ matrix whose $i,j$ entry is $\alpha_{ij}$, where
+    \begin{equation*}
+        \varphi(v_j) = \sum_{i=1}^m\alpha_{ij}w_i
+    \end{equation*}
+    \emph{Denoted by} $\bm{\mat{B}{E}{\varphi}}$.
+    \item \textcite{bib:DummitFoote} reviews how to recover $\varphi$ from $\mat{B}{E}{\varphi}$.
+    \begin{itemize}
+        \item The equivalence of matrix multiplying and linear transforming is sometimes denoted
+        \begin{equation*}
+            [\varphi(v)]_\mathcal{E} = \mat{B}{E}{\varphi}[v]_\mathcal{B}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Representation} (of $\varphi$ with respect to the bases $\mathcal{B},\mathcal{E}$): The matrix $A=(a_{ij})$ associated with $\varphi$.
+    \item Examples.
+    \begin{enumerate}
+        \item Computing a matrix with respect to the standard bases of $\R^3,\R^2$.
+        \item The matrix of the differentiation operator $\varphi:V\to V$ on the 2-dimensional space of solutions $V$ to $y''-3y'+2y=0$.
+        \begin{itemize}
+            \item Since
+            \begin{align*}
+                \varphi(v_1) &= \dv{t}(\e[t]) = \e[t] = v_1&
+                \varphi(v_2) &= \dv{t}(\e[2t]) = 2\e[2t] = 2v_2
+            \end{align*}
+            the representation of $\varphi$ is
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & 2\\
+                \end{pmatrix}
+            \end{equation*}
+        \end{itemize}
+        \item Computing a matrix with respect to the standard bases of $\Q^3,\Q^3$.
+    \end{enumerate}
+    \item Isomorphism between the space of linear transformations and the space of matrices.
+    \begin{theorem}\label{trm:11.10}
+        Let $V$ be a vector space over $F$ of dimension $n$ and let $W$ be a vector space over $F$ of dimension $m$, with respective bases $\mathcal{B},\mathcal{E}$. Then the map $\Hom_F(V,W)\to M_{m\times n}(F)$ from the space of linear transformations from $V$ to $W$ to the space of $m\times n$ matrices with coefficients in $F$ defined by $\varphi\mapsto\mat{B}{E}{\varphi}$ is a vector space isomorphism. In particular, there is a bijective correspondence between linear transformations and their associated matrices with respect to a fixed choice of bases.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item There is no \emph{natural} isomorphism between $\Hom_F(V,W)$ and $M_{m\times n}(F)$.
+    \begin{itemize}
+        \item This is because the choices of bases are arbitrary (there is no natural choice of them).
+    \end{itemize}
+    \item Dimension of the space of linear transformations.
+    \begin{corollary}\label{cly:11.11}
+        The dimension of $\Hom_F(V,W)$ is $(\dim V)(\dim W)$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item \textbf{Nonsingular} (matrix): An $m\times n$ matrix $A$ such that $Ax=0$ with $x\in F^n$ implies that $x=0$. \emph{Also known as} \textbf{invertible}.
+    \item Nonsingular linear transformations vs. nonsingular matrices.
+    \begin{itemize}
+        \item Independent of the choice of bases, a matrix is nonsingular iff the corresponding linear transformation is nonsingular.
+    \end{itemize}
+    \item \textcite{bib:DummitFoote} uses the definition of the matrix to deduce the formula for matrix multiplication.
+    \item Relating matrix multiplication to linear transformation composition.
+    \begin{theorem}\label{trm:11.12}
+        Let $U,V,W$ be finite dimensional vector spaces over $F$ with ordered bases $\mathcal{D},\mathcal{B},\mathcal{E}$, and assume $\psi:U\to V$ and $\varphi:V\to W$ are linear transformations. Then
+        \begin{equation*}
+            \mat{D}{E}{\varphi\circ\psi} = \mat{B}{E}{\varphi}\mat{D}{B}{\psi}
+        \end{equation*}
+        In words, the product of the matrices representing the linear transformations $\varphi,\psi$ is the matrix representing the composite linear transformation $\varphi\circ\psi$.
+    \end{theorem}
+    \item Properties of matrix multiplication.
+    \begin{corollary}\label{cly:11.13}
+        Matrix multiplication is associative and distributive (whenever the dimensions are such as to make products defined). An $n\times m$ matrix $A$ is nonsingular if and only if it is invertible.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Ring-like properties of $M_n(F)$, as induced by those of $\Hom_F(V,V)$.
+    \begin{corollary}\label{cly:11.14}\leavevmode
+        \begin{enumerate}
+            \item If $\mathcal{B}$ is a basis of the $n$-dimensional space $V$, the map $\varphi\mapsto\mat{B}{B}{\varphi}$ is a ring and a vector space isomorphism of $\Hom_F(V,V)$ onto the space $M_n(F)$ of $n\times n$ matrices with coefficients in $F$.
+            \item $GL(V)\cong GL_n(F)$, where $\dim V=n$. In particular, if $F$ is a finite field, the order of the finite group $GL_n(F)$ (which equals $|GL(V)|$) is given by the formula at the end of Section 11.1.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item \textbf{Row rank} (of a matrix): The maximal number of linearly independent rows of the matrix, where the rows are considered as vectors in affine $m$-space.
+    \item \textbf{Column rank} (of a matrix): The maximal number of linearly independent columns of the matrix, where the columns are considered as vectors in affine $n$-space.
+    \item Relating ranks.
+    \begin{itemize}
+        \item The rank of $\psi$ equals the column rank of $\mat{B}{E}{\psi}$.
+    \end{itemize}
+    \item \textbf{Similar} (matrices): Two $n\times n$ matrices $A,B$ for which there exists an invertible $n\times n$ matrix $P$ such that $P^{-1}AP=B$.
+    \item \textbf{Similar} (linear transformations): Two linear transformations $\varphi,\psi:V\to V$ for which there exists a nonsingular linear transformation $\xi$ such that $\xi^{-1}\varphi\xi=\psi$.
+    \begin{itemize}
+        \item This is an equivalence relation whose equivalence classes are the orbits of $GL(V)$ acting by conjugation on $\Hom_F(V,V)$.
+    \end{itemize}
+    \item \textbf{Transition} (matrix from $\mathcal{B}$ to $\mathcal{E}$): The matrix defined as follows, where $I$ is the identity transformation. \emph{Also known as} \textbf{change of basis} (matrix). \emph{Denoted by} $\bm{P}$. \emph{Given by}
+    \begin{equation*}
+        P = \mat{B}{E}{I}
+    \end{equation*}
+    \begin{itemize}
+        \item $P=\mat{B}{E}{I}$ satisfies $P^{-1}\mat{B}{B}{I}P=\mat{E}{E}{\varphi}$.
+        \begin{itemize}
+            \item If $\mathcal{B}\neq\mathcal{E}$, then $P$ is not the identity matrix.
+        \end{itemize}
+        \item Note that we need \emph{ordered} bases to have a unique $P=\mat{B}{E}{I}$!
+    \end{itemize}
+    \item \textbf{Change of basis}: The similarity action of $\mat{B}{E}{I}$ on $\mat{B}{B}{\varphi}$.
+    \item \textcite{bib:DummitFoote} proves that any two similar matrices represent the same linear transformation with respect to two different choices of bases.
+    \item Example of similarity given.
+    \item \textbf{Canonical forms}: The study of the simplest possible matrix representing a given linear transformation (and which basis to choose to realize it).
+    \item We now move on to linear transformations on tensor products of vector spaces.
+    \item Return to later.
+    \setcounter{proposition}{17}
+    \item \textbf{Idempotent} (linear transformation): A linear transformation $\psi$ satisfying $\psi^2=\psi$.
+    \begin{itemize}
+        \item Characterized in Exercise 11.2.11.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Section 11.3: Dual Vector Spaces}
+\begin{itemize}
+    \item \textbf{Dual space} (of a vector space): The space of linear transformations from $V$ to $F$. \emph{Denoted by} $\bm{V^*}$.
+    \item \textbf{Linear functional}: An element of $V^*$.
+    \item \textbf{Dual basis} (to a basis of $V$): The basis related to a basis $\{v_1,\dots,v_n\}$ of $V$ by
+    \begin{equation*}
+        v_i^*(v_j) =
+        \begin{cases}
+            1 & i=j\\
+            0 & i\neq j
+        \end{cases}
+    \end{equation*}
+    for $1\leq j\leq n$. \emph{Denoted by} $\bm{\{v_1^*,\ldots,v_n^*\}}$.
+    \item The dual basis to a basis of $V$ is a basis of $V^*$.
+    \begin{proposition}\label{prp:11.18}
+        With notations as above, $\{v_1^*,\dots,v_n^*\}$ is a basis of $V^*$. In particular, if $V$ is finite dimensional, then $V^*$ has the same dimension as $V$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item If $V$ is infinite dimensional, then $\dim V<\dim V^*$.
+    \item \textbf{Algebraic} (dual space to $V$): The dual space $V^*$ taken for $V$ of arbitrary dimension.
+    \item If $V$ has additional structure (e.g., a topology), we can get other types of dual spaces, such as the following.
+    \item \textbf{Continuous} (dual of $V$): A dual of $V$ in which the linear functionals must be continuous.
+    \item Example.
+    \begin{enumerate}
+        \item Let $V=C([a,b],\R)$.
+        \begin{itemize}
+            \item If $a<b$, then $V$ is infinite dimensional.
+            \item For each $g\in V$, the function $\varphi_g:V\to\R$ defined by
+            \begin{equation*}
+                \varphi_g(f) = \int_a^bf(t)g(t)\dd{t}
+            \end{equation*}
+            is a linear functional on $V$.
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Double dual} (of $V$): The dual of $V^*$. \emph{Also known as} \textbf{second dual}. \emph{Denoted by} $\bm{V^{**}}$.
+    \item For finite dimensional $V$, $\dim V=\dim V^{**}$ and hence $V\cong V^{**}$.
+    \begin{itemize}
+        \item There is a \textbf{natural} (i.e., basis independent/coordinate free) isomorphism.
+        \begin{itemize}
+            \item More detail on this is given.
+        \end{itemize}
+        \item This is different for infinite dimensional $V$, as per the above.
+    \end{itemize}
+    \item Existence of a natural map $V\to V^{**}$.
+    \begin{theorem}\label{trm:11.19}
+        There is a natural injective linear transformation from $V$ to $V^{**}$. If $V$ is finite dimensional, then this linear transformation is an isomorphism.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item $\bm{\varphi^*}$: The induced function from $W^*\to V^*$ defined by
+    \begin{equation*}
+        f \mapsto f\circ\varphi
+    \end{equation*}
+    \begin{itemize}
+        \item This is just the \textbf{pullback} or \textbf{dual map}.
+    \end{itemize}
+    \item Pullback: Linearity and matrix.
+    \begin{theorem}\label{trm:11.20}
+        With notations as above, $\varphi^*$ is a linear transformation from $W^*$ to $V^*$ and $\mat{E^*}{B^*}{\varphi^*}$ is the transpose of the matrix $\mat{B}{E}{\varphi}$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item A partial statement of the rank-nullity theorem.
+    \begin{corollary}\label{cly:11.21}
+        For any matrix $A$, the row rank of $A$ equals the column rank of $A$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item \textbf{Annihilator} (of $S$ in $V$): The set of all $v\in V$ for which $f(v)=0$ for all $f\in S\subset V^*$. \emph{Denoted by} $\bm{\Ann(S)}$. \emph{Given by}
+    \begin{equation*}
+        \Ann(S) = \{v\in V:f(v)=0\ \forall\ f\in S\}
+    \end{equation*}
+\end{itemize}
+\setcounter{proposition}{0}
+
+
+
 
 \end{document}
