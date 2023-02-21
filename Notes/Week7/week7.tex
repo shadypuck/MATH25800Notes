@@ -482,5 +482,92 @@
 
 
 
+\section{Office Hours (Callum)}
+\begin{itemize}
+    \item Problem 6.5?
+    \begin{itemize}
+        \item Go with the explicit route, not the universal property of the ring of fractions route.
+        \item Explicit: Define
+        \begin{equation*}
+            F(v) = \frac{1}{a}f(av)
+        \end{equation*}
+        \item We need to prove that $1/af(av)=1/bf(bv)$ for valid $a,b$. Multiply both sides by $ab$ and use commutativity. Thus, $F(v)$ is well defined.
+    \end{itemize}
+    \item Problem 6.8?
+    \begin{itemize}
+        \item The hardest one. Doesn't really use any of the previous parts.
+        \item Define $\phi:A\oplus M\to A^2$ to be the isomorphism. Consider $(1,0)\in A\oplus M$. In particular, let $\phi(1,0)=(a,b)$. We know that it will generate a copy of $A$ in $A^2$. Essentially, $A(a,b)=A^2$. We know that $\phi^{-1}:A^2\to A\oplus M$ and $P:A\oplus M\to A$. Suppose $P\circ\phi^{-1}:(1,0)\mapsto c$ and $(0,1)\mapsto d$.
+        \item Consider
+        \begin{equation*}
+            A\hookrightarrow A\oplus M\xrightarrow{\phi}A^2\xrightarrow{\phi^{-1}}A\oplus M\xrightarrow{P}A
+        \end{equation*}
+        which is the identity on $A$. Then
+        \begin{equation*}
+            1\mapsto (1,0)\mapsto (a,b)=a(1,0)+b(0,1)\mapsto ac+bd
+        \end{equation*}
+        so $ac+bd=1$.
+        \item Consider the matrix
+        \begin{equation*}
+            \begin{pmatrix}
+                a & d\\
+                b & c\\
+            \end{pmatrix}
+        \end{equation*}
+        \begin{itemize}
+            \item Determinant??
+            \item $(-d,c)$
+            \item So thus, $M=A(-d,c)$??
+        \end{itemize}
+        \item $(-d,c)\in A^2$ defines a map from $A^2\to M$ with kernel $A$. $(-d,c)\in\ker(P\circ\phi^{-1})$. Thus, $\phi^{-1}(-d,c)\in\{0\}\oplus M\cong M$.
+        \item Thus, at this point, we may define a map
+        \begin{equation*}
+            A\hookrightarrow A^2\xrightarrow{\phi^{-1}}A\oplus M\xrightarrow{P}M
+        \end{equation*}
+        by
+        \begin{equation*}
+            1\mapsto(-d,c)
+        \end{equation*}
+        and this should be an isomorphism.
+        \item $(-d,c)$ generates a submodule of $A^2$ that is isomorphic to $M$.
+        \item Injectivity follows from that of all of the components.
+        \item Surjectivity: Pull $m$ back to $(0,m)$ and then $\phi(0,m)\in A^2$. The subset of $A^2$ equal to all $\phi(0,m)$ is equal to
+        \begin{equation*}
+            \{(u,v)\in A^2:\phi^{-1}(u,v)\in 0\oplus M\} = \{(u,v)\in A^2:uc+vd=0\}
+        \end{equation*}
+        \item We want to find $k\in A$ such that $(u,v)=k(-d,c)$. In other words, we want $u=-kd$ and $v=kc$. $ua=-kda=k(1-bc)=k-kbc=k-bv$. Thus, $k=ua+bv$. Now we have to substitute that back in and show that it works.
+        \item Thus, we have that
+        \begin{equation*}
+            kc = ua+bvc
+            = uac+b(1-ad)
+            = v+uac-vad
+            = v+a(bc-ad)
+        \end{equation*}
+        \item Saying $A\cong M$ is kind of like saying that there's a change of basis. That's why matrices keep coming up.
+        \item Summary of what we did.
+        \begin{enumerate}
+            \item We have
+            \begin{equation*}
+                A\hookrightarrow A\oplus M\xrightarrow{\phi}A^2\xrightarrow{\phi^{-1}}A\oplus M\xrightarrow{P}A
+            \end{equation*}
+            and this is the identity.
+            \item We define $(1,0)\mapsto(a,b)$, which will generate a copy of $A$ in $A^2$.
+            \item We now need to find a basis vector corresponding to $M$ (which we hope is $A$).
+            \item $\{(1,0),(0,1)\}$ is the standard basis for $A^2$.
+            \item We need to solve for $x,y$ such that
+            \begin{equation*}
+                \begin{pmatrix}
+                    a & x\\
+                    b & y\\
+                \end{pmatrix}
+            \end{equation*}
+            is invertible.
+            \item $\{\phi^{-1}(1,0),\phi^{-1}(0,1)\}$ is another basis of $A^2$.
+            \item We want $ac+bd=1$.
+        \end{enumerate}
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
