@@ -15,9 +15,144 @@ All modules considered are left modules. Given $A$-modules $M,N$, the set of all
     \item \marginnote{2/17:}Let $M$ be an $A$-module and let $e:M\to M$ be an $A$-module homomorphism satisfying $e\circ e=e$. We have shown that both $e(M)$ and $\ker(e)$ are submodules of $M$. %DO NOT WRITE A SOLUTION.
     \begin{enumerate}
         \item Prove that $\phi:e(M)\oplus\ker(e)\to M$ given by $\phi(v,w)=v+w$ for all $v\in e(M)$, $w\in\ker(e)$ is an isomorphism of $A$-modules.
+        % \begin{proof}
+        %     To prove that $\phi$ is an isomorphism, it will suffice to show that it is a module homomorphism (i.e., that it is a homomorphism of abelian groups and commutes with scalar multiplication) and that it is bijective. Let's begin.\par
+        %     To show that $\phi$ is a group homomorphism, it will suffice to check that $\phi[(v_1,w_1)+(v_2,w_2)]=\phi(v_1,w_1)+\phi(v_2,w_2)$ for all $(v_1,w_1),(v_2,w_2)\in e(M)\oplus\ker(e)$. Let $(v_1,w_1),(v_2,w_2)\in e(M)\oplus\ker(e)$ be arbitrary. Then
+        %     \begin{align*}
+        %         \phi[(v_1,w_1)+(v_2,w_2)] &= \phi(v_1+v_2,w_1+w_2)\\
+        %         &= v_1+v_2+w_1+w_2\\
+        %         &= v_1+w_1+v_2+w_2\\
+        %         &= \phi(v_1,w_1)+\phi(v_2,w_2)
+        %     \end{align*}
+        %     as desired.\par
+        %     To show that $\phi$ respects scalar multiplication, it will suffice to check that $\phi[a(v,w)]=a\phi(v,w)$ for all $(v,w)\in e(M)\oplus\ker(e)$ and $a\in A$. Let $v,w\in e(M)\oplus\ker(e)$ and $a\in A$ be arbitrary. Then
+        %     \begin{align*}
+        %         \phi[a(v,w)] &= \phi(av,aw)\\
+        %         &= av+aw\\
+        %         &= a(v+w)\\
+        %         &= a\phi(v,w)
+        %     \end{align*}
+        %     as desired.\par
+        %     To show that $\phi$ is bijective, it will suffice to check that it is injective and surjective.\par
+        %     First, suppose $\phi(v_1,w_1)=\phi(v_2,w_2)$. Then $v_1+w_1=v_2+w_2$, so $v_1-v_2=w_2-w_1$. Now since $v_1,v_2\in e(M)$ a submodule, $v_1-v_2\in e(M)$. Similarly, $w_2-w_1\in\ker(e)$. We now verify a couple of facts about $v_1-v_2$ and $w_2-w_1$ that will allow us to show injectivity. First off, since $v_1-v_2\in e(M)$, we know that there exists $m\in M$ such that $e(m)=v_1-v_2$. This combined with the fact that $e\circ e=e$ demonstrates that
+        %     \begin{equation*}
+        %         e(v_1-v_2) = e(e(m))
+        %         = (e\circ e)(m)
+        %         = e(m)
+        %         = v_1-v_2
+        %     \end{equation*}
+        %     Second, since $w_2-w_1\in\ker(e)$, we know that $e(w_2-w_1)=0$. Because of these two results, we have that
+        %     \begin{align*}
+        %         v_1-v_2 &= e(v_1-v_2)
+        %             = e(w_2-w_1)
+        %             = 0\\
+        %         v_1 &= v_2
+        %     \end{align*}
+        %     and hence
+        %     \begin{align*}
+        %         w_2-w_1 &= v_1-v_2
+        %             = 0\\
+        %         w_2 &= w_1
+        %     \end{align*}
+        %     Therefore, since both components are equal, we have that
+        %     \begin{equation*}
+        %         (v_1,w_1) = (v_2,w_2)
+        %     \end{equation*}
+        %     as desired.\par
+        %     Second, let $m\in M$ be arbitrary. Then by the FIT, $e=i\circ\tilde{e}\circ\pi$ for a projection module homomorphism $\pi:M\to M/\ker(e)$, a module isomorphism $\tilde{e}:M/\ker(e)\to e(M)$, and an inclusion module homomorphism $i:e(M)\to M$. In particular, consider $v=(\tilde{e}\circ\pi)(m)\in e(M)$. We know that $\tilde{e}(m+\ker(e))=v$ and $\tilde{e}(v+\ker(e))=v$, so we must have $w=m-v\in\ker(e)$. It follows that $m=v+w=\phi(v,w)$, as desired.
+        % \end{proof}
         \item Define $P:e(M)\oplus\ker(e)\to e(M)\oplus\ker(e)$ by $P(v,w)=(v,0)$ for all $(v,w)\in e(M)\oplus\ker(e)$. Prove that $P=\phi^{-1}\circ e\circ\phi$.
+        % \begin{proof}
+        %     Let $(v,w)\in e(M)\oplus\ker(e)$ be arbitrary. Then
+        %     \begin{equation*}
+        %         P(v,w) = (v,0)
+        %     \end{equation*}
+        %     and
+        %     \begin{align*}
+        %         (\phi^{-1}\circ e\circ\phi)(v,w) &= \phi^{-1}(e(\phi(v,w)))\\
+        %         &= \phi^{-1}(e(v+w))\\
+        %         &= \phi^{-1}(e(v)+e(w))\\
+        %         &= \phi^{-1}(v)\\
+        %         &= (v,0)
+        %     \end{align*}
+        %     where we have the last equality since $\phi^{-1}$ is an 1-1 and $\phi(v,0)=v$. This implies the desired result.
+        % \end{proof}
     \end{enumerate}
     \item Let $f:M\to N$ and $g:N\to M$ be $A$-module homomorphisms such that $g(f(m))=m$ for all $m\in M$. Prove that $H:M\oplus\ker(g)\to N$ given by $H(m,n)=f(m)+n$ for all $m\in M$, $n\in\ker(g)$ is an isomorphism of $A$-modules.
+    \begin{proof}
+        % {\color{white}hi}
+        % \begin{itemize}
+        %     \item Define $e=f\circ g$.
+        %     \item Proposition 10.2: $e:N\to N$ is an $A$-module homomorphism.
+        %     \item $e\circ e=e$.
+        %     \begin{itemize}
+        %         \item If we let $n\in N$ be arbitrary, then we have
+        %         \begin{align*}
+        %             (e\circ e)(n) &= (f\circ g\circ f\circ g)(n)\\
+        %             &= f((g\circ f)(g(n)))\\
+        %             &= f(g(n))\\
+        %             &= (f\circ g)(n)\\
+        %             &= e(n)
+        %         \end{align*}
+        %         as desired.
+        %     \end{itemize}
+        %     \item Problem 6.1(i): There exists an $A$-module isomorphism $\phi:e(N)\oplus\ker(e)\to N$ defined by $\phi(v,w)=v+w$ for all $v\in e(N)$, $w\in\ker(e)$.
+        %     \item $M\cong e(N)$.
+        %     \begin{itemize}
+        %         \item $g(f(m))=m$ for all $m\in M$: $f$ is injective and $g$ is surjective.
+        %         \item $g$ is surjective: $g(N)=M$.
+        %         \item The above: $M\cong f(M)=f(g(N))=(f\circ g)(N)=e(N)$ by $f:M\to e(N)$.
+        %     \end{itemize}
+        %     \item $\ker(e)=\ker(g)$.
+        %     \begin{itemize}
+        %         \item $\ker(e)\subset\ker(g)$.
+        %         \begin{itemize}
+        %             \item $n\in\ker(e)$: $e(n)=0$.
+        %             \item Def. of $e$ and $f$ is a group homomorphism: $f(g(n))=0=f(0)$.
+        %             \item $f$ is injective: $g(n)=0$.
+        %             \item By definition: $n\in\ker(g)$.
+        %         \end{itemize}
+        %         \item $\ker(g)\subset\ker(e)$.
+        %         \begin{itemize}
+        %             \item $n\in\ker(g)$: $g(n)=0$.
+        %             \item $f$ is a group homomorphism and def. of $e$: $e(n)=f(g(n))=f(0)=0$.
+        %             \item By definition: $n\in\ker(e)$.
+        %         \end{itemize}
+        %     \end{itemize}
+        %     \item Define $\psi:M\oplus\ker(g)\to e(N)\oplus\ker(e)$ by $\psi(m,n)=(f(m),n)$.
+        %     \item As a componentwise module isomorphism, $\psi$ is an $A$-module isomorphism.
+        %     \item Proposition 10.2: $\phi\circ\psi$ is an $A$-module homomorphism.
+        %     \item $H=\phi\circ\psi$.
+        % \end{itemize}
+
+        To prove the claim, we will apply Problem 6.1(i). In particular, we will first define a relevant helper function $e$ and show that it satisfies the same properties as the $e$ from Problem 6.1. We will use this $e$ to define an isomorphism $\phi:e(N)\oplus\ker(e)\to N$, in line with Problem 6.1. Lastly, we will show that there is an isomorphism $\psi:M\oplus\ker(g)\to e(N)\oplus\ker(e)$ and define $H$ to be the composition isomorphism $\phi\circ\psi$. Let's begin.\par\smallskip
+        Define $e:N\to N$ by $e=f\circ g$. By Proposition 10.2, $e$ is an $A$-module homomorphism. Additionally, we can demonstrate that $e\circ e=e$: If we let $n\in N$ be arbitrary, then we have
+        \begin{align*}
+            (e\circ e)(n) &= (f\circ g\circ f\circ g)(n)\\
+            &= f((g\circ f)(g(n)))\\
+            &= f(g(n))\\
+            &= (f\circ g)(n)\\
+            &= e(n)
+        \end{align*}
+        as desired. Therefore, by Problem 6.1(i), there exists an $A$-module isomorphism $\phi:e(N)\oplus\ker(e)\to N$ defined by $\phi(v,w)=v+w$ for all $v\in e(N)$, $w\in\ker(e)$.\par
+        Moving on, we can show that $M\cong e(N)$. In particular, since $g(f(m))=m$ for all $m\in M$ by hypothesis, we know that $f$ is injective and $g$ is surjective. It follows from the latter statement that $g(N)=M$. Thus, combining results, we have that
+        \begin{equation*}
+            M \cong f(M)
+            = f(g(N))
+            = (f\circ g)(N)
+            = e(N)
+        \end{equation*}
+        where the isomorphism is given by $\tilde{f}:M\to e(N)$ defined by $\tilde{f}(m)=f(m)$ for all $m\in M$.\par
+        Next, we can show that $\ker(e)=\ker(g)$. Suppose first that $n\in\ker(e)$. Then $e(n)=0$. It follows by the definition of $e$ that $f(g(n))=0$. Additionally, we know that $f(0)=0$ since $f$ is a group homomorphism (as an $A$-module homomorphism). Thus, by transitivity, $f(g(n))=f(0)$. It follows since $f$ is injective (as stated above) that $g(n)=0$. Therefore, $n\in\ker(g)$ by definition, as desired. Now suppose that $n\in\ker(g)$. Then $g(n)=0$. It follows for analogous reasons to the other direction (e.g., $f$ is a group homomorphism; definition of $e$) that $e(n)=f(g(n))=f(0)=0$. Therefore, $n\in\ker(e)$ by definition, as desired.\par
+        At this point, we may define $\psi:M\oplus\ker(g)\to e(N)\oplus\ker(e)$ by $\psi(m,n)=(\tilde{f}(m),\id(n))$ for all $(m,n)\in M\oplus\ker(g)$. As a componentwise $A$-module isomorphism, $\psi$ is also an $A$-module isomorphism, itself (see the analogous justification in Problem 3.2). Thus, we may define the $A$-module isomorphism $H=\phi\circ\psi$, where the fact that $H$ is an $A$-module homomorphism is justified by Proposition 10.2 and the fact that it is bijective follows from the bijectivity of both $\phi,\psi$. $H$, as defined, maps the correct sets (i.e., $M\oplus\ker(g)\to N$) and has the correct rule:
+        \begin{equation*}
+            H(m,n) = (\phi\circ\psi)(m,n)
+            = \phi(\psi(m,n))
+            = \phi(\tilde{f}(m),n)
+            = \phi(f(m),n)
+            = f(m)+n
+        \end{equation*}
+    \end{proof}
     \item Let $\phi:A\to B$ be a ring homomorphism, and let $M$ be a $B$-module. Show that $\cdot:A\times M\to M$ defined by
     \begin{equation*}
         (a,m) \mapsto \phi(a)m
@@ -27,7 +162,81 @@ All modules considered are left modules. Given $A$-modules $M,N$, the set of all
     A very important application of this observation ($F[X]$-modules) is discussed on \textcite[340]{bib:DummitFoote}; it will be all-important later on in this course. %DO NOT WRITE A SOLUTION.
     \item Let $K$ be the fraction field of an integral domain $R$. Let $V$ and $W$ be $K$-modules (i.e., vector spaces over the field $K$). The preceding problem shows that $V$ and $W$ are also $R$-modules in a natural manner.\par
     Prove that every $R$-module homomorphism $f:V\to W$ is also a $K$-module homomorphism (it has to be shown that $f(av)=af(v)$ for all $a\in K$, $v\in V$).
+    \begin{proof}
+        Let $a\in K$ and $v\in V$ be arbitrary. Suppose $a=b/c$, where $b,c\in R$. Then
+        \begin{equation*}
+            af(v) = \frac{b}{c}f(v)
+            = \frac{1}{c}f(bv)
+            = \frac{1}{c}f(acv)
+            = \frac{c}{c}f(av)
+            = 1f(av)
+            = f(av)
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item With $K,R,V,W$ as in the preceding problem, let $M$ be an $R$-submodule of $V$. Assume that for every $v\in V$, there is a nonzero $a\in R$ such that $av\in M$. Let $f:M\to W$ be an $R$-module homomorphism. Prove that $f$ extends in a unique manner to a $K$-module homomorphism $F:V\to W$.
+    \begin{proof}
+        % Explicit: Define
+        % \begin{equation*}
+        %     F(v) = \frac{1}{a}f(av)
+        % \end{equation*}
+        % We need to prove that $1/af(av)=1/bf(bv)$ for valid $a,b$. Multiply both sides by $ab$ and use commutativity. Thus, $F(v)$ is well defined.
+
+        Define $F:V\to W$ by
+        \begin{equation*}
+            F(v) = \frac{1}{a}f(av)
+        \end{equation*}
+        for all $v\in V$, where $a\in R$ satisfies $av\in M$.\par
+        To prove that $F$ is well-defined, it will suffice to show that for all $a,b\in R$ satisfying $av,bv\in M$, we have that $f(av)/a=f(bv)/b$. Let $a,b$ be arbitrary elements of $R$ satisfying the desired property. Then
+        \begin{equation*}
+            \frac{1}{a}f(av) = \frac{ab}{a^2b}f(av)
+            = \frac{1}{a^2b}f(a^2bv)
+            = \frac{a^2}{a^2b}f(bv)
+            = \frac{1}{b}f(bv)
+        \end{equation*}
+        as desired.\par
+        To prove that $F$ is a homomorphism of abelian groups, it will suffice to show that $F(v_1+v_2)=F(v_1)+F(v_2)$ for all $v_1,v_2\in V$. Let $v_1,v_2\in V$ be arbitrary. Suppose
+        \begin{align*}
+            F(v_1+v_2) &= \frac{1}{a}f(a(v_1+v_2))&
+            F(v_1) &= \frac{1}{b}f(bv_1)&
+            F(v_2) &= \frac{1}{c}f(cv_2)
+        \end{align*}
+        for some $a,b,c\in R$. Then
+        \begin{align*}
+            F(v_1)+F(v_2) &= \frac{1}{b}f(bv_1)+\frac{1}{c}f(cv_2)\\
+            &= \frac{cf(bv_1)+bf(cv_2)}{bc}\\
+            % &= \frac{f(cbv_1)+f(bcv_2)}{bc}\\
+            % &= \frac{f(cbv_1+bcv_2)}{bc}\\
+            % &= \frac{f(bcv_1+bcv_2)}{bc}\\
+            % &= \frac{f(bc(v_1+v_2))}{bc}\\
+            &= \frac{1}{bc}f(bc(v_1+v_2))\\
+            &= \frac{1}{a}f(a(v_1+v_2))\\
+            &= F(v_1+v_2)
+        \end{align*}
+        as desired, where the fourth equality holds by the above argument used to show that $F$ is well-defined.\par
+        To prove that $F$ is a $K$-module homomorphism, it will suffice to additionally show that $F(kv)=kF(v)$ for all $k\in K$ and $v\in V$. Let $k=l/n\in K$ and $v\in V$ be arbitrary. Then
+        \begin{equation*}
+            kF(v) = \frac{l}{n}\cdot\frac{1}{a}f(av)
+            = \frac{1}{a}f(a(kv))
+            = F(kv)
+        \end{equation*}
+        as desired.\par
+        To prove that $F$ is an extension of $f$, it will suffice to show that for all $m\in M$, $F(m)=f(m)$. Let $m\in M$ be arbitrary. Then
+        \begin{equation*}
+            F(m) = \frac{1}{a}f(am)
+            = \frac{a}{a}f(m)
+            = f(m)
+        \end{equation*}
+        as desired.\par
+        To prove that $F$ is unique, it will suffice to show that if $\tilde{F}:V\to W$ is an extension of $f$ to $V$, then $F=\tilde{F}$. Let $v\in V$ be arbitrary. Then
+        \begin{equation*}
+            F(v) = \frac{1}{a}f(av)
+            = \frac{1}{a}\tilde{F}(av)
+            = \frac{a}{a}\tilde{F}(v)
+            = \tilde{F}(v)
+        \end{equation*}
+        where the second equality holds because $\tilde{F}=f$ on $M$ by definition and $av\in M$.
+    \end{proof}
     \item We have shown in class that every $A$-module homomorphism $T:A^n\to M$ (where $M$ is an $A$-module) is given by
     \begin{equation*}
         T(a_1,\dots,a_n) = a_1v_1+\cdots+a_nv_n
@@ -35,19 +244,328 @@ All modules considered are left modules. Given $A$-modules $M,N$, the set of all
     for all $(a_1,\dots,a_n)\in A^n$ and some $v_1,\dots,v_n\in M$. This gives a bijection between $\Hom_A(A^n,M)$ and $M^n$.\par
     Now let $c=(c_1,\dots,c_n)\in A^n$. We have the $A$-submodule $Ac=\{ac:a\in A\}$ of $A^n$ and the quotient module $A^n/Ac$. Show that there is a bijection from the set of $A$-module homomorphisms $S:A^n/Ac\to M$ and a certain additive subgroup $G$ of $M^n$. Describe $G$ explicitly.\par
     \emph{Hint}: Given $S$, consider the composite $A^n\to A^n/Ac\xrightarrow{S}M$.
+    \begin{proof}
+        Let
+        \begin{equation*}
+            \boxed{G = \{(v_1,\dots,v_n)\in M^n:c_1v_1+\cdots+c_nv_n=0\}}
+        \end{equation*}
+        To confirm that $G$ is an additive subgroup of $M^n$, Proposition 2.1 tells us that it will suffice to show that $G\neq\emptyset$ and $x,y\in G$ implies $x-y\in G$. Since $c_1\cdot 0+\cdots+c_n\cdot 0=0$, $(0,\dots,0)\in G$ and hence $G\neq\emptyset$, as desired. Now suppose $(v_1,\dots,v_n),(w_1,\dots,w_n)\in G$. Then $c_1v_1+\cdots+c_nv_n=0$ and $c_1w_1+\cdots+c_nw_n=0$. It follows that
+        \begin{align*}
+            0 &= (c_1v_1+\cdots+c_nv_n)-(c_1w_1+\cdots+c_nw_n)\\
+            &= c_1(v_1-w_1)+\cdots+c_n(v_n-w_n)
+        \end{align*}
+        and hence $(v_1,\dots,v_n)-(w_1,\dots,w_n)=(v_1-w_1,\dots,v_n-w_n)\in G$, as desired.\par
+        We define $\phi:G\to\Hom_A(A^n/Ac,M)$ by
+        \begin{equation*}
+            \phi(v_1,\dots,v_n) = \Big[ S:(a_1,\dots,a_n)+Ac\mapsto a_1v_1+\cdots+a_nv_n \Big]
+        \end{equation*}
+        We first show that $\phi$ is injective. Suppose $\phi(v_1,\dots,v_n)=\phi(w_1,\dots,w_n)$. Then $S_v=S_w$. In particular,
+        \begin{equation*}
+            v_i = S_v(e_i+Ac) = S_w(e_i+Ac) = w_i
+        \end{equation*}
+        for all $1\leq i\leq n$. Therefore, since each component is equal, we must have $(v_1,\dots,v_n)=(w_1,\dots,w_n)$, as desired.\par
+        We now show that $\phi$ is surjective. Let $S\in\Hom_A(A^n/Ac,M)$ be arbitrary. Consider $\pi:A^n\to A^n/Ac$ and $T=S\circ\pi$. Since $T:A^n\to M$ is an $A$-module homomorphism, there exist $v_1,\dots,v_n\in M$ such that for all $(a_1,\dots,a_n)\in A^n$, $T(a_1,\dots,a_n)=a_1v_1+\cdots+a_nv_n$. It follows that
+        \begin{align*}
+            a_1v_1+\cdots+a_nv_n &= (S\circ\pi)(a_1,\dots,a_n)\\
+            &= S[(a_1,\dots,a_n)+Ac]
+        \end{align*}
+        so $S=\phi(v_1,\dots,v_n)$, as desired.\par
+        It follows that $\phi^{-1}:\Hom(A^n/Ac,M)\to G$ is the desired isomorphism.
+    \end{proof}
     \item Let $c=(c_1,\dots,c_n)\in A^n$. Assume that the \emph{right} ideal $c_1A+\cdots+c_nA$ equals $A$ itself.
     \begin{enumerate}
         \item Prove that there is a left $A$-module homomorphism $g:A^n\to A$ such that $g(c)=1$.
+        \begin{proof}
+            % Raman has a hint.
+
+            % So $A$ is finitely generated, and it is generated by the elements of $c\in A^n$.
+            % $A=c_1A+\cdots+c_nA$ implies that there exist $v_1,\dots,v_n\in A$ such that $1=c_1v_1+\cdots+c_nv_n$.
+            % Thus, define
+            % \begin{equation*}
+            %     g(a_1,\dots,a_n) = a_1v_1+\cdots+a_nv_n
+            % \end{equation*}
+
+
+            Since $A=c_1A+\cdots+c_nA$ by hypothesis, there exist $v_1,\dots,v_n\in A$ such that $1=c_1v_1+\cdots+c_nv_n$. Define $g:A^n\to A$ by
+            \begin{equation*}
+                g(a_1,\dots,a_n) = a_1v_1+\cdots+a_nv_n
+            \end{equation*}
+            Since $A$ is an $A$-module and $g$ is of the form specified in class (and in the statement of Problem 6.6), we know that $g$ is a left $A$-module homomorphism. Moreover, we have that
+            \begin{equation*}
+                g(c) = g(c_1,\dots,c_n)
+                = c_1v_1+\cdots+c_nv_n
+                = 1
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Deduce that there is an isomorphism $A\oplus\ker(g)\to A^n$ of left $A$-modules. \emph{Hint}: Problem 6.2.
+        \begin{proof}
+            % First off, we will show that the $A$-module homomorphism $g$ from Part (i) is surjective. Let $a\in A$ be arbitrary. Then
+            % \begin{equation*}
+            %     a = a\cdot 1
+            %     = ag(c)
+            %     = g(ac)
+            % \end{equation*}
+            % where $ac\in A^n$, as desired.\par
+
+            % To begin, we define $f:A\to A^n$ as follows: For each $a\in A$, we know since $A=c_1A+\cdots+c_nA$ that there exist $a_1,\dots,a_n\in A$ such that $a=c_1a_1+\cdots+c_na_n$, so let $f(a)=(a_1,\dots,a_n)$. Now suppose $f(a)=(a_1,\dots,a_n)$ and $f(a)=(b_1,\dots,b_n)$. Then $c_1a_1+\cdots+c_na_n=a=c_1b_1+\cdots+c_nb_n$ and hence $c_1(a_1-b_1)+\cdots+c_n(a_n-b_n)=0$. Since $f$ is a group homomorphism $f(0)=(0,\dots,0)$. Thus,
+            % \begin{equation*}
+            %     (a_1-b_1,\dots,a_n-b_n) = f(c_1(a_1-b_1)+\cdots+c_n(a_n-b_n))
+            %     = f(0)
+            %     = (0,\dots,0)
+            % \end{equation*}
+            % so $a_i=b_i$ ($i=1,\dots,n$). Thus, $f$ is well-defined. It follows easily that if $f(a)=(a_1,\dots,a_n)$, $f(b)=(b_1,\dots,b_n)$, and $\alpha,\beta\in A$, then
+            % \begin{align*}
+            %     \alpha f(a)+\beta f(b) &= \alpha(a_1,\dots,a_n)+\beta(b_1,\dots,b_n)\\
+            %     &= (\alpha a_1+\beta b_1,\dots,\alpha a_n+\beta b_n)\\
+            %     &= f(\alpha a+\beta b)
+            % \end{align*}
+            % so $f$ is an $A$-module homomorphism.
+            % Define $g:A^n\to A$ as in part (i). It follows from the above that $g$ is both a well-defined map of sets and an $A$-module homomorphism.
+            % Additionally, let $a\in A$ be arbitrary. Then
+            % \begin{equation*}
+            %     (g\circ f)(a) = g(f(a))
+            %     = g(a_1,\dots,a_n)
+            %     = a_1v_1+\cdots+a_nv_n
+            %     = a
+            % \end{equation*}
+            % Therefore, by Problem 6.2, $A\oplus\ker(g)\cong A^n$, as desired.
+
+
+            Taking the hint, we build up to the point where we can apply Problem 6.2.\par
+            Define $f:A\to A^n$ by $f(a)=ac$. Per Lecture 6.1, this instance of left multiplication (like all others) constitutes an $A$-module homomorphism. Additionally, define $g:A^n\to A$ as in part (i). It follows from part (i) that $g$ is an $A$-module homomorphism as well. Furthermore, we have for all $a\in A$ that
+            \begin{equation*}
+                (g\circ f)(a) = g(f(a))
+                = g(ac)
+                = ag(c)
+                = a\cdot 1
+                = a
+            \end{equation*}
+            Therefore, by Problem 6.2, $A\oplus\ker(g)\cong A^n$, as desired.
+        \end{proof}
     \end{enumerate}
+    \pagebreak
     \item Assume that $A$ is a commutative ring. Prove that if $M$ is an $A$-module such that $M\oplus A\cong A^2$, then there is an $A$-module isomorphism $A\to M$.
+    \begin{proof}
+        % The hardest one. Doesn't really use any of the previous parts.
+
+        % Define $\phi:A\oplus M\to A^2$ to be the isomorphism. Consider $(1,0)\in A\oplus M$. In particular, let $\phi(1,0)=(a,b)$. We know that it will generate a copy of $A$ in $A^2$. Essentially, $A(a,b)=A^2$. We know that $\phi^{-1}:A^2\to A\oplus M$ and $P:A\oplus M\to A$. Suppose $P\circ\phi^{-1}:(1,0)\mapsto c$ and $(0,1)\mapsto d$.
+        % Consider
+        % \begin{equation*}
+        %     A\hookrightarrow A\oplus M\xrightarrow{\phi}A^2\xrightarrow{\phi^{-1}}A\oplus M\xrightarrow{P}A
+        % \end{equation*}
+        % which is the identity on $A$. Then
+        % \begin{equation*}
+        %     1\mapsto (1,0)\mapsto (a,b)=a(1,0)+b(0,1)\mapsto ac+bd
+        % \end{equation*}
+        % so $ac+bd=1$. Consider the matrix
+        % \begin{equation*}
+        %     \begin{pmatrix}
+        %         a & d\\
+        %         b & c\\
+        %     \end{pmatrix}
+        % \end{equation*}
+        % Determinant??
+        % $(-d,c)$
+        % So thus, $M=A(-d,c)$??
+        % $(-d,c)\in A^2$ defines a map from $A^2\to M$ with kernel $A$. $(-d,c)\in\ker(P\circ\phi^{-1})$. Thus, $\phi^{-1}(-d,c)\in\{0\}\oplus M\cong M$.
+        % Thus, at this point, we may define a map
+        % \begin{equation*}
+        %     A\hookrightarrow A^2\xrightarrow{\phi^{-1}}A\oplus M\xrightarrow{P}M
+        % \end{equation*}
+        % by
+        % \begin{equation*}
+        %     1\mapsto(-d,c)
+        % \end{equation*}
+        % and this should be an isomorphism.
+
+        % $(-d,c)$ generates a submodule of $A^2$ that is isomorphic to $M$.
+
+        % Injectivity follows from that of all of the components.
+        % Surjectivity: Pull $m$ back to $(0,m)$ and then $\phi(0,m)\in A^2$. The subset of $A^2$ equal to all $\phi(0,m)$ is equal to
+        % \begin{equation*}
+        %     \{(u,v)\in A^2:\phi^{-1}(u,v)\in 0\oplus M\} = \{(u,v)\in A^2:uc+vd=0\}
+        % \end{equation*}
+        % We want to find $k\in A$ such that $(u,v)=k(-d,c)$. In other words, we want $u=-kd$ and $v=kc$. $ua=-kda=k(1-bc)=k-kbc=k-bv$. Thus, $k=ua+bv$. Now we have to substitute that back in and show that it works.
+
+        % Thus, we have that
+        % \begin{equation*}
+        %     kc = ua+bvc
+        %     = uac+b(1-ad)
+        %     = v+uac-vad
+        %     = v+a(bc-ad)
+        % \end{equation*}
+
+        % Saying $A\cong M$ is kind of like saying that there's a change of basis. That's why matrices keep coming up.
+
+        % Summary of what we did.
+        % \begin{enumerate}
+        %     \item We have
+        %     \begin{equation*}
+        %         A\hookrightarrow A\oplus M\xrightarrow{\phi}A^2\xrightarrow{\phi^{-1}}A\oplus M\xrightarrow{P}A
+        %     \end{equation*}
+        %     and this is the identity.
+        %     \item We define $(1,0)\mapsto(a,b)$, which will generate a copy of $A$ in $A^2$.
+        %     \item We now need to find a basis vector corresponding to $M$ (which we hope is $A$).
+        %     \item $\{(1,0),(0,1)\}$ is the standard basis for $A^2$.
+        %     \item We need to solve for $x,y$ such that
+        %     \begin{equation*}
+        %         \begin{pmatrix}
+        %             a & x\\
+        %             b & y\\
+        %         \end{pmatrix}
+        %     \end{equation*}
+        %     is invertible.
+        %     \item $\{\phi^{-1}(1,0),\phi^{-1}(0,1)\}$ is another basis of $A^2$.
+        %     \item We want $ac+bd=1$.
+        % \end{enumerate}
+
+        {\color{white}hi}
+        \begin{itemize}
+            \item Let $\phi:M\oplus A\to A^2$ denote the given isomorphism.
+            \item By definition ($\phi^{-1}=\phi^{-1}$ and $i^{-1}=\pi_2$), the diagram
+            \begin{equation*}
+                A \stackrel{i}{\hookrightarrow} M\oplus A
+                \xrightarrow{\phi} A^2
+                \xrightarrow{\phi^{-1}} M\oplus A
+                \xrightarrow{\pi_2} A
+            \end{equation*}
+            commutes. \emph{draw nicely.}
+            \begin{itemize}
+                \item Lecture 6.1: $i,\pi_2$ are $A$-module homomorphisms, too.
+            \end{itemize}
+            \item To define $\psi:A\to M$, it will suffice to define $\psi(1)$.
+            \item $i(1)=(0,1)$.
+            \item Let $(a,b):=\phi(0,1)$.
+            \item Let $(m_1,c):=\phi^{-1}(0,1)$.
+            \item Let $(m_2,d):=\phi^{-1}(1,0)$.
+            \item Relating the values $a,b,c,d$.
+            \begin{itemize}
+                \item Since the above diagram commutes, we have that
+                \begin{align*}
+                    1 &= (\pi_2\circ\phi^{-1}\circ\phi\circ i)(1)\\
+                    &= \pi_2(\phi^{-1}(\phi(i(1))))\\
+                    &= \pi_2(\phi^{-1}(\phi(0,1)))\\
+                    &= \pi_2(\phi^{-1}(a,b))\\
+                    &= \pi_2(\phi^{-1}[a(1,0)+b(0,1)])\\
+                    &= a\pi_2(\phi^{-1}(1,0))+b\pi_2(\phi^{-1}(0,1))\\
+                    &= a\pi_2(m_2,d)+b\pi_2(m_1,c)\\
+                    &= ad+bc
+                \end{align*}
+            \end{itemize}
+            \item Prove that $T:A\to A^2$ defined by $a\mapsto a(-d,c)$ is an injective $A$-module homomorphism.
+            \begin{itemize}
+                \item $A$-module homomorphism: It's just right multiplication.
+                \item Injectivity: Apply the cancellation lemma for nonzero $(-d,c)$.
+                \item Surjectivity:
+                \begin{itemize}
+                    \item We start with
+                    \begin{equation*}
+                        \{(u,v)\in A^2:\phi^{-1}(u,v)\in M\oplus 0\} = \{(u,v)\in A^2:uc+vd=0\}
+                    \end{equation*}
+                    \item We have
+                    \begin{equation*}
+                        ub = -kdb
+                        = k(ac-1)
+                        = kac-k
+                        = av-k
+                    \end{equation*}
+                    so $k=av-ub$. Indeed,
+                    \begin{equation*}
+                        kc = avc-ubc
+                        = v(1-bd)-ubc
+                        = v-bd-bcu
+                        = v-bd+vd
+                    \end{equation*}
+                    \item We want to find $(u,v)$ such that $(u,v)=k(-d,c)$. $\phi(m,0)$.
+                    \item Swap $(-d,c)$ for $(-c,d)$??
+                \end{itemize}
+            \end{itemize}
+            \item Use the "injectivity" and "surjectivity" of $\phi^{-1},\pi_2$ to complete the proof.
+        \end{itemize}
+    \end{proof}
     \item Let $R$ be a commutative ring. Assume that there are $x,y,z\in R$ such that $x^2+y^2+z^2=1$. Define $f:R^3\to R$ by $f(a,b,c)=ax+by+cz$. Let $M=\ker(f)$.\par
     Prove that there is an $R$-module isomorphism $M\oplus R\to R^3$.\par
     \emph{Note}: However, $M$ need not be isomorphic to $R^2$. For example, if $R=\R[X,Y,Z]/(X^2+Y^2+Z^2-1)$ and $x,y,z$ are $\bar{X},\bar{Y},\bar{Z}$, respectively, here $M$ is not isomorphic to $R^2$. This is saying that the tangent bundle of the two-sphere is nontrivial. It is proved using Algebraic Topology, but purely algebraic proofs exist.
+    \begin{proof}
+        % This is a direct corollary of a problem that doesn't require commutativity. It may or may not be a corollary of 2. You can just say that $c=(x,y,z)$?? Repeat your argument from 7 and use 2.
+
+        Since $M=\ker(f)$ and $\oplus$ is commutative, $M\oplus R\cong R\oplus\ker(f)$. Thus, we need only prove that there is an isomorphism $R\oplus\ker(f)\to R^3$. To do so, Problem 6.7 tells us that it will suffice to show that $c=(x,y,z)\in R^3$, $xR+yR+zR=R$, and $f:R^3\to R$ satisfies $f(c)=1$. Let's begin.\par\smallskip
+        For the first claim, we have by definition that $c\in R^3$.\par
+        For the second claim, we have by definition that $xR+yR+zR\subset R$. Now let $r\in R$ be arbitrary. Then
+        \begin{equation*}
+            r = r\cdot 1
+            = r\cdot(x^2+y^2+z^2)
+            = x\cdot(rx)+y\cdot(ry)+z\cdot(rz)
+            \in xR+yR+zR
+        \end{equation*}
+        as desired.\par
+        For the third claim, we have that
+        \begin{equation*}
+            f(c) = f(x,y,z)
+            = xx+yy+zz
+            = x^2+y^2+z^2
+            = 1
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item Prove that every (left) $A$-module homomorphism from $A$ to itself is right multiplication by $a$, denoted by $r_a:A\to A$, for a unique $a\in A$. %DO NOT WRITE A SOLUTION.
     \item Let $R$ be a commutative ring. Show that if $T:M\to N$ is a homomorphism of $R$-modules and if $a\in R$, then $S:M\to N$ given by $S(m)=aT(m)$ for all $m\in M$ is also an $R$-module homomorphism. Deduce that $\Hom_R(M,N)$ has the structure of an $R$-module.
+    \begin{proof}
+        For all $m\in M$,
+        \begin{equation*}
+            S(m) = aT(m)
+            = T(am)
+            = T(ma)
+            = T(r_a(m))
+            = (T\circ r_a)(m)
+        \end{equation*}
+        Note that the second equality holds because $T$ is an $R$-module homomorphism and the third equality holds because $R$ is commutative (and hence the left and right $R$-module structures are equivalent). It follows from the above $S=T\circ r_a$. Additionally, by Problem 6.10, $r_a\in\Hom_R(R,R)$. It follows by Proposition 10.2 that $S$ is an $R$-module homomorphism.\par
+        By a similar argument to that used in Problem 1.14, $(\Hom_R(M,N),+)$ is an abelian group, where addition is taken pointwise. By the above $\cdot:A\times\Hom_R(M,N)\to\Hom_R(M,N)$ defined by $(a,T)\mapsto a\cdot T$ is closed. Additionally, if $a,b\in R$ and $S,T\in\Hom_R(M,N)$, we can use the fact that $M,N$ are $R$-modules to confirm that
+        \begin{gather*}
+            a(S+T)(m) = a[S(m)+T(m)]
+                = aS(m)+aT(m)
+                = (aS+aT)(m)\\
+            a(S+T) = aS+aT\tag{1}
+        \end{gather*}
+        \begin{gather*}
+            (a+b)T(m) = aT(m)+bT(m)\\
+            (a+b)T = aT+bT\tag{2}
+        \end{gather*}
+        \begin{gather*}
+            a(bT(m)) = (ab)T(m)\\
+            a(bT) = (ab)T\tag{3}
+        \end{gather*}
+        \begin{gather*}
+            1_RT(m) = T(m)\\
+            1_RT = T\tag{4}
+        \end{gather*}
+        Therefore, $\Hom_R(M,N)$ is an $R$-module, as desired.
+    \end{proof}
     \item Give an example of a PID $A$ and an $A$-submodule $M'$ of an $A$-module $M$ such that $M$ and $M'\oplus(M/M')$ are not isomorphic to each other (as $A$-modules).\par
     \emph{Note}: If $A$ is a field, then there is an isomorphism $M\to M'\oplus(M/M')$. In class, it was shown that there is such an isomorphism if $M/M'$ is isomorphic to $A^n$ for some $n=0,1,2,\dots$.
+    \begin{proof}
+        % $\Z/4\Z$ and $\Z/2\Z$. Can you construct $M'\subset M$ such that $M'\cong M$? It works with $p\Z$: There is a particular module structure on $p\Z+\Z/p\Z$, and an isomorphism has to respect that structure. Thinking about $M$ as an abelian group can be helpful. In $2\Z+\Z/2$, for instance, you have the element $(0,1)$, which has the property that $2(0,1)=(0,0)$. There is no nonzero element $a\in\Z$ such that $2a=0$. This isn't a homomorphism because you don't get to "carry the one" when you add $(a,b)+(a',b')$ and $b+b'>p$.
+
+        % Let's work in $\Z$-modules, since these are just abelian groups and we can apply group theory.
+        % $M=\Z/4\Z$ and $M'=(2)$ are a $\Z$-module and $\Z$-submodule, respectively. Then $M'\cong\Z/2\Z$ and $M/M'\cong\Z/2\Z$. However, $M\oplus(M/M')$ is the Klein 4-group, not $\Z/4\Z$, as desired.
+
+
+        Pick
+        \begin{empheq}[box=\fbox]{align*}
+            A &= \Z&
+            M &= \Z/4\Z&
+            M' &= (2) \subset M
+        \end{empheq}
+        By Section 8.2 of \textcite{bib:DummitFoote}, we know that $A=\Z$ is a PID. Additionally, we know from last quarter that $M$ is an abelian group and $M'$ is a subgroup of $M$. It follows by \textcite[339]{bib:DummitFoote} that these are valid examples of a $\Z$-module and a $\Z$-submodule. Moreover, we know from group theory that $(\Z/4\Z)/(2)$ is isomorphic (as a group [or $A$-module]) to $\Z/2\Z$ and, similarly, $(2)\cong\Z/2\Z$ as a group (or $A$-module). Therefore,
+        \begin{equation*}
+            M\oplus(M/M') \cong (\Z/2\Z)\times(\Z/2\Z)
+            = K
+            \ncong \Z/4\Z
+            = M
+        \end{equation*}
+        as desired, where $K$ denotes the Klein 4-group.
+    \end{proof}
     \item Let $f,g\in F[X]$ be polynomials of degrees $d$ and $e$, respectively, where $F$ is a field. Assume that $\gcd(f,g)=1$. Prove that there is a unique pair $a,b\in F[X]$ such that
     \begin{align*}
         af+bg &= 1&
@@ -56,6 +574,33 @@ All modules considered are left modules. Given $A$-modules $M,N$, the set of all
     \end{align*}
     \emph{Hint}: One already knows that there exist $a,b$ satisfying $af+bg=1$, but the $a,b$ satisfying this equation are far from being unique. Given $a,b$, first find \emph{all} $a',b'$ satisfying $a'f+b'g=1$. After this, you will see that the problem is easily solved.\par
     \emph{Note}: There is also a different constructive method of finding the desired $a,b$ that relies on determinants and resultants.
+    \begin{proof}
+        % $af+bg=1$; this should remind you of the problem where we had $x^2+y^2+z^2=1$, so start by doing something similar to what we did there. You may be able to use 2. Try to construct an isomorphism like in 6.2 using the information $af+bg=1$.
+
+        % Idea: You construct a function $h(c,d)=cf+dg$ which goes from $F[X]^2\to F[X]$. Then you construct an isomorphism with the result from 6.2 to show that there's an isomorphism between $F[X]\oplus\ker(h)$ and $F[X]^2$. Perhaps the original constructed $h$ should act as the inverse for the isomorphism??
+
+        % The hint allows you to characterize all solutions nicely. Characterization of solutions: Consider the difference of the equations $af+bg=1$ and $a'f+b'g=1$, where $a,b$ is a fixed solution. With this, you either get $a=a'$ and $b=b'$, or $f=-(b-b')/(a-a')g$, right? So the idea is you get $-(b-b')/(a-a')$ is degree less than $f$ (assuming $g$ is smaller)? The point (\emph{key}) is that $a-a'$ is a multiple of $g$. We're not in the ring of fractions.
+
+
+        By hypothesis, there exist polynomials $a_0,b_0\in F[X]$ such that $a_0f+b_0g=1$. We can easily show that the set of all $(a,b)$ satisfying $af+bg=1$ is
+        \begin{equation*}
+            \{(a_0+gh,b_0-fh):h\in F[X]\}
+        \end{equation*}
+        In particular, for any element of this set, we have
+        \begin{equation*}
+            (a_0+gh)f+(b_0-fh)g = (a_0f+b_0g)+(gfh-fgh)
+            = 1+0
+            = 1
+        \end{equation*}
+        and for any $(a,b)$ satisfying the equation, we have
+        \begin{align*}
+            (af+bg)-(a_0f+b_0g) &= 1-1\\
+            (a-a_0)f+(b-b_0)g &= 0\\
+            a &= a_0+\frac{b-b_0}{f}g
+        \end{align*}
+        so that $a\in a_0+(g)$, as desired.\par
+        Elaborating on the observation that any $a$ is an element of $a_0+(g)$: Since $F[X]/(g)\cong\{h\in F[X]:\deg(h)<e\}$ by the corollary from Lecture 3.1, there exists a unique $a$ with $\deg(a)<e$ such that $a\mapsto a_0+(g)$. It follows by the construction of the isomorphism that $a\in a_0+(g)$, and hence $a+(g)=a_0+(g)$. A similar argument holds for $b$. This yields the desired result.
+    \end{proof}
 \end{enumerate}
 
 
