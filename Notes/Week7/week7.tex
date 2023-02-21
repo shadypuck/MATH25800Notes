@@ -9,7 +9,7 @@
 
 
 
-\chapter{???}
+\chapter{Modules Over PIDs}
 \section{Zorn's Lemma and Intro to Modules Over PIDs}
 \begin{itemize}
     \item \marginnote{2/13:}Picking up from last time with Zorn's lemma.
@@ -983,6 +983,273 @@
     \end{equation*}
 \end{itemize}
 \setcounter{proposition}{0}
+
+
+
+\section{Chapter 12: Modules over Principal Ideal Domains}
+\emph{From \textcite{bib:DummitFoote}.}
+\setcounter{bookch}{12}
+\subsection*{Introduction}
+\begin{itemize}
+    \item Goal of this chapter.
+    \begin{itemize}
+        \item Characterize the structure of finitely generated modules over PIDs.
+        \item This is an example of the ideal structure of a ring being reflected in the structure of its modules.
+    \end{itemize}
+    \item \textbf{Fundamental Theorem of Finitely Generated Abelian Groups}: Any finitely generated abelian group is isomorphic to the direct sum of cyclic abelian groups (either $\Z$ or $\Z/n\Z$ for some $n>0$).
+    \begin{itemize}
+        \item See Chapter 5.
+    \end{itemize}
+    \item Applying this theorem when the PID is $\Z$ proves the Fundamental Theorem of Finitely Generated Abelian Groups.
+    \begin{itemize}
+        \item The relation: Abelian groups are $\Z$-modules!
+        \item In the language of modules, this theorem states that "any finitely generated $\Z$-module is the direct sum of modules of the form $\Z/I$ where $I$ is an ideal of $\Z$" \parencite[456]{bib:DummitFoote}.
+        \begin{itemize}
+            \item We will also need a uniqueness statement for the direct sum.
+        \end{itemize}
+    \end{itemize}
+    \item Applying this theorem when the PID is $F[X]$ leads to the rational and Jordan canonical forms for a matrix.
+    \begin{itemize}
+        \item Recall that $F[X]$-modules require the specification of a linear transformation $T$.
+        \item Thus, applying this theorem to $F[X]$-modules can be walked backwards to obtain information about $T$.
+        \item The Jordan canonical form requires that $F$ contains all eigenvalues of $T$; the rational canonical form does not.
+        \item Similarity will somehow be involved here.
+    \end{itemize}
+    \item Example of JCF.
+    \begin{itemize}
+        \item Mirrors the example from the end of Section 11.2.
+    \end{itemize}
+    \item Section 12.1 gives some definitions and then states and proves the Fundamental Theorem of Finitely Generated Modules over a PID.
+    \item Section 12.2-12.3 cover the applications of the Fundamental Theorem to canonical forms, specifically the rational and Jordan ones, respectively.
+    \item The application to abelian groups mentioned above will not be discussed further herein (it was discussed in Chapter 5).
+    \item Note that an alternate and computationally useful proof of the Fundamental Theorem valid for Euclidean Domains (so also $\Z$ and $F[X]$ in particular) along the lines of row and column operations is outlined in Exercises 16-22 of Section 12.1.
+\end{itemize}
+
+
+\subsection*{Section 12.1: The Basic Theory}
+\begin{itemize}
+    \item \textbf{Ascending chain condition on submodules}: The condition pertaining to a module $M$ that no infinite increasing chain of submodules $N_i\subset M$ exists, that is, whenever
+    \begin{equation*}
+        N_1 \subset N_2 \subset \cdots
+    \end{equation*}
+    is an increasing chain of submodules of $M$, then there is a positive integer $m$ such that for all $k\geq m$, $M_k=M_m$ (so the chain becomes stationary at stage $m$: $M_m=M_{m+1}=\cdots$). \emph{Also known as} \textbf{ACC on submodules}.
+    \begin{itemize}
+        \item There exist analogous notions of the ACC on right and two-sided ideals in a (possibly noncommutative) ring $R$.
+    \end{itemize}
+    \item \textbf{Noetherian} ($R$-module): A left $R$-module $M$ that satisfies that ACC on submodules.
+    \item \textbf{Noetherian} (ring): A ring $R$ that is Noetherian as a left module over itself.
+    \item Characterizing Noetherian modules.
+    \begin{theorem}\label{trm:12.1}
+        Let $R$ be a ring and let $M$ be a left $R$-module. Then TFAE.
+        \begin{enumerate}
+            \item $M$ is a Noetherian $R$-module.
+            \item Every nonempty set of submodules of $M$ contains a maximal element under inclusion.
+            \item Every submodule of $M$ is finitely generated.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item PIDs are Noetherian.
+    \begin{corollary}\label{cly:12.2}
+        If $R$ is a PID, then every nonempty set of ideals of $R$ has a maximal element and $R$ is a Noetherian ring.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Recall that finitely generated modules need not have finitely generated submodules; see Example 2 from Section 10.3.
+    \begin{itemize}
+        \item Thus, the Noetherian condition is stronger in general than the finite generation condition.
+    \end{itemize}
+    \item A useful linear dependence result.
+    \begin{proposition}\label{prp:12.3}
+        Let $R$ be an integral domain, and let $M$ be a free $R$-module of rank $n<\infty$. Then any $n+1$ elements of $M$ are $R$-linearly dependent, i.e., for any $y_1,\dots,y_{n+1}\in M$, there are elements $r_1,\dots,r_{n+1}\in R$, not all zero, such that
+        \begin{equation*}
+            r_1y_1+\cdots+r_{n+1}y_{n+1} = 0
+        \end{equation*}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item \textbf{The torsion submodule} (of $M$): The submodule of a $R$-module $M$, where $R$ is an integral domain, equal to all elements of $M$ such that $rx=0$ for some nonzero $r\in R$. \emph{Denoted by} $\bm{\Tor(R)}$. \emph{Given by}
+    \begin{equation*}
+        \Tor(M) = \{x\in M:rx=0\text{ for some nonzero }r\in R\}
+    \end{equation*}
+    \item \textbf{A torsion submodule} (of $M$): Any submodule of $\Tor(M)$.
+    \item \textbf{Torsion module}: A module $M$ for which $\Tor(M)=M$.
+    \item \textbf{Torsion-free} (module): A module $M$ for which $\Tor(M)=0$.
+    \item \textbf{Annihilator} (of a submodule): The ideal of $R$ defined as follows, where $M$ is an $R$-module and $N$ is the submodule of $M$ in question. \emph{Denoted by} $\bm{\Ann(N)}$. \emph{Given by}
+    \begin{equation*}
+        \Ann(N) = \{r\in R:rn=0\ \forall\ n\in N\}
+    \end{equation*}
+    \begin{itemize}
+        \item If $N$ is not a torsion submodule of $M$, then $\Ann(N)=0$.
+        \item $N\subset L$ submodules of $M$ implies $\Ann(L)\subset\Ann(N)$.
+        \item $R$ a PID, $N\subset L\subset M$, $\Ann(N)=(a)$, and $\Ann(L)=(b)$ implies that $a\mid b$.
+        \begin{itemize}
+            \item This follows from Lagrange's theorem when $R=\Z$.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Rank} (of a module): The maximum number of $R$-linearly independent elements of $M$.
+    \begin{itemize}
+        \item Proposition \ref{prp:12.3} states that for a free $R$-module $M$ over an integral domain, the rank of a submodule is bounded by the rank of $M$.
+        \item This definition agrees with the previous one over fields: If $R=F$ is a field, then the rank of any $R$-module $M$ is the dimension of $M$ since any maximal set of $F$-linearly independent elements is a basis.
+        \item Note that general modules over integral domains need not have a basis, i.e., need not be free even if they are torsion-free.
+    \end{itemize}
+    \item Relating free modules, PIDs, rank, and generators.
+    \begin{theorem}\label{trm:12.4}
+        Let $R$ be a PID, let $M$ be a free $R$-module of finite rank $n$, and let $N$ be a submodule of $M$. Then\dots
+        \begin{enumerate}
+            \item $N$ is free of rank $m\leq n$;
+            \item There exists a basis $y_1,\dots,y_n$ of $M$ such that $a_1y_1,\dots,a_my_m$ is a basis of $N$ where $a_1,\dots,a_m$ are nonzero elements of $R$ that satisfy the divisibility relations
+            \begin{equation*}
+                a_1\mid a_2\mid\cdots\mid a_m
+            \end{equation*}
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Warm-up to the Fundamental Theorem: The special case of \emph{cyclic} (not finitely generated) $R$-modules.
+    \begin{itemize}
+        \item Let $C$ be a cyclic $R$-module. Then $C=Rx$ for some $x\in C$.
+        \item Define $\pi:R\to C$ by $\pi(r)=rx$.
+        \item $\pi$ is surjective by the assumption that $C=Rx$. Thus, by the FIT, $R/\ker\pi\cong C$.
+        \item We are assuming that $R$ is a PID, so we must have $\ker\pi=(a)$ for some $a\in R$. In particular, note that $(a)=\Ann(C)$ by definition.
+        \item Essentially, $C\cong R/(a)$, and the classification is complete.
+    \end{itemize}
+    \item We now treat the broader case of finite generation.
+    \begin{theorem}[Fundamental Theorem, Existence: Invariant Factor Form]\label{trm:12.5}
+        Let $R$ be a PID and let $M$ be a finitely generated $R$-module. Then\dots
+        \begin{enumerate}[ref={\thetheorem(\arabic*)}]
+            \item \label{trm:12.5.1}$M$ is isomorphic to the direct sum of finitely many cyclic modules. More precisely,
+            \begin{equation*}
+                M \cong R^r\oplus R/(a_1)\oplus\cdots\oplus R/(a_m)
+            \end{equation*}
+            for some integer $r\geq 0$ and nonzero elements $a_1,\dots,a_m\in R$ which are not units in $R$ and which satisfy the divisibility relations
+            \begin{equation*}
+                a_1\mid a_2\mid\cdots\mid a_m
+            \end{equation*}
+            \item \label{trm:12.5.2}$M$ is torsion-free iff $M$ is free.
+            \item \label{trm:12.5.3}In the decomposition in part (1),
+            \begin{equation*}
+                \Tor(M) \cong R/(a_1)\oplus\cdots\oplus R/(a_m)
+            \end{equation*}
+            In particular, $M$ is a torsion module iff $r=0$ and in this case, the annihilator of $M$ is the ideal $(a_m)$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item We will shortly prove that the decomposition in Theorem \ref{trm:12.5.1} is unique; this proof will rely heavily on the divisibility condition.
+    \item \textbf{Free rank}: The integer $r$ in Theorem \ref{trm:12.5}. \emph{Also known as} \textbf{Betti number}.
+    \item \textbf{Invariant factors}: The elements $a_1,\dots,a_m\in R$ in Theorem \ref{trm:12.5}.
+    \item Applying the \hyperref[trm:7.17]{Chinese Remainder Theorem} allows us to decompose $R/(a)$ further (and to do so uniquely).
+    \begin{itemize}
+        \item This gives $M$ as the direct sum of cyclic modules whose annihilators are as simple as possible.
+    \end{itemize}
+    \item The above idea is summarized by the following theorem.
+    \begin{theorem}[Fundamental Theorem, Existence: Elementary Divisor Form]\label{trm:12.6}
+        Let $R$ be a PID and let $M$ be a finitely generated $R$-module. Then $M$ is the direct sum of a finite number of cyclic modules whose annihilators are either $(0)$ or are generated by powers of primes in $R$, i.e.,
+        \begin{equation*}
+            M \cong R^r\oplus R/(p_1^{\alpha_1})\oplus\cdots\oplus R/(p_t^{\alpha_t})
+        \end{equation*}
+        where $r\geq 0$ is an integer and $p_1^{\alpha_1},\dots,p_t^{\alpha_t}$ are positive powers of (not necessarily distinct) primes in $R$.
+    \end{theorem}
+    \item \textbf{Elementary divisor}: A prime power $p_i^{\alpha_i}$ (defined up to multiplication by units in $R$), where $R$ is a PID and $M$ is a finitely generated $R$-module as in Theorem \ref{trm:12.6}.
+    \item Grouping together all cyclic factors corresponding to the same prime $p_i$ shows that $M$ can be written as a direct sum $M=N_1\oplus\cdots\oplus N_n$ where $N_i$ consists of all the elements of $M$ which are annihilated by some power of the prime $p_i$.
+    \item Summarizing the above idea.
+    \begin{theorem}[The Primary Decompostion Theorem]\label{trm:12.7}
+        Let $R$ be a PID and let $M$ be a nonzero torsion $R$-module (not necessarily finitely generated) with nonzero annihilator $a$. Suppose the factorization of $a$ into distinct prime powers in $R$ is
+        \begin{equation*}
+            a = up_1^{\alpha_1}\cdots p_n^{\alpha_n}
+        \end{equation*}
+        and let $N_i=\{x\in M:p_i^{\alpha_i}x=0\}$ ($1\leq i\leq n$). Then $N_i$ is a submodule of $M$ with annihilator $p_i^{\alpha_i}$ and is the submodule of $M$ of all elements annihilated by some power of $p_i$. In particular, we have
+        \begin{equation*}
+            M = N_1\oplus\cdots\oplus N_n
+        \end{equation*}
+        If $M$ is finitely generated, then each $N_i$ is the direct sum of finitely many cyclic modules whose annihilators are divisors of $p_i^{\alpha_i}$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item \textbf{$\bm{p_i}$-primary component} (of $M$): The submodule of $M$ of all elements annihilated by some power of $p_i$.
+    \item We now prove the uniqueness statement of the Fundamental theorem.
+    \begin{lemma}\label{lem:12.8}
+        Let $R$ be a PID and let $p$ be a prime in $R$. Let $F$ denote the field $R/(p)$.
+        \begin{enumerate}[ref={\thelemma(\arabic*)}]
+            \item \label{lem:12.8.1}Let $M=R^r$. Then $M/pM\cong F^r$.
+            \item \label{lem:12.8.2}Let $M=R/(a)$ where $a$ is a nonzero element of $R$. Then
+            \begin{equation*}
+                M/pM \cong
+                \begin{cases}
+                    F & p\mid a\\
+                    0 & p\nmid a
+                \end{cases}
+            \end{equation*}
+            \item \label{lem:12.8.3}Let $M=R/(a_1)\oplus\cdots\oplus R/(a_k)$ where each $a_i$ is divisible by $p$. Then $M/pM\cong F^k$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{lemma}
+    \begin{theorem}[Fundamental Theorem, Uniqueness]\label{trm:12.9}
+        Let $R$ be a PID.
+        \begin{enumerate}[ref={\thetheorem(\arabic*)}]
+            \item \label{lem:12.9.1}Two finitely generated $R$-modules $M_1$ and $M_2$ are isomorphic iff they have the same free rank and the same list of invariant factors.
+            \item \label{lem:12.9.2}Two finitely generated $R$-modules $M_1$ and $M_2$ are isomorphic iff they have the same free rank and the same list of invariant factors.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Further classification.
+    \begin{corollary}\label{cly:12.10}
+        Let $R$ be a PID and let $M$ be a finitely generated $R$-module. Then\dots
+        \begin{enumerate}
+            \item The elementary divisors of $M$ are the prime power factors of the invariant factors of $M$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Restatement of Theorem 5.3 and 5.5.
+    \begin{corollary}[The Fundamental Theorem of Finitely Generated Abelian Groups]\label{cly:12.11}\leavevmode
+        \begin{enumerate}
+            \item 5.3: Let $G$ be a finitely generated abelian group. Then\dots
+            \begin{enumerate}
+                \item $G\cong\Z^r\times\Z_{n_1}\times\cdots\times\Z_{n_s}$ for some integers $r,n_1,n_2,\dots,n_s$ satisfying the following conditions.
+                \begin{enumerate}[label={(\roman*)}]
+                    \item $r\geq 0$ and $n_j\geq 2$ for all $j$.
+                    \item $n_{i+1}\mid n_i$ for $1\leq i\leq s-1$.
+                \end{enumerate}
+                \item The expression in part (1) is unique, i.e., if $G\cong\Z^t\times\Z_{m_1}\times\cdots\times Z_{m_u}$, where $t$ and $m_1,\dots,m_u$ satisfy $a,b$ (i.e., $g\geq 0$, $m_j\geq 2$ for all $j$ and $m_{i+1}\mid m_i$ for all $1\leq i\leq u-1$), then $t=r$, $u=s$, and $m_i=n_i$ for all $i$.
+            \end{enumerate}
+            \item 5.5: Let $G$ be an abelian group of order $n>1$ and let the unique factorization into distinct prime powers be
+            \begin{equation*}
+                n = p_1^{\alpha_1}\cdots p_k^{\alpha_k}
+            \end{equation*}
+            Then\dots
+            \begin{enumerate}
+                \item $G\cong A_1\times\cdots\times A_k$, where $|A_i|=p_i^{\alpha_i}$;
+                \item For each $A\in\{A_1,\dots,A_k\}$ with $|A|=p^\alpha$,
+                \begin{equation*}
+                    A \cong Z_{p^{\beta_1}}\times\cdots\times Z_{p^{\beta_t}}
+                \end{equation*}
+                with $\beta_1\geq\cdots\geq\beta_t\geq 1$ and $\beta_1+\cdots+\beta_t=\alpha$ (where $t$ and $\beta_1,\dots,\beta_t$ depend on $i$).
+                \item The decompositions in part (1) and (2) are unique, i.e., if $G\cong B_1\times\cdots\times B_m$ with the factors $|B_i|=p_i^{\alpha_i}$ for all $i$, then $B_i\cong A_i$ and $B_i,A_i$ have the same invariant factors.
+            \end{enumerate}
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item More on the relationship between elementary divisors and invariant factors can be found in Chapter 5.
+    \item Eye ahead: If a finitely generated module is written as a direct sum of cyclic modules of the form $R/(a)$, then the ideals $(a)$ which occur are not in general unique unless some additional conditions are imposed.
+    \begin{itemize}
+        \item To decide whether two modules are isomorphic, we must first write them in \emph{canonical} form.
+    \end{itemize}
+\end{itemize}
 
 
 
