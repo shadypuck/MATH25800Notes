@@ -438,6 +438,158 @@
 
 
 
+\section{Midterm}
+\subsection*{Questions and Answers}
+\begin{enumerate}
+    \item \marginnote{2/8:}\emph{No proof required for this problem.}\par
+    How many homomorphisms $\phi:\Z[X]/(f)\to\R$ are there in each of the cases listed below?
+    \begin{proof}[General treatment]
+        {\color{white}hi}\par
+        \underline{My write-up}: We know that all ring homomorphisms $\Z[X]\to\R$ are given by evaluation at some $a\in R$. (This follows somewhat from the universal property of a polynomial ring, since the value of any $p(X)$ under said ring homomorphism will depend on the value of $X$ under it.) Let $\ev_a:\Z[X]\to\R$ be the ring homomorphism such that $\ev_a=\phi\circ\pi$. (That there is a \emph{unique} $\ev_a$ corresponding to $\phi$ follows directly from the universal property of a quotient, since we have define $\ev_a(f)=0$.) We know that $\phi(\bar{f})=0$ and $\pi(f)=\bar{f}$; thus, $0=\ev_a(f)=f(a)$. It follows that the only possible values of $a$ are the (real) roots of $f$. In particular, each distinct real root of $f$ corresponds to a homomorphism $\phi:\Z[X]/(f)\to\R$.\par
+        Misc. note: $(f)\neq\ker(\ev_a)$ in general: If $f=10(X-75)$, for instance, $(10(X-75))=(f)\neq\ker(\ev_a)=(X-10)$.
+        \underline{Nori's write-up}: By the \textbf{universal property of a quotient}, giving a ring homomorphism $\phi:\Z[X]/(f)\to\R$ is equivalent to giving a ring homomorphism $\psi:\Z[X]\to\R$ such that $\psi(f)=0$. Explicitly, for $\psi$ to factor through $\Z[X]/(f)$, we need $(f)\subset\ker(\psi)$. To do so, it will suffice to check that $\psi(f)=0$. Thus, up to this point, we have shown that
+        \begin{equation*}
+            \Hom_\text{Ring}(\Z[X]/(f),\R) = \{\psi:\Z[X]\to\R:\psi(f)=0\}
+        \end{equation*}
+        However, we also know (by the universal property of the ring of fractions) that giving a ring homomorphism $\psi:\Z[X]\to\R$ is equivalent to choosing an element $r\in\R$. That is, if $\psi(X)=r$, then $\psi=\ev_r$. Combining the last two results, we have that if $\ev_r$ is to factor through $\Z[X]/(f)$, then we need to know that $0=\ev_r(f)=f(r)$. Thus,
+        \begin{equation*}
+            \Hom_\text{Ring}(\Z[X]/(f),\R) = \{r\in\R:f(r)=0\}
+        \end{equation*}
+        From this, we see that giving ring homomorphisms of a quotient ring can be thought of as being related to whether certain polynomial equations can be solved in the target. Moreover,
+        \begin{equation*}
+            |\Hom_\text{Ring}(\Z[X]/(f),\R)| = |\{r\in\R:f(r)=0\}|
+        \end{equation*}
+        allowing us to compute all desired results.
+    \end{proof}
+    \begin{enumerate}
+        \item $f=X^2+1$.
+        \begin{proof}[Answer]
+            $f$ has $\boxed{0}$ distinct real roots.
+        \end{proof}
+        \item $f=X^2-3$.
+        \begin{proof}[Answer]
+            $f$ has $\boxed{2}$ distinct real roots.
+        \end{proof}
+        \item $f=X^3-7$.
+        \begin{proof}[Answer]
+            $f$ has $\boxed{1}$ distinct real roots.
+        \end{proof}
+        \item $f=X(X+1)^2(X+2)^3$.
+        \begin{proof}[Answer]
+            $f$ has $\boxed{3}$ distinct real roots.
+        \end{proof}
+    \end{enumerate}
+    \pagebreak
+    \item \emph{No proof required for this problem.}\par
+    Recall the notation $R_f$: Given an integral domain $R$ and a nonzero $f\in R$, we have the multiplicative subset $D=\{1,f,f^2,\dots\}\subset R$; $R_f$ is then defined to be $D^{-1}R$.\par
+    How many ring homomorphisms $\phi:\Z[X]_f\to\F_2$ are there? Here, $\F_2$ is the field of two elements. In each case, list the possible values of $\phi(X)$.
+    \begin{proof}[General treatment]
+        {\color{white}hi}\par
+        \underline{My write-up}:
+        % Universal property of the ring of fractions, here: To each $\psi:\Z[X]\to\F_2$ such that $\psi(D)\subset(\F_2)^\times$, there corresponds a unique $\phi:\Z[X]_f\to\F_2$. We know that $\psi(1)=1\in\{1\}=(\F_2)^\times$. We also need $\psi(f)=1$. Universal property of polynomial rings: $\psi=\ev_1$ or $\ev_0$. Thus, we need to check if $\ev_1(f)=1$ and $\ev_0(f)=1$ for each given $f$; there are at most two possible ring homomorphisms.
+        By the universal property of rings of fractions, each $\psi:\Z[X]\to\F_2$ such that $\psi(D)\subset(\F_2)^\times$ corresponds to a unique $\phi:\Z[X]_f\to\F_2$ such that $\psi=\phi\circ\pi$. Thus, to characterize the ring homomorphisms $\phi$, we need only characterize the $\psi$ of the appropriate type. Let's start applying the constraints. To show that $\psi(D)\subset(\F_2)^\times=\{1\}$, it will suffice to show that $\psi(1)=1$ and $\psi(f)=1$. We have the former constraint by the definition of $\psi$ as a ring homomorphism; the latter, however, is helpful. In particular, invoking the universal property of polynomial rings, we have that $\psi$ is either $\ev_1$ or $\ev_0$, where the evaluation is carried out in $\F_2[X]$, i.e., we evaluate $\tilde{f}=\tilde{\pi}(f)$, where $\tilde{\pi}:\Z[X]\to\F_2[X]$ is a canonical surjection. This means that $f$ must satisfy either $1=\ev_0(f)=\tilde{f}(0)$ or $1=\ev_1(f)=\tilde{f}(1)$ for any $\phi$ to exist; if it satisfies both, then two $\phi$ exist; no more than two $\phi$ may exist by the constraint of the universal property of polynomial rings.\par
+        If $\ev_i(f)=1$ ($i=0,1$), then $\phi(X)=\ev_i(X)=i$.\par
+        \underline{Nori's write-up}: Essentially mirrors mine, just with equations to make it all more concrete. The important given equations are
+        \begin{gather*}
+            \Hom(\Z[X]_f,R) \cong \{r\in R:f(r)\in R^\times\}\\
+            \Hom(\Z[X]_f,\F_2) \cong \{r\in\F_2:f(r)\in(\F_2)^\times\}
+                = \{r\in\F_2:f(r)=1\}\\
+            0 \leq |\Hom(\Z[X]_f,\F_2)|
+                = |\{r\in\F_2:f(r)=1\}|
+                \leq |\F_2|
+                = 2
+        \end{gather*}
+    \end{proof}
+    \begin{enumerate}
+        \item $f=X^2+X+1$.
+        \begin{proof}[Answer]
+            As written, $f=\tilde{f}$. Thus,
+            \begin{align*}
+                \tilde{f}(0) &= f(0)
+                    = 0^2+_20+_21
+                    = 1&
+                \tilde{f}(1) &= f(1)
+                    = 1^2+_21+_21
+                    = 1
+            \end{align*}
+            Therefore, there are $\boxed{2}$ possible homomorphisms $\phi_0$ and $\phi_1$. Additionally, $\phi_0(X)=\ev_0(X)=0$ and $\phi_1(X)=\ev_1(X)=1$, so the possible values of $\phi(X)$ are $\boxed{0,1}$.
+        \end{proof}
+        \item $f=X^2-13$.
+        \begin{proof}[Answer]
+            CliffsNotes version: $\tilde{f}=X^2+_21$, so $\tilde{f}(0)=1$ and $\tilde{f}(1)=0$. Thus, there is only $\boxed{1}$ possible homomorphism $\phi$, and the only possible value of $\phi(X)$ is $\boxed{0}$.
+        \end{proof}
+        \item $f=X^3-71$.
+        \begin{proof}[Answer]
+            Similar to part (b): $\tilde{f}=X^3+_21$, $\tilde{f}(0)=1$ and $\tilde{f}(1)=0$. Thus, there is only $\boxed{1}$ possible homomorphism $\phi$, and the only possible value of $\phi(X)$ is $\boxed{0}$.
+        \end{proof}
+        \item $f=X(X+1)^2(X+2)^3$.
+        \begin{proof}[Answer]
+            $\tilde{f}(0)=0\cdot_21^2\cdot_20^3=0$, and $\tilde{f}(1)=1\cdot_20^2\cdot_21^3=0$. Thus, there are $\boxed{0}$ possible homomorphisms $\phi$.
+        \end{proof}
+    \end{enumerate}
+    \pagebreak
+    \item Let $f\in\R[X]$ be a polynomial of degree $d$ such that $f(a_1)=\cdots=f(a_d)=0$, where $a_1,\dots,a_d$ are $d$ distinct real numbers. Prove that there are $g,h\in\R[X]$ such that $gf'+hf=1$, where $f'$ is the derivative of $f$.
+    \begin{proof}
+        {\color{white}hi}\par
+        \underline{My write-up}:\footnote{Nori did give full credit for this, but his write-up is probably better, regardless.} We have that
+        \begin{align*}
+            f &= r(X-a_1)\cdots(X-a_d)&
+            f' &= r\sum_{i=1}^d\prod_{\substack{j=1\\j\neq i}}^d(X-a_j)
+        \end{align*}
+        for some unit $r\in\R[X]^\times=\R^\times=\R-\{0\}$, where decomposition of $f$ follows straight from the given constraint, and the decomposition of $f'$ comes from differentiating that of $f$ using the $d^\text{th}$-order product rule. It follows that the only divisors of $f$ are products of the factors in its decomposition; however, any one of these factors of degree 1 is \emph{not} a divisor of $f'$ since $f'$ contains at least one term that will not contain it (by definition). Thus, if $r$ is sufficiently big, $\gcd(f,f')=r$; otherwise, $\gcd(f,f')=1$. In the latter case, we are done, and in the former case, we just need to divide the generated polynomials by $r$.\par
+        \underline{Nori's write-up}: Since $\R[X]$ is a PID, Bezout's identity tells us that it will suffice to show that $\gcd_{\R[X]}(f,f')=1$. As in my write up, we factor $f(X)$ into "irreducibles\footnote{Clearly, Nori has no problem with us identifying monomials as irreducibles without proof.}" and seek to prove that $X-a_i$ does not divide $f'$ for any $i$. That is, we need to prove that $f'(a_i)\neq 0$ for any $i$.\par
+        Since $f(a_i)=0$ for all $i$, we can write $f(X)=(X-a_i)g(X)$ for any $i$. Since $f$ has no repeated roots, we can assume that $g(a_i)\neq 0$. Taking the derivative of the previous expression, we see that
+        \begin{equation*}
+            f'(X) = g(X)+(X-a_i)g'(X)
+        \end{equation*}
+        In particular,
+        \begin{equation*}
+            f'(a_i) = g(a_i)+(a_i-a_i)g'(a_i)
+            = g(a_i)
+            \neq 0
+        \end{equation*}
+        Thus, $f'$ does not have any $a_i\in\R$ as a root, so we're done.
+    \end{proof}
+    \item Let $F$ be a field. Let $\phi:F[X,Y]\to F(X)$ be a homomorphism such that $\phi(g)=g$ for all $g\in F[X]$. Show that there is some nonzero $f\in F[X]$ such that $F[X]_f=\im(\phi)$.
+    \begin{proof}
+        {\color{white}hi}\par
+        \underline{My write-up}: We are given that $\phi(X)=X$; figuring out what $\phi(Y)$ is will fully characterize $\phi$ (and $\im(\phi)$ by extension). We know that $\phi(Y)\in F(X)$, so let $\phi(Y)=g/f$ where $f,g\in F[X]$, $f\neq 0$, and we take $f,g$ to have $\gcd(f,g)=1$. We now seek to put further constraints on $g,f$. We know that
+        \begin{equation*}
+            \im(\phi) = \phi(F[X,Y])
+            = (\phi(X),\phi(Y))
+            = (X,\tfrac{g}{f})
+        \end{equation*}
+        Since $\gcd(f,g)=1$, there exist $a,b\in F[X]$ such that $af+bg=1$. Dividing both sides by $f$, we obtain
+        \begin{equation*}
+            a+b\frac{g}{f} = \frac{1}{f}
+        \end{equation*}
+        Thus, since $a,b\in(X)$, $1/f=a+bg/f\in(X,g/f)$. Moreover, we know that $g/f=g\cdot 1/f$, so $g/f\in(X,1/f)$. It follows that $(X,g/f)=(X,1/f)$. But this is just $F[X]_f$, as desired.\par
+        \underline{Nori's write-up}: Essentially the same as mine; Nori just did it more from the perspective of a bidirectional inclusion proof. There's also the interesting step $1/f=\phi(a+bY)$ to imply that $1/f\in\im(\phi)$.
+    \end{proof}
+\end{enumerate}
+
+
+\subsection*{Retrospective}
+\begin{itemize}
+    \item It is not enough to just have a general understanding of most things in this course; I need a deep knowledge of \emph{everything} to guarantee success on exams.
+    \item Theorem (Universal Property of the Quotient): Let $H\triangleleft G$, and let $\phi:G\to K$ be a group homomorphism such that $H\subset\ker\phi$. Then there is a unique homomorphism $\tilde{\phi}:G/H\to K$ such that $\phi=\tilde{\phi}\circ\pi$.
+    \begin{itemize}
+        \item "The universal property of the quotient is an important tool in constructing group maps: To define a map out of a quotient group $G/H$, define a mpa out of $G$ which maps $H$ to the identity" \parencite[2]{bib:UniversalQuotient}.
+        \item This is also Nori's pet lemma from \textcite[100]{bib:DummitFoote}: $\varphi$ is well-defined on $G/N$ iff $N\leq\ker\Phi$, where $\Phi:G\to H$ and $\phi:G/N\to N$.
+    \end{itemize}
+    \item A note on efficiency of evaluation in Problem 2(4).
+    \begin{itemize}
+        \item When evaluating $\tilde{f}(x)$, we can stop as soon as we find a zero in this case because this zero will make the whole product 0; for example, when computing $\tilde{f}(0)$, as soon as we saw that the first term was 0, we would know that $\tilde{f}(0)=0$; when computing $\tilde{f}(1)$, as soon as we saw that the second term was 0, we would know that $\tilde{f}(1)=0$.
+    \end{itemize}
+    \item The strategy used in Problem 4 of defining variables shows up repeatedly in challenge questions!
+    \item \textbf{Bezout's identity}: Let $a,b\in\Z$ have $\gcd(a,b)=d$. Then there exist $x,y\in\Z$ such that $ax+by=d$.
+    \begin{itemize}
+        \item Bezout's identity holds in Bezout domains (by definition) and in PIDs.
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{Sub- and Quotient-Module Structure}
 \begin{itemize}
     \item \marginnote{2/10:}On the midterm.
