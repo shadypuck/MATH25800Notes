@@ -688,24 +688,89 @@
     \begin{equation*}
         \R^n = \{(a_1,\dots,a_n):a_i\in\R\ \forall\ i\}
     \end{equation*}
-    with
-    \begin{gather*}
-        (a_1,\dots,a_n)+(b_1,\dots,b_n) = (a_1+b_1,\dots,a_n+b_n)\\
-        \alpha(a_1,\dots,a_n) = (\alpha a_1,\dots,\alpha a_n)
-    \end{gather*}
+    with analogous addition and scalar multiplication to the above.
     \item \textbf{Free module of rank $\bm{n}$} (over $R$): The module defined as follows. \emph{Denoted by} $\bm{R^n}$. \emph{Given by}
     \begin{equation*}
         R^n = \{(a_1,\dots,a_n):a_i\in R\ \forall\ i\}
     \end{equation*}
-    with
-    \begin{gather*}
-        (a_1,\dots,a_n)+(b_1,\dots,b_n) = (a_1+b_1,\dots,a_n+b_n)\\
-        \alpha(a_1,\dots,a_n) = (\alpha a_1,\dots,\alpha a_n)
-    \end{gather*}
+    with analogous addition and scalar multiplication to the above.
     \item \textbf{Annihilator} (of $M$): A two-sided ideal $I$ of a ring $R$ corresponding to an $R$-module $M$ such that $am=0$ for all $a\in I$ and $m\in M$.
-    \item Example: $\Z$-modules (return to later; critical to the Fundamental Theorem of Finitely Generated Abelian Groups).
-    \item Example: $F[X]$-modules (return to later; critical to canonical forms of matrices).
-    \item $M$ may have many different $R$-module structures, even for the same $R$.
+    \item \marginnote{2/18:}Example: $\Z$-modules.
+    \begin{itemize}
+        \item These are critical to the Fundamental Theorem of Finitely Generated Abelian Groups.
+        \item Every abelian group is a $\Z$-module.
+        \begin{itemize}
+            \item Let $(A,+)$ be any abelian group. We can make $A$ into a $\Z$-module by defining $\cdot:\Z\times A\to A$ by
+            \begin{equation*}
+                n\cdot a =
+                \begin{cases}
+                    \underbrace{a+\cdots+a}_{n\text{ times}} & n>0\\
+                    0 & n=0\\
+                    \underbrace{-a-\cdots-a}_{n\text{ times}} & n<0
+                \end{cases}
+            \end{equation*}
+            for all $n\in\Z$ and $a\in A$, where 0 above denotes the identity of the additive group $A$.
+            \item The module axioms actually show that the above is the \emph{only} possible action of $\Z$ on $A$.
+        \end{itemize}
+        \item Conversely, every $\Z$-module is also an abelian group.
+        \item Takeaways.
+        \begin{itemize}
+            \item It follows that "$\Z$-modules are the same as abelian groups" \parencite[339]{bib:DummitFoote}.
+            \item Similarly, "$\Z$-submodules are the same as subgroups" \parencite[339]{bib:DummitFoote}.
+        \end{itemize}
+        \item Note: Checking that the exponential notation satisfies the usual laws of exponents in a cyclic group $\gen{a}$ is equivalent to checking the $\Z$-module axioms.
+        \item $\Z$ is commutative $\Rightarrow$ left and right $\Z$-modules are equivalent.
+        \item $\Z$-modules may have zero divisors (in contrast to vector spaces).
+        \begin{itemize}
+            \item In particular, if $A$ is an abelian group of order $m$, then $A$ is a module over $\Z/m\Z$.
+        \end{itemize}
+        \item If $A$ is an abelian group and $p\in\Z$ is a prime such that $px=0$ for all $x\in A$, then $A$ is a $\Z/p\Z$-module.
+        \begin{itemize}
+            \item This means that $A$ can be considered to be a vector space over the field $\Z/p\Z$.
+            \item Example: The Klein 4-group is a 2-dimensional vector space over $\Z/2\Z$.
+            \item Such groups are the elementary abelian $p$-groups discussed last quarter.
+        \end{itemize}
+    \end{itemize}
+    \item Example: $F[X]$-modules.
+    \begin{itemize}
+        \item These are critical to canonical forms of matrices.
+        \item Defining $F[X]$-modules.
+        \begin{itemize}
+            \item Let $F$ be a field, $X$ be an indeterminate, $V$ be a vector space over $F$, and $T:V\to V$ be a linear transformation.
+            \item Preliminaries: Note that $V$ is an $F$-modules, and recall that $T^n$ denotes the composition of $T$ with itself $n$ times and addition and scalar multiplication of linear transformations is defined pointwise.
+            \item In an $F[X]$-module, $F[X]$ acts on $V$. Thus, we now define the action of $p(X)=a_nX^n+\cdots+a_0\in F[X]$ on $v\in V$. In particular, we let
+            \begin{equation*}
+                p(X)v = (a_nT^n+\cdots+a_0)(v)
+                = a_nT^n(v)+\cdots+a_0v
+            \end{equation*}
+            \item Alternate definition: $X$ acts on $V$ as $T$, and we extend this action to $F[X]$ in a natural way.
+            \item Alternate definition: All $f\in F$ act on $V$ by left multiplication, and we extend this action to $F[X]$.
+            \begin{itemize}
+                \item In particular, notice that $F$ is a subring of $F[X]$ and that the action of $F\subset F[X]$ on $V$ is identical to the action of $F$ on $V$ when $V$ is viewed as an $F$-module.
+            \end{itemize}
+        \end{itemize}
+        \item The action of $F[X]$ on $V$ depends on $T$, so there are many different $F[X]$-module structures on $V$ in general.
+        \begin{itemize}
+            \item Specific examples given.
+        \end{itemize}
+        \item The given construction of an $F[X]$ module in fact describes \emph{all} $F[X]$-modules.
+        \begin{itemize}
+            \item In particular, an $F[X]$-module is a vector space together with a linear transformation which specifies the action of $X$.
+            \item Thus, there is a bijection between the collection of $F[X]$-modules and the collection of pairs $V,T$.
+            \item This is getting very close to the universal property of a polynomial ring!
+        \end{itemize}
+        \item $F[X]$-submodules.
+        \begin{itemize}
+            \item Let $W$ be an $F[X]$-submodule of $V$.
+            \item $W$ must be an $F$-submodule of $V$, i.e., a vector subspace.
+            \item $X$ must send $W\to W$, i.e., $W$ must be an \textbf{invariant} subspace under the action of $X$.
+            \item It follows from the $T$-invariance of $W$ that $W$ is $p(T)$-invariant for any $p(X)\in F[X]$.
+            \item Takeaway: The $F[X]$-submodules of $V$ are precisely the $T$-stable subspaces of $V$.
+            \item Rephrasing this takeaway as a bijection.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{$\bm{T}$-stable} (subspace): A vector subspace $U$ of $V$ such that $T(U)\subset U$. \emph{Also known as} \textbf{$\bm{T}$-invariant}.
+    \item \marginnote{2/12:}$M$ may have many different $R$-module structures, even for the same $R$.
     \begin{itemize}
         \item These correspond to changes in $\cdot$.
     \end{itemize}
@@ -773,8 +838,7 @@
             \item With addition as above and multiplication defined as function composition, $\Hom_R(M,M)$ is a ring. When $R$ is commutative, $\Hom_R(M,M)$ is an $R$-algebra.
         \end{enumerate}
         \begin{proof}
-            Given.\par
-            Return to later?
+            Given.
         \end{proof}
     \end{proposition}
     \item \textbf{Endomorphism ring} (of $M$): The ring defined as follows. \emph{Denoted by} $\bm{\End_R(M)}$, $\bm{\End(M)}$. \emph{Given by}
@@ -879,9 +943,17 @@
         \begin{itemize}
             \item If $R$ is commutative, then $\{e_i\}$ is a minimal generating set.
         \end{itemize}
-        \item $F[X]$-modules.
+        \item \marginnote{2/18:}\textbf{Cyclic} $F[X]$-modules.
+        \begin{itemize}
+            \item If $T=I$, then $p(X)v=\alpha v$, so $\dim V=1$.
+            \item Considers when $T$ is the shift operator.
+        \end{itemize}
     \end{enumerate}
-    \item \textbf{Direct product} (of $M_1,\dots,M_k$): The collection of $k$-tuples $(m_1,\dots,m_k)$ where $m_i\in M_i$ under addition and a componentwise action of $R$, where $M_1,\dots,M_k$ is a collection of $R$-modules. \emph{Also known as} \textbf{external direct sum}, \textbf{direct sum}. \emph{Denoted by} $\bm{M_1\times\cdots\times M_k}$, $\bm{M_1\oplus\cdots\oplus M_k}$.
+    \item \textbf{Cyclic} ($F[X]$-module with generator $v$): An $F[X]$-module $V$ such that $V=\{p(X)v:p(X)\in F[X]\}$, that is, every element of $V$ can be written as an $F$-linear combination of elements of the set $\{T^nv:n\geq 0\}$.
+    \begin{itemize}
+        \item Alternate definition: The set $\{v,Tv,T^2v,\dots\}$ spans $V$.
+    \end{itemize}
+    \item \marginnote{2/16:}\textbf{Direct product} (of $M_1,\dots,M_k$): The collection of $k$-tuples $(m_1,\dots,m_k)$ where $m_i\in M_i$ under addition and a componentwise action of $R$, where $M_1,\dots,M_k$ is a collection of $R$-modules. \emph{Also known as} \textbf{external direct sum}, \textbf{direct sum}. \emph{Denoted by} $\bm{M_1\times\cdots\times M_k}$, $\bm{M_1\oplus\cdots\oplus M_k}$.
     \begin{itemize}
         \item The direct product is an $R$-module.
         \item Note that we use the times notation to refer to the "direct product" and the O-plus notation to refer to the "direct sum."
@@ -965,7 +1037,10 @@
             \underbrace{\Z\oplus\cdots\oplus\Z}_{n\text{ times}}
         \end{equation*}
     \end{itemize}
+    \item \marginnote{2/20:}\textbf{Direct product} (of $M_i$, $i\in I$): The direct product of the $M_i$ as abelian groups (i.e., their Cartesian product as sets under componentwise addition) with the action of $R$ componentwise multiplication. \emph{Denoted by} $\bm{\prod_{i\in I}M_i}$.
+    \item \textbf{Direct sum} (of $M_i$, $i\in I$): The restricted direct product of the abelian groups $M_i$ (i.e., the subset of the direct product $\prod_{i\in I}M_i$ which consists of all elements $\prod_{i\in I}m_i$ such that only finitely many of the components $m_i$ are nonzero) with the action of $R$ componentwise multiplication. \emph{Denoted by} $\bm{\bigoplus_{i\in I}M_i}$.
 \end{itemize}
+\setcounter{proposition}{0}
 
 
 
