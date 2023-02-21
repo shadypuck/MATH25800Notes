@@ -342,5 +342,145 @@
 
 
 
+\section{Rational Canonical Form and Proofs of Earlier Lemmas}
+\begin{itemize}
+    \item \marginnote{2/17:}Theorem: Every finitely generated $R$-module $M$ (where $R$ is a PID) is isomorphic to $\Tor(M)\oplus R^h$ for some $h\in\Zg$, where $h=\rank(M)$.
+    \item Recall the following theorem.
+    \item Theorem: Let $R$ be a PID. Then
+    \begin{enumerate}[label={(\arabic*)}]
+        \item Every finitely generated $p$-primary $R$-module is a finite direct sum of cyclic modules (which are isomorphic to $R/p^hR$ for some $h\in\N$).
+        \item Every torsion module $M$ is the direct sum of its $p$-primary components.
+    \end{enumerate}
+    \item Corollary: Every finitely generated torsion $R$-module is isomorphic to the finite direct sum of cyclic $p$-primary modules where $p$ is an element of a finite set of primes.
+    \emph{picture}
+    \item $M$ finitely generated implies that $M_{(p)}$ is finitely generated.
+    \item Said aloud that only finite primes $p$ satisfy $M_{(p)}\neq 0$.
+    \item Theorem (Rational canonical form): Let $R$ be a PID. Then every finitely generated $R$-torsion module is isomorphic to
+    \begin{equation*}
+        R/(a_1)\oplus\cdots\oplus R/(a_\ell)
+    \end{equation*}
+    where $a_2\mid a_1$, $a_3\mid a_2$, \dots, $a_\ell\mid a_{\ell-1}$.
+    \item Observe: The principal ideal $(a_1)$ is exactly the annihilator of $M$, i.e.,
+    \begin{equation*}
+        (a_1) = \{\alpha\in R:\alpha m=0\ \forall\ m\in M\}
+    \end{equation*}
+    \begin{itemize}
+        \item Later, $(a_1)$ will play the role of a minimal polynomial, and the product will play the role of the characteristic polynomial.
+    \end{itemize}
+    \begin{proof}[Proof of theorem]
+        Let $p_1,\dots,p_\ell$ be ?? the set of primes for which $M_{(p)}\neq 0$. Let
+        \begin{equation*}
+            M_{(p_i)} \cong R/(p_i^{m_i,1})\times R/(p_i^{m_i,2})\times\cdots
+        \end{equation*}
+        where $m_{i,1}\geq m_{i,2}\geq\cdots$. are such that there exists $N$ for which $m_{i,N}=0$. Then
+        \begin{equation*}
+            M/(p_j) \cong R/(p_j^{m_j,1})^\times\times R/(p_j^{m_j,2})^\times
+        \end{equation*}
+        Then we apply the Chinese Remainder Theorem. Define
+        \begin{equation*}
+            a_r = \prod_{i=1}^\ell p_i^{m_i,r}
+        \end{equation*}
+        where $a_{r+1}\mid a_r$ because $m_{i,j}$ is ?? in $j$. Use the CRT to imply that
+        \begin{equation*}
+            \prod_{i=1}^\ell R/(p_i^{m_i,r}) \cong R/(a_r)
+        \end{equation*}
+    \end{proof}
+    \item That concludes torsion modules over PIDs; we now do torsion modules over fields, which should be easier.
+    \item \textbf{$\bm{R}$-linearly independent} (elements of $M$): A set of elements $u_1,\dots,u_\ell\in M$ such that the constraints
+    \begin{align*}
+        (a_1,\dots,a_\ell) &\in R^\ell&
+        \sum_{i=1}^\ell a_iu_i &= 0
+    \end{align*}
+    imply that $(a_1,\dots,a_\ell)=0$. Equivalently, $H:R^\ell\to M$ defined by
+    \begin{equation*}
+        H(a_1,\dots,a_\ell) = \sum_{i=1}^\ell a_iu_i
+    \end{equation*}
+    is 1-1, i.e., $R^\ell\cong H(M)$.
+    \item Lemma: Let $R$ be an integral domain, and let $M$ be a finitely generated $R$-module. Then there exists a submodule $M'\subset M$ such that\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item $M'\cong R^h$ for some $h\geq 0$;
+        \begin{proof}
+            Let $S\subset M$ be a finite generating set. Select $T\subset S$ such that (i) $T$ is linearly independent and (ii) $T\subsetneq W\subset S$ implies that $W$ is \emph{not} linearly independent. In other words, we are picking $T$ to be a maximal linear independence set. Now suppose $|T|=h$ so that $T=\{u_1,\dots,u_h\}$. Then by definition,
+            \begin{equation*}
+                M' = \sum_{i=1}^hRu_i
+                \cong R^h
+            \end{equation*}
+            where the latter isomorphism follows from Proposition \ref{prp:10.5}.
+        \end{proof}
+        \item There exists a nonzero $a\in R$ such that $aM\subset M'$ (equivalently, $a(M/M')=0$).
+        \begin{proof}
+            Pick $w\in S$ such that $w\notin T$. Then since we picked $T$ to be a \emph{maximal} linear independence set, $T\cup\{w\}$ is linearly \emph{dependent}. It follows that there exists a nonzero $(a_1,\dots,a_{h+1})\in R^{h+1}$ such that
+            \begin{equation*}
+                a_1u_1+\cdots+a_hu_h+a_{h+1}w = 0
+            \end{equation*}
+            If $a_{h+1}=0$, then $(a_1,\dots,a_h)\neq 0$ makes $a_1u_1+\cdots+a_hu_h=0$, contradicting the assumed linear independence of $T$. Thus, $a_{h+1}\neq 0$. It follows that
+            \begin{equation*}
+                a_{h+1}w = -\sum_{i=1}^ha_iu_i \in M'
+            \end{equation*}
+            We may repeat this process for any $w\in S-T$ to obtain a nonzero $a_w$ such that $a_ww\in M'$. Additionally, if $w\in T$, take $a_w=1$. Now define
+            \begin{equation*}
+                a = \prod_{w\in S}a_w
+            \end{equation*}
+            Since $R$ is an integral domain by hypothesis and each $a_w$ in the above product is nonzero, $a$ is nonzero. Moreover, by its construction, $aw\in M'$ for all $w\in S$. Therefore,
+            \begin{equation*}
+                aM = a\left( \sum_{s\in S}As \right)
+                \subset M'
+            \end{equation*}
+            as desired.
+        \end{proof}
+    \end{enumerate}
+    \item Note that you can make stronger statements than the above; you'll just have to use Zorn's lemma to do so.
+    \item We now return to PID-land.
+    \item Corollary: Every finitely generated torsion-free module $M$ over a PID $R$ is isomorphic to $R^h$ for some $h\in\Zg$.
+    \begin{proof}
+        % Let $0\neq a\in R$ and $M'\subset M$ as in the lemma. Consider $H:M\to M'$ given by $H(m)=am$. It is an $R$-module homomorphism (where $R$ is commutative) and $\ker H=0$ because $M$ is torsion-free (i.e., the only torsion element is 0). Therefore, $M\cong H(M)\subset M'\cong R^h$. Since $R$ is a PID, $H(M)\cong R^n$ for some $0\leq h\leq n$. It follows that some submodule of $R^h$ is isomorphic to $R^n$ by a theorem proven earlier in the course.
+
+        Apply the lemma to obtain a submodule $M'$ of $M$ such that $M'\cong R^h$ and a nonzero $a\in R$ such that $aM\subset M'$. Consider $H:M\to M'$ defined by $H(m)=am$. Since $H$ is just left-multiplication, $H$ is an $R$-module homomorphism. Additionally, since $M$ is torsion free, $am=0$ iff $m=0$ so we have $\ker H=0$. Thus, since $H$ is injective, $M\cong H(M)\subset M'\cong R^h$. Furthermore, since $R$ is a PID, the submodule $H(M)$ of $R^h$ must be isomorphic to $R^n$ for some $0\leq n\leq h$ by the Theorem from Week 6. It follows by transitivity that $M\cong H(M)\cong R^n$, as desired.
+    \end{proof}
+    \item Takeaway: The torsion-free part is far easier to handle than the torsion part.
+    \item Theorem: Let $M$ be a finitely generated $R$-module, where $R$ is a PID. Then\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item $\Tor(M)\oplus R^h\cong M$ for some $h\geq 0$;
+        \begin{proof}
+            % Claim (may have been proven last time): $M/\Tor(M)$ is torsion-free. We assume this and proceed.\par
+            % We have $M/\Tor(M)\cong R^h=Re_1\oplus\cdots\oplus Re_h$. Lift $\varphi(e_i)$ to $\tilde{e}_i\in M$. Then $T:\Tor(M)\oplus R^h\to M$ defined by $T(m,(a_1,\dots,a_h))=m+\sum a_i\tilde{e}_i$ is an isomorphism.
+
+            To prove that $\Tor(M)\oplus R^h\cong M$, the second theorem from Lecture 6.3 tells us that it will suffice to show that $M/\Tor(M)\cong R^h$ for some $h\geq 0$. By part (ii) of the lemma from last time (Lecture 7.2), we have that $M/\Tor(M)$ is torsion-free. This combined with the fact that $M/\Tor(M)$ is a finitely generated (since $M$ is finitely generated) module over a PID allows us to invoke the above corollary, yielding the desired result.\par
+            Note that the isomorphism $T:\Tor(M)\oplus R^h\to M$ is given by
+            \begin{equation*}
+                T(m,(a_1,\dots,a_h)) = m+\sum a_ie_i
+            \end{equation*}
+            where $e_1,\dots,e_h$ generate $R^h$.
+        \end{proof}
+        \item $\Tor(M)$ is finitely generated.
+        \begin{proof}
+            % The projection is a surjection, which implies that $\Tor(M)$ is finitely generated.
+
+            Since $M$ is finitely generated, part (i) implies that $\Tor(M)\oplus R^h$ is finitely generated. Now consider the projection $\pi:\Tor(M)\oplus R^h\to\Tor(M)$. Since it is a surjection, the (finite number of) images of the generators of $\Tor(M)\oplus R^h$ generate $\Tor(M)$.
+        \end{proof}
+    \end{enumerate}
+    \item Nori reproves the claim that $M/\Tor(M)$ is torsion-free (see the first lemma from last lecture).
+    % \begin{proof}
+    %     Let $v\in M/\Tor(M)$ be a torsion element. Then there exists a nonzero $a\in R$ such that $av=0$. Thus, if $w\in M$ is a lift of $v$, then $aw\in\Tor(M)$. By the definition of $\Tor(M)$, there exists a nonzero $b\in R$ such that $b(aw)=0$. It follows that $w\in\Tor(M)$. But $w$ was supposed to be a lift of $v$, so $v=0$.
+    % \end{proof}
+    \item If $\pi:M\to M/M'$ and $S:M/M'\to R_h$ is an isomorphism, then there exists $\varphi:R^h\to M$ such that the diagram commutes, i.e., $S\pi\varphi=\id_{R^h}$.
+    \item Next week is going to be straight linear algebra.
+    \item Nori would try to do tensors in one week (the last week), but it'd be ridiculous to do something on Friday and put it on a test on Tuesday.
+    \item Imaginary quadratic fields, curves, Dedekind domains, etc.
+    \item Content from this week in the book.
+    \begin{itemize}
+        \item Section 12.1.
+        \begin{itemize}
+            \item The material before Theorem \ref{trm:12.5} is OMITTED from the course.
+            \item Theorem \ref{trm:12.9.2} is also OMITTED from the course.
+            \item The rest of this section will be covered.
+            \item The main theorems are: The existence theorem (Theorem \ref{trm:12.5}) and the uniqueness theorem (Theorem \ref{trm:12.9.1})
+        \end{itemize}
+        \item Section 12.2 deals with the PID $F[X]$ and its applications to linear algebra; this will be covered on Monday next week.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
