@@ -194,5 +194,153 @@
 
 
 
+\section{Classifying Modules Over PIDs}
+\begin{itemize}
+    \item \marginnote{2/15:}We pick up from yesterday, classifying finitely generated $R$-modules $M$ up to isomorphism when $R$ is a PID.
+    \item In particular, we begin with a further investigation of the properties of torsion modules.
+    \item \textbf{Lift} (of $x\in M/M'$): The choice of an element $y\in M$ such that $\pi(y)=x$.
+    \item Lemma:
+    \begin{enumerate}[label={(\roman*)}]
+        \item $\Tor(M)$ is an $R$-submodule of $M$.
+        \begin{proof}
+            To prove that $\Tor(M)$ is an $R$-submodule of $M$, Proposition \ref{prp:10.1} tells us that it will suffice to show that $\Tor(M)\neq\emptyset$ and that $x+ry\in\Tor(M)$ for all $r\in R$, $x,y\in\Tor(M)$. Consider $0\in M$. By definition, $r\cdot 0=0$. Thus, $0\in\Tor(M)$ as desired. Additionally, let $r\in R$ and $x,y\in\Tor(M)$ be arbitrary. Since $x,y\in\Tor(M)$, there exist nonzero $a,b\in R$ such that $ax=0$ and $by=0$. Because $R$ is an integral domain (as a PID), $a,b$ nonzero implies that $ab\neq 0$. Thus, since
+            \begin{equation*}
+                ab(x+ry) = abx+abry
+                = b(ax)+ar(by)
+                = b(0)+ar(0)
+                = 0
+            \end{equation*}
+            we have that $x+ry\in\Tor(M)$, as desired.
+        \end{proof}
+        \item The quotient module $M/\Tor(M)$ is torsion-free.
+        \begin{proof}
+            To prove that $M/\Tor(M)$ is torsion-free, it will suffice to show that every torsion element of $M/\Tor(M)$ is 0. Let's begin. Let $v\in M/\Tor(M)$ be an arbitrary torsion element. Then there exists $a\in R$ nonzero such that $av=0$. Now lift $v\in M/\Tor(M)$ to $w\in M$. The constraint $av=0=0+\Tor(M)$ from the quotient module implies that $0=a\pi(w)=\pi(aw)$, hence $aw\in\Tor(M)$. Thus, there exists $b\in R$ nonzero such that $b(aw)=0$. It follows that $(ba)w=0$, where $ba\neq 0$ since $a,b\neq 0$ by the fact that $R$ is an integral domain. Thus, $w\in\Tor(M)$, and hence $v=\pi(w)=0$, as desired.
+        \end{proof}
+    \end{enumerate}
+    \item We now give some claims that will be useful later today, but whose proofs we will delay until next lecture.
+    \item The first one pertains to the properties of finitely generated torsion-free modules over an integral domain.
+    \item Lemma: Let $R$ be an integral domain, and let $M$ be a finitely generated $R$-module. Then there exists a submodule $M'\subset M$ such that\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item $M'\cong R^h$ for some $h\geq 0$;
+        \item There exists a nonzero $a\in R$ such that $aM\subset M'$ (equivalently, $a(M/M')=0$).
+    \end{enumerate}
+    \item The next two pertain to the properties of finitely generated modules over a PID.
+    \item Corollary: Every finitely generated torsion-free module $M$ over a PID $R$ is isomorphic to $R^h$ for some $h\in\Zg$.
+    \item Theorem: Let $M$ be a finitely generated $R$-module, where $R$ is a PID. Then\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item $\Tor(M)\oplus R^h\cong M$ for some $h\geq 0$;
+        \item $\Tor(M)$ is finitely generated.
+    \end{enumerate}
+    \item \textbf{Rank} (of a module): The number $h$ pertaining to an $R$-module $M$, where $M/\Tor(M)\cong R^h$. \emph{Denoted by} $\bm{\rank(M)}$.
+    \begin{itemize}
+        \item It follows by the proposition from last lecture (Lecture 7.1) that rank is well-defined.
+    \end{itemize}
+    \item Corollary: Finitely generated $R$-modules $M_1$ and $M_2$ are isomorphic to each other iff
+    \begin{enumerate}[label={(\roman*)}]
+        \item $M_1$ and $M_2$ have the same rank;
+        \item $\Tor(M_1)$ is isomorphic to $\Tor(M_2)$.
+    \end{enumerate}
+    \begin{proof}
+        Suppose first that $\phi:M_1\to M_2$ is an isomorphism. Then naturally they will have the same ranks and torsion submodules.\par
+        On the other hand, if $\rank(M_1)=\rank(M_2)$, then $M_1/\Tor(M_1)\cong M_2/\Tor(M_2)$. This combined with the hypothesis that $\Tor(M_1)\cong\Tor(M_2)$ implies that
+        \begin{align*}
+            \Tor(M_1)\oplus M_1/\Tor(M_1) &\cong \Tor(M_2)\oplus M_2/\Tor(M_2)\\
+            M_1 &\cong M_2
+        \end{align*}
+        where the second line follows from the preceding theorem.
+    \end{proof}
+    \item The classification of finitely generated $R$-modules ($R$ a PID) is completed by the following results.
+    \item \textbf{$\bm{p}$-primary component} (of a module): The submodule of a module $M$ consisting of those $m\in M$ such that $p^km=0$ for some $k\in\Zg$. \emph{Denoted by} $\bm{M_{(p)}}$.
+    \begin{itemize}
+        \item Showing that $M_{(p)}$ is a submodule of $M$ can be accomplished with the submodule criterion (Proposition \ref{prp:10.1}), just like in the first lemma proven today.
+    \end{itemize}
+    \item Notation and observations.
+    \begin{enumerate}
+        \item Let $M_1,\dots,M_k$ be submodules of $M$. Then $T:\prod_{i=1}^kM_i\to M$ defined by
+        \begin{equation*}
+            T(m_1,\dots,m_k) = m_1+\cdots+m_k
+        \end{equation*}
+        is not injective in general.
+        \begin{itemize}
+            \item For example, if $k=2$, then $\ker(T)\cong M_1\cap M_2$ in general.
+            \item Thus, some care is required in our selection of submodules if we want $\ker(T)=0$.
+        \end{itemize}
+        \item Obtaining a natural $R$-module homomorphism $T:\oplus_{i\in I}M_i\to M$ defined as above.
+        \begin{itemize}
+            \item We have that $\oplus_{i\in I}M_i\subset\prod_{i\in I}M_i$ in general. Here's why:
+            \item Given a finite subset $F\subset I$, we may regard $\prod_{i\in F}M_i$ as a submodule of $\prod_{i\in I}M_i$ by taking the entries in the $i^\text{th}$ place to be zero for all $i\notin F$.
+            \item The direct sum is simply the union of the submodules $\prod_{i\in F}M_i$ taken over all finite $F\subset I$.
+            \item We define $T$ on the overall direct sum one submodule $\prod_{i\in F}M_i$ at a time.
+        \end{itemize}
+    \end{enumerate}
+    \item Proposition: The natural $R$-module homomorphism $T:\oplus_{(p)}M_{(p)}\to\Tor(M)$ is an isomorphism, where the direct sum is indexed by the set of nonzero prime ideals of $R$.
+    \begin{proof}
+        Let $F$ be a set of $r$ distinct primes $p_1,\dots,p_r$ (i.e., the prime ideals $(p_1),\dots,(p_r)$ are pairwise distinct sets). Let $(m_1,\dots,m_r)\in\prod_{(p)\in F}M_{(p)}$. Then as per the notation and observations section above, $T$ is defined such that
+        \begin{equation*}
+            T(m_1,\dots,m_r) = m_1+\cdots+m_r
+        \end{equation*}
+        We first prove that $T$ is injective. Let $(m_1,\dots,m_r)\in\ker(T)$ be arbitrary. Then $T(m_1,\dots,m_r)=m_1+\cdots+m_r=0$. By hypothesis, there exist $k_1,\dots,k_r$ such that $p_i^{k_i}m_i=0$ ($i=1,\dots,r$). Define $a=p_2^{k_2}\cdots p_r^{k_r}$. It follows that $am_2=\cdots=am_r=0$. Thus,
+        \begin{align*}
+            a(0) &= 0\\
+            a(m_1+\cdots+m_r) &= 0\\
+            am_1+\cdots+am_r &= 0\\
+            am_1 &= -(am_2+\cdots+am_r)\\
+            &= -(0+\cdots+0)\\
+            &= 0
+        \end{align*}
+        Additionally, $\gcd(a,p_1^{k_1})=1$ by definition, so $1\in(a,p_1^{k_1})$. It follows that there exist $b,c\in R$ such that $ba+cp_1^{k_1}=1$. This combined with the facts that $am_1=0$ and $p_1^{k_1}m_1=0$ implies that
+        \begin{equation*}
+            m_1 = 1\cdot m_1
+            = (ba+cp_1^{k_1})m_1
+            = b(am_1)+c(p_1^{k_1}m_1)
+            = b(0)+c(0)
+            = 0
+        \end{equation*}
+        A symmetric argument shows that all $m_i=0$, i.e., $(m_1,\dots,m_r)=(0,\dots,0)$. Therefore, $\ker(T)=0$, as desired.\par
+        We now prove that $T$ is surjective. Let $m\in\Tor(M)$ be arbitrary. Consider the submodule $N=Am\subset M$. To prove that $m$ is the sum of elements, each from a $p$-primary component of $M$, it will suffice to prove that stronger condition that every element in $N$ is the sum of elements, each from a $p$-primary component of $M$. Equivalently, it will suffice to show that $N$ is the isomorphic to the sum of its $p$-primary components, since the $p$-primary components of $N$ are contained in those of $M$. Define $I=\{a\in R:am=0\}$. Notice that $I=\ker(l_a)$, where $l_a:R\to N$ is the left multiplication homomorphism. It follows by the FIT that there exists an isomorphism $\overline{l_a}:R/I\to N$. Thus, we need only show that $R/I$ is isomorphic to the direct sum of its $p$-primary components. But the \hyperref[trm:7.17]{Chinese Remainder Theorem} takes care of this for us since $I$ is a nonzero ideal.
+    \end{proof}
+    \item In view of the last proposition, our final task will be to classify finitely generated $p$-primary modules.
+    \item We begin with some definitions.
+    \item \textbf{$\bm{p}$-primary} (module): An $R$-module $M$ such that $M=M_{(p)}$ for some prime $p\in R$.
+    \item \textbf{Annihilator} (of a module): The set of all $a\in R$ such that $am=0$ for all $m\in M$. \emph{Denoted by} $\bm{\Ann(M)}$. \emph{Given by}
+    \begin{equation*}
+        \Ann(M) = \{a\in R:am=0\ \forall\ m\in M\}
+    \end{equation*}
+    \item \textbf{Annihilator} (of an element): The set of all $a\in R$ such that $am=0$ pertaining to a specific $m\in M$. \emph{Denoted by} $\bm{\Ann(m)}$. \emph{Given by}
+    \begin{equation*}
+        \Ann(m) = \{a\in R:am=0\}
+    \end{equation*}
+    \item Consider $l_m:R\to M$ defined by $l_m(a)=am$.
+    \begin{itemize}
+        \item By the FIT, there exists a module isomorphism $\overline{l_m}:R/\Ann(m)\to Rm$.
+        \item $\ker(l_m)=\Ann(m)$.
+    \end{itemize}
+    \item \textbf{Cyclic} (module): An $R$-module $M$ for which there exists $m\in M$ such that $M=Rm$.
+    \begin{itemize}
+        \item Cyclic modules are isomorphic to $R/\Ann(m)$ for a similar reason to the above ($Rm=M$ here).
+    \end{itemize}
+    \item With these definitions out of the way, we seek to show that every finitely generated $R$-module is the direct sum of cyclic modules.
+    \item To prove this result, we will need the following lemma.
+    \item Lemma: Let $M'=Re$ be a cyclic submodule of $M$. We assume that\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item $\Ann(e)=(p^n)$;
+        \item $p^nM=0$.
+    \end{enumerate}
+    Then every $v\in M/M'$ has a lift $w\in M$ such that $\Ann(w)=\Ann(v)$.
+    \begin{proof}
+        Let $v\in M/M'$ be arbitrary. Since $p^nM=0$, $p^n(M/M')=0$ and hence $\Ann(v)=(p^k)$ for some $k\leq n$. Now let $w\in M$ be an arbitrary lift of $v$. We will prove that this $w$ satisfies all necessary constraints.\par
+        To prove that $\Ann(w)\subset\Ann(v)$, let $a\in\Ann(w)$ be arbitrary. Then $aw=0$. It follows that $0=\pi(aw)=a\pi(w)=av$. Therefore, $a\in Ann(v)$ as well.\par
+        To prove that $\Ann(v)\subset\Ann(w)$
+    \end{proof}
+    \item Proposition: For every finitely generated $p$-primary module $M$, there exist $e_1,\dots,e_s$ such that $M$ is the direct sum of the cyclic submodules $Re_i$.
+    \begin{proof}
+        Since $M$ is finitely generated, we know that $M=Rv_1+\cdots+Rv_r$. We induct on $r$.\par
+        For the base case $r=1$, $M$ is cyclic by definition.\par
+        Now suppose that we have proven the claim for some lower cases. Again with the $(p^n)$ issue.
+    \end{proof}
+\end{itemize}
+
+
+
 
 \end{document}
