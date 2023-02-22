@@ -39,27 +39,19 @@
         \item Since $A\hookrightarrow A[X]$, $\rho|_A$ turns $M$ into an $A$-module.
         \item Since $aX=Xa$, $\rho(a)\rho(X)=\rho(X)\rho(a)$.
         \item But since we consider $M$ to be a module, we write $a:=\rho(a)$: Thus, $a\rho(X)m=\rho(X)am$ for all $m\in M$.
-        \item Note that $\rho(X)\in\End_A(M)$ (which is the set of all $A$-module homomorphisms).
+        \item Note that $\rho(X)\in\End_A(M)$ (which is the set of all $A$-module endomorphisms).
         \item Additionally, $\rho(X):M\to M$ is an $A$-module homomorphism.
     \end{itemize}
     \item Put $\rho(X)=T$. Thus, an $A[X]$-module is a pair $(M,T)$, where $M$ is an $A$-module and $T\in\End_A(M)$.
-    \item Conversely, such $(M,T)$ gives rise to an $A[X]$-module.
-    \begin{itemize}
-        \item In particular, the action is
-        \begin{equation*}
-            \left( \sum_{n=0}^\ell a_nX^n \right)m = \sum_{n=0}^\ell a_nT^nm
-        \end{equation*}
-    \end{itemize}
-    \item Take $A=F$ a field concerned with $(V,T)$ where $V$ is any $F$-vector space and $T:V\to V$ is a linear transformation.
+    \item Conversely, such $(M,T)$ gives rise to an $A[X]$-module with action
+    \begin{equation*}
+        \left( \sum_{n=0}^\ell a_nX^n \right)m = \sum_{n=0}^\ell a_nT^nm
+    \end{equation*}
+    \item Let $F$ be a field, and consider $(V,T)$ where $V$ is any $F$-vector space and $T:V\to V$ is a linear transformation.
     \begin{itemize}
         \item This induces a module over $F[X]$.
     \end{itemize}
     \item $V$ finite dimensional induces $\rho:F[X]\to\End_F(V)\cong M_n(F)$ defined by $X\mapsto T$.
-    \begin{itemize}
-        \item $\rho(X)=T$ and $\rho(c)=c$ for all $c\in F$.
-    \end{itemize}
-    \item Let $n^2$ be the dimension of the $F$-vector space??
-    \item Then $\ker(\rho)=(f)$ for some $f$ be monic of degree $d\leq n^2$.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[xscale=2,yscale=1.6]
@@ -77,22 +69,29 @@
         \label{fig:fXmodAction}
     \end{figure}
     \begin{itemize}
+        \item $\rho(X)=T$ and $\rho(c)=c$ for all $c\in F$.
+        \item $\ker(\rho)=(f)$ for some monic polynomial $f$ of degree $d\leq n^2$.
         \item We have the constraint on the degree of $f$ by the isomorphism from Lecture 3.1.
     \end{itemize}
     \item \textbf{Minimal polynomial} (of $T$): The polynomial $f$ that generates $\ker(\rho)$.
     \begin{itemize}
-        \item In particular, $V$ is a torsion $F[X]$-module $(f\cdot g)$.
+        \item In particular, $V$ is a finitely generated torsion $F[X]$-module.
     \end{itemize}
     \item \textbf{Cyclic vector}: A vector $v\in V$ belonging to $(V,T)$ such that $v,Tv,T^2v,\dots$ spans $V$.
-    \item Assume $v,Tv,T^2v,\dots,T^{k-1}v$ are linearly independent, but $v,Tv,\dots,T^kv$ are not.
+    \item Using cyclic vectors to compute the minimal polynomial.
     \begin{itemize}
+        \item Assume $v,Tv,T^2v,\dots,T^{k-1}v$ are linearly independent, but $v,Tv,\dots,T^kv$ are not.
         \item Then
         \begin{equation*}
             T^kv = a_0v+a_1Tv+\cdots+a_{k-1}T^{k-1}v
         \end{equation*}
         where all $a_i\in F$ and not all $a_i=0$.
-        \item It follows that $T^mk\in\gen{v,Tv,\dots,T^{k-1}v}=W$ a vector space.
-        \item Let $g(X)=X^k-(a_{k-1}X^{k-1}+\cdots+a_1X+a_0)$. Then $g(T)v=0$. This implies that $g$ is the minimal polynomial of $T$.
+        \item Let $W=\gen{v,Tv,\dots,T^{k-1}v}$. It follows that $T^mk\in W$.
+        \item Let
+        \begin{equation*}
+            g(X) = X^k-(a_{k-1}X^{k-1}+\cdots+a_1X+a_0)
+        \end{equation*}
+        Then $g(T)v=0$. This implies that $g$ is the minimal polynomial of $T$.
         \item It follows that $T^hg(T)v=0$. Thus, $g(T)T^hv=0$ for all $h$.
         \item Lastly, it follows that $g(T)w=0$ for all $w\in W$.
         \item Assume $v$ is a cyclic vector. Then $W=V$. It follows that $g(T)v=0$ for all $v\in V$.
@@ -116,13 +115,13 @@
                 0 & 1 & -a_2\\
             \end{pmatrix}
         \end{equation*}
-        \item The above matrix is called the \textbf{companion matrix} of $f$ (monic of degree 3).
+        \item The above matrix is called the \textbf{companion matrix} of $f$, for $f$ monic of degree 3.
     \end{itemize}
     \item \textbf{Rational canonical form}: The form $(V,T)$ given by
     \begin{equation*}
         F[X]/(f_1)\oplus\cdots\oplus F[X]/(f_s)
     \end{equation*}
-    where $f_2\mid f_1,\dots,f_s\mid f_{s-1}$ and $\deg(f_s)>0$.
+    where $f_2\mid f_1$, \dots, $f_s\mid f_{s-1}$ and $\deg(f_s)>0$.
     \begin{itemize}
         \item When $V=0$, then $s=0$. In this case, $f_1$ is the minimal polynomial of $T$.
         \item The form consisting of a block diagonal matrix of companion matrices.
@@ -134,7 +133,7 @@
     \item There's one more canonical form, too.
     \item Since no one knows what canonical forms are and we very much need them for what Nori was planning to do, Nori will change his plans. No tensors in the last week, either.
     \item $p$-primary components: When $p=X-a$, $a\in F$.
-    \item $(V,T)$ is \textbf{$p$-primary} if there exists an $n$ such that $(T-a)^nv=0$ for all $v\in V$.
+    \item $(V,T)$ is \textbf{$\bm{p}$-primary} if there exists an $n$ such that $(T-a)^nv=0$ for all $v\in V$.
     \item $1_V:V\to V$ is the identity.
     \item $a\cdot 1_V=a_V:V\to V$.
     \item $(T-a_v)^n=0\in\End_F(V)$.
@@ -230,7 +229,7 @@
 \setcounter{proposition}{11}
 \subsection*{Section 12.2: The Rational Canonical Form}
 \begin{itemize}
-    \item As stated previously, we apply the results of Section 12.1 to $F[X]$-modules herein.
+    \item \marginnote{2/21:}As stated previously, we apply the results of Section 12.1 to $F[X]$-modules herein.
     \item Let $V$ be a finite dimensional vector space over $F$ of dimension $N$. Let $(V,T)$ be an $F[X]$-module.
     \item Since $V$ is finite dimensional, it is finitely generated as an $F$-module and hence also as an $F[X]$-module.
     \item If $V$ were free, it would be isomorphic to a direct sum of copies of $F[X]$ (by Theorem \ref{trm:12.5.1}) and hence be infinite dimensional.
@@ -284,7 +283,7 @@
     \begin{itemize}
         \item Defined similarly for matrices $A$.
         \item We know that such a polynomial exists by Theorem \ref{trm:12.5.3}.
-        \item Exercise 12.2.5: The degree of the minimal polynomial is at most $n^2$.
+        \item Exercise \ref{exr:12.2.5}: The degree of the minimal polynomial is at most $n^2$.
     \end{itemize}
     \item \textbf{Cayley-Hamilton Theorem}: The minimal polynomial for $T$ is a divisor of the characteristic polynomial for $T$.
     \begin{itemize}
@@ -465,6 +464,11 @@
     \end{theorem}
     \item \textcite{bib:DummitFoote} provides algorithms for computing the invariant factor decomposition and the RCF. Return to later.
 \end{itemize}
+
+\subsubsection*{Exercises}
+\begin{enumerate}[label={\textbf{\arabic*.}},ref={12.2.\arabic*},start=5]
+    \item \label{exr:12.2.5}Prove directly from the fact that the collection of all linear transformations of an $n$-dimensional vector space $V$ over $F$ to itself form a vector space over $F$ of dimension $n^2$ that the minimal polynomial of a linear transformation $T$ has degree at most $n^2$.
+\end{enumerate}
 
 
 

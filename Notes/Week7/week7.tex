@@ -393,31 +393,76 @@
         \item Later, $(a_1)$ will play the role of a minimal polynomial, and the product will play the role of the characteristic polynomial.
     \end{itemize}
     \begin{proof}[Proof of theorem]
-        Let $p_1,\dots,p_\ell$ be the set of distinct primes for which $M_{(p)}\neq 0$. Let
+        % Let $p_1,\dots,p_\ell$ be the set of distinct primes for which $M_{(p)}\neq 0$. Let
+        % \begin{equation*}
+        %     M_{(p_i)} \cong R/(p_i^{m_{i,1}})\times R/(p_i^{m_{i,2}})\times\cdots
+        % \end{equation*}
+        % where $m_{i,1}\geq m_{i,2}\geq\cdots$. are such that there exists $N$ for which $m_{i,N}=0$. Then
+        % \begin{equation*}
+        %     M/(p_j) \cong R/(p_j^{m_{j,1}})^\times\times R/(p_j^{m_{j,2}})^\times
+        % \end{equation*}
+        % Then we apply the Chinese Remainder Theorem. Define
+        % \begin{equation*}
+        %     a_r = \prod_{i=1}^\ell p_i^{m_{i,r}}
+        % \end{equation*}
+        % where $a_{r+1}\mid a_r$ because $m_{i,j}$ is ?? in $j$. Use the CRT to imply that
+        % \begin{equation*}
+        %     \prod_{i=1}^\ell R/(p_i^{m_i,r}) \cong R/(a_r)
+        % \end{equation*}
+
+        % Strategy: Break it all the way down to basic primes, then build primes back up into certain numbers, sorted by power.
+
+        Let $M$ be an arbitrary finitely generated $R$-torsion module. Since $M=\Tor(M)$, a proposition from last lecture implies that
         \begin{equation*}
-            M_{(p_i)} \cong R/(p_i^{m_{i,1}})\times R/(p_i^{m_{i,2}})\times\cdots
+            M = \Tor(M) \cong \bigoplus_{(p)}M_{(p)}
         \end{equation*}
-        where $m_{i,1}\geq m_{i,2}\geq\cdots$. are such that there exists $N$ for which $m_{i,N}=0$. Then
+        Let $p_1,\dots,p_\ell$ be the set of distinct primes for which $M_{(p)}\neq 0$. Then
         \begin{equation*}
-            M/(p_j) \cong R/(p_j^{m_j,1})^\times\times R/(p_j^{m_j,2})^\times
+            M \cong M_{(p_1)}\oplus\cdots\oplus M_{(p_\ell)}
         \end{equation*}
-        Then we apply the Chinese Remainder Theorem. Define
+        Consider some $M_{(p_i)}$ in the above direct sum. Since it is finitely generated (because the isomorphism is natural) and $p$-primary (by definition), we have by another proposition from last time that
+        \begin{equation*}
+            M_{(p_i)} \cong Re_1\oplus\cdots\oplus Re_{s_i}
+        \end{equation*}
+        We know (again from last lecture) that each cyclic submodule $Re_j$ is isomorphic to $R/\Ann(e_j)$. Since $M_{(p_i)}$ is $p_i$-primary and $e_j\in M_{(p_i)}$, we know that there exists (a minimal) $m_{i,j}$ such that $p_i^{m_{i,j}}e_j=0$. Thus, since $R$ is a PID, $\Ann(e_j)=(p_i^{m_{i,j}})$. Replacing every element in the above direct sum with our new form reveals that
+        \begin{equation*}
+            M_{(p_i)} \cong R/(p_i^{m_{i,1}})\oplus\cdots\oplus R/(p_i^{m_{i,s_i}})
+        \end{equation*}
+        WLOG, let $m_{i,1}\geq\cdots\geq m_{i,s_i}$. Define
         \begin{equation*}
             a_r = \prod_{i=1}^\ell p_i^{m_{i,r}}
         \end{equation*}
-        where $a_{r+1}\mid a_r$ because $m_{i,j}$ is ?? in $j$. Use the CRT to imply that
+        for all $r=1,\dots,s_i$. It follows by the construction that $a_{r+1}\mid a_r$ ($r=1,\dots,s_i-1$). Additionally, we have by the \hyperref[trm:7.17]{Chinese Remainder Theorem} that for each $r=1,\dots,s_i$,
         \begin{equation*}
-            \prod_{i=1}^\ell R/(p_i^{m_i,r}) \cong R/(a_r)
+            R/(a_r) \cong \prod_{i=1}^\ell R/(p_i^{m_{i,r}}) = \bigoplus_{i=1}^\ell R/(p_i^{m_{i,r}})
         \end{equation*}
+        WLOG, let $s_\ell\geq s_i$ ($i=1,\dots,\ell$). Therefore, putting everything together, we have that
+        \begin{align*}
+            M &\cong M_{(p_1)}\oplus\cdots\oplus M_{(p_\ell)}\\
+            &\cong \left( \bigoplus_{j=1}^{s_1}R/(p_1^{m_{1,j}}) \right)\oplus\cdots\oplus\left( \bigoplus_{j=1}^{s_\ell}R/(p_\ell^{m_{\ell,j}}) \right)\\
+            &\cong \left( \bigoplus_{i=1}^\ell R/(p_i^{m_i,1}) \right)\oplus\cdots\oplus\left( \bigoplus_{i=1}^\ell R/(p_i^{m_i,s_\ell}) \right)\\
+            &\cong R/(a_1)\oplus\cdots\oplus R/(a_{s_\ell})
+        \end{align*}
+        as desired.
     \end{proof}
     \item The previous theorem but over all modules instead of just torsion modules.
-    \item Proposition: Every finitely generated $R$-module is isomorphic to
+    \item Proposition: Every finitely generated $R$-module, where $R$ is a PID, is isomorphic to
     \begin{equation*}
         R/I_1\oplus R/I_2\oplus\cdots
     \end{equation*}
     for a unique increasing sequence of ideals $I_1\subset I_2\subset\cdots$ which have the property that $I_n=R$ for some $n$.
     \begin{proof}
-        ??
+        {\color{white}hi}
+        \begin{itemize}
+            \item 2.4: $M\cong R^h\oplus\Tor(M)$ for some $h\geq 0$.
+            \item RCF: $\Tor(M)\cong R/(a_1)\oplus\cdots\oplus R/(a_\ell)$ where $a_\ell\mid a_{\ell-1}\mid\cdots\mid a_1$.
+            \item $R^h\cong Re_1\oplus\cdots\oplus Re_h\cong R/\Ann(e_1)\oplus\cdots\oplus R/\Ann(e_h)$.
+            \item $R$ is a PID: $\Ann(e_j)=(a_{\ell+j})$ for some $a_{\ell+j}$ and all $j=1,\dots,h$.
+            \item Let $I_i=(a_i)$.
+            \item WLOG, order them. How do I guarantee the subset condition??
+            \item Then $M\cong R/I_1\oplus\cdots\oplus R/I_{\ell+h}$.
+            \item If no $I_i=R$, define $I_{\ell+h+1},I_{\ell+h+2},\dots$ to be equal to $R$.
+        \end{itemize}
     \end{proof}
     \item That concludes torsion modules over PIDs; we now do torsion modules over fields, which should be easier.
     \item \textbf{$\bm{R}$-linearly independent} (elements of $M$): A set of elements $u_1,\dots,u_\ell\in M$ such that the constraints
@@ -615,7 +660,7 @@
     \item Goal of this chapter:
     \begin{itemize}
         \item Brief overview of results that will be used later on; more in-depth (even introductory level) linear algebra topics, such as Gauss-Jordan elimination, row echelon forms, etc., will not be covered.
-        \item Only finite-dimensional vector spaces are discussed in the text; some stuff on infinite dimensional vector spaces is included in the exercises
+        \item Only finite-dimensional vector spaces are discussed in the text; some stuff on infinite dimensional vector spaces is included in the exercises.
         \item Characteristic polynomials and eigenvalues: Next chapter.
     \end{itemize}
     \item Module terminology vs. vector space terminology.
