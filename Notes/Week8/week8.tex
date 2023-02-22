@@ -223,6 +223,219 @@
 
 
 
+\section{Noncommutative Polynomial Rings}
+\begin{itemize}
+    \item \marginnote{2/22:}Adjusted syllabus for those of us who haven't seen block matrices.
+    \begin{itemize}
+        \item We're not gonna cover all of the stuff in Sections 12.2-12.3.
+        \item We'll define determinants via exterior algebras and use them to prove the Cayley-Hamilton theorem.
+    \end{itemize}
+    \item Notation for today:
+    \begin{itemize}
+        \item We fix $R$ a commutative ring.
+        \item Any other ring considered is potentially noncommutative.
+        \item $c$ denotes an element of $R$.
+    \end{itemize}
+    \item \textbf{$\bm{R}$-algebra}: A pair $(A,\phi)$ where $A$ is a ring and $\phi:R\to A$ is a ring homomorphism such that
+    \begin{equation*}
+        \phi(c)a = a\phi(c)
+    \end{equation*}
+    for all $a\in A$ and $c\in R$.
+    \begin{itemize}
+        \item I.e., we have commutativity with the "integers."
+        \item Notation: We suppress the letter $\phi$.
+        \begin{itemize}
+            \item Justification: $A$ can be considered an $R$-module in a natural manner, so we can use the standard notation $c\cdot a$ in place of $\phi(c)\cdot a$ because we can think of $\phi$ as the action of $R$ on $A$.
+        \end{itemize}
+        \item $R$-algebras are automatically $R$-modules.
+        \item $\phi(R)$ is a subring of $A$ (and, specifically, the center of $A$).
+    \end{itemize}
+    \item Now we get into noncommutative polynomial rings.
+    \begin{itemize}
+        \item We've defined polynomial rings on one variable, and on multiple variables by induction.
+        \item There, the variables commuted. However, they need not! We can construct rings such that $XY\neq YX$.
+    \end{itemize}
+    \item Consider the ring consisting of $n$ potentially noncommutative variables over the coefficients in $R$.
+    \begin{itemize}
+        \item Essentially, we postulate that $1,X_1,X_2,\dots,X_n$ are in the ring and consider the set of everything that can be generated from these elements via addition, multiplication, and the action of $R$.
+        \item Thus, things like $X_iX_j$ exist. Note that there are $n^2$ of these. Things like $X_iX_jX_k$ also exist (and there are $n^3$ of these).
+    \end{itemize}
+    \item Polynomials will be of the form
+    \begin{equation*}
+        c_0+\sum_{i=1}^nc_iX_i+\sum_{\substack{1\leq i\leq n\\1\leq j\leq n}}c_{i,j}X_iX_j+\cdots
+    \end{equation*}
+    \begin{itemize}
+        \item This polynomial has degree at most $n$.
+        \begin{itemize}
+            \item Really?? How does Nori define degree? This would appear to be a break from the convention introduced in Section 9.1.
+        \end{itemize}
+        \item Note that since this is not a \textbf{noncommutative power series ring}, we assume that all polynomials have a finite degree.
+    \end{itemize}
+    \item \textbf{Free $\bm{R}$-algebra} (on the set $S$): The free $R$-module on the set $\{1\}\sqcup S\sqcup S\times S\sqcup S\times S\times S\sqcup\cdots$. \emph{Denoted by} $\bm{F_R(S)}$.
+    \begin{itemize}
+        \item Elements of the set include $1$, $X_s$ for all $s\in S$, $X_sX_t$ for all $s,t\in S$, etc.
+        \item Multiplication is still associative: $(X_{s_1}X_{s_2})(X_{t_1}X_{t_2}X_{t_3})=X_{s_1}X_{s_2}X_{t_1}X_{t_2}X_{t_3}$.
+        \item We still have commutativity for coefficients (i.e., $X_sc=cX_s$ for all $c\in R$ and $s\in S$) since $F_R(S)$ is an $R$-algebra.
+        \begin{itemize}
+            \item Did Nori qualify this?? Did he say that we do not write the $c_i$'s at the front any more?
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{$\bm{R}$-algebra homomorphism}: A function $h:A\to B$, where $A,B$ are $R$-algebras, such that\dots
+    \begin{enumerate}[label={(\roman*)}]
+        \item $h$ is a ring homomorphism;
+        \item $h(c)=c$ for all $c\in R$.
+    \end{enumerate}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[scale=1.6]
+            \small
+            \node (R) at (0,1) {$R$};
+            \node (A) at (1,1) {$A$};
+            \node (B) at (1,0) {$B$};
+    
+            \footnotesize
+            \draw [->] (R) -- node[above]         {$\phi$}         (A);
+            \draw [->] (A) -- node[right]         {$h$}            (B);
+            \draw [->] (R) -- node[below left]{$\tilde{\phi}$} (B);
+        \end{tikzpicture}
+        \caption{Visualizing $R$-algebra homomorphisms.}
+        \label{fig:RalgHom}
+    \end{figure}
+    \begin{itemize}
+        \item For clarity: If we momentarily drop our convention of suppressing $\phi$, (ii) means $h(\phi(c))=\tilde{\phi}(c)$ for all $c\in R$.
+        \item Alternate form of (ii): $h$ is an $R$-module homomorphism.
+        \begin{itemize}
+            \item This expresses the idea that the action of elements $c\in R$ on $A$ is preserved under $h$, i.e., if $c\cdot a=ca$, then $ch(a)=c\cdot h(a)=h(c)\cdot h(a)=h(c\cdot a)=h(ca)$.
+        \end{itemize}
+    \end{itemize}
+    \item Universal property of $F_R(S)$: Consider $i:S\to F_R(S)$ defined by $i(s)=X_s$. It is a map of sets since $S$ has no additional structure. Given an $R$-algebra $A$ and function $j:S\to A$, there exists a unique $R$-algebra homomorphism $h:F_R(S)\to A$ such that the following diagram commutes, i.e., $h(i(s))=j(s)$ for all $s\in S$.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.6]
+            \small
+            \node (R) at (0,1) {$S$};
+            \node (A) at (1,1) {$F_R(S)$};
+            \node (B) at (1,0) {$A$};
+    
+            \footnotesize
+            \draw [->] (R) -- node[above]     {$i$} (A);
+            \draw [->] (A) -- node[right]     {$h$} (B);
+            \draw [->] (R) -- node[below left]{$j$} (B);
+        \end{tikzpicture}
+        \caption{Universal property of $F_R(S)$.}
+        \label{fig:univPropFRS}
+    \end{figure}
+    \item The principle of this universal property is the same as that of the universal property of polynomial rings. Seeing this:
+    \begin{itemize}
+        \item Since $i(s)=X_s$, the statement $h(i(s))=j(s)$ becomes $h(X_s)=j(s)$ for all $s\in S$.
+        \item This combined with the fact that $h$ is an $R$-algebra homomorphism forces both existence and uniqueness for a reason symmetric to the proof of the universal property of polynomial rings in Lecture 1.2.
+    \end{itemize}
+    \item We now develop a related object that appears in Chapter 10 called a \textbf{tensor algebra}.
+    \begin{itemize}
+        \item A tensor algebra is very similar to a noncommutative polynomial ring.
+    \end{itemize}
+    \item \textbf{Tensor algebra} (of $M$): A pair $(A,\alpha)$, where $A$ an $R$-algebra and $\alpha:M\to A$ is an $R$-module homomorphism. \emph{Denoted by} $\bm{T(M)}$.
+    \item Universal property of the tensor algebra $T(M)$: $T(M)$ is an $R$-algebra, $u:M\to T(M)$ is an $R$-module homomorphism such that for all pairs $(A,\alpha:M\to A)$, there exists a unique $R$-algebra homomorphism $f:T(M)\to A$ such that the following diagram commutes, i.e., $f\circ u=\alpha$.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.6]
+            \small
+            \node (R) at (0,1) {$M$};
+            \node (A) at (1,1) {$T(M)$};
+            \node (B) at (1,0) {$A$};
+    
+            \footnotesize
+            \draw [->] (R) -- node[above]     {$u$}      (A);
+            \draw [->] (A) -- node[right]     {$f$}      (B);
+            \draw [->] (R) -- node[below left]{$\alpha$} (B);
+        \end{tikzpicture}
+        \caption{Universal property of $T(M)$.}
+        \label{fig:univPropTM}
+    \end{figure}
+    \item Example: We now work out one specific case.
+    \item Let's construct $T(M)$ when $M$ is a free $R$-module with $S$ as the basis.
+    \begin{itemize}
+        \item We have
+        \begin{equation*}
+            M = \left\{ \sum_{s\in S}c_se_s:c_s\in R,\ S\text{ is finite} \right\}
+        \end{equation*}
+        \item There's only finitely many nonzero $s$??
+        \item If $S$ is finite, then $M=R^S$??
+        \item Let $\alpha:M\to A$ with $M$ as above.
+        \item To specify $\alpha$, you need only specify its action on a basis of $M$; thus, there is a bijection between the collection of all $\alpha$ and the set $S$ (??) given by $j$??
+        \item This induces a ring homomorphism $h:F_R(S)\to A$ given by $h(X_s)=a_s$.
+        \item Here, $T(M)=F_R(S)$.
+        \item How do you know it doesn't depend on the basis chosen? By the universal property (is this what he said??).
+        \item Any module is the quotient of a free module.
+    \end{itemize}
+    \item There will be more questions on the final like questions 1-2 on the midterm!!!
+    \item Certain zeroes exist in $F_R(S)$.
+    \item We now start on Section 10.4 and exterior algebras.
+    \item $F_R(S)/\gen{X_sX_t-X_tX_s:s,t\in S}$ is the two-sided ideal generated by the given elements. It is the usual/commutative polynomial ring in the $X_s$ ($s\in S$)??
+    \item We now move on to the Grassmann algebra.
+    \item In calculus, we get things like $v\wedge v=0$ and $v_1\wedge v_2=-v_2\wedge v_1$.
+    \item $M$ will always be a free $R$-module on the set $S$ (i.e., with basis $S$) for us.
+    \item We now define the \textbf{exterior algebra} of $M$.
+    \item \textbf{Exterior algebra} (of $M$): A pair $(A,\alpha)$ where $A$ is an $R$-algebra and $\alpha:M\to A$ is an $R$-module homomorphism such that for all $m\in M$, $\alpha(m)^2=0$. \emph{Denoted by} $\bm{\bigwedge(M)}$.
+    \begin{itemize}
+        \item We can prove the existence and uniqueness of $\bigwedge(M)$.
+    \end{itemize}
+    \item Conditions (is this the universal property??).
+    \begin{enumerate}
+        \item Condition (*) holds for the horizontal arrow, i.e., for $\bigwedge(M)$, $u(m)^2=0$ for all $m\in M$.
+        \item If (*) holds for $(A,\alpha)$, then there exists a unique $h$ such that the diagram below commutes.
+    \end{enumerate}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.6]
+            \small
+            \node (R) at (0,1) {$M$};
+            \node (A) at (1,1) {$\bigwedge(M)$};
+            \node (B) at (1,0) {$A$};
+    
+            \footnotesize
+            \draw [->]        (R) -- node[above]     {$u$}      (A);
+            \draw [->,dashed] (A) -- node[right]     {$h$}      (B);
+            \draw [->]        (R) -- node[below left]{$\alpha$} (B);
+        \end{tikzpicture}
+        \caption{Existence and uniqueness of the exterior algebra.}
+        \label{fig:existUniqueExAlg}
+    \end{figure}
+    \item $h$ is an $R$-algebra homomorphism such that $(h\circ u)(m)=\alpha(m)$ for all $m\in M$.
+    \item Rather than write out the proof, just ask, "why not take $F_R(S)=\bigwedge(M)$?"
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.6]
+            \small
+            \node (M) at (0,1)   {$M$};
+            \node (F) at (1,1)   {$F_R(S)$};
+            \node (A) at (1,0)   {$A$};
+            \node (E) at (2,0.5) {$\bigwedge(M)$};
+    
+            \footnotesize
+            \draw [->] (M) -- node[above]      {$i$}       (F);
+            \draw [->] (F) -- node[right]      {$h$}       (A);
+            \draw [->] (M) -- node[below left] {$\alpha$}  (A);
+            \draw [->] (F) --                              (E);
+            \draw [->] (E) -- node[below right]{$\bar{h}$} (A);
+        \end{tikzpicture}
+        \caption{The free $R$-algebra on the set $S$ and the exterior algebra.}
+        \label{fig:FRSexAlg}
+    \end{figure}
+    \begin{itemize}
+        \item Consider the above commutative diagram.
+        \item Then replace $F_R(S)$ by $F_R(S)/\gen{i(m)^2:m\in M}=\bigwedge(M)$ and extend the commutative diagram.
+    \end{itemize}
+    \item Let $m=\sum_{s\in S}c_se_s\mapsto\sum_{s\in S}c_sX_s$. We have
+    \begin{equation*}
+        \left( \sum_sc_sX_s \right)^2 = \sum_{s\in S}c_s^2X_s^2+\sum_{\substack{\{s,t\}\\s\neq t}}c_sc_t(X_sX_t+X_tX_2)
+    \end{equation*}
+    \item For the moment, the $R$-module spanned modules $X_s^2$ for all $s\in S$, including $X_sX_t+X_tX_s$ and $(X_s+X_t)^2=X_s^2+X_t^2+(X_sX_t+X_tX_s)$.
+    \item Something on the difference between $v^2=0$ and $v_1v_2=-v_2v_1$ in normal calculus and what we've done today...??
+\end{itemize}
+
+
+
 \section{Chapter 12: Modules over Principal Ideal Domains}
 \emph{From \textcite{bib:DummitFoote}.}
 \setcounter{bookch}{12}
