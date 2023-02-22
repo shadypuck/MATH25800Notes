@@ -224,5 +224,249 @@
 
 
 
+\section{Chapter 12: Modules over Principal Ideal Domains}
+\emph{From \textcite{bib:DummitFoote}.}
+\setcounter{bookch}{12}
+\setcounter{proposition}{11}
+\subsection*{Section 12.2: The Rational Canonical Form}
+\begin{itemize}
+    \item As stated previously, we apply the results of Section 12.1 to $F[X]$-modules herein.
+    \item Let $V$ be a finite dimensional vector space over $F$ of dimension $N$. Let $(V,T)$ be an $F[X]$-module.
+    \item Since $V$ is finite dimensional, it is finitely generated as an $F$-module and hence also as an $F[X]$-module.
+    \item If $V$ were free, it would be isomorphic to a direct sum of copies of $F[X]$ (by Theorem \ref{trm:12.5.1}) and hence be infinite dimensional.
+    \begin{itemize}
+        \item Thus, $V$ is a torsion $F[X]$-module.
+        \item Theorem \ref{trm:12.5.3}: $V$ is isomorphic to the direct sum of cyclic, torsion $F[X]$-modules.
+        \item This decomposition will allow us to choose a basis for $V$ with respect to which the matrix representation for the linear transformation $T$ is in a specific simple form.
+    \end{itemize}
+    \item \textbf{Rational canonical form} (of a matrix): The form obtained when we use the invariant factor decomposition of the relevant vector space.
+    \item \textbf{Jordan canonical form} (of a matrix): The form obtained when we use the elementary divisor decomposition (and when $F$ contains all the eigenvalues of $T$).
+    \item Theorem \ref{trm:12.9} ensures that the RCF and JCF are unique, justifying the labeling of them as \emph{canonical}.
+    \item An application of canonical forms: Classifying distinct linear transformations.
+    \begin{itemize}
+        \item Two matrices that represent the same linear transformation (hence are similar) have the same RCF and JCF.
+        \item This is another instance of the structure of the space being acted upon (e.g., the invariant factor decomposition of $V$) providing information on the algebraic objects (e.g., linear transformations) which are acting.
+    \end{itemize}
+    \item \textbf{Representation Theory of Groups}: The special case of algebraic objects acting on spaces concerning groups acting on vector spaces.
+    % \item \textbf{Eigenvalue}: An element $\lambda\in F$ corresponding to a linear transformation $T$ such that there exists a nonzero vector $v\in V$ satisfying $Tv=\lambda v$. \emph{Denoted by} $\bm{\lambda}$.
+    % \item \textbf{Eigenvector}: The vector $v$ in the above definition.
+    % \item \textbf{Eigenspace} (of a linear transformation corresponding to an eigenvalue): The set of all eigenvectors of a linear transformation $T$ corresponding to a particular eigenvalue $\lambda$ of $T$. \emph{Given by}
+    % \begin{equation*}
+    %     \{v\in V:Tv=\lambda v\}
+    % \end{equation*}
+    \item \textbf{Eigenvalues}, \textbf{eigenvectors}, \textbf{eigenspaces}, and the \textbf{determinant} are defined for linear transformations and analogously for matrices.
+    \item Properties of eigenvalues.
+    \begin{proposition}\label{prp:12.12}
+        TFAE.
+        \begin{enumerate}
+            \item $\lambda$ is an eigenvalue of $T$.
+            \item $\lambda I-T$ is a singular linear transformation of $V$.
+            \item $\det(\lambda I-T)=0$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item \textbf{Characteristic polynomial} (of a linear transformation): The polynomial defined as follows, where $T$ is the linear transformation in question. \emph{Denoted by} $\bm{c_T(X)}$. \emph{Given by}
+    \begin{equation*}
+        c_T(X) = \det(XI-T)
+    \end{equation*}
+    % \item \textbf{Characteristic polynomial} (of $A$): The polynomial defined as follows. \emph{Denoted by} $\bm{c_A(X)}$. \emph{Given by}
+    % \begin{equation*}
+    %     c_A(X) = \det(XI-A)
+    % \end{equation*}
+    \begin{itemize}
+        \item Defined similarly for matrices $A$.
+        \item A monic polynomial of degree $\dim V$.
+        \item The eigenvalues are the roots.
+    \end{itemize}
+    \item \textbf{Minimal polynomial} (of of a linear transformation): The unique monic polynomial which generates the ideal $\Ann(V)$ in $F[X]$. \emph{Denoted by} $\bm{m_T(X)}$.
+    \begin{itemize}
+        \item Defined similarly for matrices $A$.
+        \item We know that such a polynomial exists by Theorem \ref{trm:12.5.3}.
+        \item Exercise 12.2.5: The degree of the minimal polynomial is at most $n^2$.
+    \end{itemize}
+    \item \textbf{Cayley-Hamilton Theorem}: The minimal polynomial for $T$ is a divisor of the characteristic polynomial for $T$.
+    \begin{itemize}
+        \item Thus, the degree of the minimal polynomial is at most $n$.
+    \end{itemize}
+    \item We now build up to the \textbf{rational canonical form}.
+    \item Introduction.
+    \begin{itemize}
+        \item Theorem \ref{trm:12.5}: There exists an isomorphism
+        \begin{equation}\label{eqn:12.1}
+            V \cong F[X]/(a_1(X))\oplus\cdots\oplus F[X]/(a_m(X))
+        \end{equation}
+        \item The invariant factors $a_i$ are only determined up to units, but since $F[X]^\times=F-\{0\}$, we can make the $a_i$ unique by requiring them to be monic.
+        \item Theorem \ref{trm:12.5.3} asserts that $(a_m(X))=\Ann(V)$.
+    \end{itemize}
+    \item The minimal polynomial and the invariant factors.
+    \begin{proposition}\label{prp:12.13}
+        The minimal polynomial $m_T(X)$ is the largest invariant factor of $V$. All of the invariant factors of $V$ divide $m_T(X)$.
+    \end{proposition}
+    \item We now build up to calculating the minimal polynomial of $T$ and the other invariant factors.
+    \item Choosing a basis for each of the summands in Equation \ref{eqn:12.1}.
+    \begin{itemize}
+        \item Recall that the action of $T$ on $V$ is equivalent to the action of $X$ on each summand.
+        \item Recall also (from the Example following Proposition \ref{prp:11.1}) that $1,\bar{X},\bar{X}^2,\dots,\bar{X}^{k-1}$ gives a basis of $F[X]/(a(X))$, where $a(X)=X^k+b_{k-1}X^{k-1}+\cdots+b_0$.
+        \item With respect to this basis, the linear transformation $T=l_X$ acts via
+        \begin{align*}
+            1 &\mapsto \bar{X}\\
+            \bar{X} &\mapsto \bar{X}^2\\
+            \bar{X}^2 &\mapsto \bar{X}^3\\
+            &\hspace{2.5mm}\vdots\\
+            \bar{X}^{k-2} &\mapsto \bar{X}^{k-1}\\
+            \bar{X}^{k-1} &\mapsto \bar{X}^k = -b_0-b_1\bar{X}-\cdots-b_{k-1}\bar{X}^{k-1}
+        \end{align*}
+        \begin{itemize}
+            \item The last equality holds since $a(\bar{X})=0$ in $F[X]/(a(X))$.
+        \end{itemize}
+        \item With respect to this basis, the matrix for multiplication by $X$ is called the \textbf{companion matrix} of $a(X)$.
+        \item Applying this procedure to each of the cyclic modules on the right side of Equation \ref{eqn:12.1} under an appropriate basis yields the \textbf{direct sum} of the companion matrices for the invariant factors as the matrix of $T$.
+        \item Note that this matrix is uniquely determined by the invariant factors of the $F[X]$-module $V$. These invariant factors, in turn, uniquely determine $V$ up to isomorphism by Theorem \ref{trm:12.9}.
+    \end{itemize}
+    \item \textbf{First subdiagonal}: The set of entries in a matrix which lie directly below a diagonal entry. \emph{Also known as} \textbf{subdiagonal}.
+    \item \textbf{Companion matrix} (of a polynomial): The $k\times k$ matrix, pertaining to the polynomial $a(X)=X^k+b_{k-1}X^{k-1}+\cdots+b_0$, which consists of 1's down the first subdiagonal, $-b_0,\dots,-b_{k-1}$ down the last column, and zeros elsewhere. \emph{Denoted by} $\bm{\mathcal{C}_{a(X)}}$. \emph{Given by}
+    \begin{equation*}
+        \mathcal{C}_{a(X)} =
+        \begin{pmatrix}
+            0      & 0      & \cdots & \cdots & \cdots & -b_0\\
+            1      & 0      & \cdots & \cdots & \cdots & -b_1\\
+            0      & 1      & \cdots & \cdots & \cdots & -b_2\\
+            0      & 0      & \ddots &        &        & \vdots\\
+            \vdots & \vdots &        & \ddots &        & \vdots\\
+            0      & 0      & \cdots & \cdots & 1      & -b_{k-1}\\
+        \end{pmatrix}
+    \end{equation*}
+    \item \textbf{Direct sum} (of matrices): The block diagonal matrix consisting of the component matrices.
+    \begin{itemize}
+        \item See the RCF example below.
+    \end{itemize}
+    \item \textbf{Rational canonical form} (of a matrix): A matrix that is the direct sum of companion matrices for monic polynomials $a_1(X),\dots,a_M(X)$ of degree at least one with $a_1(X)\mid a_2(X)\mid\cdots\mid a_m(X)$. \emph{Also known as} \textbf{RCF}. \emph{Given by}
+    \begin{equation*}
+        \begin{pmatrix}
+            \mathcal{C}_{a_1(X)} &  &  & \\
+             & \mathcal{C}_{a_2(X)} &  & \\
+             &  & \ddots & \\
+             &  &  & \mathcal{C}_{a_m(X)}\\
+        \end{pmatrix}
+    \end{equation*}
+    \item \textbf{Invariant factors} (of the RCF): The polynomials $a_i$ in the above definition.
+    \item Definition of a \textbf{block diagonal} matrix.
+    \item \textbf{Rational canonical form} (of a linear transformation): The matrix representing $T$ which is in rational canonical form.
+    \item \textcite{bib:DummitFoote} proves that the rational canonical form is unique by means of running the generation process in reverse.
+    \begin{theorem}[Rational Canonical Form for Linear Transformations]\label{trm:12.14}
+        Let $V$ be a finite dimensional vector space over the field $F$, and let $T$ be a linear transformation of $V$.
+        \begin{enumerate}
+            \item There is a basis for $V$ with respect to which the matrix for $T$ is in rational canonical form, i.e., is a block diagonal matrix whose diagonal blocks are the companion matrices for monic polynomials $a_1(X),\dots,a_m(X)$ of degree at least one with $a_1(X)\mid a_2(X)\mid\cdots\mid a_m(X)$.
+            \item The rational canonical from for $T$ is unique.
+        \end{enumerate}
+    \end{theorem}
+    \item Why the \emph{rational} canonical form?
+    \begin{itemize}
+        \item "Rational" refers to the fact that this canonical form is calculated entirely within the field $F$ and exists for any linear transformation $T$.
+        \item This is not the case for the JCF, which only exists if the field $F$ contains the eigenvalues for $T$.
+    \end{itemize}
+    \item Similar matrices, modules, and the RCF.
+    \begin{theorem}\label{trm:12.15}
+        Let $S$ and $T$ be linear transformations of $V$. Then TFAE.
+        \begin{enumerate}
+            \item $S$ and $T$ are similar linear transformations.
+            \item The $F[X]$-modules obtained from $V$ via $S$ and via $T$ are isomorphic $F[X]$-modules.
+            \item $S$ and $T$ have the same rational canonical form.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Observation: Any $n\times n$ matrix $A$ with entries in $F$ arises as the matrix for some linear transformation $T$ of an $n$-dimensional vector space.
+    \item This observation allows us to restate Theorems \ref{trm:12.14}-\ref{trm:12.15} in the language of matrices.
+    \begin{theorem}[Rational Canonical Form for Matrices]\label{trm:12.16}
+        Let $A$ be an $n\times n$ matrix over the field $F$.
+        \begin{enumerate}
+            \item The matrix $A$ is similar to a matrix in rational canonical form, i.e., there is an invertible $n\times n$ matrix $P$ over $F$ such that $P^{-1}AP$ is a block diagonal matrix whose diagonal blocks are the companion matrices for monic polynomials $a_1(X),\dots,a_m(X)$ of degree at least one with $a_1(X)\mid a_2(X)\mid\cdots\mid a_m(X)$.
+            \item The rational canonical from for $A$ is unique.
+        \end{enumerate}
+    \end{theorem}
+    \begin{theorem}\label{trm:12.17}
+        Let $A,B$ be $n\times n$ matrices over the field $F$. Then $A,B$ are similar iff $A,B$ have the same RCF.
+    \end{theorem}
+    \item \textbf{Invariant factors} (of a matrix): The invariant factors of the matrix's RCF.
+    \item RCF and similarity questions for $A$ do not depend on which field contains the entries of $A$.
+    \begin{corollary}\label{cly:12.18}
+        Let $A,B$ be two $n\times n$ matrices over a field $F$, and suppose $F$ is a subfield of the field $K$.
+        \begin{enumerate}
+            \item The rational canonical form of $A$ is the same whether it is computed over $K$ or over $F$. The minimal and characteristic polynomials and the invariant factors of $A$ are the same whether $A$ is considered as a matrix over $F$ or as a matrix over $K$.
+            \item The matrices $A,B$ are similar over $K$ iff they are similar over $F$, i.e., there exists an invertible $n\times n$ matrix $P$ with entries from $K$ such that $B=P^{-1}AP$ iff there exists an (in general different) invertible $n\times n$ matrix $Q$ with entries from $F$ such that $B=Q^{-1}AQ$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Takeaways from Corollary \ref{cly:12.18}.
+    \begin{itemize}
+        \item The RCF for $A$ is an $n\times n$ matrix with entries in the smallest field containing the entries of $A$.
+        \item Further explanation of the word \emph{rational}: The RCF is the same matrix even if we allow conjugation of $A$ by nonsingular matrices whose entries come from larger fields.
+    \end{itemize}
+    \item Characteristic polynomials and invariant factors.
+    \begin{lemma}\label{lem:12.19}
+        Let $a(X)\in F[X]$ be any monic polynomial.
+        \begin{enumerate}
+            \item The characteristic polynomial of the companion matrix of $a(X)$ is $a(X)$.
+            \item If $M$ is the block diagonal matrix
+            \begin{equation*}
+                M =
+                \begin{pmatrix}
+                    A_1 & 0 & \cdots & 0\\
+                    0 & A_2 & \cdots & 0\\
+                    \vdots & \vdots & \ddots & \vdots\\
+                    0 & 0 & \cdots & A_k\\
+                \end{pmatrix}
+            \end{equation*}
+            given by the direct sum of matrices $A_1,\dots,A_k$, then the characteristic polynomial of $M$ is the product of the characteristic polynomials of $A_1,\dots,A_k$.
+        \end{enumerate}
+        \begin{proof}
+            See the exercises.
+        \end{proof}
+    \end{lemma}
+    \begin{proposition}\label{prp:12.20}
+        Let $A$ be an $n\times n$ matrix over the field $F$.
+        \begin{enumerate}
+            \item The characteristic polynomial of $A$ is the product of all the invariant factors of $A$.
+            \item (The Cayley-Hamilton Theorem) The minimal polynomial of $A$ divides the characteristic polynomial of $A$.
+            \item The characteristic polynomial of $A$ divides some power of the minimal polynomial of $A$. In particular, these polynomials have the same roots, not counting multiplicities.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item The relations in Proposition \ref{prp:12.20} are frequently useful in determining the invariant factors of $A$, particularly for $\deg(A)$ small.
+    \item \textbf{Elementary row and column operations}: The following three operations, where $A$ is an $n\times n$ matrix over the field $F$ and $XI-A$ is an $n\times n$ matrix with entries in $F[X]$. \emph{Given by}
+    \begin{enumerate}[label={(\roman*)}]
+        \item Interchanging two rows or columns.
+        \item Adding a multiple (in $F[X]$) of one row or column to another.
+        \item Multiplying any row or column by a unit in $F[X]$, i.e., by a nonzero element in $F$.
+    \end{enumerate}
+    \item \textbf{Smith Normal Form} (of a matrix): The following form of the $n\times n$ matrix $XI-A$ with entries from $F[X]$, where $a_1,\dots,a_m$ are the invariant factors of $A$. \emph{Given by}
+    \begin{equation*}
+        \begin{pmatrix}
+            1\\
+            & \ddots\\
+            && 1\\
+            &&& a_1(X)\\
+            &&&& a_2(X)\\
+            &&&&& \ddots\\
+            &&&&&& a_m(X)\\
+        \end{pmatrix}
+    \end{equation*}
+    \item Computing the invariant factors in general.
+    \begin{theorem}\label{trm:12.21}
+        Let $A$ be an $n\times n$ matrix over the field $F$. Using the three elementary row and column operations above, the $n\times n$ matrix $XI-A$ is with entries in $F[X]$ can be put into Smith Normal Form.
+    \end{theorem}
+    \item \textcite{bib:DummitFoote} provides algorithms for computing the invariant factor decomposition and the RCF. Return to later.
+\end{itemize}
+
+
+
 
 \end{document}
