@@ -412,11 +412,15 @@
 
         % Strategy: Break it all the way down to basic primes, then build primes back up into certain numbers, sorted by power.
 
+        % The finititude of primes: We actually need the direct sum consideration! Take your generators $v_1,\dots,v_n$ of $\Tor(M)=M$. Map these isomorphically into your direct sum. Each of the images will be a direct sum nonzero elements from only finitely (say $m_1$) many $M_{(p)}$. Then the total number of primes is $\sum_{i=1}^nm_i$. And that must generate the direct sum, so the direct sum must only contain finitely many $p$-primary components. Define $\ell=\sum_{i=1}^nm_i$ and move on.
+
+
         Let $M$ be an arbitrary finitely generated $R$-torsion module. Since $M=\Tor(M)$, a proposition from last lecture implies that
         \begin{equation*}
             M = \Tor(M) \cong \bigoplus_{(p)}M_{(p)}
         \end{equation*}
-        Let $p_1,\dots,p_\ell$ be the set of distinct primes for which $M_{(p)}\neq 0$. Then
+        We will first show that the above direct sum is only taken over finitely many primes. Let $v_1,\dots,v_n$ be a finite generating set of $M$. By the above isomorphism, each of these elements of $M$ maps to a direct sum of nonzero elements from some subset of the $M_{(p)}$'s. Importantly, the image of $v_i$ must be a \emph{finite} direct sum by the infinite generalization definition of the direct sum. Let $w_i$ denote the number of $M_{(p)}$'s that donate a nonzero element to the direct sum defining the image of $v_i$ under the isomorphism. Then the total number of $M_{(p)}$'s which donate a nonzero element is \emph{at most} $w_1+\cdots+w_n$, a finite number, so we can eliminate all other $M_{(p)}$'s from the direct sum and know that an isomorphism still holds (because $N\cong N\oplus\{0\}$ in general).\par
+        Having established the finiteness of the involved primes, let $p_1,\dots,p_\ell$ be the set of distinct primes for which $M_{(p)}\neq 0$. Then
         \begin{equation*}
             M \cong M_{(p_1)}\oplus\cdots\oplus M_{(p_\ell)}
         \end{equation*}
@@ -463,6 +467,10 @@
             \item Then $M\cong R/I_1\oplus\cdots\oplus R/I_{\ell+h}$.
             \item If no $I_i=R$, define $I_{\ell+h+1},I_{\ell+h+2},\dots$ to be equal to $R$.
         \end{itemize}
+
+        Consider the $\Ann(R^h)$. It is a principal ideal since $R$ is a PID.
+
+        Can we take $R^h\cong R\oplus\cdots\oplus R=R/(0)\oplus\cdots\oplus R/(0)$, $h$ times?
     \end{proof}
     \item That concludes torsion modules over PIDs; we now do torsion modules over fields, which should be easier.
     \item \textbf{$\bm{R}$-linearly independent} (elements of $M$): A set of elements $u_1,\dots,u_\ell\in M$ such that the constraints
@@ -1329,6 +1337,20 @@
         \item To decide whether two modules are isomorphic, we must first write them in \emph{canonical} form.
     \end{itemize}
 \end{itemize}
+\setcounter{proposition}{0}
+
+
+
+\section{Appendix I: Cartesian Products and Zorn's Lemma}
+\emph{From \textcite{bib:DummitFoote}.}
+\setcounter{bookch}{1}
+\renewcommand{\thebookch}{\Roman{bookch}}
+\subsection*{Section I.1: Cartesian Products}
+\begin{itemize}
+    \item hi
+\end{itemize}
+\renewcommand{\thebookch}{\arabic{bookch}}
+\setcounter{proposition}{0}
 
 
 
