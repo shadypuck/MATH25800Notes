@@ -450,6 +450,60 @@
 
 
 
+\section{Office Hours (Nori)}
+\begin{itemize}
+    \item \marginnote{2/23:}Lecture 6.1: Proposition proof?
+    \item Lecture 6.1: $(2)\subsetneq\Z$ example?
+    \item Lecture 6.1: The end of the theorem proof.
+    \item Lecture 6.2: Does the first theorem you proved not appear in the book until Chapter 12?
+    \item Lecture 6.2: What is $A$ in the proof?
+    \item Resources for the proofs in Week 6?
+    \item Lecture 7.1: Quotient stuff.
+    \item Is my proof for Q7.1(ii) sufficiently not hand-wavey?
+    \item Question 7.7?
+    \begin{itemize}
+        \item Note: The four given submodules satisfy the $T(N)\subset N$ condition even if $M$ does not have the particular form given! It just so happens that in this case, these four are the only allowable ones.
+    \end{itemize}
+    \item Solving Question 7.7?
+    \begin{itemize}
+        \item WTS: $N=pM$ or $\ker(p_M)$.
+        \item We know that
+        \begin{align*}
+            pM &= pR/(p^2)\oplus 0&
+            \ker(p_M) &= pR/(p^2)\oplus R/(p)
+        \end{align*}
+        \item $\ker(p_M)$ is a 2D vector space over $R/(p)$.
+        \item WTS: $N\cap\ker(p_M)\neq 0$ iff $N\neq 0$.
+        \begin{itemize}
+            \item We know that $pN\subset N$ by the definition of $N$ as a submodule.
+            \item Let $n\in N$ be nonzero. Suppose $n\notin\ker(p_M)$. Then $pn\in\ker(p_M)$. We know that $pn\in N$ as well. Thus, $pn\in N\cap\ker(p_M)$.
+        \end{itemize}
+        \item $N\cap\ker(p_M)\subset\ker(p_M)$. Thus, $N\cap\ker(p_M)$ is either a 1D or a 2D vector space over $R/(p)$. We WTS that if it's 2D, then it equals $\ker(p_M)$, and if it's 1D, then it equals $pM$.
+        \item 2D case.
+        \begin{itemize}
+            \item We know that $N\cap\ker(p_M)\subset\ker(p_M)$.
+            \item 2D implies that $N\not\subsetneq\ker(p_M)$.
+            \item Thus, either $N=\ker(p_M)$ or $N\supsetneq\ker(p_M)$.
+            \item In the first case, we are done.
+            \item In the second case, we can show that this implies that $N=M$.
+        \end{itemize}
+        \item 1D case.
+        \begin{itemize}
+            \item We know that $pM\cap\ker(p_M)=p_M$.
+            \item Assume $N\neq pM$.
+            \item Then $N\cap\ker(p_M)=\gen{(pa,1)}$.
+            \item But $T$ exists, where $T:M\to M$ sends $T(1,0)=(1,0)$ and $T(0,1)=(p,1)$.
+            \item Therefore we must have $N\cap\ker(p_M)=pM$.
+        \end{itemize}
+        \item Suppose that $N\supsetneq pM$.
+        \begin{itemize}
+            \item $N/pM\subset M/pM$. Then use $T(1,0)=(1,1)$ and $T(0,1)=(0,1)$.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+
 \section{Chapter 12: Modules over Principal Ideal Domains}
 \emph{From \textcite{bib:DummitFoote}.}
 \setcounter{bookch}{12}
