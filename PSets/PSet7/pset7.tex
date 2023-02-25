@@ -13,18 +13,198 @@
 \begin{enumerate}
     \item \marginnote{2/24:}\textbf{Uniqueness of the rational canonical form.} Let $I_1\subset I_2\subset\cdots$ be a sequence of ideals in a PID $R$. Assume that there is some natural number $N$ such that $I_N=R$. Thus, if $I_i=(a_i)$, we have $a_{i+1}\mid a_i$ for all $i$ and $1=a_N=a_{N+1}=\cdots$. Let $M_i=R/I_i$, and let $M=M_1\oplus M_2\oplus\cdots$. For a prime $p$ of $R$ and for $k\geq 0$, we see that $p^kM/p^{k+1}M$ is a module over the \emph{field} $R/(p)$, and is therefore a vector space over $R/(p)$. Denote by $d(p,k)$ its dimension. Define $n_i(p)$ to be the greatest nonnegative integer such that $I_i\subset(p^{n_i})$ --- equivalently, $n_i(p)$ is the power of $p$ that occurs in the factorization of $a_i$. However, $a_i=0$ (equivalently $I_i=0$) is a possibility, in which case we put $n_i(p)=\infty$.
     \begin{enumerate}
-        \item Prove that the sequence $d(p,0),d(p,1),\dots$ determine the sequence $n_1(p),n_2(p),\dots$.
+        \item Prove that the sequence $d(p,0),d(p,1),\dots$ determines the sequence $n_1(p),n_2(p),\dots$.
+        \begin{proof}
+            % $R$ is a PID, hence prime ideals are maximal, hence $R/(p)$ is a field.
+            % Dimension: $p^kM/p^{k+1}M\cong(R/(p))^{d(p,k)}$. Also could look for a maximal linear independence group, find the cardinality of a basis, etc.
+            % Equivalently, $p^kM/p^{k+1}M$ is an $R/(p)$-module.
+            % Let $M=R/I$. Then $\dim(p^kM/p^{k+1}M)=1$ for all $k$ if $I=(0)$.
+
+            % OH w/ Callum.
+            % The $M$ in the beginning is the same $M$ as in $p^kM/p^{k+1}M$.
+            % We have $pM=(pR/I_1)\oplus(pR/I_2)\oplus\cdots$. For each $i$, factorize
+            % \begin{equation*}
+            %     a_i = u(p_1)^{e_1^{(i)}}\cdots(p_n)^{e_n^{(i)}}
+            % \end{equation*}
+            % There are a finite number of primes because finite number of $a_i$, each of which has a unique finite factorization because PID implies UFD. We have that (CRT)
+            % \begin{equation*}
+            %     p_\ell^kR/I_j \cong R/(p_1)^{e_1^{(j)}}\oplus\cdots\oplus R/(p_n)^{e_n^{(j)}}\oplus...
+            % \end{equation*}
+            % Note that $p_\ell^kR/(p_i^{e_i^{(j)}})=R/(p_i^{e_i^{(j)}})$ if $i\neq \ell$ since $R/(p)$ is a field, so $p^k$ is a unit if its nonzero, and since its not divisible by $p_i$, it's not zero.
+            % On the other hand, $p_\ell^kR/(p_\ell^{e_\ell^{(j)}})=R/(p_\ell^{\max(e_i^{(j)}-k,0)})$.
+            % To be simpler, let $M_j=N_j\oplus R/(p^{e_j})$ (still justified by the CRT). Then $p^kM=p^kM_1\oplus\cdots\oplus p^kM_{N-1}$. It follows that (if we let $\alpha=N-1$)
+            % \begin{equation*}
+            %     p^kM = [N_1\oplus R/(p^{e_1-k})]\oplus\cdots\oplus[N_\alpha\oplus R/(p^{e_\alpha-k})]
+            % \end{equation*}
+            % We have that $p^{k+1}R/(p^{e_j})\subset p^kR/(p^{e_j})\subset R/(p^{e_j})$.
+            % We know that $p^kR/(p^{e_j})=R/(p^{e_j-k})$ and $p^{k+1}R/(p^{e_j})=pR/(p^{e_j-k})$. As we keep increasing $k$, it is gonna pass more and more $e_i$'s. Each time we do, we'll drop a dimension. That allows us to determine the $e_i$'s, which are what we want. Quotienting by $p^{k+1}M$ removes all of the $N_i$'s \bigskip
+
+            % Now perform the same expansion for all $a_i$ and relabel the $\alpha$ sets of primes, some of which may overlap, to one unified set of primes $p_1,\dots,p_\ell$ with multiplicities...
+
+
+            We begin with some preliminary results.\par\smallskip
+            We first exhibit an alternate form for $M$. For all $i\geq N$, we have that $1=a_i$ and hence
+            \begin{equation*}
+                M_i = R/I_i = R/(a_i) = R/(1) = R/R \cong 0
+            \end{equation*}
+            It follows if we let $\alpha=N-1$ that
+            \begin{equation*}
+                M = M_1\oplus M_2\oplus\cdots
+                \cong M_1\oplus\cdots\oplus M_\alpha
+                = R/(a_1)\oplus\cdots\oplus R/(a_\alpha)
+            \end{equation*}
+            Since $R$ is a PID (hence a UFD) and $a_1\in R$, we know that $a_1$ has a unique factorization
+            \begin{equation*}
+                a_1 = up_1^{e_{1,1}}\cdots p_n^{e_{1,n}}
+            \end{equation*}
+            It follows by the Chinese Remainder Theorem (CRT) that
+            \begin{equation*}
+                R/(a_1) \cong R/(p_1^{e_{1,1}})\oplus\cdots\oplus R/(p_n^{e_{1,n}})
+            \end{equation*}
+            Additionally, since $a_\alpha\mid a_{\alpha-1}\mid\cdots\mid a_1$, we know that the unique factorization of \emph{every} $a_i$ will be expressed in terms of the same primes and lesser or equal (and possibly zero) exponents. Essentially, if $i<j$, then
+            \begin{align*}
+                a_i &= u'p_1^{e_{i,1}}\cdots p_n^{e_{i,n}}&
+                a_j &= u''p_1^{e_{j,1}}\cdots p_n^{e_{j,n}}
+            \end{align*}
+            where $e_{i,\ell}\geq e_{j,\ell}$ ($\ell=1,\dots,n$). Thus, by combining the last several results, we have that
+            \begin{equation*}
+                M \cong R/(a_1)\oplus\cdots\oplus R/(a_\alpha)
+                \cong \left( \bigoplus_{\ell=1}^nR/(p_\ell^{e_{1,\ell}}) \right)\oplus\cdots\oplus\left( \bigoplus_{\ell=1}^nR/(p_\ell^{e_{\alpha,\ell}}) \right)
+            \end{equation*}
+            This will be useful later.\par
+            Next, we investigate some properties of the individual quotient modules. Let $j\in\{1,\dots,n\}$ be arbitrary. Consider the ideal $pR/(p_j^{e_{i,j}})$, first where $p=p_j$. In this case, we have that
+            \begin{equation*}
+                p_jR/(p_j^{e_{i,j}}) \cong R/(p_j^{\max\{0,e_{i,j}-1\}})
+            \end{equation*}
+            Now consider the case where $p\neq p_j$. In this case, we can show that
+            \begin{equation*}
+                pR/(p_j^{e_{i,j}}) \cong R/(p_j^{e_{i,j}})
+            \end{equation*}
+            Both of these results will be useful later.\par\medskip
+            We now begin the proof in earnest.\par\smallskip
+            Let $p$ be an arbitrary prime of $R$. We divide into two cases ($p\in\{p_1,\dots,p_n\}$ and $p\notin\{p_1,\dots,p_n\}$). First, suppose that $p\in\{p_1,\dots,p_n\}$. For the sake of simplicity, let $p=p_j$. To begin, rewrite the CRT expansion of $R/(a_i)$ to
+            \begin{equation*}
+                R/(a_i) \cong \bigoplus_{\ell=1}^nR/(p_\ell^{e_{i,\ell}})
+                \cong \underbrace{\left( \bigoplus_{\substack{\ell=1\\\ell\neq j}}^nR/(p_\ell^{e_{i,\ell}}) \right)}_{N_{i,j}}\vphantom{h}\oplus R/(p_j^{e_{i,j}})
+                = N_{i,j}\oplus R/(p_j^{e_{i,j}})
+            \end{equation*}
+            for each $i\in\{1,\dots,\alpha\}$. Thus, we have that
+            \begin{equation*}
+                M \cong R/(a_1)\oplus\cdots\oplus R/(a_\alpha)
+                \cong [N_{1,j}\oplus R/(p_j^{e_{1,j}})]\oplus\cdots\oplus[N_{\alpha,j}\oplus R/(p_j^{e_{\alpha,j}})]
+            \end{equation*}
+            Let $\beta_j=\max\{i\in\{1,\dots,\alpha\}:e_{i,j}>0\}$. Then combining several previous results, we have that
+            \begin{equation*}
+                p^kM \cong [N_{1,j}\oplus R/(p_j^{\max\{0,e_{1,j}-k\}})]\oplus\cdots\oplus[N_{\beta_j,j}\oplus R/(p_j^{\max\{0,e_{\beta_j,j}-k\}})]\oplus N_{\beta_j+1,j}\oplus\cdots\oplus N_{\alpha,j}
+            \end{equation*}
+            and similarly for $k+1$. Note that each $N_{i,j}$ is unchanged under left multiplication by $p^k$ because all of its component $R/(p_\ell^{e_{i,\ell}})$'s are unchanged under left multiplication by the coprime element $p_j$, as discussed above. It follows that
+            \begin{multline*}
+                p^kM/p^{k+1}M \cong (R/(p_j^{\max\{0,e_{1,j}-k\}}))/(R/(p_j^{\max\{0,e_{1,j}-k-1\}}))\\
+                \oplus\cdots\oplus(R/(p_j^{\max\{0,e_{\beta_j,j}-k\}}))/(R/(p_j^{\max\{0,e_{\beta_j,j}-k-1\}}))
+            \end{multline*}
+            since quotients of identical submodules in a direct sum are equal to zero, and these can be isomorphismed out of the quotient direct sum. Additionally, we have that
+            \begin{equation*}
+                (R/(p_j^{\max\{0,e_{i,j}-k\}}))/(R/(p_j^{\max\{0,e_{i,j}-k-1\}})) \cong R/(p_j)
+            \end{equation*}
+            for $k<e_{i,j}$ and
+            \begin{equation*}
+                (R/(p_j^{\max\{0,e_{i,j}-k\}}))/(R/(p^{\max\{0,e_{i,j}-k-1\}})) \cong (R/R)/(R/R)
+                \cong 0/0
+                \cong 0
+            \end{equation*}
+            for $k\geq e_{i,j}$ ($i=1,\dots,\beta_j$).\par
+            We are now prepared to count dimensions in $p^kM/p^{k+1}M$, i.e., to describe the desired relationship between the $d$'s and $n_i$'s. By the above and the assumption that $e_{i,j}\geq 1$, $p^0M/p^{0+1}M$ is a $\beta_j$-dimensional vector space over the field $R/(p)$. As we increase $k$, eventually $k$ will equal $e_{\beta_j,j}$. At this point, we will have $d(p,k-1)>d(p,k)$. In particular, suppose $d(p,k)=d(p,k-1)-\gamma$. Then $e_{\beta_j,j}=\cdots=e_{\beta_j-\gamma+1,j}$ and $n_{\beta_j}(p)=\cdots=n_{\beta_j-\gamma+1}(p)=e_{\beta_j,j}=k$. Continuing on, eventually we will get to $k=e_{\beta_j-\gamma,j}$. The change in the dimension $d$ here will reveal the values of $n_{\beta_j-\gamma}(p)$ and possibly some $n_{\beta_j-\gamma-1}(p),n_{\beta_j-\gamma-2}(p),\dots$. Once we are past $e_{1,j}$, we could raise $k$ infinitely high and still not alter the identity of the vector space any more (specifically as pertains to $i\in\{\beta_j+1,\dots,\alpha\}$). Thus, we relate $n_i(p)$ and $d(p,k)$ by stating that
+            \begin{equation*}
+                \boxed{n_i(p) = \min\{k:d(p,k)<i\}}
+            \end{equation*}
+            Note that for $i\in\{\beta_j+1,\dots,\alpha\}$, this definition has an interpretation that may still make some sense. If $i>\beta_j$, then $\{k:d(p,k)<i\}=\emptyset$ since $d(p,k)\geq 0$ for all $k$ by definition. In particular, since it would be incorrect to say that such an empty set has minimum equal to any integer, we may as well adopt the convention that $\min\emptyset$ is greater than all of the integers, i.e., $\min\emptyset=\infty$.\par\smallskip
+            Now suppose that $p\notin\{p_1,\dots,p_n\}$, then we have by the above that
+            \begin{equation*}
+                pM = \left( \bigoplus_{j=1}^npR/(p_j^{e_{1,j}}) \right)\oplus\cdots\oplus\left( \bigoplus_{j=1}^npR/(p_j^{e_{\alpha,j}}) \right)
+                \cong \left( \bigoplus_{j=1}^nR/(p_j^{e_{1,j}}) \right)\oplus\cdots\oplus\left( \bigoplus_{j=1}^nR/(p_j^{e_{\alpha,j}}) \right)
+            \end{equation*}
+            It follows inductively that
+            \begin{align*}
+                p^kM &\cong \left( \bigoplus_{j=1}^nR/(p_j^{e_{1,j}}) \right)\oplus\cdots\oplus\left( \bigoplus_{j=1}^nR/(p_j^{e_{\alpha,j}}) \right)\\
+                p^{k+1}M &\cong \left( \bigoplus_{j=1}^nR/(p_j^{e_{1,j}}) \right)\oplus\cdots\oplus\left( \bigoplus_{j=1}^nR/(p_j^{e_{\alpha,j}}) \right)
+            \end{align*}
+            Thus, since $p^kM=p^{k+1}M$, we have that $p^kM/p^{k+1}M=0$ for all $k\in\Zg$. Therefore, $d(p,k)=0$ for all $k\in\Zg$ and thus, consistent with the above (under the convention $\beta_j=0$), we may take $n_i(p)=\infty$ ($i=1,\dots,\alpha$).
+        \end{proof}
         \item Deduce that if $M\cong N$ where $N=N_1\oplus N_2\oplus\cdots$ and $N_i=R/J_i$ for an increasing sequence of ideals $J_1\subset J_2\subset\cdots$, then $I_n=J_n$ for all $n\in\N$.
+        \begin{proof}
+            % Let $J_i=(b_i)$. Then $b_2\mid b_1$, $b_3\mid b_2$, \dots. We may factor $b_1=vq_1^{f_{1,1}}\cdots q_m^{f_{1,m}}$.
+            % We know that the $d$'s are preserved, so the $n$'s are preserved, so we have the desired result.
+            % Consider $J_1$. We know that $N=R/(b_1)\oplus\cdots$. We can expand $R/(b_1)=R/(p_1^{e_{1,1}})\oplus\cdots\oplus R/(p_n^{e_{1,n}})$ using the CRT. Consider $p_1^kN/p_1^{k+1}N\cong p_1^kM/p_1^{k+1}M$. Clearly, the sequence of $d$'s will be the same for both.
+            % We could induct on the number of submodules in the decomposition, in theory. But then how would we treat the infinite case?
+            % $\Ann(M)=\Ann(N)=(a_1)$. $b_1$ annihilates $N\cong M$. There's those two. $I_1=J_1$. Thus, all of the $b_i$ are composed of products $p_1\cdots p_n$, too!! Thus we can apply the condition from part (i). For $p_1$, for instance, augmenting $k$ gives information on each $e_{i,1}$, specifically that they're determined as in $a$..
+
+            Since $R$ is a PID, each $J_i=(b_i)$ for some $b_i\in R$. Moreover, the increasing sequence condition implies the divisibility condition $b_2\mid b_1$, $b_3\mid b_2$, etc. Since
+            \begin{equation*}
+                N = R/(b_1)\oplus R/(b_2)\oplus\cdots
+            \end{equation*}
+            this divisibility condition implies that $b_1$ annihilates each $R/(b_i)$ and, hence, $N$ itself. Moreover, any factor of $b_1$ would miss some part of $R/(b_1)$, so $b_1$ is minimal. Thus, $\Ann(N)=(b_1)$. We can show in an analogous manner using the analogous conditions on $M$ that $\Ann(M)=(a_1)$. But since $M\cong N$, we have that
+            \begin{align*}
+                (b_1) = \Ann(N) &= \Ann(M) = (a_1)\\
+                b_1 &= a_1
+            \end{align*}
+            In particular, this proves that $I_1=J_1$. More importantly, however, it pairs with the divisibility condition to demonstrate that the prime factorization of each $b_i$ is a product of the same $n$ primes $p_1,\dots,p_n$. These primes in the factorizations will be raised to certain powers that are bounded by $e_{1,1},\dots,e_{1,n}$, respectively.\par
+            We can determine the exact values of the primes' exponents via comparison of the sequences $d(p_j,0),d(p_j,1),\dots$ from part (i) in both $M$ and $N$. In particular, since $M\cong N$, $p_j^kN/p_j^{k+1}N$ will follow the same dimension sequence $d(p_j,0),d(p_j,1),\dots$ as that generated by $p_j^kM/p_j^{k+1}M$. Note that this observation justifies using a notation for the sequence that does not distinguish between $N$ and $M$. To conclude, we can apply part (i) to learn that the sequences $d(p_j,0),d(p_j,1),\dots$ as applied to $N$ generate the exponents $e_{1,1},\dots,e_{\alpha,n}$. In particular, these exponents that match the corresponding ones in $M$.
+        \end{proof}
     \end{enumerate}
     \item Let $K$ be the fraction field of the PID $R$. We regard $K$ as an $R$-module and regard $R\subset K$ as an $R$-submodule.
     \begin{enumerate}
         \item Show that $K/R$ is a torsion $R$-module.
+        \begin{proof}
+            To prove that $K/R$ is a torsion $R$-module, it will suffice to show that for all $m+R\in K/R$, there exists a nonzero $a\in R$ such that $a(m+R)=0+R$. Let $m+R\in K/R$ be arbitrary. Pick any $a\in R$. Then since $am\in Rm\subset R=0+R$, $a(m+R)=am+R=0+R$, as desired.
+        \end{proof}
         \item We have shown that every torsion $R$-module is the direct sum of its $p$-primary components. The $p$-primary component of $K/R$ is $S/R$, where $S$ is an $R$-submodule of $K$. Do you recognize $S$? \emph{Hint}: You encountered it in fourth week.
+        \begin{proof}
+            % $R$ is a PID.
+            % $S=\{m\in K/R:p^km=0\text{ for some }k\in\Zg\}$.
+            % $K=\Frac(R)=\{a/b:a,b\in R,\ b\neq 0\}$
+
+            Let $p\in R$ be a prime. By definition, the $p$-primary component $S/R$ of the $R$-module $K/R$ is the set of all $a/b+R\in K/R$ such that $p^k(a/b+R)=0+R$ for some $k\in\Zg$. The last expression in the previous sentence is equivalent to $p^ka/b\in R$. But this will be true iff $b\mid p^k$, i.e., if $b=p^\ell$ for some nonnegative integer $\ell\leq k$. Thus, $S/R$ is equivalently the set of all $a/p^\ell+R\in K/R$ for $\ell\in\Zg$. Evidently, this is the image of $R_p$ under the canonical surjection, so
+            \begin{equation*}
+                \boxed{S = R_p}
+            \end{equation*}
+        \end{proof}
     \end{enumerate}
-    \item Given subrings $A,B$ of a ring $C$, it is not true that $A+B$ is a subring in general. But here is an example where it is indeed a subring: Let $C=F(X)$ where $F$ is a field, let $A=F[X]$, let $\alpha\in F$, and let $B$ be the image of the unique ring homomorphism $\phi:F[T]\to F(X)$ such that $\phi(c)=c$ for all $c\in F$ and $\phi(T)=(X-a)^{-1}$. Prove that\dots
+    \item Given subrings $A,B$ of a ring $C$, it is not true that $A+B$ is a subring in general. But here is an example where it is indeed a subring: Let $C=F(X)$ where $F$ is a field, let $A=F[X]$, let $a\in F$, and let $B$ be the image of the unique ring homomorphism $\phi:F[T]\to F(X)$ such that $\phi(c)=c$ for all $c\in F$ and $\phi(T)=(X-a)^{-1}$. Prove that\dots
     \begin{enumerate}
         \item $A\cap B=F$;
-        \item $A+B$ equals the subring $S$ of the previous problem, where $R=F[X]$ and $p=(X-\alpha)$.
+        \begin{proof}
+            % $\phi=\ev_{(X-a)^{-1}}$.
+            % So $A=F[X]$ and $B=F[(X-a)^{-1}]$.
+
+            % We proceed via a bidirectional inclusion proof. $F\subset A\cap B$ is easy; visualizing the other two rings gives an intuitive proof, but is it rigorous?
+            
+            % Can we do better? We know that $C$ is a field. Can we do $F[X]$-modules, somehow? Are we supposed to do any fancy modules stuff? Second isomorphism theorem?
+
+
+            We proceed via a bidirectional inclusion proof.\par
+            Suppose first that $c\in F$. Then $c\in F[X]=A$ by definition. Additionally, since $c\in F[T]$ by definition and $\phi(c)=c$ by the definition of $\phi$, we have that $c\in\im(\phi)=B$. Therefore, since $c\in A$ and $c\in B$, $c\in A\cap B$, as desired.\par
+            Now suppose that $c\in A\cap B$. Since $c\in A$, we know that $c$ is a polynomial in $X$ with coefficients in $F$. Additionally, by the universal property of the polynomial ring, we know that $\phi=\ev_{(X-a)^{-1}}$. Consequently, $B=\im(\phi)=F[(X-a)^{-1}]$. It follows that if $c$ is the image of any nonconstant polynomial in $F[T]$, $a$ has a nontrivial denominator. But this would contradict our earlier statement that $c\in F[X]$. Thus, $c$ must be the image of some constant. In particular, it follows by the definition of $\phi$ that $c\in F$, as desired.
+        \end{proof}
+        \item $A+B$ equals the subring $S$ of the previous problem, where $R=F[X]$ and $p=(X-a)$.
+        \begin{proof}
+            Analogy to previous: $C=K$ and $A=R$. So $S=R_p=F[X]_{(X-a)}$.
+
+            $F[X]+F[(X-a)^{-1}]=F[X]_{(X-a)}$. Invoke the Euclidean algorithm on elements in the right set. Divide by $(X-a)^n$.
+
+
+            The subring $S$ of the previous problem, rephrased in terms of this problem, is
+            \begin{equation*}
+                S = R_p = F[X]_{(X-a)}
+            \end{equation*}
+            Thus, to prove that $A+B=S$, it will suffice to show that $F[X]+F[(X-a)^{-1}]=F[X]_{(X-a)}$. We proceed once again via a bidirectional inclusion proof.\par
+            Suppose first that $p/(X-a)^n\in F[X]_{(X-a)}$, where $n\in\N$. By the Euclidean algorithm for monic polynomials, we know that
+            \begin{align*}
+                p(X) &= q(X)\cdot(X-a)^n+r(X)\\
+                \frac{p(X)}{(X-a)^n} &= q(X)+\frac{r(X)}{(X-a)^n}
+            \end{align*}
+            for some $q,r\in F[X]$ with $\deg(r)<n$. From here, we cam resolve $r(X)/(X-a)^n$ into a polynomial in $(X-a)^{-1}$ using the method of partial fractions. Therefore, as the sum of a term in $F[X]$ and a term in $F[(X-a)^{-1}]$, $p/(X-a)^n\in F[X]+F[(X-a)^{-1}]$, as desired.\par
+            Now suppose that $p+q\in F[X]+F[(X-a)^{-1}]$. Add all terms together with least common denominator $(X-a)^n$, where $n$ is the degree of $f\in F[T]$ whose image under $\phi$ is $q$. This yields a rational function equal to $p+q$ in $F[X]_{(X-a)}$, as desired.
+        \end{proof}
     \end{enumerate}
     \item Let $R$ be a commutative ring. The \textbf{derivative} (of $f=a_0+a_1X+\cdots+a_nX^n\in R[X]$), denoted by $f'$, is defined by $f'(X)=a_1+2a_2X+\cdots+na_nX^{n-1}$. Assume that $R$ is a subring of a commutative ring $A$. Let $M$ be an $A$-module. An \textbf{$\bm{R}$-derivation} (of $A$ with values in $M$) is a function $D:A\to M$ that satisfies\dots
     \begin{enumerate}[label={(\arabic*)}]
@@ -33,19 +213,156 @@
         \item $D(c)=0$ for all $c\in R$.
     \end{enumerate}
     Prove that $D(f)=f'$ is an $R$-derivation $D$ of $R[X]$ with values in $R[X]$ that satisfies $D(X)=1$.
+    \begin{proof}
+        To prove that $D$ is an $R$-derivation, it will suffice to check Properties 1-3.\par
+        \underline{Property 1}: Let $a,b\in R[X]$ be arbitrary. Suppose $a=a_0+\cdots+a_nX^n$ and $b=b_0+\cdots+b_mX^m$. WLOG let $n\leq m$. Then
+        \begin{align*}
+            D(a+b) &= (a+b)'\\
+            &= [(a_0+b_0)+\cdots+(a_n+b_n)X^n+b_{n+1}X^{n+1}+\cdots+b_mX^m]'\\
+            &= (a_1+b_1)+\cdots+n(a_n+b_n)X^{n-1}+(n+1)b_{n+1}X^n+\cdots+mb_mX^{m-1}\\
+            &= (a_1+\cdots+na_nX^{n-1})+(b_1+\cdots+mb_mX^{m-1})\\
+            &= a'+b'\\
+            &= D(a)+D(b)
+        \end{align*}
+        as desired.\par
+        \underline{Property 2}: Let $a,b\in R[X]$ be arbitrary. Suppose $a=a_0+\cdots+a_nX^n$ and $b=b_0+\cdots+b_mX^m$. WLOG let $n\leq m$. Then
+        \begin{align*}
+            aD(b)+bD(a) ={}& aD(b)+D(a)b\\
+            \begin{split}
+                ={}& [a_0+\cdots+a_nX^n]\cdot[b_0+\cdots+b_mX^m]'\\
+                &+[a_0+\cdots+a_nX^n]'\cdot[b_0+\cdots+b_mX^m]
+            \end{split}\\
+            \begin{split}
+                ={}& [a_0+\cdots+a_nX^n]\cdot[b_1+\cdots+mb_mX^{m-1}]\\
+                &+[a_1+\cdots+na_nX^{n-1}]\cdot[b_0+\cdots+b_mX^m]
+            \end{split}\\
+            ={}& \sum_{r=0}^{m+n-1}\left( \sum_{p=0}^ra_p(r-p+1)b_{r-p+1} \right)X^r+\sum_{r=0}^{m+n-1}\left( \sum_{p=0}^r(p+1)a_{p+1}b_{r-p} \right)X^r\\
+            ={}& \sum_{r=0}^{m+n-1}\left( \sum_{p=0}^ra_p(r-p+1)b_{r-p+1}+\sum_{p=0}^r(p+1)a_{p+1}b_{r-p} \right)X^r\\
+            ={}& \sum_{r=1}^{m+n}\left( \sum_{p=0}^{r-1}a_p(r-p)b_{r-p}+\sum_{p=0}^{r-1}(p+1)a_{p+1}b_{r-p-1} \right)X^{r-1}\\
+            ={}& \sum_{r=1}^{m+n}\left( \sum_{p=0}^{r-1}(r-p)a_pb_{r-p}+\sum_{p=1}^rpa_pb_{r-p} \right)X^{r-1}\\
+            ={}& \sum_{r=1}^{m+n}\left( ra_0b_r+\sum_{p=1}^{r-1}(r-p)a_pb_{r-p}+\sum_{p=1}^{r-1}pa_pb_{r-p}+ra_rb_0 \right)X^{r-1}\\
+            ={}& \sum_{r=1}^{m+n}\left( ra_0b_r+\sum_{p=1}^{r-1}ra_pb_{r-p}+ra_rb_0 \right)X^{r-1}\\
+            ={}& \sum_{r=1}^{m+n}r\left( a_0b_r+\sum_{p=1}^{r-1}a_pb_{r-p}+a_rb_0 \right)X^{r-1}\\
+            ={}& \sum_{r=1}^{m+n}r\left( \sum_{p=0}^ra_pb_{r-p} \right)X^{r-1}\\
+            ={}& \left[ \sum_{r=0}^{m+n}\left( \sum_{p=0}^ra_pb_{r-p} \right)X^r \right]'\\
+            ={}& (ab)'\\
+            ={}& D(ab)
+        \end{align*}
+        as desired.\par
+        \underline{Property 3}: Let $c\in R$ be arbitrary. Then
+        \begin{equation*}
+            D(c) = c' = 0
+        \end{equation*}
+        as desired.\par
+        Lastly, we have by that
+        \begin{equation*}
+            D(X) = X' = 1
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item 
     \begin{enumerate}
-        \item Let $a\in R$ and let $f\in R[X]$, where $R$ is a commutative ring. $a$ is said to be a \textbf{root} (resp. \textbf{repeated root}) of $f$ if $f$ is a multiple of $(X-a)$ (resp. $(X-a)^n$ for some $n\in\N$). Prove that $f(a)=f'(a)=0$ iff $f$ is a multiple of $(X-a)$.
+        \item Let $a\in R$ and let $f\in R[X]$, where $R$ is a commutative ring. $a$ is said to be a \textbf{root} (resp. \textbf{repeated root}) of $f$ if $f$ is a multiple of $(X-a)$ (resp. $(X-a)^2$). Prove that $f(a)=f'(a)=0$ iff $f$ is a multiple of $(X-a)^2$.
+        \begin{proof}
+            Suppose first that $f$ is a multiple of $(X-a)^2$. Then $f(X)=q(X)\cdot(X-a)^2$ for some $q\in R[X]$. It follows that
+            \begin{equation*}
+                f(a) = q(a)\cdot(a-a)^2
+                = q(a)\cdot 0
+                = 0
+            \end{equation*}
+            Additionally, Problem 7.4 tells us that the normal product rule of differentiation applies even when the $R$ in $R[X]$ is an arbitrary commutative ring, not just when $R=\R$. Thus,
+            \begin{equation*}
+                f'(X) = q'(X)\cdot(X-a)^2+q(a)\cdot(X^2-2aX+a^2)'
+                = q'(X)\cdot(X-a)^2+q(a)\cdot(2X-2a)
+            \end{equation*}
+            It follows that
+            \begin{equation*}
+                f'(a) = q'(a)\cdot(a-a)^2+q(a)\cdot(2a-2a)
+                = q'(a)\cdot 0+q(a)\cdot 0
+                = 0+0
+                = 0
+            \end{equation*}
+            as desired.\par
+            Now suppose that $f(a)=f'(a)=0$. Since $f(a)=0$, we have by the application of the Euclidean algorithm in Lecture 3.1 that
+            \begin{equation*}
+                f(X) = q(X)\cdot(X-a)
+            \end{equation*}
+            for some $q\in R[X]$. Similarly, $f'(a)=0$ implies that
+            \begin{equation*}
+                f'(X) = \tilde{q}(X)\cdot(X-a)
+            \end{equation*}
+            for some $\tilde{q}\in R[X]$. To relate these two equations, we'll differentiate the first one. This yields
+            \begin{equation*}
+                f'(X) = q(X)\cdot(X-a)'+q'(X)\cdot(X-a)
+                = q(X)\cdot 1+q'(X)\cdot(X-a)
+                = q(X)+q'(X)\cdot(X-a)
+            \end{equation*}
+            This implies that
+            \begin{align*}
+                q(X)+q'(X)\cdot(X-a) &= \tilde{q}(X)\cdot(X-a)\\
+                q(X) &= [\tilde{q}(X)-q'(X)]\cdot(X-a)
+            \end{align*}
+            i.e., that $q(X)$ is a multiple of $X-a$, itself. Define $r(X)=\tilde{q}(X)-q'(X)$. Then
+            \begin{equation*}
+                f(X) = q(X)\cdot(X-a)
+                = r(X)\cdot(X-a)\cdot(X-a)
+                = r(X)\cdot(X-a)^2
+            \end{equation*}
+            Therefore, $f$ is a multiple of $(X-a)^2$, as desired.
+        \end{proof}
         \item Let $F$ be a subfield of a field $E$. Let $a\in E$ and let $f\in F[X]$. Show that if $a$ is a repeated root of $f$, then there is some $g\in F[X]$ such that\dots
         \begin{enumerate}[label={(\arabic*)}]
             \item $\deg(g)>0$;
             \item Both $f$ and $f'$ are multiples of $g$ in $F[X]$.
         \end{enumerate}
+        \begin{proof}
+            % $a$ is a repeated roots implies $f$ is a multiple of $(X-a)^2$. Implies by (i) that $f(a)=f'(a)=0$.
+
+            % In the proof of part (i), we showed that
+            % \begin{align*}
+            %     f(X) &= q(X)\cdot(X-a)&
+            %     f'(X) &= \tilde{q}(X)\cdot(X-a)
+            % \end{align*}
+            % Thus, take
+            % \begin{equation*}
+            %     \boxed{g(X) = X-a}
+            % \end{equation*}
+
+            % We can't use $X-a$ because $a\notin F$. This is something like we can't say $X-\sqrt{2}$, but we can say $X^2-2$.
+
+            % We have an evaluation homomorphism from $F[X]\to E$, we evaluate at $a$ and take the kernel. $f$ will be in the ideal of $g$.
+
+
+            Consider the ring homomorphism $\ev_a:F[X]\to E$. More specifically, consider $\ker(\ev_a)$. Since $F[X]$ is a PID and kernels are ideals, we know that $\ker(\ev_a)=(g)$ for some $g\in F[X]$. Since $a$ is a repeated root of $f$, part (i) implies that $f(a)=f'(a)=0$. Thus, $f,f'\in\ker(\ev_a)=(g)$, so both $f$ and $f'$ are multiples of $g$. Additionally, we know that $\deg(g)>0$ since the only constant polynomial that "maps" $a$ to 0 is the zero polynomial, and $f$ nonzero an element of $(g)$ implies that 0 is not the generator of the kernel.
+        \end{proof}
     \end{enumerate}
     \item This is essentially a repetition of the last problem from HW6 but by a slightly different method.\par
     Let $F[X]_{<m}$ be the collection of $a\in F[X]$ such that $\deg(a)<m$. Let $f,g\in F[X]$ be polynomials of degrees $d$ and $e$, respectively. Define $T:F[X]_{<e}\oplus F[X]_{<d}\to F[X]_{<d+e}$ by $T(a,b)=af+bg$. Note that $T$ is a linear transformation of $F$-vector spaces, with domain and target of the same dimension.
     \begin{enumerate}
         \item Deduce that $\gcd(f,g)=1$ iff every $h\in F[X]$ with $\deg(h)<d+e$ can be expressed as $af+bg$ for some $a,b\in F[X]$ satisfying $\deg(a)<e$ and $\deg(b)<d$.
+        \begin{proof}
+            % Suppose first that $\gcd(f,g)=1$. Then there exist $\tilde{a},\tilde{b}\in F[X]$ such that $\tilde{a}f+\tilde{b}g=1$.
+            
+            % Then $(f,g)=(1)=F[X]$. Now let $h\in F[X]$ be an arbitrary polynomial of degree less than $d+e$. Since $h\in F[X]$, $h\in(f,g)$. It follows that there exist 
+
+            % Since $T$ maps between vector space of the same dimension, proving surjectivity (what we want) need only prove injectivity. Suppose $T(a,b)=T(a',b')$. Then $af+bg=a'f+b'g$. It follows by a similar argument to last time that we can reduce $a$ in $(g)$ to a polynomial of appropriate degree.
+
+            % \textbf{Could we just invoke Problem 6.13??}
+
+            % It follows by a similar argument to in Problem 6.13 that we can reduce $a$ in $(g)$ to a polynomial of appropriate degree.
+
+            % Forward direction (Nori OH): Close our eyes to everything in the past, we can be a bit handwavey.
+
+
+            Suppose first that $\gcd(f,g)=1$. Then there exist $\tilde{a},\tilde{b}\in F[X]$ such that $\tilde{a}f+\tilde{b}g=1$. Proving the desired claim is equivalent to proving that $T$ is surjective. Since $T$ maps like-dimensional vector spaces, it will suffice to show that $T$ is injective. Suppose $T(a,b)=T(a',b')$. Then $af+bg=a'f+b'g$. Equivalently,
+            \begin{align*}
+                (a-a')f+(b-b')g &= 0\\
+                a &= a'-\frac{b-b'}{f}g\\
+                a &\in a'+(g)
+            \end{align*}
+            Since $g$ has degree $e$ and $F[X]/(g)\cong\{h\in F[X]:\deg(h)<e\}$ by Lecture 3.1, there is a unique $\tilde{a}\in F[X]_{<e}$ such that $\tilde{a}+(g)=a+(g)=a'+(g)$. It follows that we must have $a=\tilde{a}$ and $a'=\tilde{a}$, thereby proving that $a=a'$ by transitivity. An analogous argument can show that $b=b'$. Thus $(a,b)=(a',b')$ as desired.\par
+            Now suppose that every $h\in F[X]$ with $\deg(h)<d+e$ can be expressed as $af+bg$ for some $a,b\in F[X]$ satisfying $\deg(a)<e$ and $\deg(b)<d$. Let $h=1$. Clearly $\deg(h)=0<d+e$ in this case. It follows by the supposition that $h=af+bg$ for some $a,b\in F[X]$ satisfying $\deg(a)<e$ and $\deg(b)<d$. Thus, $1=h=af+bg\in(f,g)$, so we must have $\gcd(f,g)=1$, as desired.
+        \end{proof}
         \item The \textbf{resultant} (of $f,g$), denoted by $\Ress(f,g)$, is the determinant of $T$. To define the latter, one requires a basis for the source and target. In particular,
         \begin{equation*}
             (1,0),(X,0),\dots,(X^{e-1},0),(0,1),(0,X),\dots,(0,X^{d-1})
@@ -56,8 +373,95 @@
         \end{equation*}
         is the basis for $F[X]_{<d+e}$.\par
         Deduce that $\gcd(f,g)=1$ iff $\Ress(f,g)\neq 0$.
+        \begin{proof}
+            % We have that $T(1,0)=f=a_0+\cdots+a_dX^d=(a_0,\dots,a_d,0,\dots,0)$. $T(X,0)$ shifts everything up by one dimension.
+
+            Suppose first that $\gcd(f,g)=1$. Then by part (i), every $h\in F[X]$ with $\deg(h)<d+e$ can be expressed as $af+bg$ for some $a,b\in F[X]$ satisfying $\deg(a)<e$ and $\deg(b)<d$. It follows that $T$ is surjective. Thus, since its domain and range have the same dimension, it is invertible as well. Therefore, it is nonsingular and hence $\Ress(f,g)\neq 0$.\par
+            Now suppose that $\Ress(f,g)\neq 0$. Then $T$ is nonsingular and hence it is invertible. Thus, for the same reason as above, $T$ is surjective. In particular, 1 is in the range of $T$, so there must exist $a,b\in F[X]$ such that $af+bg=T(a,b)=1$. It follows that $1=af+bg\in(f,g)$. Therefore, $\gcd(f,g)=1$.
+        \end{proof}
     \end{enumerate}
-    \item Given an $R$-module $M$ and $a\in R$, denote by $a_M:M\to M$ the function $a_M(m)=am$ for all $m\in M$. Now consider $M=R/(p^2)\oplus R/(p)$ where $R$ is a PID and $p\in R$ is a prime. Let $N$ be a submodule of $M$ which has the property that $T(N)\subset M$ for every $R$-module self-isomorphism $T:M\to M$. Prove that $N$ is one of the following four submodules: $0,M,pM,\ker(p_M)$. \emph{Note}: The above problem is also valid for $(R/(p^2))^m\oplus(R/(p))^n$.
+    \item Given an $R$-module $M$ and $a\in R$, denote by $a_M:M\to M$ the function $a_M(m)=am$ for all $m\in M$. Now consider $M=R/(p^2)\oplus R/(p)$ where $R$ is a PID and $p\in R$ is a prime. Let $N$ be a submodule of $M$ which has the property that $T(N)\subset N$ for every $R$-module self-isomorphism $T:M\to M$. Prove that $N$ is one of the following four submodules: $0,M,pM,\ker(p_M)$. \emph{Note}: The above problem is also valid for $(R/(p^2))^m\oplus(R/(p))^n$.
+    \begin{proof}
+        % $\ker(p_M)$ is closely related to an annihilator.
+        
+        % $0,M$ are trivial examples to exclude.
+
+        % $pM=R/(p)\oplus\{0\}=\im(p_M)$
+
+        % Any function is left multiplication by some element? $M$ is a ring, no, so defining the action on 1 might define it all? Say we sent $1\mapsto a$; do we then send $m\to am$ automatically by the fact that $f$ is a module homomorphism?
+        % Any function $a_M$ for which $a\neq p^n$ is the identity
+        % Then consider $p_M$; it's image and kernel are distinct submodules. $p^2$ or higher is the zero function, which doesn't give us anything new.
+
+
+        % We will first show that each of the four given submodules satisfies the $T(N)\subset N$ property.\par
+        % Now suppose that $N$ is a submodule that satisfies the given property and is neither $0$ nor $M$.
+        % \begin{itemize}
+        %     \item WTS: $N=pM$ or $\ker(p_M)$.
+        %     \item We know that
+        %     \begin{align*}
+        %         pM &= pR/(p^2)\oplus 0&
+        %         \ker(p_M) &= pR/(p^2)\oplus R/(p)
+        %     \end{align*}
+        %     \item $\ker(p_M)$ is a 2D vector space over $R/(p)$.
+        %     \item WTS: $N\cap\ker(p_M)\neq 0$ iff $N\neq 0$.
+        %     \begin{itemize}
+        %         \item We know that $pN\subset N$ by the definition of $N$ as a submodule.
+        %         \item Let $n\in N$ be nonzero. Suppose $n\notin\ker(p_M)$. Then $pn\in\ker(p_M)$. We know that $pn\in N$ as well. Thus, $pn\in N\cap\ker(p_M)$.
+        %     \end{itemize}
+        %     \item $N\cap\ker(p_M)\subset\ker(p_M)$. Thus, $N\cap\ker(p_M)$ is either a 1D or a 2D vector space over $R/(p)$. We WTS that if it's 2D, then it equals $\ker(p_M)$, and if it's 1D, then it equals $pM$.
+        %     \item 2D case.
+        %     \begin{itemize}
+        %         \item We know that $N\cap\ker(p_M)\subset\ker(p_M)$.
+        %         \item 2D implies that $N\not\subsetneq\ker(p_M)$.
+        %         \item Thus, either $N=\ker(p_M)$ or $N\supsetneq\ker(p_M)$.
+        %         \item In the first case, we are done.
+        %         \item In the second case, we can show that this implies that $N=M$.
+        %     \end{itemize}
+        %     \item 1D case.
+        %     \begin{itemize}
+        %         \item We know that $pM\cap\ker(p_M)=p_M$.
+        %         \item Assume $N\neq pM$.
+        %         \item Then $N\cap\ker(p_M)=\gen{(pa,1)}$.
+        %         \item But $T$ exists, where $T:M\to M$ sends $T(1,0)=(1,0)$ and $T(0,1)=(p,1)$.
+        %         \item Therefore we must have $N\cap\ker(p_M)=pM$.
+        %     \end{itemize}
+        %     \item Suppose that $N\supsetneq pM$.
+        %     \begin{itemize}
+        %         \item $N/pM\subset M/pM$. Then use $T(1,0)=(1,1)$ and $T(0,1)=(0,1)$.
+        %     \end{itemize}
+        % \end{itemize}
+
+        % We consider $N\cap\ker(p_M)$ because it's a vector space and thus nice. We know that $\ker(p_M)=pR/(p^2)\oplus R/(p)$. Let $e_1=(1,0)$ and $e_2=(0,1)$. The matrix of the form
+        % \begin{equation*}
+        %     \begin{pmatrix}
+        %         \star & p\star\\
+        %         \star & \star\\
+        %     \end{pmatrix}
+        % \end{equation*}
+
+        % If $N\cap\ker(p_M)=pM$, how do we know that $N=pM$? We know that $N=pM+$ The key question is, "what is $N/N'\cap\ker(p_M)\hookrightarrow M/\ker(p_M)$?" $M/\ker(p_M)\cong R/(p)$. Thus, $N/N\cap\ker(p_M)$ is either 0 or $R/(p)$. The only submodules of the \emph{field} $R/(p)$ are 0 or $R/(p)$.
+
+        % We want to peel off this problem 1 by 1; peel off parts of the module.
+        % We consider the whole map because it allows us to classify stuff; $N\cap\ker(p_M)$ has three possibilities; $M/N\cap\ker(p_M)$ allows you to get two cases.
+
+        % "The only things we really understand in math are linear algebra, calculus, and combinatorics; everything else is basically just reducing to these cases."
+
+
+        % We will first show that for each of the four given submodules satisfies the stated property.\par
+        % \underline{0}: Let $T$ be an arbitrary $R$-module self-isomorphism. Then since $T$ is a group homomorphism, $T(0)=0$, as desired.\par
+        % \underline{$M$}: Let $T$ be an arbitrary $R$-module self-isomorphism. Then since the range of $T$ is $M$, naturally $T(M)\subset M$, as desired.\par
+        % \underline{$pM$}: Let $T$ be an arbitrary $R$-module self-isomorphism, and let $(a,b)\in pM=pR/(p^2)\oplus\{0\}$ be arbitrary. By definition, $p=0$ and $a=pm$ for some $m\in M$. Suppose for the sake of contradiction that $T(pm,0)\neq(pn,0)$ for any $n\in M$. We have that $pmT(1,0)$
+
+
+        If $N=0,M$, then the statement obviously holds. Thus, we concern ourselves with the case where $N\notin\{0,M\}$. In this case, we want to show that $N=pM$ or $N=\ker(p_M)$. We know that
+        \begin{align*}
+            pM &= pR/(p^2)\oplus 0&
+            \ker(p_M) &= pR/(p^2)\oplus R/(p)
+        \end{align*}
+        $\ker(p_M)$ is a 2D vector space over $R/(p)$. We want to show that $N\cap\ker(p_M)\neq 0$ iff $N\neq 0$. We know that $pN\subset N$ by the definition of $N$ as a submodule. Let $n\in N$ be nonzero. Suppose $n\notin\ker(p_M)$. Then $pn\in\ker(p_M)$. We know that $pn\in N$ as well. Thus, $pn\in N\cap\ker(p_M)$.\par
+        $N\cap\ker(p_M)\subset\ker(p_M)$. Thus, $N\cap\ker(p_M)$ is either a 1D or a 2D vector space over $R/(p)$. We want to show that if it's 2D, then it equals $\ker(p_M)$, and if it's 1D, then it equals $pM$. 2D case: We know that $N\cap\ker(p_M)\subset\ker(p_M)$. 2D implies that $N\not\subsetneq\ker(p_M)$. Thus, either $N=\ker(p_M)$ or $N\supsetneq\ker(p_M)$. In the first case, we are done. In the second case, we can show that this implies that $N=M$. 1D case: We know that $pM\cap\ker(p_M)=p_M$. Assume $N\neq pM$. Then $N\cap\ker(p_M)=\gen{(pa,1)}$. But $T$ exists, where $T:M\to M$ sends $T(1,0)=(1,0)$ and $T(0,1)=(p,1)$. Therefore we must have $N\cap\ker(p_M)=pM$.\par
+        Suppose that $N\supsetneq pM$. $N/pM\subset M/pM$. Then use $T(1,0)=(1,1)$ and $T(0,1)=(0,1)$.
+    \end{proof}
 \end{enumerate}
 
 
