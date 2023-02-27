@@ -1,0 +1,124 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{8}
+
+\begin{document}
+
+
+
+
+\chapter{Extension Topics}
+\section{Intro to the Langlands Program}
+\begin{itemize}
+    \item \marginnote{2/27:}Sometime before 2:30 PM today, Nori will post an exam syllabus that will also put an upper bound on the types of questions he will ask.
+    \begin{itemize}
+        \item "There's only so much you can cover in a 2-hour exam on an 8-week course."
+    \end{itemize}
+    \item We now begin on some --- in Nori's opinion --- very interesting mathematics.
+    \item Let $f\in\Z[X]$ be irreducible, monic, and of degree $d$.
+    \item \textbf{Split} (prime for $f$): A prime number $p$ for which
+    \begin{equation*}
+        \bar{f} = \prod_{i=1}^d(X-a_i) \in \F_p[X]
+    \end{equation*}
+    \item \textbf{Langlands program}: The name for the overall problem, "which primes are split for a given $f$?"
+    \begin{itemize}
+        \item Gauss answers this for degree 2 polynomials using quadratic reciprocity.
+        \item There has been a lot of progress since then: See Artin's reciprocity law.
+        \item This is a major unsolved problem.
+    \end{itemize}
+    \item Example: $X^2+1$.
+    \begin{itemize}
+        \item Informally: If we go modulo a prime, does this factor or not?
+        \item Formally: For which primes $p$ does there exist $m\in\Z$ such that $m^2\equiv -1\bmod p$.
+        \item Answer: $m$ exists if and only if $p\equiv 1\bmod 4$.
+        \item Proving this: Let $p$ be an odd prime. Let $x\in\F_p-\{0\}$. Let $S(x)=\{x,-x,1/x,-1/x\}$ be the stabilizer. We either have $\{x,-x\}\cap\{1/x,-1/x\}=\emptyset$ or both elements. Thus, we either have $x=\pm 1$ or $x^2=-1$. It follows that $|S(x)|=4$ except when $\{1,-1\}$ or $\{\alpha,-\alpha\}$ with $\alpha\in\F_p$ satisfies $\alpha^2=-1$.
+        \item $p-1\equiv 2\bmod 4$.
+        \item Thus, we're partitioning the set into elements of multiplicity 4.
+    \end{itemize}
+    \item We'll skip considering the Gaussian integers.
+    \item Consider the $d$ square-free integers for $d\neq 1$. Let $R_d=\Z\oplus\Z\sqrt{d}\cong\Z[X]/(X^2-d)$.
+    \begin{itemize}
+        \item If $d\equiv 2,3\bmod 4$, no bueno.
+        \item If $d\equiv 1\mod 4$, then $R_d=\Z\oplus\Z\theta$, where
+        \begin{equation*}
+            \theta = \frac{1+\sqrt{d}}{2}
+        \end{equation*}
+        \item All of these rings have an automorphic ring homomorphism $\sigma:R_d\to R_d$ defined by
+        \begin{equation*}
+            a+b\sqrt{d} \mapsto a-b\sqrt{d}
+        \end{equation*}
+        \item Recall the norm $N(a+b\sqrt{d})=|(a+b\sqrt{d})(a-b\sqrt{d})|=|a^2-b^2d|$.
+        \item Let $I\subset R_d$ be a nonzero ideal. If $\alpha\in I$ nonzero, then $|\alpha\sigma\alpha|=N(\alpha)\in I$.
+        \item Suppose $m\in\N$. Then $R_d/mR_d=\Z/(m)\oplus\sqrt{d}\Z/(m)$ has $m^2$ elements.
+        \item In particular, $R_d/I$ is finite as the quotient of a finite ring $R_d/R_dN(\alpha)$ (as implied by the fact that $I$ is nonzero).
+        \item Let $P\subset R_d$ be a nonzero prime ideal. We have just shown that $P\cap\Z\neq 0$. It follows that if $m\in\N$ and $m\in P$, then $p_1\cdots p_r$ implies some $p_i\in P$.
+        \item There exists a unique prime number $p$ such that $p\in P$.
+        \item Fix $p$. Search for all $P$ prime ideals of $R_d$ such that $p\in P$, i.e., $(p)\subset P\subset R_d$, i.e., $P/(p)$ is a prime ideal of $R_d/(p)$.
+        \item Recall that
+        \begin{equation*}
+            R_d/(p) = \F_p\oplus\F_p\sqrt{d} \cong \F_p[X]/(X^2-d)
+        \end{equation*}
+        \item Case 1: $p\nmid d$ and $p\neq 2$.
+        \begin{itemize}
+            \item Case 1(a): There exists an integer $m\in\Z$ such that $m^2\equiv d\bmod p$.
+            \item Case 1(b): No integer $m\in\Z$ exists such that $m^2\equiv d\bmod p$.
+        \end{itemize}
+        \item Case 2: $p\mid d$.
+    \end{itemize}
+    \item We now treat each case above individually.
+    \item Case 2.
+    \begin{itemize}
+        \item Let $P$ be unique and $P=(p,\sqrt{d})=\sigma P$.
+        \item We have $P\sigma P=(p,\sqrt{d})(p,\sqrt{d})=(p^2,d,p\sqrt{d})\subset(p)$.
+        \item Even in $\Z$, $\gcd_\Z(p^2,d)=p$ (because $p\mid d$ and $p^2\nmid d$; the latter claim follows because $d$ is square-free).
+        \item This implies that $p\in P\sigma P$, which implies that $(p)=P\sigma P$.
+    \end{itemize}
+    \item Case 1b.
+    \begin{itemize}
+        \item $X^2-d$ is irreducible in $\F_p[X]$.
+        \item Thus, $P=(p)$.
+        \item It follows that $P=\sigma P$ and hence $P\sigma P=(p^2)$.
+    \end{itemize}
+    \item Case 1a.
+    \begin{itemize}
+        \item There exists an $m\in\Z$ such that $m^2\equiv d\bmod p$.
+        \item Let $P=(p,m-\sqrt{d})$, $\sigma P=(p,m+\sqrt{d})$.
+        \item There exists exactly two prime ideals $P$.
+        \item Thus, $P\sigma P=(p^2,m^2-d,p(m-\sqrt{d}),p(m+\sqrt{d}))\subset(p)$.
+        \item Adding the last two generators together, we obtain $(p^2,2mp)\in P\sigma P$. But since $p\nmid m$ and $p$ ??, we know that
+        \begin{equation*}
+            \gcd_\Z(p^2,2mp) = p
+        \end{equation*}
+    \end{itemize}
+    \item It follows that $P\sigma P=(p)\sim(p^2)$ in all cases.
+    \item We now consider the $p=2$ case.
+    \begin{itemize}
+        \item Let $R=\Z\oplus\Z\sqrt{d}$. Let $\varepsilon=0,1$ and $\varepsilon=\varepsilon^2$.
+        \item Case 1(a): Does not exist; $\F_2[X]/(X^2-\varepsilon)$ and $\F_2[X]/((X-\varepsilon)^2)$.
+        \item Case 2: $2\mid d$ and $4\nmid d$. It follows that $P$ is unique and equal to $(2,\sqrt{d})$. We have $p^2=(2)$.
+        \item Case 1(b): $p=2$ and $2\nmid d$. Let $\F_2[X]/(X^2-1)$. We have a unique $P$ and $P=(2,1-\sqrt{d})=\sigma P=(2,1+\sqrt{d})$.
+        \item Let $P^2=P\sigma P=(4,1-d,2(1-\sqrt{d}))=(2)$ if $d\equiv 3\bmod 4$. Note that $P\sigma P$ is \emph{not} principal if $d\equiv 1\bmod 4$.
+        \item Consider (example): $F[X^2,X^3]\subset F[X]$.
+        \item If $R_d=\Z+\Z\theta$ and $d\equiv 1\bmod 8$, then there exists $P\neq\sigma P$ with $P\sigma P=(2)$.
+        \item If $d\equiv 5\bmod 8$, then $P=(2)$.
+    \end{itemize}
+    \item Next lecture: Dedekind domains.
+    \begin{itemize}
+        \item Every nonzero ideal can be written as a product of nonzero not necessarily unique prime ideals.
+        \item Next best thing to a PID.
+    \end{itemize}
+    \item Theorem: $\Z[\sqrt{-1}]$ is a Euclidean domain.
+    \begin{proof}
+        Given $g,f$, we want $g=qf+r$ in $\Z[\sqrt{-1}]$ with $N(r)<N(f)$.\par
+        Technique: Go outside the integers into $\Q(\sqrt{-1})$. This is a field. Consider $g/f\in\Q(\sqrt{-1})$. Choose the closest lattice point in $\Z[\sqrt{-1}]$ to $g/f\in\Q(\sqrt{-1})$, visualized as a complex plane and complex lattice subset. This makes $g/f=q+c$ where $q\in\Z[\sqrt{-1}]$. Let $c=\alpha+\beta\sqrt{-1}$. Then $|\alpha|\leq 1/2$, $|\beta|\leq 1/2$, and $N(\alpha+i\beta)=\alpha^2+\beta^2\leq 1/4+1/4=1/2$.\par
+        It follows that $g\in\Z[\sqrt{-1}]$ equals $qf+(fc)$, where $qf\in\Z[\sqrt{-1}]$ and $fc=r\in\Z[\sqrt{-1}]$. Moreover, $N(r)=N(f)N(c)\leq 1/2N(f)$.
+    \end{proof}
+    \item The same proof applies to $\Z[\sqrt{-1}]$, $\Z[\sqrt{2}]$, $\Z[\sqrt{3}]$, $\Z[(1+\sqrt{-3})/2]$, $\Z[(1+\sqrt{p})/2]$, and in fact all Euclidean domains.
+\end{itemize}
+
+
+
+
+\end{document}
