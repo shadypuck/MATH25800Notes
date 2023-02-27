@@ -943,7 +943,27 @@
         \end{proof}
     \end{proposition}
     \item \textbf{$\bm{R}$-algebra}: A ring $A$ together with a ring homomorphism $f:R\to A$ such that the subring $f(R)$ of $A$ is contained in the center of $A$, where $R$ is a commutative ring.
-    \item More on $R$-algebras (return to later).
+    \item \marginnote{2/23:}$R$-algebras have a natural left and right $R$-module structure defined by $r\cdot a=a\cdot r=f(r)a$.
+    \begin{itemize}
+        \item It is possible for $R$-algebras to have unnatural $R$-module structures, but we will not deal with these unless otherwise stated.
+    \end{itemize}
+    \item \textbf{$\bm{R}$-algebra homomorphism}: A ring homomorphism $\varphi:A\to B$ such that $\varphi(r\cdot a)=r\cdot\varphi(a)$, where $A,B$ are $R$-algebras.
+    \item Examples.
+    \begin{enumerate}
+        \item Any ring with identity is a $\Z$-algebra.
+        \item Let $A$ be a ring, $R$ be a subring of $Z(A)$. Then $A$ is an $R$-algebra.
+        \begin{itemize}
+            \item Special case: If $A$ is commutative, then any subring $R$ of $A$ makes $A$ into an $R$-algebra.
+        \end{itemize}
+        \item The $R$-module structure of $A$ depends only on the subring $f(R)\subset Z(A)$.
+        \begin{itemize}
+            \item Thus, we have that every algebra $A$ arises from a subring of the center of $A$ up to a ring homomorphism.
+        \end{itemize}
+        \item $A$ can be an $F$-algebra.
+        \begin{itemize}
+            \item This is the same as saying that $A$ contains the field $F$ in its center (up to isomorphism) and that the identity of $A$ and $F$ are the same (this last condition is necessary, as per Exercise 10.1.23).
+        \end{itemize}
+    \end{enumerate}
 \end{itemize}
 
 
