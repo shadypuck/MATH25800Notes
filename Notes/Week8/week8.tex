@@ -334,14 +334,14 @@
     \begin{itemize}
         \item A tensor algebra is very similar to a noncommutative polynomial ring.
     \end{itemize}
-    \item \textbf{Tensor algebra} (of $M$): A pair $(A,\alpha)$, where $A$ an $R$-algebra and $\alpha:M\to A$ is an $R$-module homomorphism. \emph{Denoted by} $\bm{T(M)}$.
-    \item Universal property of the tensor algebra $T(M)$: $T(M)$ is an $R$-algebra, $u:M\to T(M)$ is an $R$-module homomorphism such that for all pairs $(A,\alpha:M\to A)$, there exists a unique $R$-algebra homomorphism $f:T(M)\to A$ such that the following diagram commutes, i.e., $f\circ u=\alpha$.
+    \item \textbf{Tensor algebra} (of $M$): A pair $(A,\alpha)$, where $A$ an $R$-algebra and $\alpha:M\to A$ is an $R$-module homomorphism. \emph{Denoted by} $\bm{\ten{M}}$.
+    \item Universal property of the tensor algebra $\ten{M}$: $\ten{M}$ is an $R$-algebra, $u:M\to\ten{M}$ is an $R$-module homomorphism such that for all pairs $(A,\alpha:M\to A)$, there exists a unique $R$-algebra homomorphism $f:\ten{M}\to A$ such that the following diagram commutes, i.e., $f\circ u=\alpha$.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[scale=1.6]
             \small
             \node (R) at (0,1) {$M$};
-            \node (A) at (1,1) {$T(M)$};
+            \node (A) at (1,1) {$\ten{M}$};
             \node (B) at (1,0) {$A$};
     
             \footnotesize
@@ -349,11 +349,11 @@
             \draw [->] (A) -- node[right]     {$f$}      (B);
             \draw [->] (R) -- node[below left]{$\alpha$} (B);
         \end{tikzpicture}
-        \caption{Universal property of $T(M)$.}
+        \caption{Universal property of $\ten{M}$.}
         \label{fig:univPropTM}
     \end{figure}
     \item Example: We now work out one specific case.
-    \item Let's construct $T(M)$ when $M$ is a free $R$-module with $S$ as the basis.
+    \item Let's construct $\ten{M}$ when $M$ is a free $R$-module with $S$ as the basis.
     \begin{itemize}
         \item We have
         \begin{equation*}
@@ -364,7 +364,7 @@
         \item Let $\alpha:M\to A$ with $M$ as above.
         \item To specify $\alpha$, you need only specify its action on a basis of $M$; thus, there is a bijection between the collection of all $\alpha$ and the set $S$ (??) given by $j$??
         \item This induces a ring homomorphism $h:F_R(S)\to A$ given by $h(X_s)=a_s$.
-        \item Here, $T(M)=F_R(S)$.
+        \item Here, $\ten{M}=F_R(S)$.
         \item How do you know it doesn't depend on the basis chosen? By the universal property (is this what he said??).
         \item Any module is the quotient of a free module.
     \end{itemize}
@@ -857,14 +857,14 @@
     \item Applying Theorem \ref{trm:10.10} to establish the existence of homomorphisms.
     \begin{theorem}[The "Tensor Product" of Two Homomorphisms]\label{trm:10.13}
         Let $M,M'$ be right $R$-modules, let $N,N'$ be left $R$-modules, and suppose $\varphi:M\to M'$ and $\psi:N\to N'$ are $R$-module homomorphisms.
-        \begin{enumerate}
-            \item There is a unique group homomorphism $\varphi\otimes\psi:M\otimes_RN\to M'\otimes_RN'$ such that
+        \begin{enumerate}[ref={\thetheorem(\arabic*)}]
+            \item \label{trm:10.13.1}There is a unique group homomorphism $\varphi\otimes\psi:M\otimes_RN\to M'\otimes_RN'$ such that
             \begin{equation*}
                 (\varphi\otimes\psi)(m\otimes n) = \varphi(m)\otimes\psi(n)
             \end{equation*}
             for all $m\in M$, $n\in N$.
-            \item If $M,M'$ are also $(S,R)$-bimodules for some ring $S$ and $\varphi$ is also an $S$-module homomorphism, then $\varphi\otimes\psi$ is a homomorphism of left $S$-modules. In particular, if $R$ is commutative, then $\varphi\otimes\psi$ is always an $R$-module homomorphism for the standard $R$-module structures.
-            \item If $\lambda:M'\to M''$ and $\mu:N'\to N''$ are $R$-module homomorphisms, then
+            \item \label{trm:10.13.2}If $M,M'$ are also $(S,R)$-bimodules for some ring $S$ and $\varphi$ is also an $S$-module homomorphism, then $\varphi\otimes\psi$ is a homomorphism of left $S$-modules. In particular, if $R$ is commutative, then $\varphi\otimes\psi$ is always an $R$-module homomorphism for the standard $R$-module structures.
+            \item \label{trm:10.13.3}If $\lambda:M'\to M''$ and $\mu:N'\to N''$ are $R$-module homomorphisms, then
             \begin{equation*}
                 (\lambda\otimes\mu)\circ(\varphi\otimes\psi) = (\lambda\circ\varphi)\otimes(\mu\circ\psi)
             \end{equation*}
@@ -895,7 +895,7 @@
     \begin{equation*}
         \phi(m_1,\dots,rm_i+r'm_i',\dots,m_n) = r\varphi(m_1,\dots,m_i,\dots,m_n)+r'\varphi(m_1,\dots,m_i',\dots,m_n)
     \end{equation*}
-    for all $m_i,m_i'\in M_i$ and $r,r'\in R$, where $R$ is a commutative ring and $M_1,\dots,M_n,L$ are $R$-modules under the respective standard $R$-module structures. \emph{Also known as} \textbf{$\bm{n}$-multilinear over $\bm{R}$}.
+    for all $m_i,m_i'\in M_i$ and $r,r'\in R$, where $R$ is a commutative ring and $M_1,\dots,M_n,L$ are $R$-modules under the respective standard $R$-module structures. \emph{Also known as} \textbf{$\bm{n}$-multilinear over $\bm{R}$}. \emph{Also known as} \textbf{$\bm{n}$-multilinear form on $\bm{V}$}.
     \item \textbf{Trilinear} (map): A 3-multilinear map.
     \item The universal property of the tensor product of $n$ modules.
     \begin{corollary}\label{cly:10.16}
@@ -989,6 +989,364 @@
         \end{proof}
     \end{proposition}
     \item An example is given to tie a lot of things together.
+\end{itemize}
+
+
+
+\section{Chapter 11: Vector Spaces}
+\emph{From \textcite{bib:DummitFoote}.}
+\setcounter{bookch}{11}
+\setcounter{proposition}{21}
+\subsection*{Section 11.4: Determinants}
+\begin{itemize}
+    \item \marginnote{2/27:}We will primarily apply the theory of determinants to vector spaces over a field, but it takes no extra effort to develop it over arbitrary commutative rings, so we will do that.
+    \item In this section, let $R$ be an arbitrary commutative ring and $V_1,\dots,V_n,V,W$ be $R$-modules.
+    \item \textbf{Alternating} ($n$-multilinear function): An $n$-multilinear function $\varphi:V_1\times\cdots\times V_n\to W$ such that $\varphi(v_1,\dots,v_n)=0$ whenever $v_i=v_{i+1}$ for some $i\in\{1,\dots,n-1\}$.
+    \item \textbf{Symmetric} ($n$-multilinear function): An $n$-multilinear function $\varphi:V_1\times\cdots\times V_n\to W$ such that interchanging $v_i$ and $v_j$ for any $i,j\in(v_1,\dots,v_n)$ does not alter the value of $\varphi$ on this $n$-tuple.
+    \item Example: The dot product on $V=\R^m$ is a bilinear form (here, $R=\R$).
+    \item Properties of alternating functions.
+    \begin{proposition}\label{prp:11.22}
+        Let $\varphi$ be an $n$-multilinear alternating function on $V$. Then\dots
+        \begin{enumerate}[ref={\theproposition(\arabic*)}]
+            \item \label{prp:11.22.1}$\varphi(v_1,\dots,v_{i-1},v_{i+1},v_i,v_{i+2},\dots,v_n)=-\varphi(v_1,\dots,v_n)$ for any $i\in\{1,\dots,n-1\}$, i.e., the value of $\varphi$ on an $n$-tuple is negated if two adjacent components are interchanged.
+            \item \label{prp:11.22.2}For each $\sigma\in S_n$, $\varphi(v_{\sigma(1)},\dots,v_{\sigma(n)})=\sgn(\sigma)\varphi(v_1,\dots,v_n)$, where $\sgn(\sigma)$ is the sign of the permutation $\sigma$.
+            \item \label{prp:11.22.3}If $v_i=v_j$ for any pair of distinct $i,j\in\{1,\dots,n\}$, then $\varphi(v_1,\dots,v_n)=0$.
+            \item \label{prp:11.22.4}If $v_i$ is replaced by $v_i+\alpha v_j$ in $(v_1,\dots,v_n)$ for any $j\neq i$ and any $\alpha\in R$, the value of $\varphi$ on this $n$-tuple is not changed.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Relating $\varphi(w)$ to $\varphi(v)$ when we have $w$ in terms of $v$.
+    \begin{proposition}\label{prp:11.23}
+        Assume $\varphi$ is an $n$-multilinear alternating function on $V$ and that for some $v_1,\dots,v_n,w_1,\dots,w_n\in V$ and some $\alpha_{ij}\in R$, we have
+        \begin{align*}
+            w_1 &= \alpha_{11}v_1+\cdots+\alpha_{n1}v_n\\
+            &\hspace{2mm}\vdots\\
+            w_n &= \alpha_{1n}v_1+\cdots+\alpha_{nn}v_n
+        \end{align*}
+        Note that we have purposely written the indices of the $\alpha_{ij}$ in "column format" so that it is easier to relate this proposition to the determinant of column vectors introduced momentarily. Then
+        \begin{equation*}
+            \varphi(w_1,\dots,w_n) = \sum_{\sigma\in S_n}\sgn(\sigma)\alpha_{\sigma(1)1}\cdots\alpha_{\sigma(n)n}\varphi(v_1,\dots,v_n)
+        \end{equation*}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item \textbf{$\bm{n\times n}$ determinant function}: Any function from $M_{n\times n}(R)\to R$ that satisfies the following two axioms. \emph{Denoted by} \textbf{det}. \emph{Constraints}
+    \begin{enumerate}[label={(\roman*)}]
+        \item $\det$ is an $n$-multilinear alternating form on $R^n$ ($=V$), where the $n$-tuples are the $n$ columns of the matrices in $M_{n\times n}(R)$.
+        \item $\det(I)=1$, where $I$ is the $n\times n$ identity matrix.
+    \end{enumerate}
+    \item We will sometimes denote $\det A$ by $\det(A_1,\dots,A_n)$, where $A_1,\dots,A_n$ are the columns of $A$.
+    \item Uniqueness and computability of the determinant.
+    \begin{theorem}\label{trm:11.24}
+        There is a unique $n\times n$ determinant function on $R$ and it can be computed for any $n\times n$ matrix $(\alpha_{ij})$ by the formula
+        \begin{equation*}
+            \det(\alpha_{ij}) = \sum_{\sigma\in S_n}\sgn(\sigma)\alpha_{\sigma(1)1}\cdots\alpha_{\sigma(n)n}
+        \end{equation*}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Determinant of the transpose.
+    \begin{corollary}\label{cly:11.25}
+        The determinant is an $n$-multilinear function on the rows of $M_{n\times n}(R)$ and for any $n\times n$ matrix $A$, $\det A=\det(A^t)$, where $A^t$ is the transpose of $A$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item An unusual form of Cramer's Rule.
+    \begin{theorem}[Cramer's Rule]\label{trm:11.26}
+        If $A_1,\dots,A_n$ are the columns of an $n\times n$ matrix $A$ and $B=\beta_1A_1+\cdots+\beta_nA_n$ for some $\beta_1,\dots,\beta_n\in R$, then
+        \begin{equation*}
+            \beta_i\det A = \det(A_1,\dots,A_{i-1},B,A_{i+1},\dots,A_n)
+        \end{equation*}
+        \begin{proof}
+            This follows immediately from Proposition \ref{prp:11.22.4} and the multilinearity of the determinant.
+        \end{proof}
+    \end{theorem}
+    \item Determinant of a singular matrix.
+    \begin{corollary}\label{cly:11.27}
+        If $R$ is an integral domain, then $\det A=0$ for $A\in M_n(R)$ iff the columns of $A$ are $R$-linearly dependent as elements of the free $R$-module of rank $n$. Also, $\det A=0$ iff the rows of $A$ are $R$-linearly dependent.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item Determinant of the product is the product of the determinants.
+    \begin{theorem}\label{trm:11.28}
+        For matrices $A,B\in M_{n\times n}(R)$, $\det AB=(\det A)(\det B)$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item \textbf{Minor} (of a matrix): The $n-1\times n-1$ matrix obtained from an $n\times n$ matrix $A=(\alpha_{ij})$ by deleting its $i^\text{th}$ row and $j^\text{th}$ column. \emph{Denoted by} $\bm{A_{ij}}$.
+    \item \textbf{Cofactor} (of a matrix): An element of the form $(-1)^{i+j}\det(A_{ij})\in R$.
+    \item An alternate method of computing the determinant.
+    \begin{theorem}[The Cofactor Expansion Formula Along the $i^\text{th}$ Row]\label{trm:11.29}
+        If $A=(\alpha_{ij})$ is an $n\times n$ matrix, then the determinant of $A$ can be computed from the following formula for each fixed $i\in\{1,\dots,n\}$.
+        \begin{equation*}
+            \det A = (-1)^{i+1}\alpha_{i1}\det A_{i1}+\cdots+(-1)^{i+n}\alpha_{in}\det A_{in}
+        \end{equation*}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Computing $A^{-1}$ using cofactors.
+    \begin{theorem}[Cofactor Formula for the Inverse of a Matrix]\label{trm:11.30}
+        Let $A=(\alpha_{ij})$ be an $n\times n$ matrix and let $B$ be the transpose of its matrix of cofactors, i.e., $B=(\beta_{ij})$, where $\beta_{ij}=(-1)^{i+j}\det A_{ji}$ ($1\leq i,j\leq n$). Then $AB=BA=(\det A)I$. Moreover, $\det A$ is a unit in $R$ iff $A$ is a unit in $M_{n\times n}(R)$; in this case, the matrix
+        \begin{equation*}
+            \frac{1}{\det A}B
+        \end{equation*}
+        is the inverse of $A$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+\end{itemize}
+
+
+\subsection*{Section 11.5: Tensor Algebras, Symmetric and Exterior Algebras}
+\begin{itemize}
+    \item In this section, $R$ denotes any commutative ring, and we assume that each $R$-module possesses the standard $R$-module structure.
+    \item We will primarily be interested in the special case $R=F$, but the basic constructions hold in general.
+    \item How is the tensor product a ring, and how is it different from a ring?
+    \begin{itemize}
+        \item In the tensor product, we can form "products" $m_1m_2=m_1\otimes m_2$ of two elements in $M$. However, this does not make $M$ an $M$-module since $m_1m_2\notin M$.
+        \item Can we make it more like a ring, though? We can, using tensor algebras.
+    \end{itemize}
+    \item $\bm{\ten[k]{M}}$: The $k$-fold tensor product of the $R$-module $M$, where $k\geq 1$. \emph{Given by}
+    \begin{equation*}
+        \ten[k]{M} = \underbrace{M\otimes_R\cdots\otimes_RM}_{k\text{ times}}
+    \end{equation*}
+    \item $\bm{\ten[0]{M}}$: The ring $R$, where $M$ is an $R$-module.
+    \item \textbf{$\bm{k}$-tensor}: An element of $\ten[k]{M}$.
+    \item \textbf{Tensor algebra} (of a module): The set of all finite linear combinations of $k$-tensors over $M$ a module for $k\geq 0$. \emph{Denoted by} $\bm{\ten{M}}$. \emph{Given by}
+    \begin{equation*}
+        \ten{M} = \bigoplus_{k=0}^\infty\ten[k]{M} = R\oplus\ten[1]{M}\oplus\ten[2]{M}\oplus\cdots
+    \end{equation*}
+    \begin{itemize}
+        \item This is a ring containing $M$ that is "universal" with respect to rings containing $M$, meaning that...??
+        \item We identify $M\cong\ten[1]{M}$ so that $M$ is an $R$-submodule of $\ten{M}$.
+    \end{itemize}
+    \item We now justify the name, "tensor \emph{algebra}."
+    \begin{theorem}\label{trm:11.31}
+        If $M$ is any $R$-module over the commutative ring $R$, then\dots
+        \begin{enumerate}[ref={\thetheorem(\arabic*)}]
+            \item \label{trm:11.31.1}$\ten{M}$ is an $R$-algebra containing $M$ with multiplication defined by mapping
+            \begin{equation*}
+                (m_1\otimes\cdots\otimes m_i)(m_1'\otimes\cdots\otimes m_j') = m_1\otimes\cdots\otimes m_i\otimes m_1'\otimes\cdots\otimes m_j'
+            \end{equation*}
+            and extended to sums via the distributive laws. With respect to this multiplication,
+            \begin{equation*}
+                \ten[i]{M}\ten[j]{M} \subset \ten[i+j]{M}
+            \end{equation*}
+            \item \label{trm:11.31.2}(Universal Property) If $A$ is any $R$-algebra and $\varphi:M\to A$ is an $R$-module homomorphism, then there is a unique $R$-algebra homomorphism $\Phi:\ten{M}\to A$ such that $\Phi|_M=\varphi$.
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Basis for $\ten[k]{V}$ over $F$.
+    \begin{proposition}\label{prp:11.32}
+        Let $V$ be a finite dimensional vector space over the field $F$ with basis $\mathcal{B}=\{v_1,\dots,v_n\}$. Then the $k$-tensors
+        \begin{equation*}
+            v_{i_1}\otimes\cdots\otimes v_{i_k}
+        \end{equation*}
+        with $v_{i_j}\in\mathcal{B}$ are a vector space basis of $\ten[k]{V}$ over $F$ (with the understanding that the basis vector is the element $1\in F$ when $k=0$). In particular, $\dim(\ten[k]{V})=n^k$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Theorem \ref{trm:11.31} and Proposition \ref{prp:11.32}: $\ten{V}$ can be regarded as a \textbf{noncommutative polynomial algebra} over $F$ in the (noncommuting) variables $v_1,\dots,v_n$.
+    \begin{itemize}
+        \item A linear combinations of the basis vectors in Proposition \ref{prp:11.32} is just like a multivariable polynomial in the variables $v_1,\dots,v_n$, i.e., an element of $F[v_1,\dots,v_n]$.
+        \item \marginnote{2/28:}Recall that an analogous result holds for finitely generated free modules over any commutative ring (see Corollary \ref{cly:10.19}).
+    \end{itemize}
+    \item Examples (return to later).
+    \item \textbf{Graded} (ring): A ring $S$ that is the direct sum of additive subgroups $S_0,S_1,\dots$ such that $S_iS_j\subset S_{i+j}$ for all $i,j\geq 0$.
+    \item \textbf{Homogeneous element} ( of degree $\bm{k}$ of a graded ring): An element of $S_k$.
+    \item \textbf{Homogeneous component} (of $S$ of degree $k$): The subgroup $S_k$.
+    \item \textbf{Graded ideal}: An ideal $I$ of a graded ring $S$ for which
+    \begin{equation*}
+        I = \bigoplus_{k=0}^\infty(I\cap S_k)
+    \end{equation*}
+    \begin{itemize}
+        \item Alternate condition: Whenever a sum $i_{k_1}+\cdots+i_{k_n}$ of homogeneous elements with distinct degrees $k_1,\dots,k_n$ is in $I$, each of the individual summands is in $I$.
+        \item An ideal is a graded ideal iff it can be generated by homogeneous polynomials.
+        \item Not every ideal of a graded ring is a graded ideal.
+    \end{itemize}
+    \item \textbf{Graded ring homomorphism}: A ring homomorphism $\varphi:S\to T$ that respects the grading structures on $S$ and $T$, i.e., $\varphi(S_k)\subset T_k$ for all $k\in\Zg$.
+    \item Since $S_0S_0\subset S_0$ in a graded ring, $S_0$ is a subring of $S$ and $S$ is a $S_0$-module.
+    \begin{itemize}
+        \item If $S_0\subset Z(S)$, then $S$ is an $S_0$-algebra.
+    \end{itemize}
+    \item Examples.
+    \begin{enumerate}
+        \item The second equation in Theorem \ref{trm:11.31.1} implies that the tensor algebra is a graded ring.
+        \item $R[X_1,\dots,X_n]$.
+    \end{enumerate}
+    \item Quotients of graded rings by graded ideals are graded.
+    \begin{proposition}\label{prp:11.33}
+        Let $S$ be a graded ring, let $I$ be a graded ideal in $S$, and let $I_k=I\cap S_k$ for all $k\geq 0$. Then $S/I$ is naturally a graded ring whose homogeneous component of degree $k$ is isomorphic to $S_k/I_k$.
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{proposition}
+    \item Symmetric algebras.
+    \begin{itemize}
+        \item Return to later.
+    \end{itemize}
+    \setcounter{proposition}{35}
+    \item Exterior algebras.
+    \item \textbf{Exterior algebra} (of a module): The $R$-algebra obtained from the $R$-module $M$ by taking the quotient of the tensor algebra $\ten{M}$ by the ideal $\alt{M}$ generated by all elements of the form $m\otimes m$ for $m\in M$. \emph{Denoted by} $\bm{\lam{M}}$. \emph{Given by}
+    \begin{equation*}
+        \lam{M} = \ten{M}/\alt{M}
+    \end{equation*}
+    \begin{itemize}
+        \item The image of $m_1\otimes\cdots\otimes m_k\in\ten{M}$ in $\lam{M}$ is denoted by $m_1\wedge\cdots\wedge m_k$.
+    \end{itemize}
+    \item Note that $\alt{M}$ is a graded ideal.
+    \item Thus, by Proposition \ref{prp:11.33}, $\lam{M}$ is graded.
+    \item \textbf{$\bm{k^\textbf{th}}$ exterior power} (of a module): The $R$-module equal to the $k^\text{th}$ homogeneous component of the graded ring $\lam{M}$. \emph{Denoted by} $\bm{\lam[k]{M}}$. \emph{Given by}
+    \begin{equation*}
+        \lam[k]{M} = \ten[k]{M}/\alt[k]{M}
+    \end{equation*}
+    \begin{itemize}
+        \item We again let $R=\lam[0]{M}$ and $M=\lam[1]{M}$; hence, $M$ is an $R$-submodule of the $R$-algebra $\lam{M}$.
+    \end{itemize}
+    \item \textbf{Wedge product}: The multiplication in the exterior algebra. \emph{Also known as} \textbf{exterior product}. \emph{Given by}
+    \begin{equation*}
+        (m_1\wedge\cdots\wedge m_i)\wedge(m_1'\wedge\cdots\wedge m_j') = m_1\wedge\cdots\wedge m_i\wedge m_1'\wedge\cdots\wedge m_j'
+    \end{equation*}
+    \begin{itemize}
+        \item This multiplication is alternating (by the definition of the quotient) in the sense that $m_1\wedge\cdots\wedge m_k=0$ if $m_i=m_{i+1}$ for any $1\leq i<k$.
+        \item Multiplication is also anticommutative for all $m,m'\in M$:
+        \begin{align*}
+            0 &= (m+m')\wedge(m+m')\\
+            &= (m\wedge m)+(m\wedge m')+(m'\wedge m)+(m'\wedge m')\\
+            &= 0+(m\wedge m')+(m'\wedge m)+0\\
+            m\wedge m' &= -m'\wedge m
+        \end{align*}
+        \begin{itemize}
+            \item The anticommutativity does not extend to arbitrary products, though, i.e., we need not have $ab=-ba$ for all $a,b\in\lam{M}$.
+        \end{itemize}
+    \end{itemize}
+    \item Basic properties of the exterior algebra.
+    \begin{theorem}\label{trm:11.36}
+        Let $M$ be an $R$-module over the commutative ring $R$ and let $\lam{M}$ be its exterior algebra.
+        \begin{enumerate}
+            \item The $k^\text{th}$ exterior power $\lam[k]{M}$ of $M$ is equal to $M\otimes\cdots\otimes M$ ($k$ times) modulo the submodule generated by all elements of the form $m_1\otimes\cdots\otimes m_k$ where $m_i=m_j$ for some $i\neq j$. In particular, $m_1\wedge\cdots\wedge m_k=0$ if $m_i=m_j$ for some $i\neq j$.
+            \item (Universal Property for Alternating Multilinear Maps) If $\varphi:M\times\cdots\times M\to N$ is an alternating $k$-multilinear map, then there is a unique $R$-module homomorphism $\Phi:\lam[k]{M}\to N$ such that $\varphi=\Phi\circ\iota$, where $\iota:M\times\cdots\times M\to\lam[k]{M}$ is the map defined by
+            \begin{equation*}
+                (m_1,\dots,m_k) \mapsto m_1\wedge\cdots\wedge m_k
+            \end{equation*}
+        \end{enumerate}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{theorem}
+    \item Examples.
+    \begin{enumerate}
+        \item If $V$ is a one-dimensional vector space over $F$ with basis $\{v\}$, then
+        \begin{equation*}
+            \lam{V} = F\oplus V\oplus 0\oplus 0\oplus\cdots
+        \end{equation*}
+        \begin{itemize}
+            \item By definition, $\lam[k]{V}$ consists of all finite sums of elements of the form
+            \begin{equation*}
+                \alpha_1v\wedge\cdots\wedge\alpha_kv = \alpha_1\cdots\alpha_k(v\wedge\cdots\wedge v)
+            \end{equation*}
+            for $\alpha_1,\dots,\alpha_k\in F$.
+            \item Since $v\wedge v=0$,
+            \begin{align*}
+                \lam[0]{V} &= F&
+                \lam[1]{V} &= V&
+                \lam[i]{V} &= 0\ (i\geq 2)
+            \end{align*}
+            implying the original result.
+        \end{itemize}
+        \item If $V$ is a two-dimensional vector space over $F$ with basis $\{v,v'\}$, then
+        \begin{equation*}
+            \lam{V} = F\oplus V\oplus F(v\wedge v')\oplus 0\oplus 0\oplus\cdots
+        \end{equation*}
+        \begin{itemize}
+            \item As before, $\lam[0]{V}=F$ and $\lam[1]{V}=V$.
+            \item For $\lam[2]{V}$, an arbitrary element of is a sum of elements of the form
+            \begin{align*}
+                (av+bv')\wedge(cv+dv') &= ac(v\wedge v)+ad(v\wedge v')+bc(v'\wedge v)+bd(v'\wedge v')\\
+                &= (ad-bc)v\wedge v'
+            \end{align*}
+            \item Proving the $v\wedge v'\neq 0$.
+            \begin{itemize}
+                \item We know that $\lam[2]{V}=\ten[2]{V}/\alt[2]{V}$.
+                \item By Proposition \ref{prp:11.16}, $\ten[2]{V}$ is a 4-dimensional vector space with basis $\{v\otimes v,v\otimes v',v'\otimes v,v'\otimes v'\}$.
+                \item Note that another valid basis of $\ten[2]{V}$ is $\{v\otimes v,v\otimes v'+v'\otimes v,v'\otimes v',v\otimes v'\}$ since we can easily regenerate the original from it.
+                \item This alternate basis is of interest since $\alt[2]{V}$ consists of all of the 2-tensors in the ideal generated by the tensors
+                \begin{equation*}
+                    (av+bv')\otimes(av+bv') = a^2(v\otimes v)+ab(v\otimes v'+v'\otimes v)+b^2(v'\otimes v')
+                \end{equation*}
+                \item It follows that $\alt[2]{V}$ is contained in the 3-dimensional subspace of $\ten[2]{V}$ having $\{v\otimes v,v\otimes v'+v'\otimes v,v'\otimes v'\}$ as basis.
+                \item In particular, since $v\otimes v'\notin\alt[2]{V}$, we know that $v\wedge v'\neq 0$ in $\lam[2]{V}$.
+                \item In fact, it follows that $\lam[2]{V}\cong F(v\wedge v')$.
+            \end{itemize}
+            \item We have $\lam[i]{V}=0$ ($i\geq 3$) since in such an $i$-fold wedge product, either $v$ or $v'$ must appear more than once, making the entire wedge product equal to 0 by definition.
+            \item These last four results together imply the original one.
+        \end{itemize}
+    \end{enumerate}
+    \item Unlike the tensor and symmetric algebras, $\lam[k]{V}$ is finite-dimensional for $V$ finite dimensional.
+    \begin{corollary}\label{cly:11.37}
+        Let $V$ be a finite dimensional vector space over the field $F$ with basis $\mathcal{B}=\{v_1,\dots,v_n\}$. Then the vectors $v_{i_1}\wedge\cdots\wedge v_{i_k}$ ($1\leq i_1\leq\cdots\leq i_k\leq n$) form a basis of $\lam[k]{V}$, and $\lam[k]{V}=0$ when $k>n$ (when $k=0$, the basis vector is the element $1\in F$). In particular,
+        \begin{equation*}
+            \dim_F(\lam[k]{V}) = \binom{n}{k}
+        \end{equation*}
+        \begin{proof}
+            Given.
+        \end{proof}
+    \end{corollary}
+    \item The results in Corollary \ref{cly:11.37} are true for any \emph{free} $R$-module of rank $n$.
+    \item Example.
+    \begin{itemize}
+        \item Return to later.
+    \end{itemize}
+    \item This concludes our direct treatment of exterior algebras.
+    \item We now move on to homomorphisms of tensor algebras.
+    \begin{itemize}
+        \item There's some stuff on symmetric algebras in here that I should return to later.
+    \end{itemize}
+    \item Every $R$-module homomorphism $\varphi:M\to N$ induces a map on the $k^\text{th}$ tensor power defined by
+    \begin{equation*}
+        \ten[k]{\varphi}:m_1\otimes\cdots\otimes m_k\mapsto\varphi(m_1)\otimes\cdots\otimes\varphi(m_k)
+    \end{equation*}
+    \item This map sends the generators of $\alt{M}$ to themselves.
+    \begin{itemize}
+        \item Example: We send $m\otimes m$ to $\varphi(m)\otimes\varphi(m)$, another element of the form $n\otimes n$.
+    \end{itemize}
+    \item Thus, $\varphi$ also induces an $R$-module homomorphism on the quotient defined by
+    \begin{equation*}
+        \lam[k]{\varphi}:\lam[k]{M}\to\lam[k]{N}
+    \end{equation*}
+    \begin{itemize}
+        \item Since this map is also a ring homomorphism, it is a graded $R$-algebra homomorphism.
+    \end{itemize}
+    \item The case where $M=V$ an $n$-dimensional vector space over $F$ and $\varphi:V\to V$.
+    \begin{itemize}
+        \item Let $v_1,\dots,v_n$ be a basis of $V$.
+        \item Corollary \ref{cly:11.37}: $\lam[n]{\varphi}$ maps the 1-dimensional vector space $\lam[n]{V}$ to itself. In particular,
+        \begin{equation*}
+            \lam[n]{\varphi}(v_1\wedge\cdots\wedge v_n) = \varphi(v_1)\wedge\cdots\wedge\varphi(v_n)
+            = D(\varphi)v_1\wedge\cdots\wedge v_n
+        \end{equation*}
+        for some $D(\varphi)\in F$.
+    \end{itemize}
+    \item Characterizing $D(\varphi)$.
+    \begin{proposition}\label{prp:11.38}
+        If $\varphi$ is an endomorphism on an $n$-dimensional vector space $V$, then $\lam[n]{\varphi}(w)=\det(\varphi)w$ for all $w\in\lam[n]{V}$.
+        \begin{proof}
+            Let $A$ be an arbitrary $n\times n$ matrix over $F$. Defining the associated endomorphism $\varphi$ gives a map $D:M_{n\times n}(F)\to F$ defined by $D(A)=D(\varphi)$. Confirming that this map $D$ satisfies the three axioms for a determinant function in Section 11.4, the uniqueness statement of Theorem \ref{trm:11.24} yields the desired result. 
+        \end{proof}
+    \end{proposition}
+    \item The map $\lam[k]{\varphi}$ induced by $\varphi$ injective need not remain injective.
 \end{itemize}
 
 

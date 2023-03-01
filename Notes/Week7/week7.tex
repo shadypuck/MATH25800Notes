@@ -982,9 +982,109 @@
     \item Example of similarity given.
     \item \textbf{Canonical forms}: The study of the simplest possible matrix representing a given linear transformation (and which basis to choose to realize it).
     \item We now move on to linear transformations on tensor products of vector spaces.
-    \item Return to later.
-    \setcounter{proposition}{17}
-    \item \textbf{Idempotent} (linear transformation): A linear transformation $\psi$ satisfying $\psi^2=\psi$.
+    \item \marginnote{2/28:}Corollaries \ref{cly:10.18}-\ref{cly:10.19} in the special case of vector spaces.
+    \begin{proposition}\label{prp:11.15}
+        Let $F$ be a subfield of the field $K$. If $W$ is an $m$-dimensional vector space over $F$ with basis $w_1,\dots,w_m$, then $K\otimes_FW$ is an $m$-dimensional vector space over $K$ with basis $1\otimes w_1,\dots,1\otimes w_m$.
+    \end{proposition}
+    \begin{proposition}\label{prp:11.16}
+        Let $V$ and $W$ be finite dimensional vector spaces over the field $F$ with bases $v_1,\dots,v_n$ and $w_1,\dots,w_m$, respectively. Then $V\otimes_FW$ is a vector space over $F$ of dimension $nm$ with basis $v_i\otimes w_j$ ($1\leq i\leq n$ and $1\leq j\leq m$).
+    \end{proposition}
+    \item When is $v\otimes w$ nonzero?
+    \begin{itemize}
+        \item If $V,W$ are vector spaces, then $v\otimes w\in V\otimes_FW$ is nonzero by Proposition \ref{prp:11.16} since we may always build bases of $V,W$ whose first basis vectors are $v$ and $w$, respectively.
+        \item In the tensor product $M\otimes_RN$ of two $R$-modules, it is in general substantially more difficult to determine when $m\otimes n$ is zero.
+    \end{itemize}
+    \item Computing the matrix of the tensor product of two linear transformations.
+    \begin{itemize}
+        \item Let $V,W,X,Y$ be finite dimensional vector spaces over $F$.
+        \item Let $\mathcal{B}_1,\mathcal{B}_2,\mathcal{E}_1,\mathcal{E}_2$ be their respective (ordered) bases, where
+        \begin{align*}
+            \mathcal{B}_1 &= \{v_1,\dots,v_n\}&
+            \mathcal{B}_2 &= \{w_1,\dots,w_m\}&
+            \mathcal{E}_1 &= \{x_1,\dots,x_r\}&
+            \mathcal{E}_2 &= \{y_1,\dots,y_s\}&
+        \end{align*}
+        \item Let $\varphi:V\to X$ and $\psi:W\to Y$ be the linear transformations defined by
+        \begin{align*}
+            \varphi(v_i) &= \sum_{p=1}^r\alpha_{pi}x_p&
+            \psi(w_j) &= \sum_{q=1}^s\beta_{qj}y_q
+        \end{align*}
+        \item Let $\mathcal{B},\mathcal{E}$ be the (ordered) bases of $V\otimes W$ and $X\otimes Y$, respectively, where
+        \begin{align*}
+            \mathcal{B} ={}& \{v_1\otimes w_1,v_1\otimes w_2,\dots,v_1\otimes w_m,&
+                \mathcal{E} ={}& \{x_1\otimes y_1,x_1\otimes y_2,\dots,x_1\otimes y_s,\\
+            &\hspace{5pt} v_2\otimes w_1,v_2\otimes w_2,\dots,v_2\otimes w_m,&
+                &\hspace{5pt} x_2\otimes y_1,x_2\otimes y_2,\dots,x_2\otimes y_s,\\
+            &\hspace{5pt} \dots,&
+                &\hspace{5pt} \dots,\\
+            &\hspace{5pt} v_n\otimes w_1,v_n\otimes w_2,\dots,v_n\otimes w_m\}&
+                &\hspace{5pt} x_r\otimes y_1,x_r\otimes y_2,\dots,x_r\otimes y_s\}
+        \end{align*}
+        \item Our target is the linear transformation
+        \begin{equation*}
+            \varphi\otimes\psi:V\otimes W\to X\otimes Y
+        \end{equation*}
+        \item We have that
+        \begin{align*}
+            (\varphi\otimes\psi)(v_i\otimes w_j) &= \varphi(v_i)\otimes\psi(w_j)\tag*{Theorem \ref{trm:10.13.1}}\\
+            &= \left( \sum_{p=1}^r\alpha_{pi}x_p \right)\otimes\left( \sum_{q=1}^s\beta_{qj}y_q \right)\\
+            &= \sum_{p=1}^r\sum_{q=1}^s\alpha_{pi}\beta_{qj}(x_p\otimes y_q)
+        \end{align*}
+        \item Therefore, $\mat{B}{E}{\varphi\otimes\psi}$ is an $r\times n$ block matrix whose $p,q$ block is the $s\times m$ matrix $\alpha_{p,q}\mat{B_2}{E_2}{\psi}$.
+        \begin{itemize}
+            \item "In other words, the matrix for $\varphi\otimes\psi$ is obtained by taking the matrix for $\varphi$ and multiplying each entry by the matrix for $\psi$" \parencite[421]{bib:DummitFoote}.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Kronecker product} (of two matrices): The $rs\times nm$ matrix (corresponding to the two matrices $A=(\alpha_{ij})$ and $B$ with coefficients from any commutative ring) consisting of an $r\times n$ block matrix whose $i,j$ block is the $s\times m$ matrix $\alpha_{ij}B$. \emph{Also known as} \textbf{tensor product}.
+    \item Verification that everything is well defined.
+    \begin{proposition}\label{prp:11.17}
+        Let $\varphi:V\to X$ and $\psi:W\to Y$ be linear transformations of finite dimensional vector spaces. Then the Kronecker product of matrices representing $\varphi$ and $\psi$ is a matrix representation of $\varphi\otimes\psi$.
+        \begin{proof}
+            Given informally above: The "Computing the matrix..." section.
+        \end{proof}
+    \end{proposition}
+    \item Example.
+    \begin{itemize}
+        \item Let $V=X=\R^3$ and $W=Y=\R^2$ have bases $\{v_1,v_2,v_3\}$ and $\{w_1,w_2\}$, respectively.
+        \item Let $\varphi:\R^3\to\R^3$ and $\psi:\R^2\to\R^2$ be the linear transformations defined by
+        \begin{align*}
+            \varphi(av_1+bv_2+cv_3) &= cv_1+2av_2-3bv_3&
+            \psi(aw_1+bw_2) &= (a+3b)w_1+(4b-2a)w_2
+        \end{align*}
+        \begin{itemize}
+            \item It follows that
+            \begin{align*}
+                \mat{}{}{\varphi} &=
+                \begin{pmatrix}
+                    0 & 0 & 1\\
+                    2 & 0 & 0\\
+                    0 & -3 & 0\\
+                \end{pmatrix}&
+                \mat{}{}{\psi} &=
+                \begin{pmatrix}
+                    1 & 3\\
+                    -2 & 4\\
+                \end{pmatrix}
+            \end{align*}
+        \end{itemize}
+        \item Let the (ordered) basis of $V\otimes W=X\otimes Y$ be
+        \begin{equation*}
+            \mathcal{B} = \{v_1\otimes w_1,v_1\otimes w_2,v_2\otimes w_1,v_2\otimes w_2,v_3\otimes w_1,v_3\otimes w_2\}
+        \end{equation*}
+        \item Then
+        \begin{equation*}
+            \mat{B}{B}{\varphi\otimes\psi} =
+            \begin{pNiceArray}{cc|cc|cc}
+                0  & 0 & 0  & 0   & 1  & 3\\
+                0  & 0 & 0  & 0   & -2 & 4\\ \hline
+                2  & 6 & 0  & 0   & 0  & 0\\
+                -4 & 8 & 0  & 0   & 0  & 0\\ \hline
+                0  & 0 & -3 & -9  & 0  & 0\\
+                0  & 0 & 6  & -12 & 0  & 0\\
+            \end{pNiceArray}
+        \end{equation*}
+    \end{itemize}
+    \item \marginnote{2/20:}\textbf{Idempotent} (linear transformation): A linear transformation $\psi$ satisfying $\psi^2=\psi$.
     \begin{itemize}
         \item Characterized in Exercise 11.2.11.
     \end{itemize}
