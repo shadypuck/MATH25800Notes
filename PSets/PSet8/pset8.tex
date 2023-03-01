@@ -1,0 +1,70 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{7}
+
+\begin{document}
+
+
+
+
+\section{Algebras}
+\begin{enumerate}
+    \item \marginnote{3/3:}Let $T_i\in\End_A(M_i)$ for $i=1,2$, and let $M_1,M_2$ be $A[X]$-modules for an arbitrary ring $A$. Let $S:M_1\to M_2$ be a function.
+    \begin{enumerate}
+        \item Prove that $S$ is an $A[X]$-module homomorphism iff\dots
+        \begin{enumerate}[label={(\alph*)}]
+            \item $S$ is an $A$-module homomorphism;
+            \item $T_2S=ST_1$.
+        \end{enumerate}
+        \item Prove that $S$ is an $A[X]$-module isomorphism iff\dots
+        \begin{enumerate}[label={(\alph*)}]
+            \item $S$ is an $A$-module isomorphism;
+            \item $T_2=ST_1S^{-1}$.
+        \end{enumerate}
+    \end{enumerate}
+    \item Consider $(M,T)$ with $M=A^n$ and $T(a_1,\dots,a_n)=(0,a_1,\dots,a_{n-1})$. Prove that the corresponding $A[X]$-module is isomorphic to $A[X]/(X^n)$.
+    %     
+    % 
+    % 
+    %     
+    %%%%%% Omit the following problem!!!
+    \item Let $V$ be a finite dimensional vector space and $T:V\to V$ be a linear transformation. Consider the pair $(V,T)$. Why is $V$ a finitely generated torsion $F[X]$-module?
+    \item $T:V\to V$ is diagonalizable if there is a basis $e_1,\dots,e_n$ of $V$ consisting of eigenvectors of $T$, i.e., $Te_i=a_ie_i$ for some $a_i\in F$.
+    \begin{enumerate}
+        \item What is the minimal polynomial of $T$?
+        \item What condition on $a_1,\dots,a_n$ is necessary and sufficient for the existence of a cyclic vector for $T$?
+    \end{enumerate}
+    \item Let $V$ be an $n$-dimensional vector space. Let $T\in\End_F(V)$. Let $A=\{S\in\End_F(V):ST=TS\}$. \emph{Hint}: We may regard $V$ as an $F[X]$-module. Identify $A$ with $\End_{F[X]}(V)$. And then use the rational canonical from.
+    \begin{enumerate}
+        \item Show that the dimension of $A$ (as an $F$-vector space) is greater than or equal to $n$.
+        \item Show that the equality is attained iff $T$ has a cyclic vector.
+    \end{enumerate}
+    \item Let $f\in R[X]$ be a monic polynomial of degree $n$. Let $M$ be a free $R$-module with basis $e_1,\dots,e_n$.
+    \begin{enumerate}
+        \item Show that there is a unique $R$-module homomorphism $T:M\to M$ such that $T(e_i)=e_{i+1}$ for all $i=1,\dots,n-1$ and $f(T)e_1=0$.
+        \item Show that $f(T)v=0$ for all $v\in M$.
+        \item Let $b\in R$. Define $S:M\to M$ by $S(v)=bv-Tv$ for all $v\in M$. Compute $\lam[k]{S}e_1\cdots e_k$. for all $k=1,\dots,n$ inductively and deduce that $\det(S)=f(b)$.
+    \end{enumerate}
+    \item Let $V$ be a vector space over a field $F$. Let $v_1,\dots,v_r\in V$.
+    \begin{enumerate}
+        \item Prove that if $v_1,\dots,v_r$ are linearly dependent, then $v_1\cdots v_r\in\lam[r]{V}$ equals zero.
+        \item Prove that if $v_1,\dots,v_r$ are linearly independent, then $v_1\cdots v_r\in\lam[r]{V}$ is nonzero.
+        \item Prove that if $W$ is a linear subspace of $V$ and $w_1,\dots,w_r$ is a basis of $W$, then the one-dimensional subspace $Fw_1\cdots w_r$ of $\lam[r]{V}$ depends only on $W$, i.e., it does not depend on the choice of the basis $w_1,\dots,w_r$. It is conventional to refer to this one dimensional subspace as $\det(W)\subset\lam[r]{V}$.
+        \item If $W_1,W_2$ are both $r$-dimensional subspaces of $V$, ad if the one-dimensional subspaces $\det(W_1)$ and $\det(W_2)$ of $\lam[r]{V}$ are equal to each other, show that $W_1=W_2$.
+    \end{enumerate}
+    \item Let $V$ be a vector space of dimension 4, and let $\omega\in\lam[2]{V}$ be nonzero. Prove that $\omega^2=0$ iff $F\omega=\det(W)$ for a two-dimensional subspace $W\subset V$.
+    \item Prove that the characteristic polynomial is monic of degree $n$. Prove that the coefficient of $\lambda^{n-1}$ in the characteristic polynomial of $L$ is the negative of the trace of $L$, which is defined to be the sum of the diagonal terms of the matrix that represents $L$ when a basis $e_1,\dots,e_n$ is specified.
+    \item Deduce the Cayley-Hamilton theorem for fields from Problem 8.6 and the fact that every torsion $F[X]$-module is the direct sum of cyclic modules.
+    \item 
+    \begin{enumerate}
+        \item Show that the Cayley-Hamilton theorem for fields implies the theorem for integral domains as well.
+        \item Show that the Cayley-Hamilton theorem for the polynomial ring $\Z[X_1,\dots,X_{n^2}]$ implies the theorem for all $L:R^n\to R^n$ where $R$ is a commutative ring.
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}
