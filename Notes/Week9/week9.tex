@@ -142,5 +142,70 @@
 
 
 
+\section{Final Review Sheet}
+\begin{itemize}
+    \item See midterm review sheet for everything rings-related.
+    \item \textbf{Gauss's lemma}: Reducible polynomials in $R[X]$ are reducible in $R[X]$.
+    \item Dividing the first and last coefficients of the polynomial by monomials.
+    \item \textbf{Left $\bm{A}$-module}: An abelian group $(M,+)$ equipped with a binary operation $\cdot:A\times M\to M$ satisfying the following constraints.
+    \begin{enumerate}
+        \item $a(v_1+v_2)=av_1+av_2$.
+        \item $(a+b)v=av+bv$.
+        \item $a(bv)=(ab)v$.
+        \item $1_Av=v$.
+    \end{enumerate}
+    \item Alternatively: $\rho:A\to\End(M)$ satisfies:
+    \begin{enumerate}
+        \item $\rho(a)$ is a group homomorphism from $M\to M$.
+        \item $\rho(a+b)=\rho(a)+\rho(b)$.
+        \item $\rho(a)\rho(b)=\rho(ab)$.
+        \item $\rho(1_A)=1_{\End(M)}$.
+    \end{enumerate}
+    \item \textbf{Module homomorphism}: A group homomorphism that commutes with scalar multiplication, i.e., $T(av)=aT(v)$.
+    \item $T:A^n\to M$ is defined by the action of $T$ on the $e_i$'s.
+    \item \textbf{Module isomorphism}: A bijective module homomorphism.
+    \item Quotient module exist in a natural way.
+    \item FIT for modules.
+    \item Let $R$ be a PID; then every $R$-submodule of $R^n$ is isomorphic to $R^m$ for some $0\leq m\leq n$.
+    \item If $M/M'\cong A^n$, then $M'\oplus A^n\cong M$.
+    \item \textbf{$\bm{R}$-algebra}: A pair $(A,f)$, where $A$ is a ring, $f:R\to A$ is a ring homomorphism, and $R$ is a commutative ring, such that $f(R)\subset Z(A)$.
+    \begin{itemize}
+        \item $A$ is an $R$-module under $r\cdot a=f(r)\cdot a$.
+    \end{itemize}
+    \item \textbf{$\bm{R}$-algebra homomorphism}: A ring homomorphism $\varphi:A\to B$ such that $\varphi(r\cdot a)=r\cdot\varphi(a)$.
+    \item $\Hom_R(M,M)$ is a ring under componentwise addition and composition; it is an $R$-algebra when $R$ is commutative.
+    \item \textbf{Poset}.
+    \item \textbf{Maximal} ($f\in P$): An element $f\in P$ a poset such that for all $q\in P$, the statement $q>f$ is false.
+    \item \textbf{Chain}: A totally ordered subset of a poset.
+    \item \textbf{Zorn's lemma}: If $P$ is a poset such that $P\neq 0$ and every chain $C\subset P$ has an upper bound, then $P$ has a maximal element.
+    \item Corollary: Every nonzero finitely generated $A$-module $M$ has a maximal submodule.
+    \item Corollary: Every nonzero commutative ring $R$ has a maximal ideal.
+    \item \textbf{Torsion module}: An $R$-module such that for all $m\in M$, there exists a nonzero $a\in R$ such that $am=0$.
+    \item \textbf{Torsion-free module}: An $R$-module $M$ such that for all nonzero $m\in M$ and for all nonzero $a\in R$, $am\neq 0$.
+    \item \textbf{Torsion element}: An element $m\in M$ for which there exists a nonzero $a\in R$ such that $am=0$.
+    \item $\bm{\Tor(M)}$: The set of all torsion elements in $M$.
+    \item \textbf{$\bm{p}$-primary} (module): An $R$-module $M$ such that for all $m\in M$, there exists $k\geq 0$ for which $p^km=0$, where $p\in R$ is prime.
+    \item \textbf{$\bm{p}$-primary} (component): The submodule of a module $M$ consisting of all $m\in M$ such that $p^km=0$ for some $k\in\Zg$ and $p\in R$ prime.
+    \item All finitely generated torsion-free $R$-modules are isomorphic to $R^n$.
+    \item $\Tor(M)$ is an $R$-submodule of $M$.
+    \item $M/\Tor(M)$ is torsion-free.
+    \begin{itemize}
+        \item To prove that something is torsion-free, it suffices to prove that every torsion element is zero.
+    \end{itemize}
+    \item Every finitely generated $R$-module has a free submodule.
+    \item Finitely generated torsion-free modules $M$ over a PID $R$ are isomorphic to $R^h$.
+    \item If $M$ is a finitely generated $R$-module over a PID, then $M\cong\Tor(M)\oplus R^h$, where $\Tor(M)$ is finitely generated.
+    \item Finitely generated $R$-module are isomorphic iff they have the same rank and their torsion components are isomorphic.
+    \item The direct sum of the $p$-primary components is equal to $\Tor(M)$.
+    \item Every finitely generated $p$-primary module is the direct sum of the cyclic submodule $Re_i$.
+    \item \textbf{RCF}: Let $R$ be a PID. Then every finitely generated $R$-torsion module is isomorphic to $R/(a_1)\oplus\cdots\oplus R/(a_\ell)$ where $a_\ell\mid a_{\ell-1}\mid\cdots\mid a_1$.
+    \item Every finitely generated $R$-module, where $R$ is a PID, is isomorphic to $R/I_1\oplus R/I_2\oplus\cdots$ for a unique increasing sequence of ideals $I_1\subset I_2\subset\cdots$ which have the property that $I_n=R$ for some $n$.
+    \item Vector spaces $(V,T)$ as $F[X]$-modules under $\rho:F[X]\to\End_F(V)$ defined by $X\mapsto T$.
+    \item \textbf{Minimal polynomial}: The polynomial that generates $\ker(\rho)$, an ideal of the PID $F[X]$.
+    \item Cyclic vectors and linear dependence, defining the minimal polynomial by $g(X)=X^k-(a_{k-1}X^{k-1}+\cdots+a_0)$.
+\end{itemize}
+
+
+
 
 \end{document}
